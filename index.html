@@ -32,7 +32,72 @@
       <section>
         <h1>Store</h1>
 
-<h2>License</h2>
+<p>A simple datastore for rapid prototype development</p>
+
+<h2>Huh?</h2>
+
+<h2>Example usage</h2>
+
+<div class="highlight"><pre><span class="nt">&lt;script </span><span class="na">src=</span><span class="s">"src/store.js"</span><span class="nt">&gt;&lt;/script&gt;</span>
+<span class="nt">&lt;script&gt;</span>
+
+<span class="c1">// scope</span>
+<span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">root</span><span class="p">){</span>
+
+  <span class="c1">// configure</span>
+  <span class="nx">Store</span><span class="p">.</span><span class="nx">config</span><span class="p">({</span> 
+    <span class="nx">url</span><span class="o">:</span> <span class="s2">"http://localhost/datastore.php"</span><span class="p">,</span> <span class="c1">// server side handler *</span>
+    <span class="nx">ttl</span><span class="o">:</span> <span class="mi">1000</span> <span class="c1">// timeout in ms</span>
+  <span class="p">});</span>
+
+  <span class="c1">// create entities/stores</span>
+  <span class="p">[</span><span class="s1">'author'</span><span class="p">,</span> <span class="s1">'article'</span><span class="p">,</span> <span class="s1">'magazine'</span><span class="p">,</span> <span class="s1">'publisher'</span><span class="p">].</span><span class="nx">forEach</span><span class="p">(</span>
+    <span class="kd">function</span><span class="p">(</span><span class="nx">context</span><span class="p">){</span>
+      <span class="nx">root</span><span class="p">[</span><span class="nx">context</span><span class="o">+</span><span class="s1">'Datastore'</span><span class="p">]</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Store</span><span class="p">({</span> <span class="nx">classname</span><span class="o">:</span> <span class="nx">context</span> <span class="p">});</span>
+    <span class="p">}</span>
+  <span class="p">);</span>
+
+  <span class="c1">// create 10 articles</span>
+  <span class="kd">var</span> <span class="nx">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+  <span class="k">while</span><span class="p">(</span><span class="nx">i</span><span class="o">&lt;</span><span class="mi">10</span> <span class="o">&amp;&amp;</span> <span class="nx">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+
+    <span class="c1">// create &amp; store</span>
+    <span class="nx">articleStore</span><span class="p">.</span><span class="nx">create</span><span class="p">({</span> 
+
+      <span class="c1">// article</span>
+      <span class="nx">title</span><span class="o">:</span> <span class="s1">'No.'</span> <span class="o">+</span> <span class="nx">i</span><span class="p">,</span>       
+      <span class="kr">abstract</span><span class="o">:</span> <span class="s1">'Lorem Ipsum [...]'</span><span class="p">,</span>       
+      <span class="nx">text</span><span class="o">:</span> <span class="s1">'Lorem Ipsum Si Amet They Say'</span><span class="p">,</span>             
+
+      <span class="c1">// history </span>
+      <span class="nx">author</span><span class="o">:</span> <span class="s1">'me'</span><span class="p">,</span> 
+      <span class="nx">lastmod</span><span class="o">:</span> <span class="k">new</span> <span class="nb">Date</span><span class="p">().</span><span class="nx">getTime</span><span class="p">()</span>
+    <span class="p">}).</span><span class="nx">update</span><span class="p">();</span>  
+  <span class="p">}</span>
+
+  <span class="c1">// fetch all articles (10)</span>
+  <span class="nx">articleStore</span><span class="p">.</span><span class="nx">list</span><span class="p">();</span>
+
+  <span class="c1">// fetch article </span>
+  <span class="kd">var</span> <span class="nx">article</span> <span class="o">=</span> <span class="nx">articleStore</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s2">"UUID"</span><span class="p">);</span>
+
+  <span class="c1">// remove article</span>
+  <span class="nx">article</span><span class="p">.</span><span class="nx">remove</span><span class="p">();</span>
+
+  <span class="c1">// </span>
+
+<span class="p">})(</span><span class="k">this</span><span class="p">);</span>
+<span class="nt">&lt;/script&gt;</span>
+</pre></div>
+
+<h2>Roadmap</h2>
+
+<ul>
+<li>Test Coverage++</li>
+<li>AMD/CommonJS</li>
+<li>Localstorage (TTL)</li>
+<li>JSON Schemas</li>
+</ul><h2>License</h2>
 
 <p>Released under two licenses: new BSD, and MIT. You may pick the
 license that best suits your development needs.</p>
