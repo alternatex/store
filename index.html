@@ -30,7 +30,13 @@
       <section>
         <h2>Overview</h2>
 
-<p>Store esentially provides CRUD storage operations for arbitrary objects. Operations are implementend in an asynchronous fashion with custom deferred objects to handle postponed code execution.</p>
+<p>Store essentially provides CRUD operations for arbitrary objects. 
+Operations are executed asynchronously using custom deferred objects to handle callbacks.</p>
+
+<h2>Storage Types</h2>
+
+<p><em>Remote/PHP</em> 
+...</p>
 
 <h2>Usage Examples</h2>
 
@@ -42,10 +48,33 @@
 <span class="c1">// scope</span>
 <span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">root</span><span class="p">){</span>
 
-  <span class="c1">// setup general</span>
+  <span class="c1">// configure defaults</span>
   <span class="nx">Store</span><span class="p">.</span><span class="nx">config</span><span class="p">({</span> 
     <span class="nx">url</span><span class="o">:</span> <span class="s2">"http://localhost/datastore.php"</span><span class="p">,</span> <span class="c1">// server side handler *</span>
     <span class="nx">ttl</span><span class="o">:</span> <span class="mi">1000</span> <span class="c1">// timeout in ms</span>
+  <span class="p">});</span>
+
+  <span class="c1">// create new store `articles`</span>
+  <span class="kd">var</span> <span class="nx">articleStore</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Store</span><span class="p">({</span> <span class="nx">namespace</span><span class="o">:</span> <span class="nx">context</span> <span class="p">});</span>
+
+  <span class="c1">// create new arbitrary object bound to `articles` store</span>
+  <span class="kd">var</span> <span class="nx">article</span> <span class="o">=</span> <span class="nx">articleStore</span><span class="p">.</span><span class="nx">create</span><span class="p">({</span> <span class="nx">country</span><span class="o">:</span> <span class="s1">'CH'</span> <span class="p">});</span> <span class="c1">// set multiple properties in constructor</span>
+  <span class="nx">article</span><span class="p">.</span><span class="nx">set</span><span class="p">(</span><span class="s1">'firstname'</span><span class="p">,</span> <span class="s1">'James'</span><span class="p">);</span> <span class="c1">// or set property one</span>
+  <span class="nx">article</span><span class="p">.</span><span class="nx">set</span><span class="p">(</span><span class="s1">'lastname'</span><span class="p">,</span> <span class="s1">'Biggelow'</span><span class="p">);</span> <span class="c1">// by one</span>
+
+  <span class="c1">// store `article`</span>
+  <span class="nx">article</span><span class="p">.</span><span class="nx">update</span><span class="p">();</span>
+
+  <span class="c1">// edit `article`</span>
+  <span class="nx">article</span><span class="p">.</span><span class="nx">setData</span><span class="p">({</span><span class="nx">country</span><span class="o">:</span> <span class="s1">'IT'</span><span class="p">,</span> <span class="s1">'firstname'</span><span class="o">:</span> <span class="s1">'Francesco'</span><span class="p">,</span> <span class="s1">'lastname'</span><span class="o">:</span> <span class="s1">'Di Matteo'</span><span class="p">});</span> <span class="c1">// or bulk em' post object initialization</span>
+  <span class="nx">article</span><span class="p">.</span><span class="nx">update</span><span class="p">();</span>  
+
+  <span class="c1">// remove `article`</span>
+  <span class="nx">article</span><span class="p">.</span><span class="nx">remove</span><span class="p">();</span>
+
+  <span class="c1">// test</span>
+  <span class="nx">Store</span><span class="p">.</span><span class="nx">when</span><span class="p">(</span><span class="nx">articleStore</span><span class="p">.</span><span class="nx">list</span><span class="p">(),</span> <span class="kd">function</span><span class="p">(</span><span class="nx">articles</span><span class="p">){</span>
+    <span class="nx">assert</span><span class="p">(</span><span class="nx">articles</span><span class="p">.</span><span class="nx">length</span><span class="p">,</span> <span class="mi">0</span><span class="p">);</span>
   <span class="p">});</span>
 
   <span class="c1">// create some stores</span>
@@ -55,11 +84,14 @@
     <span class="p">}</span>
   <span class="p">);</span>
 
+  <span class="c1">// update promises</span>
+  <span class="kd">var</span> <span class="nx">updateArticles</span> <span class="o">=</span> <span class="p">[];</span>
+
   <span class="c1">// create 10 articles</span>
   <span class="nx">Store</span><span class="p">.</span><span class="nx">times</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">count</span><span class="p">){</span>
 
     <span class="c1">// create &amp; store</span>
-    <span class="nx">articleStore</span><span class="p">.</span><span class="nx">create</span><span class="p">({</span> 
+    <span class="nx">updateArticles</span><span class="p">.</span><span class="nx">push</span><span class="p">(</span><span class="nx">articleStore</span><span class="p">.</span><span class="nx">create</span><span class="p">({</span> 
 
       <span class="c1">// article</span>
       <span class="nx">title</span><span class="o">:</span> <span class="s1">'No.'</span> <span class="o">+</span> <span class="nx">i</span><span class="p">,</span>       
@@ -69,18 +101,24 @@
       <span class="c1">// history </span>
       <span class="nx">author</span><span class="o">:</span> <span class="s1">'me'</span><span class="p">,</span> 
       <span class="nx">lastmod</span><span class="o">:</span> <span class="k">new</span> <span class="nb">Date</span><span class="p">().</span><span class="nx">getTime</span><span class="p">()</span>
-    <span class="p">}).</span><span class="nx">update</span><span class="p">();</span>
+    <span class="p">}).</span><span class="nx">update</span><span class="p">());</span>
 
   <span class="p">});</span>
 
-  <span class="c1">// fetch all articles (10)</span>
-  <span class="kd">var</span> <span class="nx">articles</span> <span class="o">=</span> <span class="nx">articleStore</span><span class="p">.</span><span class="nx">list</span><span class="p">();</span>
+  <span class="c1">// when article bulk creation processed</span>
+  <span class="nx">Store</span><span class="p">.</span><span class="nx">when</span><span class="p">(</span><span class="nx">updateArticles</span><span class="p">).</span><span class="nx">done</span><span class="p">(</span><span class="kd">function</span><span class="p">(){</span>
 
-  <span class="c1">// register callback </span>
-  <span class="nx">Store</span><span class="p">.</span><span class="nx">when</span><span class="p">(</span><span class="nx">articles</span><span class="p">).</span><span class="nx">done</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">articles</span><span class="p">){</span>
+  <span class="p">}).</span><span class="nx">fail</span><span class="p">(</span><span class="kd">function</span><span class="p">(){</span>
+
+  <span class="p">}).</span><span class="nx">always</span><span class="p">(</span><span class="kd">function</span><span class="p">(){</span>
+
+  <span class="p">});</span>
+
+  <span class="c1">// fetch all articles &amp; register callback </span>
+  <span class="nx">Store</span><span class="p">.</span><span class="nx">when</span><span class="p">(</span><span class="nx">articleStore</span><span class="p">.</span><span class="nx">list</span><span class="p">()).</span><span class="nx">done</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">articles</span><span class="p">){</span>
 
     <span class="c1">// do stuff</span>
-    <span class="nx">articles</span><span class="p">.</span><span class="nx">forEach</span><span class="p">(</span><span class="nx">fucuntion</span><span class="p">(</span><span class="nx">article</span><span class="p">,</span> <span class="nx">index</span><span class="p">){</span>
+    <span class="nx">articles</span><span class="p">.</span><span class="nx">forEach</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">article</span><span class="p">,</span> <span class="nx">index</span><span class="p">){</span>
       <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">index</span><span class="p">,</span> <span class="nx">article</span><span class="p">);</span>
     <span class="p">});</span>
 
@@ -127,7 +165,21 @@
 <h3>Ajax File Uploads</h3>
 
 <div class="highlight"><pre><span class="nt">&lt;script&gt;</span>
-  <span class="c1">// ...</span>
+  <span class="c1">// create container</span>
+  <span class="kd">var</span> <span class="nx">form</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">FormData</span><span class="p">();</span>
+
+  <span class="c1">// set namespace</span>
+  <span class="nx">form</span><span class="p">.</span><span class="nx">append</span><span class="p">(</span><span class="s2">"namespace"</span><span class="p">,</span> <span class="s2">"article"</span><span class="p">);</span>
+
+  <span class="c1">// set file</span>
+  <span class="kd">var</span> <span class="nx">body</span> <span class="o">=</span> <span class="s1">'&lt;a id="a"&gt;&lt;b id="b"&gt;hey!&lt;/b&gt;&lt;/a&gt;'</span><span class="p">;</span>
+  <span class="kd">var</span> <span class="nx">blob</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Blob</span><span class="p">([</span><span class="nx">body</span><span class="p">],</span> <span class="p">{</span> <span class="nx">type</span><span class="o">:</span> <span class="s2">"text/xml"</span><span class="p">});</span>
+  <span class="nx">form</span><span class="p">.</span><span class="nx">append</span><span class="p">(</span><span class="s2">"webmasterfile"</span><span class="p">,</span> <span class="nx">blob</span><span class="p">);</span>
+
+  <span class="c1">// store</span>
+  <span class="kd">var</span> <span class="nx">request</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">XMLHttpRequest</span><span class="p">();</span>
+  <span class="nx">request</span><span class="p">.</span><span class="nx">open</span><span class="p">(</span><span class="s2">"POST"</span><span class="p">,</span> <span class="s2">"http://localhost/datastore.php"</span><span class="p">);</span>
+  <span class="nx">request</span><span class="p">.</span><span class="nx">send</span><span class="p">(</span><span class="nx">form</span><span class="p">);</span>
 <span class="nt">&lt;/script&gt;</span>
 </pre></div>
 
@@ -148,7 +200,13 @@
 <li>Docs</li>
 <li>Test Coverage++</li>
 <li>AMD/CommonJS</li>
+<li>Abstract Stores 
+
+<ul>
+<li>Extract Ajax Handler</li>
 <li>Localstorage (TTL)</li>
+</ul>
+</li>
 <li>JSON Schemas</li>
 <li>Underscore.js Templating</li>
 </ul><h2>License</h2>
