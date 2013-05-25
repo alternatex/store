@@ -30,7 +30,7 @@
       <section>
         <h2>Overview</h2>
 
-<p>Store esentially provides CRUD storage operations for arbitrary objects. </p>
+<p>Store esentially provides CRUD storage operations for arbitrary objects. Operations are implementend in an asynchronous fashion with custom deferred objects to handle postponed code execution.</p>
 
 <h2>Usage Examples</h2>
 
@@ -41,9 +41,6 @@
 
 <span class="c1">// scope</span>
 <span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">root</span><span class="p">){</span>
-
-  <span class="c1">// helpers</span>
-  <span class="kd">var</span> <span class="nx">count</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
 
   <span class="c1">// setup general</span>
   <span class="nx">Store</span><span class="p">.</span><span class="nx">config</span><span class="p">({</span> 
@@ -59,7 +56,7 @@
   <span class="p">);</span>
 
   <span class="c1">// create 10 articles</span>
-  <span class="k">for</span><span class="p">(;</span><span class="nx">count</span><span class="o">&lt;</span><span class="mi">10</span><span class="p">;</span><span class="nx">count</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+  <span class="nx">Store</span><span class="p">.</span><span class="nx">times</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">count</span><span class="p">){</span>
 
     <span class="c1">// create &amp; store</span>
     <span class="nx">articleStore</span><span class="p">.</span><span class="nx">create</span><span class="p">({</span> 
@@ -72,13 +69,21 @@
       <span class="c1">// history </span>
       <span class="nx">author</span><span class="o">:</span> <span class="s1">'me'</span><span class="p">,</span> 
       <span class="nx">lastmod</span><span class="o">:</span> <span class="k">new</span> <span class="nb">Date</span><span class="p">().</span><span class="nx">getTime</span><span class="p">()</span>
-    <span class="p">}).</span><span class="nx">update</span><span class="p">();</span>  
-  <span class="p">}</span>
+    <span class="p">}).</span><span class="nx">update</span><span class="p">();</span>
+
+  <span class="p">});</span>
 
   <span class="c1">// fetch all articles (10)</span>
   <span class="kd">var</span> <span class="nx">articles</span> <span class="o">=</span> <span class="nx">articleStore</span><span class="p">.</span><span class="nx">list</span><span class="p">();</span>
-  <span class="nx">_</span><span class="p">.</span><span class="nx">when</span><span class="p">(</span><span class="nx">articles</span><span class="p">).</span><span class="nx">done</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">articles</span><span class="p">){</span>
-    <span class="c1">// ... do stuff</span>
+
+  <span class="c1">// register callback </span>
+  <span class="nx">Store</span><span class="p">.</span><span class="nx">when</span><span class="p">(</span><span class="nx">articles</span><span class="p">).</span><span class="nx">done</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">articles</span><span class="p">){</span>
+
+    <span class="c1">// do stuff</span>
+    <span class="nx">articles</span><span class="p">.</span><span class="nx">forEach</span><span class="p">(</span><span class="nx">fucuntion</span><span class="p">(</span><span class="nx">article</span><span class="p">,</span> <span class="nx">index</span><span class="p">){</span>
+      <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">index</span><span class="p">,</span> <span class="nx">article</span><span class="p">);</span>
+    <span class="p">});</span>
+
   <span class="p">});</span>
 
   <span class="c1">// fetch article </span>
@@ -87,7 +92,7 @@
   <span class="c1">// remove article</span>
   <span class="nx">article</span><span class="p">.</span><span class="nx">remove</span><span class="p">();</span>
 
-  <span class="c1">// </span>
+  <span class="c1">// ...</span>
 
 <span class="p">})(</span><span class="k">this</span><span class="p">);</span>
 <span class="nt">&lt;/script&gt;</span>
@@ -126,7 +131,18 @@
 <span class="nt">&lt;/script&gt;</span>
 </pre></div>
 
-<h2>Roadmap</h2>
+<h2>Documentation</h2>
+
+<ul>
+<li>Client</li>
+<li>Server
+
+<ul>
+<li>JS</li>
+<li>PHP</li>
+</ul>
+</li>
+</ul><h2>Roadmap</h2>
 
 <ul>
 <li>Docs</li>
