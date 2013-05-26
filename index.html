@@ -30,7 +30,15 @@
       <section>
         <h2>Quickstart</h2>
 
-<h3>Embedding</h3>
+<ul>
+<li><a href="#embedding">Embedding</a></li>
+<li><a href="#defaults">Defaults</a></li>
+<li><a href="#create-store">Create Store</a></li>
+<li><a href="#create-object">Create Object</a></li>
+<li><a href="#store-object">Store Object</a></li>
+<li><a href="#remove-object">Remove Object</a></li>
+<li><a href="#summary">Summary</a></li>
+</ul><h3>Embedding</h3>
 
 <div class="highlight"><pre><span class="nt">&lt;script </span><span class="na">src=</span><span class="s">"src/client/store.js"</span><span class="nt">&gt;&lt;/script&gt;</span>
 <span class="nt">&lt;script&gt;</span>
@@ -41,11 +49,11 @@
 <span class="nt">&lt;/script&gt;</span>
 </pre></div>
 
-<h3>Configure Defaults</h3>
+<h3>Defaults</h3>
 
-<div class="highlight"><pre><span class="nx">Store</span><span class="p">.</span><span class="nx">config</span><span class="p">({</span> 
-  <span class="nx">url</span><span class="o">:</span> <span class="s2">"http://localhost/datastore.php"</span><span class="p">,</span> <span class="c1">// server side handler *</span>
-  <span class="nx">ttl</span><span class="o">:</span> <span class="mi">1000</span> <span class="c1">// timeout in ms</span>
+<div class="highlight"><pre><span class="nx">Store</span><span class="p">.</span><span class="nx">configure</span><span class="p">({</span> 
+  <span class="nx">url</span><span class="o">:</span> <span class="s2">"http://localhost/datastore.php"</span><span class="p">,</span> 
+  <span class="nx">ttl</span><span class="o">:</span> <span class="mi">36000</span>
 <span class="p">});</span>
 </pre></div>
 
@@ -100,6 +108,28 @@
 <h4>Variant B</h4>
 
 <div class="highlight"><pre><span class="nx">articleStore</span><span class="p">.</span><span class="nx">remove</span><span class="p">(</span><span class="nx">article</span><span class="p">);</span>
+</pre></div>
+
+<h3>Summary</h3>
+
+<div class="highlight"><pre><span class="nt">&lt;script </span><span class="na">src=</span><span class="s">"src/client/store.js"</span><span class="nt">&gt;&lt;/script&gt;</span>
+<span class="nt">&lt;script&gt;</span>
+<span class="c1">// scope</span>
+<span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">root</span><span class="p">){</span>
+  <span class="nx">Store</span><span class="p">.</span><span class="nx">configure</span><span class="p">({</span> 
+    <span class="nx">url</span><span class="o">:</span> <span class="s2">"http://localhost/datastore.php"</span><span class="p">,</span> 
+    <span class="nx">ttl</span><span class="o">:</span> <span class="mi">36000</span>
+  <span class="p">});</span>
+  <span class="kd">var</span> <span class="nx">articleStore</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Store</span><span class="p">({</span> <span class="nx">namespace</span><span class="o">:</span> <span class="s1">'article'</span> <span class="p">});</span>
+  <span class="kd">var</span> <span class="nx">article</span> <span class="o">=</span> <span class="nx">articleStore</span><span class="p">.</span><span class="nx">create</span><span class="p">({</span> 
+    <span class="nx">country</span><span class="o">:</span> <span class="s1">'US'</span><span class="p">,</span> 
+    <span class="nx">firstname</span><span class="o">:</span> <span class="s1">'Stephen'</span><span class="p">,</span> 
+    <span class="nx">lastname</span><span class="o">:</span> <span class="s1">'Colbert'</span> 
+  <span class="p">});</span>
+  <span class="nx">article</span><span class="p">.</span><span class="nx">update</span><span class="p">();</span>
+  <span class="nx">article</span><span class="p">.</span><span class="nx">remove</span><span class="p">();</span>
+<span class="p">});</span>
+<span class="nt">&lt;/script&gt;</span>
 </pre></div>
 
 <div class="highlight"><pre><span class="nt">&lt;script </span><span class="na">src=</span><span class="s">"src/client/store.js"</span><span class="nt">&gt;&lt;/script&gt;</span>
@@ -224,7 +254,7 @@
   <span class="c1">// create container</span>
   <span class="kd">var</span> <span class="nx">form</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">FormData</span><span class="p">();</span>
 
-  <span class="c1">// configure</span>
+  <span class="c1">// configureure</span>
   <span class="nx">form</span><span class="p">.</span><span class="nx">append</span><span class="p">(</span><span class="s1">'namespace'</span><span class="p">,</span> <span class="s1">'article'</span><span class="p">);</span>
   <span class="nx">form</span><span class="p">.</span><span class="nx">append</span><span class="p">(</span><span class="s1">'action'</span><span class="p">,</span> <span class="s1">'update'</span><span class="p">);</span>  
 
@@ -270,7 +300,7 @@
 <span class="nt">&lt;/form&gt;</span>
 </pre></div>
 
-<h2>Storage Types</h2>
+<h2>Repositories</h2>
 
 <h3>PHP</h3>
 
@@ -308,8 +338,9 @@
 </li>
 </ul>
 </li>
-<li>Cache (TTL)</li>
+<li>Caching (TTL)</li>
 <li>JSON Schema Support</li>
+<li>REST Support (Ignore Action Param *)</li>
 <li>Templating Examples (Handlebars/Underscore.js)</li>
 </ul><h2>License</h2>
 
