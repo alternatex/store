@@ -35,8 +35,21 @@ Operations are executed asynchronously using custom deferred objects to handle c
 
 <h2>Storage Types</h2>
 
-<p><em>Remote/PHP</em> 
-...</p>
+<h3>Local</h3>
+
+<h4>JS</h4>
+
+<p>...</p>
+
+<h3>Remote</h3>
+
+<h4>PHP</h4>
+
+<p>...</p>
+
+<h4>JS</h4>
+
+<p>...</p>
 
 <h2>Usage Examples</h2>
 
@@ -57,7 +70,7 @@ Operations are executed asynchronously using custom deferred objects to handle c
   <span class="c1">// create new store `articles`</span>
   <span class="kd">var</span> <span class="nx">articleStore</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Store</span><span class="p">({</span> <span class="nx">namespace</span><span class="o">:</span> <span class="s1">'article'</span> <span class="p">});</span>
 
-  <span class="c1">// create new arbitrary object bound to `articles` store</span>
+  <span class="c1">// create arbitrary object bound to `articles` store</span>
   <span class="kd">var</span> <span class="nx">article</span> <span class="o">=</span> <span class="nx">articleStore</span><span class="p">.</span><span class="nx">create</span><span class="p">({</span> <span class="nx">country</span><span class="o">:</span> <span class="s1">'CA'</span> <span class="p">});</span> <span class="c1">// set multiple properties in constructor</span>
   <span class="nx">article</span><span class="p">.</span><span class="nx">set</span><span class="p">(</span><span class="s1">'firstname'</span><span class="p">,</span> <span class="s1">'Stephen'</span><span class="p">);</span> <span class="c1">// or set property one</span>
   <span class="nx">article</span><span class="p">.</span><span class="nx">set</span><span class="p">(</span><span class="s1">'lastname'</span><span class="p">,</span> <span class="s1">'Colbert'</span><span class="p">);</span> <span class="c1">// by one</span>
@@ -65,8 +78,17 @@ Operations are executed asynchronously using custom deferred objects to handle c
   <span class="c1">// store `article`</span>
   <span class="nx">article</span><span class="p">.</span><span class="nx">update</span><span class="p">();</span>
 
+  <span class="c1">// create arbitrary object bound to `articles` store</span>
+  <span class="kd">var</span> <span class="nx">article</span> <span class="o">=</span> <span class="nx">articleStore</span><span class="p">.</span><span class="nx">create</span><span class="p">();</span> 
+  <span class="nx">article</span><span class="p">.</span><span class="nx">set</span><span class="p">(</span><span class="s1">'country'</span><span class="p">,</span> <span class="s1">'UK'</span><span class="p">);</span>
+  <span class="nx">article</span><span class="p">.</span><span class="nx">set</span><span class="p">(</span><span class="s1">'firstname'</span><span class="p">,</span> <span class="s1">'John'</span><span class="p">);</span> 
+  <span class="nx">article</span><span class="p">.</span><span class="nx">set</span><span class="p">(</span><span class="s1">'lastname'</span><span class="p">,</span> <span class="s1">'Oliver'</span><span class="p">);</span> 
+
+  <span class="c1">// store `article`</span>
+  <span class="nx">article</span><span class="p">.</span><span class="nx">update</span><span class="p">();</span>
+
   <span class="c1">// store `article` xxx</span>
-  <span class="kd">var</span> <span class="nx">updateArticle</span> <span class="o">=</span> <span class="nx">articleStore</span><span class="p">.</span><span class="nx">update</span><span class="p">(</span><span class="nx">article</span><span class="p">,</span> <span class="kd">function</span> <span class="nx">callabck</span><span class="p">(){</span>
+  <span class="kd">var</span> <span class="nx">updateArticle</span> <span class="o">=</span> <span class="nx">articleStore</span><span class="p">.</span><span class="nx">update</span><span class="p">(</span><span class="nx">article</span><span class="p">,</span> <span class="kd">function</span> <span class="nx">callback</span><span class="p">(){</span>
     <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">'shalalalala'</span><span class="p">);</span>
   <span class="p">});</span>
 
@@ -128,11 +150,11 @@ Operations are executed asynchronously using custom deferred objects to handle c
 
   <span class="c1">// when article bulk creation processed</span>
   <span class="nx">Store</span><span class="p">.</span><span class="nx">when</span><span class="p">(</span><span class="nx">updateArticles</span><span class="p">).</span><span class="nx">done</span><span class="p">(</span><span class="kd">function</span><span class="p">(){</span>
-
+    <span class="c1">// ...</span>
   <span class="p">}).</span><span class="nx">fail</span><span class="p">(</span><span class="kd">function</span><span class="p">(){</span>
-
+    <span class="c1">// ...</span>
   <span class="p">}).</span><span class="nx">always</span><span class="p">(</span><span class="kd">function</span><span class="p">(){</span>
-
+    <span class="c1">// ...</span>
   <span class="p">});</span>
 
   <span class="c1">// fetch all articles &amp; register callback </span>
