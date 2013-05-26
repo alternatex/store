@@ -28,7 +28,28 @@
         </ul>
       </header>
       <section>
-        <h2>Quickstart</h2>
+        <h2>Index</h2>
+
+<ul>
+<li>
+<a href="#quickstart">Quickstart</a>
+
+<ul>
+<li><a href="#embedding">Embedding</a></li>
+<li><a href="#defaults">Defaults</a></li>
+<li><a href="#create-store">Create Store</a></li>
+<li><a href="#create-object">Create Object</a></li>
+<li><a href="#store-object">Store Object</a></li>
+<li><a href="#remove-object">Remove Object</a></li>
+<li><a href="#summary">Summary</a></li>
+</ul>
+</li>
+<li><a href="#repositories">Repositories</a></li>
+<li><a href="#limitations">Limitations</a></li>
+<li><a href="#documentation">Documentation</a></li>
+<li><a href="#roadmap">Roadmap</a></li>
+<li><a href="#license">License</a></li>
+</ul><h2>Quickstart</h2>
 
 <h3>Embedding</h3>
 
@@ -51,15 +72,15 @@
 
 <h3>Create Store</h3>
 
-<div class="highlight"><pre><span class="kd">var</span> <span class="nx">articleStore</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Store</span><span class="p">({</span> <span class="nx">namespace</span><span class="o">:</span> <span class="s1">'article'</span> <span class="p">});</span>
+<div class="highlight"><pre><span class="kd">var</span> <span class="nx">objectStore</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Store</span><span class="p">({</span> <span class="nx">namespace</span><span class="o">:</span> <span class="s1">'object'</span> <span class="p">});</span>
 </pre></div>
 
 <h3>Create Object</h3>
 
 <h4>Variant A</h4>
 
-<div class="highlight"><pre><span class="kd">var</span> <span class="nx">article</span> <span class="o">=</span> <span class="nx">articleStore</span><span class="p">.</span><span class="nx">create</span><span class="p">({</span> 
-  <span class="nx">country</span><span class="o">:</span> <span class="s1">'US'</span><span class="p">,</span> 
+<div class="highlight"><pre><span class="kd">var</span> <span class="nx">object</span> <span class="o">=</span> <span class="nx">objectStore</span><span class="p">.</span><span class="nx">create</span><span class="p">({</span> 
+  <span class="nx">country</span><span class="o">:</span> <span class="s1">'USA'</span><span class="p">,</span> 
   <span class="nx">firstname</span><span class="o">:</span> <span class="s1">'Stephen'</span><span class="p">,</span> 
   <span class="nx">lastname</span><span class="o">:</span> <span class="s1">'Colbert'</span> 
 <span class="p">});</span> 
@@ -67,176 +88,119 @@
 
 <h4>Variant B</h4>
 
-<div class="highlight"><pre><span class="kd">var</span> <span class="nx">article</span> <span class="o">=</span> <span class="nx">articleStore</span><span class="p">.</span><span class="nx">create</span><span class="p">();</span> 
-<span class="nx">article</span><span class="p">.</span><span class="nx">set</span><span class="p">(</span><span class="s1">'country'</span><span class="p">,</span> <span class="s1">'UK'</span><span class="p">);</span>
-<span class="nx">article</span><span class="p">.</span><span class="nx">set</span><span class="p">(</span><span class="s1">'firstname'</span><span class="p">,</span> <span class="s1">'John'</span><span class="p">);</span> 
-<span class="nx">article</span><span class="p">.</span><span class="nx">set</span><span class="p">(</span><span class="s1">'lastname'</span><span class="p">,</span> <span class="s1">'Oliver'</span><span class="p">);</span> 
+<div class="highlight"><pre><span class="kd">var</span> <span class="nx">object</span> <span class="o">=</span> <span class="nx">objectStore</span><span class="p">.</span><span class="nx">create</span><span class="p">();</span> 
+<span class="nx">object</span><span class="p">.</span><span class="nx">set</span><span class="p">(</span><span class="s1">'country'</span><span class="p">,</span> <span class="s1">'USA'</span><span class="p">);</span>
+<span class="nx">object</span><span class="p">.</span><span class="nx">set</span><span class="p">(</span><span class="s1">'firstname'</span><span class="p">,</span> <span class="s1">'John'</span><span class="p">);</span> 
+<span class="nx">object</span><span class="p">.</span><span class="nx">set</span><span class="p">(</span><span class="s1">'lastname'</span><span class="p">,</span> <span class="s1">'Stewart'</span><span class="p">);</span> 
 </pre></div>
 
 <h3>Store Object</h3>
 
 <h4>Variant A</h4>
 
-<div class="highlight"><pre><span class="nx">article</span><span class="p">.</span><span class="nx">update</span><span class="p">();</span>
+<div class="highlight"><pre><span class="nx">object</span><span class="p">.</span><span class="nx">update</span><span class="p">();</span>
 </pre></div>
 
 <h4>Variant B</h4>
 
-<div class="highlight"><pre><span class="nx">articleStore</span><span class="p">.</span><span class="nx">update</span><span class="p">(</span><span class="nx">article</span><span class="p">);</span>
+<div class="highlight"><pre><span class="nx">objectStore</span><span class="p">.</span><span class="nx">update</span><span class="p">(</span><span class="nx">object</span><span class="p">);</span>
 </pre></div>
 
 <h4>Variant C</h4>
 
-<div class="highlight"><pre><span class="nx">articleStore</span><span class="p">.</span><span class="nx">update</span><span class="p">({</span> <span class="nx">name</span><span class="o">:</span> <span class="s1">'XXXXX'</span><span class="p">,</span> <span class="nx">type</span><span class="o">:</span> <span class="s1">'XXXXX'</span><span class="p">,</span> <span class="nx">rank</span><span class="o">:</span> <span class="s1">'XXXXX'</span> <span class="p">});</span>
+<div class="highlight"><pre><span class="nx">objectStore</span><span class="p">.</span><span class="nx">update</span><span class="p">({</span> <span class="nx">name</span><span class="o">:</span> <span class="s1">'XXXXX'</span><span class="p">,</span> <span class="nx">type</span><span class="o">:</span> <span class="s1">'XXXXX'</span><span class="p">,</span> <span class="nx">rank</span><span class="o">:</span> <span class="s1">'XXXXX'</span> <span class="p">});</span>
 </pre></div>
 
 <h3>Remove Object</h3>
 
 <h4>Variant A</h4>
 
-<div class="highlight"><pre><span class="nx">article</span><span class="p">.</span><span class="nx">remove</span><span class="p">();</span>
+<div class="highlight"><pre><span class="nx">object</span><span class="p">.</span><span class="nx">remove</span><span class="p">();</span>
 </pre></div>
 
 <h4>Variant B</h4>
 
-<div class="highlight"><pre><span class="nx">articleStore</span><span class="p">.</span><span class="nx">remove</span><span class="p">(</span><span class="nx">article</span><span class="p">);</span>
+<div class="highlight"><pre><span class="nx">objectStore</span><span class="p">.</span><span class="nx">remove</span><span class="p">(</span><span class="nx">object</span><span class="p">);</span>
 </pre></div>
 
 <h3>Summary</h3>
 
 <div class="highlight"><pre><span class="nt">&lt;script </span><span class="na">src=</span><span class="s">"src/client/store.js"</span><span class="nt">&gt;&lt;/script&gt;</span>
 <span class="nt">&lt;script&gt;</span>
-<span class="c1">// scope</span>
 <span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">root</span><span class="p">){</span>
+
+  <span class="c1">// local variables</span>
+  <span class="kd">var</span> <span class="nx">objectStore</span><span class="p">,</span> <span class="nx">objects</span><span class="p">,</span> <span class="nx">object</span><span class="p">;</span>
+
+  <span class="c1">// configure storage defaults </span>
   <span class="nx">Store</span><span class="p">.</span><span class="nx">configure</span><span class="p">({</span> 
     <span class="nx">url</span><span class="o">:</span> <span class="s2">"http://localhost/datastore.php"</span><span class="p">,</span> 
     <span class="nx">ttl</span><span class="o">:</span> <span class="mi">36000</span>
   <span class="p">});</span>
-  <span class="kd">var</span> <span class="nx">articleStore</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Store</span><span class="p">({</span> <span class="nx">namespace</span><span class="o">:</span> <span class="s1">'article'</span> <span class="p">});</span>
-  <span class="kd">var</span> <span class="nx">article</span> <span class="o">=</span> <span class="nx">articleStore</span><span class="p">.</span><span class="nx">create</span><span class="p">({</span> 
+
+  <span class="c1">// create new storage</span>
+  <span class="nx">objectStore</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Store</span><span class="p">({</span> <span class="nx">namespace</span><span class="o">:</span> <span class="s1">'object'</span> <span class="p">});</span>
+
+  <span class="c1">// create new storage bound object</span>
+  <span class="nx">object</span> <span class="o">=</span> <span class="nx">objectStore</span><span class="p">.</span><span class="nx">create</span><span class="p">({</span> 
     <span class="nx">country</span><span class="o">:</span> <span class="s1">'US'</span><span class="p">,</span> 
     <span class="nx">firstname</span><span class="o">:</span> <span class="s1">'Stephen'</span><span class="p">,</span> 
     <span class="nx">lastname</span><span class="o">:</span> <span class="s1">'Colbert'</span> 
   <span class="p">});</span>
-  <span class="nx">article</span><span class="p">.</span><span class="nx">update</span><span class="p">();</span>
-  <span class="nx">article</span><span class="p">.</span><span class="nx">remove</span><span class="p">();</span>
-<span class="p">});</span>
-<span class="nt">&lt;/script&gt;</span>
-</pre></div>
 
-<div class="highlight"><pre><span class="nt">&lt;script </span><span class="na">src=</span><span class="s">"src/client/store.js"</span><span class="nt">&gt;&lt;/script&gt;</span>
-<span class="nt">&lt;script&gt;</span>
+  <span class="c1">// insert object</span>
+  <span class="nx">object</span> <span class="o">=</span> <span class="nx">object</span><span class="p">.</span><span class="nx">update</span><span class="p">();</span>
 
-<span class="c1">// scope</span>
-<span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">root</span><span class="p">){</span> 
+  <span class="c1">// update on insert</span>
+  <span class="nx">Store</span><span class="p">.</span><span class="nx">when</span><span class="p">(</span><span class="nx">object</span><span class="p">).</span><span class="nx">done</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">object</span><span class="p">){</span>
 
-  <span class="c1">// store `article` w/handlers </span>
-  <span class="nx">Store</span><span class="p">.</span><span class="nx">when</span><span class="p">(</span><span class="nx">article</span><span class="p">.</span><span class="nx">update</span><span class="p">()).</span><span class="nx">done</span><span class="p">(</span><span class="kd">function</span><span class="p">(){</span>
-    <span class="c1">// ...</span>
-  <span class="p">}).</span><span class="nx">fail</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">error</span><span class="p">){</span>
-    <span class="c1">// ...</span>
-  <span class="p">}).</span><span class="nx">always</span><span class="p">(</span><span class="kd">function</span><span class="p">(){</span>
-    <span class="c1">// ...</span>
+    <span class="c1">// update properties</span>
+    <span class="nx">object</span><span class="p">.</span><span class="nx">set</span><span class="p">(</span><span class="s1">'firstname'</span><span class="p">,</span> <span class="s1">'John'</span><span class="p">);</span>
+    <span class="nx">object</span><span class="p">.</span><span class="nx">set</span><span class="p">(</span><span class="s1">'lastname'</span><span class="p">,</span> <span class="s1">'Stewart'</span><span class="p">);</span>
+
+    <span class="c1">// update object</span>
+    <span class="nx">object</span><span class="p">.</span><span class="nx">update</span><span class="p">();</span>
+
   <span class="p">});</span>
 
-  <span class="c1">// store `article` w/handlers &amp; promise chain</span>
-  <span class="nx">article</span><span class="p">.</span><span class="nx">update</span><span class="p">().</span><span class="nx">done</span><span class="p">(</span><span class="kd">function</span><span class="p">(){</span>
-    <span class="c1">// ...</span>
-  <span class="p">}).</span><span class="nx">fail</span><span class="p">(</span><span class="kd">function</span> <span class="nx">fail</span><span class="p">(){</span>
-    <span class="c1">// ...</span>
-  <span class="p">}).</span><span class="nx">always</span><span class="p">(</span><span class="kd">function</span> <span class="nx">always</span><span class="p">(){</span>
-    <span class="c1">// ...</span>
-  <span class="p">});</span>
+  <span class="c1">// collect update promises</span>
+  <span class="nx">objects</span> <span class="o">=</span> <span class="p">[];</span>
 
-  <span class="c1">// store `article` xxx</span>
-  <span class="kd">var</span> <span class="nx">updateArticle</span> <span class="o">=</span> <span class="nx">articleStore</span><span class="p">.</span><span class="nx">update</span><span class="p">(</span><span class="nx">article</span><span class="p">,</span> <span class="kd">function</span> <span class="nx">callback</span><span class="p">(){</span>
-    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">'shalalalala'</span><span class="p">);</span>
-  <span class="p">});</span>
-
-  <span class="c1">// register handlers </span>
-  <span class="nx">Store</span><span class="p">.</span><span class="nx">when</span><span class="p">(</span><span class="nx">updateArticle</span><span class="p">).</span><span class="nx">done</span><span class="p">(</span><span class="kd">function</span><span class="p">(){</span>
-    <span class="c1">// ...</span>
-  <span class="p">}).</span><span class="nx">fail</span><span class="p">(</span><span class="kd">function</span><span class="p">(){</span>
-    <span class="c1">// ...</span>
-  <span class="p">}).</span><span class="nx">always</span><span class="p">(</span><span class="kd">function</span><span class="p">(){</span>
-    <span class="c1">// ...</span>
-  <span class="p">});</span>
-
-  <span class="c1">// edit `article`</span>
-  <span class="nx">article</span><span class="p">.</span><span class="nx">setData</span><span class="p">({</span>
-    <span class="nx">id</span><span class="o">:</span> <span class="s1">'fd4a722f-b2d4-0a7a-a6dd-198369e1abc5'</span><span class="p">,</span> <span class="c1">// article.get('id'),</span>
-    <span class="nx">country</span><span class="o">:</span> <span class="s1">'US'</span><span class="p">,</span> 
-    <span class="nx">firstname</span><span class="o">:</span> <span class="s1">'John'</span><span class="p">,</span> 
-    <span class="nx">lastname</span><span class="o">:</span> <span class="s1">'Stewart'</span>
-  <span class="p">});</span> <span class="c1">// or bulk em' post object initialization</span>
-
-  <span class="c1">// store `article`</span>
-  <span class="nx">article</span><span class="p">.</span><span class="nx">update</span><span class="p">();</span>  
-
-  <span class="c1">// remove `article`</span>
-  <span class="nx">article</span><span class="p">.</span><span class="nx">remove</span><span class="p">();</span>
-
-  <span class="c1">// test</span>
-  <span class="nx">Store</span><span class="p">.</span><span class="nx">when</span><span class="p">(</span><span class="nx">articleStore</span><span class="p">.</span><span class="nx">list</span><span class="p">(),</span> <span class="kd">function</span><span class="p">(</span><span class="nx">articles</span><span class="p">){</span>
-    <span class="nx">assert</span><span class="p">(</span><span class="nx">articles</span><span class="p">.</span><span class="nx">length</span><span class="p">,</span> <span class="mi">0</span><span class="p">);</span>
-  <span class="p">});</span>
-
-  <span class="c1">// create some stores</span>
-  <span class="p">[</span><span class="s1">'author'</span><span class="p">,</span> <span class="s1">'article'</span><span class="p">,</span> <span class="s1">'magazine'</span><span class="p">,</span> <span class="s1">'publisher'</span><span class="p">].</span><span class="nx">forEach</span><span class="p">(</span>
-    <span class="kd">function</span><span class="p">(</span><span class="nx">context</span><span class="p">){</span>
-      <span class="nx">root</span><span class="p">[</span><span class="nx">context</span><span class="o">+</span><span class="s1">'Datastore'</span><span class="p">]</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Store</span><span class="p">({</span> <span class="nx">namespace</span><span class="o">:</span> <span class="nx">context</span> <span class="p">});</span>
-    <span class="p">}</span>
-  <span class="p">);</span>
-
-  <span class="c1">// update promises</span>
-  <span class="kd">var</span> <span class="nx">updateArticles</span> <span class="o">=</span> <span class="p">[];</span>
-
-  <span class="c1">// create 10 articles</span>
+  <span class="c1">// create some objects</span>
   <span class="nx">Store</span><span class="p">.</span><span class="nx">times</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">count</span><span class="p">){</span>
-
-    <span class="c1">// create &amp; store</span>
-    <span class="nx">updateArticles</span><span class="p">.</span><span class="nx">push</span><span class="p">(</span><span class="nx">articleStore</span><span class="p">.</span><span class="nx">create</span><span class="p">({</span> 
-
-      <span class="c1">// article</span>
+    <span class="nx">objects</span><span class="p">.</span><span class="nx">push</span><span class="p">(</span><span class="nx">objectStore</span><span class="p">.</span><span class="nx">create</span><span class="p">({</span> 
       <span class="nx">title</span><span class="o">:</span> <span class="s1">'No.'</span> <span class="o">+</span> <span class="nx">count</span><span class="p">,</span>       
       <span class="kr">abstract</span><span class="o">:</span> <span class="s1">'Lorem Ipsum [...]'</span><span class="p">,</span>       
       <span class="nx">text</span><span class="o">:</span> <span class="s1">'Lorem Ipsum Si Amet They Say'</span><span class="p">,</span>             
-
-      <span class="c1">// history </span>
       <span class="nx">author</span><span class="o">:</span> <span class="s1">'me'</span><span class="p">,</span> 
       <span class="nx">lastmod</span><span class="o">:</span> <span class="k">new</span> <span class="nb">Date</span><span class="p">().</span><span class="nx">getTime</span><span class="p">()</span>
     <span class="p">}).</span><span class="nx">update</span><span class="p">());</span>
-
   <span class="p">});</span>
 
-  <span class="c1">// when article bulk creation processed</span>
-  <span class="nx">Store</span><span class="p">.</span><span class="nx">when</span><span class="p">(</span><span class="nx">updateArticles</span><span class="p">).</span><span class="nx">done</span><span class="p">(</span><span class="kd">function</span><span class="p">(){</span>
-    <span class="c1">// ...</span>
-  <span class="p">}).</span><span class="nx">fail</span><span class="p">(</span><span class="kd">function</span><span class="p">(){</span>
-    <span class="c1">// ...</span>
-  <span class="p">}).</span><span class="nx">always</span><span class="p">(</span><span class="kd">function</span><span class="p">(){</span>
-    <span class="c1">// ...</span>
-  <span class="p">});</span>
+  <span class="c1">// upon promises fulfillment</span>
+  <span class="nx">Store</span><span class="p">.</span><span class="nx">when</span><span class="p">(</span><span class="nx">objects</span><span class="p">)</span>
+    <span class="p">.</span><span class="nx">done</span><span class="p">(</span><span class="kd">function</span><span class="p">(){})</span>
+    <span class="p">.</span><span class="nx">fail</span><span class="p">(</span><span class="kd">function</span><span class="p">(){})</span>
+    <span class="p">.</span><span class="nx">always</span><span class="p">(</span><span class="kd">function</span><span class="p">(){});</span>  
 
-  <span class="c1">// fetch all articles &amp; register callback </span>
-  <span class="nx">Store</span><span class="p">.</span><span class="nx">when</span><span class="p">(</span><span class="nx">articleStore</span><span class="p">.</span><span class="nx">list</span><span class="p">()).</span><span class="nx">done</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">articles</span><span class="p">){</span>
+  <span class="c1">// fetch all objects &amp; register callback </span>
+  <span class="nx">objects</span> <span class="o">=</span> <span class="nx">objectStore</span><span class="p">.</span><span class="nx">list</span><span class="p">();</span>
 
-    <span class="c1">// do stuff</span>
-    <span class="nx">articles</span><span class="p">.</span><span class="nx">forEach</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">article</span><span class="p">,</span> <span class="nx">index</span><span class="p">){</span>
-      <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">index</span><span class="p">,</span> <span class="nx">article</span><span class="p">);</span>
+  <span class="c1">// process fetched objects</span>
+  <span class="nx">Store</span><span class="p">.</span><span class="nx">when</span><span class="p">(</span><span class="nx">objects</span><span class="p">).</span><span class="nx">done</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">objects</span><span class="p">){</span>
+    <span class="nx">objects</span><span class="p">.</span><span class="nx">forEach</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">object</span><span class="p">,</span> <span class="nx">index</span><span class="p">){</span>
+      <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">index</span><span class="p">,</span> <span class="nx">object</span><span class="p">);</span>
     <span class="p">});</span>
-
   <span class="p">});</span>
 
-  <span class="c1">// fetch article </span>
-  <span class="kd">var</span> <span class="nx">article</span> <span class="o">=</span> <span class="nx">articleStore</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">'8c0c1ff0-d0fe-38b7-376a-b0b1d53bd557'</span><span class="p">);</span>
+  <span class="c1">// fetch object </span>
+  <span class="nx">object</span> <span class="o">=</span> <span class="nx">objectStore</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">'8c0c1ff0-d0fe-38b7-376a-b0b1d53bd557'</span><span class="p">);</span>
 
-  <span class="c1">// remove article</span>
-  <span class="nx">article</span><span class="p">.</span><span class="nx">remove</span><span class="p">();</span>
-
-  <span class="c1">// ...</span>
-
-<span class="p">})(</span><span class="k">this</span><span class="p">);</span>
+  <span class="c1">// process fetched object</span>
+  <span class="nx">Store</span><span class="p">.</span><span class="nx">when</span><span class="p">(</span><span class="nx">object</span><span class="p">).</span><span class="nx">done</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">object</span><span class="p">){</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">"object"</span><span class="p">,</span> <span class="nx">object</span><span class="p">);</span>
+  <span class="p">});</span>
+<span class="p">});</span>
 <span class="nt">&lt;/script&gt;</span>
 </pre></div>
 
@@ -246,14 +210,12 @@
   <span class="c1">// create container</span>
   <span class="kd">var</span> <span class="nx">form</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">FormData</span><span class="p">();</span>
 
-  <span class="c1">// configureure</span>
-  <span class="nx">form</span><span class="p">.</span><span class="nx">append</span><span class="p">(</span><span class="s1">'namespace'</span><span class="p">,</span> <span class="s1">'article'</span><span class="p">);</span>
+  <span class="c1">// configure</span>
+  <span class="nx">form</span><span class="p">.</span><span class="nx">append</span><span class="p">(</span><span class="s1">'namespace'</span><span class="p">,</span> <span class="s1">'object'</span><span class="p">);</span>
   <span class="nx">form</span><span class="p">.</span><span class="nx">append</span><span class="p">(</span><span class="s1">'action'</span><span class="p">,</span> <span class="s1">'update'</span><span class="p">);</span>  
 
   <span class="c1">// attach file</span>
-  <span class="kd">var</span> <span class="nx">body</span> <span class="o">=</span> <span class="s1">'&lt;a id="a"&gt;&lt;b id="b"&gt;hey!&lt;/b&gt;&lt;/a&gt;'</span><span class="p">;</span>
-  <span class="kd">var</span> <span class="nx">blob</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Blob</span><span class="p">([</span><span class="nx">body</span><span class="p">],</span> <span class="p">{</span> <span class="nx">type</span><span class="o">:</span> <span class="s1">'text/xml'</span> <span class="p">});</span>
-  <span class="nx">form</span><span class="p">.</span><span class="nx">append</span><span class="p">(</span><span class="s1">'xmlfile'</span><span class="p">,</span> <span class="nx">blob</span><span class="p">);</span>
+  <span class="nx">form</span><span class="p">.</span><span class="nx">append</span><span class="p">(</span><span class="s1">'instance[document]'</span><span class="p">,</span> <span class="k">new</span> <span class="nx">Blob</span><span class="p">([</span><span class="s1">'&lt;file&gt;...&lt;/file&gt;'</span><span class="p">],</span> <span class="p">{</span> <span class="nx">type</span><span class="o">:</span> <span class="s1">'text/xml'</span> <span class="p">}));</span>
 
   <span class="c1">// store</span>
   <span class="kd">var</span> <span class="nx">request</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">XMLHttpRequest</span><span class="p">();</span>
@@ -267,28 +229,28 @@
 <h4>Arbitrary Objects</h4>
 
 <div class="highlight"><pre><span class="nt">&lt;form</span> <span class="na">method=</span><span class="s">"POST"</span> <span class="na">action=</span><span class="s">"datastore.php"</span><span class="nt">&gt;</span>
-  <span class="nt">&lt;input</span> <span class="na">type=</span><span class="s">"hidden"</span> <span class="na">name=</span><span class="s">"namespace"</span> <span class="na">value=</span><span class="s">"article"</span><span class="nt">/&gt;</span>
-  <span class="nt">&lt;input</span> <span class="na">type=</span><span class="s">"hidden"</span> <span class="na">name=</span><span class="s">"action"</span> <span class="na">value=</span><span class="s">"update"</span><span class="nt">/&gt;</span>
   <span class="nt">&lt;input</span> <span class="na">type=</span><span class="s">"hidden"</span> <span class="na">name=</span><span class="s">"instance[id]"</span> <span class="na">value=</span><span class="s">"a5b1da03-c0d1-5f49-19e4-de94bb266d2e"</span><span class="nt">/&gt;</span>
+  <span class="nt">&lt;input</span> <span class="na">type=</span><span class="s">"hidden"</span> <span class="na">name=</span><span class="s">"namespace"</span> <span class="na">value=</span><span class="s">"object"</span><span class="nt">/&gt;</span>
   <span class="nt">&lt;input</span> <span class="na">type=</span><span class="s">"text"</span> <span class="na">name=</span><span class="s">"instance[firstname]"</span> <span class="na">value=</span><span class="s">"firstname"</span><span class="nt">/&gt;</span>
   <span class="nt">&lt;input</span> <span class="na">type=</span><span class="s">"text"</span> <span class="na">name=</span><span class="s">"instance[lastname]"</span> <span class="na">value=</span><span class="s">"lastname"</span><span class="nt">/&gt;</span>
-  <span class="nt">&lt;button</span> <span class="na">data-action=</span><span class="s">"update"</span><span class="nt">&gt;</span>Update<span class="nt">&lt;/button&gt;</span>
-  <span class="nt">&lt;button</span> <span class="na">data-action=</span><span class="s">"cancel"</span><span class="nt">&gt;</span>Cancel<span class="nt">&lt;/button&gt;</span>
+  <span class="nt">&lt;input</span> <span class="na">type=</span><span class="s">"submit"</span> <span class="na">name=</span><span class="s">"action"</span> <span class="na">value=</span><span class="s">"update"</span><span class="nt">/&gt;</span>
+  <span class="nt">&lt;input</span> <span class="na">type=</span><span class="s">"submit"</span> <span class="na">name=</span><span class="s">"action"</span> <span class="na">value=</span><span class="s">"remove"</span><span class="nt">/&gt;</span>
+  <span class="nt">&lt;input</span> <span class="na">type=</span><span class="s">"submit"</span> <span class="na">name=</span><span class="s">"action"</span> <span class="na">value=</span><span class="s">"cancel"</span><span class="nt">/&gt;</span>
 <span class="nt">&lt;/form&gt;</span>
 </pre></div>
 
 <h4>Files</h4>
 
 <div class="highlight"><pre><span class="nt">&lt;form</span> <span class="na">method=</span><span class="s">"POST"</span> <span class="na">action=</span><span class="s">"datastore.php"</span> <span class="na">enctype=</span><span class="s">"multipart/form-data"</span><span class="nt">&gt;</span>
-  <span class="nt">&lt;input</span> <span class="na">type=</span><span class="s">"hidden"</span> <span class="na">name=</span><span class="s">"namespace"</span> <span class="na">value=</span><span class="s">"article"</span><span class="nt">/&gt;</span>
-  <span class="nt">&lt;input</span> <span class="na">type=</span><span class="s">"hidden"</span> <span class="na">name=</span><span class="s">"action"</span> <span class="na">value=</span><span class="s">"update"</span><span class="nt">/&gt;</span>
   <span class="nt">&lt;input</span> <span class="na">type=</span><span class="s">"hidden"</span> <span class="na">name=</span><span class="s">"instance[id]"</span> <span class="na">value=</span><span class="s">"55ff1e53-0bab-f317-d1d2-7e119fce405e9"</span><span class="nt">/&gt;</span>
+  <span class="nt">&lt;input</span> <span class="na">type=</span><span class="s">"hidden"</span> <span class="na">name=</span><span class="s">"namespace"</span> <span class="na">value=</span><span class="s">"object"</span><span class="nt">/&gt;</span>
   <span class="nt">&lt;input</span> <span class="na">type=</span><span class="s">"file"</span> <span class="na">name=</span><span class="s">"instance[document]"</span> <span class="nt">/&gt;</span>
   <span class="nt">&lt;input</span> <span class="na">type=</span><span class="s">"file"</span> <span class="na">name=</span><span class="s">"instance[audio]"</span> <span class="nt">/&gt;</span>
   <span class="nt">&lt;input</span> <span class="na">type=</span><span class="s">"file"</span> <span class="na">name=</span><span class="s">"instance[video]"</span> <span class="nt">/&gt;</span>
   <span class="nt">&lt;input</span> <span class="na">type=</span><span class="s">"file"</span> <span class="na">name=</span><span class="s">"instance[image]"</span> <span class="nt">/&gt;</span>
-  <span class="nt">&lt;button</span> <span class="na">data-action=</span><span class="s">"update"</span><span class="nt">&gt;</span>Update<span class="nt">&lt;/button&gt;</span>
-  <span class="nt">&lt;button</span> <span class="na">data-action=</span><span class="s">"cancel"</span><span class="nt">&gt;</span>Cancel<span class="nt">&lt;/button&gt;</span>
+  <span class="nt">&lt;input</span> <span class="na">type=</span><span class="s">"submit"</span> <span class="na">name=</span><span class="s">"action"</span> <span class="na">value=</span><span class="s">"update"</span><span class="nt">/&gt;</span>
+  <span class="nt">&lt;input</span> <span class="na">type=</span><span class="s">"submit"</span> <span class="na">name=</span><span class="s">"action"</span> <span class="na">value=</span><span class="s">"remove"</span><span class="nt">/&gt;</span>
+  <span class="nt">&lt;input</span> <span class="na">type=</span><span class="s">"submit"</span> <span class="na">name=</span><span class="s">"action"</span> <span class="na">value=</span><span class="s">"cancel"</span><span class="nt">/&gt;</span>
 <span class="nt">&lt;/form&gt;</span>
 </pre></div>
 
@@ -311,7 +273,7 @@
 <ul>
 <li>Documentation / Test Coverage</li>
 <li>AMD/CommonJS</li>
-<li>Abstract Stores (Repositories)
+<li>Abstract Adapters/Stores/Repositories
 
 <ul>
 <li>Remote
@@ -324,7 +286,8 @@
 <li>Local
 
 <ul>
-<li>WebSQL</li>
+<li>Lawnchair</li>
+<li>WebSQL </li>
 <li>Localstorage</li>
 </ul>
 </li>
@@ -332,8 +295,8 @@
 </li>
 <li>Caching (TTL)</li>
 <li>JSON Schema Support</li>
-<li>REST Support (Ignore Action Param *)</li>
-<li>Templating Examples (Handlebars/Underscore.js)</li>
+<li>REST Support for Client and PHP-Adapter</li>
+<li>Templating Examples Handlebars/Underscore.js/VanillaJS?</li>
 </ul><h2>License</h2>
 
 <p>Released under two licenses: new BSD, and MIT. You may pick the
