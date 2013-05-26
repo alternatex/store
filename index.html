@@ -30,50 +30,113 @@
       <section>
         <h2>Overview</h2>
 
-<p>Store essentially provides CRUD operations for arbitrary objects. 
-Operations are executed asynchronously using custom deferred objects to handle callbacks.</p>
+<p><strong><em>Store</em></strong> provides CRUD operations for arbitrary objects. Operations are executed asynchronously using custom deferred objects to handle callbacks.</p>
 
 <h2>Storage Types</h2>
 
-<h3>Remote PHP</h3>
+<h3>PHP</h3>
 
-<p>...</p>
+<p>Serialized object storage with embedded file support.</p>
 
 <h2>Usage Examples</h2>
 
 <h3>JavaScript</h3>
 
+<h4>Embedding</h4>
+
+<div class="highlight"><pre><span class="nt">&lt;script </span><span class="na">src=</span><span class="s">"src/store.js"</span><span class="nt">&gt;&lt;/script&gt;</span>
+<span class="nt">&lt;script&gt;</span>
+<span class="c1">// scope</span>
+<span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">root</span><span class="p">){</span>
+  <span class="c1">// ...</span>
+<span class="p">});</span>
+<span class="nt">&lt;/script&gt;</span>
+</pre></div>
+
+<h4>Configure Defaults</h4>
+
+<div class="highlight"><pre><span class="nx">Store</span><span class="p">.</span><span class="nx">config</span><span class="p">({</span> 
+  <span class="nx">url</span><span class="o">:</span> <span class="s2">"http://localhost/datastore.php"</span><span class="p">,</span> <span class="c1">// server side handler *</span>
+  <span class="nx">ttl</span><span class="o">:</span> <span class="mi">1000</span> <span class="c1">// timeout in ms</span>
+<span class="p">});</span>
+</pre></div>
+
+<h4>Create Store</h4>
+
+<div class="highlight"><pre><span class="kd">var</span> <span class="nx">articleStore</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Store</span><span class="p">({</span> <span class="nx">namespace</span><span class="o">:</span> <span class="s1">'article'</span> <span class="p">});</span>
+</pre></div>
+
+<h4>Create Object</h4>
+
+<h5>Variant A</h5>
+
+<div class="highlight"><pre><span class="kd">var</span> <span class="nx">article</span> <span class="o">=</span> <span class="nx">articleStore</span><span class="p">.</span><span class="nx">create</span><span class="p">({</span> 
+  <span class="nx">country</span><span class="o">:</span> <span class="s1">'US'</span><span class="p">,</span> 
+  <span class="nx">firstname</span><span class="o">:</span> <span class="s1">'Stephen'</span><span class="p">,</span> 
+  <span class="nx">lastname</span><span class="o">:</span> <span class="s1">'Colbert'</span> 
+<span class="p">});</span> 
+</pre></div>
+
+<h5>Variant B</h5>
+
+<div class="highlight"><pre><span class="kd">var</span> <span class="nx">article</span> <span class="o">=</span> <span class="nx">articleStore</span><span class="p">.</span><span class="nx">create</span><span class="p">();</span> 
+<span class="nx">article</span><span class="p">.</span><span class="nx">set</span><span class="p">(</span><span class="s1">'country'</span><span class="p">,</span> <span class="s1">'UK'</span><span class="p">);</span>
+<span class="nx">article</span><span class="p">.</span><span class="nx">set</span><span class="p">(</span><span class="s1">'firstname'</span><span class="p">,</span> <span class="s1">'John'</span><span class="p">);</span> 
+<span class="nx">article</span><span class="p">.</span><span class="nx">set</span><span class="p">(</span><span class="s1">'lastname'</span><span class="p">,</span> <span class="s1">'Oliver'</span><span class="p">);</span> 
+</pre></div>
+
+<h4>Store Object</h4>
+
+<h5>Variant A</h5>
+
+<div class="highlight"><pre><span class="nx">article</span><span class="p">.</span><span class="nx">update</span><span class="p">();</span>
+</pre></div>
+
+<h5>Variant B</h5>
+
+<div class="highlight"><pre><span class="nx">articleStore</span><span class="p">.</span><span class="nx">update</span><span class="p">(</span><span class="nx">article</span><span class="p">);</span>
+</pre></div>
+
+<h5>Variant C</h5>
+
+<div class="highlight"><pre><span class="nx">articleStore</span><span class="p">.</span><span class="nx">update</span><span class="p">({</span> <span class="nx">name</span><span class="o">:</span> <span class="s1">'XXXXX'</span><span class="p">,</span> <span class="nx">type</span><span class="o">:</span> <span class="s1">'XXXXX'</span><span class="p">,</span> <span class="nx">rank</span><span class="o">:</span> <span class="s1">'XXXXX'</span> <span class="p">});</span>
+</pre></div>
+
+<h4>Remove Object</h4>
+
+<h5>Variant A</h5>
+
+<div class="highlight"><pre><span class="nx">article</span><span class="p">.</span><span class="nx">remove</span><span class="p">();</span>
+</pre></div>
+
+<h5>Variant B</h5>
+
+<div class="highlight"><pre><span class="nx">articleStore</span><span class="p">.</span><span class="nx">remove</span><span class="p">(</span><span class="nx">article</span><span class="p">);</span>
+</pre></div>
+
 <div class="highlight"><pre><span class="nt">&lt;script </span><span class="na">src=</span><span class="s">"src/store.js"</span><span class="nt">&gt;&lt;/script&gt;</span>
 <span class="nt">&lt;script&gt;</span>
 
 <span class="c1">// scope</span>
-<span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">root</span><span class="p">){</span>
+<span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">root</span><span class="p">){</span> 
 
-  <span class="c1">// configure defaults</span>
-  <span class="nx">Store</span><span class="p">.</span><span class="nx">config</span><span class="p">({</span> 
-    <span class="nx">url</span><span class="o">:</span> <span class="s2">"http://localhost/datastore.php"</span><span class="p">,</span> <span class="c1">// server side handler *</span>
-    <span class="nx">ttl</span><span class="o">:</span> <span class="mi">1000</span> <span class="c1">// timeout in ms</span>
+  <span class="c1">// store `article` w/handlers </span>
+  <span class="nx">Store</span><span class="p">.</span><span class="nx">when</span><span class="p">(</span><span class="nx">article</span><span class="p">.</span><span class="nx">update</span><span class="p">()).</span><span class="nx">done</span><span class="p">(</span><span class="kd">function</span><span class="p">(){</span>
+    <span class="c1">// ...</span>
+  <span class="p">}).</span><span class="nx">fail</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">error</span><span class="p">){</span>
+    <span class="c1">// ...</span>
+  <span class="p">}).</span><span class="nx">always</span><span class="p">(</span><span class="kd">function</span><span class="p">(){</span>
+    <span class="c1">// ...</span>
   <span class="p">});</span>
 
-  <span class="c1">// create new store `articles`</span>
-  <span class="kd">var</span> <span class="nx">articleStore</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Store</span><span class="p">({</span> <span class="nx">namespace</span><span class="o">:</span> <span class="s1">'article'</span> <span class="p">});</span>
-
-  <span class="c1">// create arbitrary object bound to `articles` store</span>
-  <span class="kd">var</span> <span class="nx">article</span> <span class="o">=</span> <span class="nx">articleStore</span><span class="p">.</span><span class="nx">create</span><span class="p">({</span> <span class="nx">country</span><span class="o">:</span> <span class="s1">'CA'</span> <span class="p">});</span> <span class="c1">// set multiple properties in constructor</span>
-  <span class="nx">article</span><span class="p">.</span><span class="nx">set</span><span class="p">(</span><span class="s1">'firstname'</span><span class="p">,</span> <span class="s1">'Stephen'</span><span class="p">);</span> <span class="c1">// or set property one</span>
-  <span class="nx">article</span><span class="p">.</span><span class="nx">set</span><span class="p">(</span><span class="s1">'lastname'</span><span class="p">,</span> <span class="s1">'Colbert'</span><span class="p">);</span> <span class="c1">// by one</span>
-
-  <span class="c1">// store `article`</span>
-  <span class="nx">article</span><span class="p">.</span><span class="nx">update</span><span class="p">();</span>
-
-  <span class="c1">// create arbitrary object bound to `articles` store</span>
-  <span class="kd">var</span> <span class="nx">article</span> <span class="o">=</span> <span class="nx">articleStore</span><span class="p">.</span><span class="nx">create</span><span class="p">();</span> 
-  <span class="nx">article</span><span class="p">.</span><span class="nx">set</span><span class="p">(</span><span class="s1">'country'</span><span class="p">,</span> <span class="s1">'UK'</span><span class="p">);</span>
-  <span class="nx">article</span><span class="p">.</span><span class="nx">set</span><span class="p">(</span><span class="s1">'firstname'</span><span class="p">,</span> <span class="s1">'John'</span><span class="p">);</span> 
-  <span class="nx">article</span><span class="p">.</span><span class="nx">set</span><span class="p">(</span><span class="s1">'lastname'</span><span class="p">,</span> <span class="s1">'Oliver'</span><span class="p">);</span> 
-
-  <span class="c1">// store `article`</span>
-  <span class="nx">article</span><span class="p">.</span><span class="nx">update</span><span class="p">();</span>
+  <span class="c1">// store `article` w/handlers &amp; promise chain</span>
+  <span class="nx">article</span><span class="p">.</span><span class="nx">update</span><span class="p">().</span><span class="nx">done</span><span class="p">(</span><span class="kd">function</span><span class="p">(){</span>
+    <span class="c1">// ...</span>
+  <span class="p">}).</span><span class="nx">fail</span><span class="p">(</span><span class="kd">function</span> <span class="nx">fail</span><span class="p">(){</span>
+    <span class="c1">// ...</span>
+  <span class="p">}).</span><span class="nx">always</span><span class="p">(</span><span class="kd">function</span> <span class="nx">always</span><span class="p">(){</span>
+    <span class="c1">// ...</span>
+  <span class="p">});</span>
 
   <span class="c1">// store `article` xxx</span>
   <span class="kd">var</span> <span class="nx">updateArticle</span> <span class="o">=</span> <span class="nx">articleStore</span><span class="p">.</span><span class="nx">update</span><span class="p">(</span><span class="nx">article</span><span class="p">,</span> <span class="kd">function</span> <span class="nx">callback</span><span class="p">(){</span>
@@ -167,28 +230,17 @@ Operations are executed asynchronously using custom deferred objects to handle c
 <span class="nt">&lt;/script&gt;</span>
 </pre></div>
 
-<h3>HTML</h3>
-
-<div class="highlight"><pre><span class="nt">&lt;form</span> <span class="na">method=</span><span class="s">"POST"</span> <span class="na">action=</span><span class="s">"datastore.php"</span><span class="nt">&gt;</span>
-  <span class="nt">&lt;input</span> <span class="na">type=</span><span class="s">"hidden"</span> <span class="na">name=</span><span class="s">"namespace"</span> <span class="na">value=</span><span class="s">"article"</span><span class="nt">/&gt;</span>
-  <span class="nt">&lt;input</span> <span class="na">type=</span><span class="s">"hidden"</span> <span class="na">name=</span><span class="s">"instance[id]"</span> <span class="na">value=</span><span class="s">"a5b1da03-c0d1-5f49-19e4-de94bb266d2e"</span><span class="nt">/&gt;</span>
-  <span class="nt">&lt;input</span> <span class="na">type=</span><span class="s">"text"</span> <span class="na">name=</span><span class="s">"instance[firstname]"</span> <span class="na">value=</span><span class="s">"firstname"</span><span class="nt">/&gt;</span>
-  <span class="nt">&lt;input</span> <span class="na">type=</span><span class="s">"text"</span> <span class="na">name=</span><span class="s">"instance[lastname]"</span> <span class="na">value=</span><span class="s">"lastname"</span><span class="nt">/&gt;</span>
-  <span class="nt">&lt;button</span> <span class="na">data-action=</span><span class="s">"remove"</span><span class="nt">&gt;</span>Remove<span class="nt">&lt;/button&gt;</span>
-  <span class="nt">&lt;button</span> <span class="na">data-action=</span><span class="s">"update"</span><span class="nt">&gt;</span>Update<span class="nt">&lt;/button&gt;</span>
-<span class="nt">&lt;/form&gt;</span>
-</pre></div>
-
-<h3>JavaScript File Upload</h3>
+<h4>Files</h4>
 
 <div class="highlight"><pre><span class="nt">&lt;script&gt;</span>
   <span class="c1">// create container</span>
   <span class="kd">var</span> <span class="nx">form</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">FormData</span><span class="p">();</span>
 
-  <span class="c1">// set namespace</span>
+  <span class="c1">// configure</span>
   <span class="nx">form</span><span class="p">.</span><span class="nx">append</span><span class="p">(</span><span class="s1">'namespace'</span><span class="p">,</span> <span class="s1">'article'</span><span class="p">);</span>
+  <span class="nx">form</span><span class="p">.</span><span class="nx">append</span><span class="p">(</span><span class="s1">'action'</span><span class="p">,</span> <span class="s1">'update'</span><span class="p">);</span>  
 
-  <span class="c1">// set file</span>
+  <span class="c1">// attach file</span>
   <span class="kd">var</span> <span class="nx">body</span> <span class="o">=</span> <span class="s1">'&lt;a id="a"&gt;&lt;b id="b"&gt;hey!&lt;/b&gt;&lt;/a&gt;'</span><span class="p">;</span>
   <span class="kd">var</span> <span class="nx">blob</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Blob</span><span class="p">([</span><span class="nx">body</span><span class="p">],</span> <span class="p">{</span> <span class="nx">type</span><span class="o">:</span> <span class="s1">'text/xml'</span> <span class="p">});</span>
   <span class="nx">form</span><span class="p">.</span><span class="nx">append</span><span class="p">(</span><span class="s1">'xmlfile'</span><span class="p">,</span> <span class="nx">blob</span><span class="p">);</span>
@@ -200,46 +252,67 @@ Operations are executed asynchronously using custom deferred objects to handle c
 <span class="nt">&lt;/script&gt;</span>
 </pre></div>
 
-<h3>HTML File Upload</h3>
+<h3>HTML</h3>
+
+<h4>Arbitrary Objects</h4>
+
+<div class="highlight"><pre><span class="nt">&lt;form</span> <span class="na">method=</span><span class="s">"POST"</span> <span class="na">action=</span><span class="s">"datastore.php"</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;input</span> <span class="na">type=</span><span class="s">"hidden"</span> <span class="na">name=</span><span class="s">"namespace"</span> <span class="na">value=</span><span class="s">"article"</span><span class="nt">/&gt;</span>
+  <span class="nt">&lt;input</span> <span class="na">type=</span><span class="s">"hidden"</span> <span class="na">name=</span><span class="s">"action"</span> <span class="na">value=</span><span class="s">"update"</span><span class="nt">/&gt;</span>
+  <span class="nt">&lt;input</span> <span class="na">type=</span><span class="s">"hidden"</span> <span class="na">name=</span><span class="s">"instance[id]"</span> <span class="na">value=</span><span class="s">"a5b1da03-c0d1-5f49-19e4-de94bb266d2e"</span><span class="nt">/&gt;</span>
+  <span class="nt">&lt;input</span> <span class="na">type=</span><span class="s">"text"</span> <span class="na">name=</span><span class="s">"instance[firstname]"</span> <span class="na">value=</span><span class="s">"firstname"</span><span class="nt">/&gt;</span>
+  <span class="nt">&lt;input</span> <span class="na">type=</span><span class="s">"text"</span> <span class="na">name=</span><span class="s">"instance[lastname]"</span> <span class="na">value=</span><span class="s">"lastname"</span><span class="nt">/&gt;</span>
+  <span class="nt">&lt;button</span> <span class="na">data-action=</span><span class="s">"update"</span><span class="nt">&gt;</span>Update<span class="nt">&lt;/button&gt;</span>
+  <span class="nt">&lt;button</span> <span class="na">data-action=</span><span class="s">"cancel"</span><span class="nt">&gt;</span>Cancel<span class="nt">&lt;/button&gt;</span>
+<span class="nt">&lt;/form&gt;</span>
+</pre></div>
+
+<h4>Files</h4>
 
 <div class="highlight"><pre><span class="nt">&lt;form</span> <span class="na">method=</span><span class="s">"POST"</span> <span class="na">action=</span><span class="s">"datastore.php"</span> <span class="na">enctype=</span><span class="s">"multipart/form-data"</span><span class="nt">&gt;</span>
   <span class="nt">&lt;input</span> <span class="na">type=</span><span class="s">"hidden"</span> <span class="na">name=</span><span class="s">"namespace"</span> <span class="na">value=</span><span class="s">"article"</span><span class="nt">/&gt;</span>
+  <span class="nt">&lt;input</span> <span class="na">type=</span><span class="s">"hidden"</span> <span class="na">name=</span><span class="s">"action"</span> <span class="na">value=</span><span class="s">"update"</span><span class="nt">/&gt;</span>
   <span class="nt">&lt;input</span> <span class="na">type=</span><span class="s">"hidden"</span> <span class="na">name=</span><span class="s">"instance[id]"</span> <span class="na">value=</span><span class="s">"55ff1e53-0bab-f317-d1d2-7e119fce405e9"</span><span class="nt">/&gt;</span>
   <span class="nt">&lt;input</span> <span class="na">type=</span><span class="s">"file"</span> <span class="na">name=</span><span class="s">"instance[document]"</span> <span class="nt">/&gt;</span>
   <span class="nt">&lt;input</span> <span class="na">type=</span><span class="s">"file"</span> <span class="na">name=</span><span class="s">"instance[audio]"</span> <span class="nt">/&gt;</span>
   <span class="nt">&lt;input</span> <span class="na">type=</span><span class="s">"file"</span> <span class="na">name=</span><span class="s">"instance[video]"</span> <span class="nt">/&gt;</span>
   <span class="nt">&lt;input</span> <span class="na">type=</span><span class="s">"file"</span> <span class="na">name=</span><span class="s">"instance[image]"</span> <span class="nt">/&gt;</span>
-  <span class="nt">&lt;button</span> <span class="na">data-action=</span><span class="s">"remove"</span><span class="nt">&gt;</span>Remove<span class="nt">&lt;/button&gt;</span>
   <span class="nt">&lt;button</span> <span class="na">data-action=</span><span class="s">"update"</span><span class="nt">&gt;</span>Update<span class="nt">&lt;/button&gt;</span>
+  <span class="nt">&lt;button</span> <span class="na">data-action=</span><span class="s">"cancel"</span><span class="nt">&gt;</span>Cancel<span class="nt">&lt;/button&gt;</span>
 <span class="nt">&lt;/form&gt;</span>
 </pre></div>
 
 <h2>Documentation</h2>
 
-<ul>
-<li>Client</li>
-<li>Server
+<p>See <a href="https://github.com/alternatex/store/blob/master/docs/index.md">here</a></p>
+
+<h2>Roadmap</h2>
 
 <ul>
-<li>JS</li>
-<li>PHP</li>
-</ul>
-</li>
-</ul><h2>Roadmap</h2>
-
-<ul>
-<li>Docs</li>
-<li>Test Coverage++</li>
+<li>Documentation / Test Coverage</li>
 <li>AMD/CommonJS</li>
-<li>Abstract Stores 
+<li>Abstract Stores (Repositories)
 
 <ul>
-<li>Extract Ajax Handler</li>
-<li>Localstorage (TTL)</li>
+<li>Remote
+
+<ul>
+<li>PHP</li>
+<li>Node.js</li>
 </ul>
 </li>
-<li>JSON Schemas</li>
-<li>Underscore.js Templating</li>
+<li>Local
+
+<ul>
+<li>WebSQL</li>
+<li>Localstorage</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Cache (TTL)</li>
+<li>JSON Schema Support</li>
+<li>Templating Examples (Handlebars/Underscore.js)</li>
 </ul><h2>License</h2>
 
 <p>Released under two licenses: new BSD, and MIT. You may pick the
