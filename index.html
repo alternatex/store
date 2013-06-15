@@ -28,20 +28,37 @@
         </ul>
       </header>
       <section>
-        <h2>Quickstart</h2>
+        <h2>
+<a name="quickstart" class="anchor" href="#quickstart"><span class="octicon octicon-link"></span></a>Quickstart</h2>
 
-<h3>Embedding</h3>
+<h3>
+<a name="embedding" class="anchor" href="#embedding"><span class="octicon octicon-link"></span></a>Embedding</h3>
 
-<div class="highlight"><pre><span class="nt">&lt;script </span><span class="na">src=</span><span class="s">"src/client/store.js"</span><span class="nt">&gt;&lt;/script&gt;</span>
-<span class="nt">&lt;script&gt;</span>
-<span class="c1">// scope</span>
-<span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">root</span><span class="p">){</span>
+<h4>
+<a name="requirejs" class="anchor" href="#requirejs"><span class="octicon octicon-link"></span></a>Require.js</h4>
+
+<div class="highlight"><pre><span class="nt">&lt;script&gt;</span>
+<span class="nx">require</span><span class="p">([</span><span class="s2">"store"</span><span class="p">],</span> <span class="kd">function</span><span class="p">(</span><span class="nx">Store</span><span class="p">)</span> <span class="p">{</span>
   <span class="c1">// ...</span>
 <span class="p">});</span>
 <span class="nt">&lt;/script&gt;</span>
 </pre></div>
 
-<h3>Defaults</h3>
+<p>See examples for details</p>
+
+<h4>
+<a name="" class="anchor" href="#"><span class="octicon octicon-link"></span></a>...</h4>
+
+<div class="highlight"><pre><span class="nt">&lt;script </span><span class="na">src=</span><span class="s">"src/client/store.js"</span><span class="nt">&gt;&lt;/script&gt;</span>
+<span class="nt">&lt;script&gt;</span>
+  <span class="c1">// ...</span>
+<span class="nt">&lt;/script&gt;</span>
+</pre></div>
+
+<h3>
+<a name="defaults" class="anchor" href="#defaults"><span class="octicon octicon-link"></span></a>Defaults</h3>
+
+<p>Defaults are modified as follows:</p>
 
 <div class="highlight"><pre><span class="nx">Store</span><span class="p">.</span><span class="nx">configure</span><span class="p">({</span> 
   <span class="nx">url</span><span class="o">:</span> <span class="s2">"http://localhost/datastore.php"</span><span class="p">,</span> 
@@ -49,14 +66,21 @@
 <span class="p">});</span>
 </pre></div>
 
-<h3>Create Store</h3>
+<p><strong>Note</strong></p>
+
+<p><code>configure()</code> alters the prototype object, therefore modifications are propagated to it's instances on property level given that the respective instance property has not been modified directly yet.</p>
+
+<h3>
+<a name="create-store" class="anchor" href="#create-store"><span class="octicon octicon-link"></span></a>Create Store</h3>
 
 <div class="highlight"><pre><span class="kd">var</span> <span class="nx">objectStore</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Store</span><span class="p">({</span> <span class="nx">namespace</span><span class="o">:</span> <span class="s1">'object'</span> <span class="p">});</span>
 </pre></div>
 
-<h3>Create Object</h3>
+<h3>
+<a name="create-object" class="anchor" href="#create-object"><span class="octicon octicon-link"></span></a>Create Object</h3>
 
-<h4>Variant A</h4>
+<h4>
+<a name="preset" class="anchor" href="#preset"><span class="octicon octicon-link"></span></a>Preset</h4>
 
 <div class="highlight"><pre><span class="kd">var</span> <span class="nx">object</span> <span class="o">=</span> <span class="nx">objectStore</span><span class="p">.</span><span class="nx">create</span><span class="p">({</span> 
   <span class="nx">country</span><span class="o">:</span> <span class="s1">'USA'</span><span class="p">,</span> 
@@ -65,7 +89,8 @@
 <span class="p">});</span> 
 </pre></div>
 
-<h4>Variant B</h4>
+<h4>
+<a name="barebone" class="anchor" href="#barebone"><span class="octicon octicon-link"></span></a>Barebone</h4>
 
 <div class="highlight"><pre><span class="kd">var</span> <span class="nx">object</span> <span class="o">=</span> <span class="nx">objectStore</span><span class="p">.</span><span class="nx">create</span><span class="p">();</span> 
 <span class="nx">object</span><span class="p">.</span><span class="nx">set</span><span class="p">(</span><span class="s1">'country'</span><span class="p">,</span> <span class="s1">'USA'</span><span class="p">);</span>
@@ -73,36 +98,59 @@
 <span class="nx">object</span><span class="p">.</span><span class="nx">set</span><span class="p">(</span><span class="s1">'lastname'</span><span class="p">,</span> <span class="s1">'Stewart'</span><span class="p">);</span> 
 </pre></div>
 
-<h3>Store Object</h3>
+<h3>
+<a name="get-object" class="anchor" href="#get-object"><span class="octicon octicon-link"></span></a>Get Object</h3>
 
-<h4>Variant A</h4>
+<h4>
+<a name="list" class="anchor" href="#list"><span class="octicon octicon-link"></span></a>List</h4>
+
+<div class="highlight"><pre><span class="nx">objectStore</span><span class="p">.</span><span class="nx">list</span><span class="p">();</span>
+</pre></div>
+
+<h4>
+<a name="single" class="anchor" href="#single"><span class="octicon octicon-link"></span></a>Single</h4>
+
+<div class="highlight"><pre><span class="nx">objectStore</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">'8c0c1ff0-d0fe-38b7-376a-b0b1d53bd557'</span><span class="p">);</span>
+</pre></div>
+
+<h3>
+<a name="store-object" class="anchor" href="#store-object"><span class="octicon octicon-link"></span></a>Store Object</h3>
+
+<h4>
+<a name="instance" class="anchor" href="#instance"><span class="octicon octicon-link"></span></a>Instance</h4>
 
 <div class="highlight"><pre><span class="nx">object</span><span class="p">.</span><span class="nx">update</span><span class="p">();</span>
 </pre></div>
 
-<h4>Variant B</h4>
+<h4>
+<a name="datastore" class="anchor" href="#datastore"><span class="octicon octicon-link"></span></a>Datastore</h4>
 
 <div class="highlight"><pre><span class="nx">objectStore</span><span class="p">.</span><span class="nx">update</span><span class="p">(</span><span class="nx">object</span><span class="p">);</span>
 </pre></div>
 
-<h4>Variant C</h4>
+<h4>
+<a name="datastore-w-arbitrary-object" class="anchor" href="#datastore-w-arbitrary-object"><span class="octicon octicon-link"></span></a>Datastore w/ arbitrary object</h4>
 
 <div class="highlight"><pre><span class="nx">objectStore</span><span class="p">.</span><span class="nx">update</span><span class="p">({</span> <span class="nx">name</span><span class="o">:</span> <span class="s1">'XXXXX'</span><span class="p">,</span> <span class="nx">type</span><span class="o">:</span> <span class="s1">'XXXXX'</span><span class="p">,</span> <span class="nx">rank</span><span class="o">:</span> <span class="s1">'XXXXX'</span> <span class="p">});</span>
 </pre></div>
 
-<h3>Remove Object</h3>
+<h3>
+<a name="remove-object" class="anchor" href="#remove-object"><span class="octicon octicon-link"></span></a>Remove Object</h3>
 
-<h4>Variant A</h4>
+<h4>
+<a name="instance-1" class="anchor" href="#instance-1"><span class="octicon octicon-link"></span></a>Instance</h4>
 
 <div class="highlight"><pre><span class="nx">object</span><span class="p">.</span><span class="nx">remove</span><span class="p">();</span>
 </pre></div>
 
-<h4>Variant B</h4>
+<h4>
+<a name="datastore-1" class="anchor" href="#datastore-1"><span class="octicon octicon-link"></span></a>Datastore</h4>
 
 <div class="highlight"><pre><span class="nx">objectStore</span><span class="p">.</span><span class="nx">remove</span><span class="p">(</span><span class="nx">object</span><span class="p">);</span>
 </pre></div>
 
-<h3>Summary</h3>
+<h3>
+<a name="summary" class="anchor" href="#summary"><span class="octicon octicon-link"></span></a>Summary</h3>
 
 <div class="highlight"><pre><span class="nt">&lt;script </span><span class="na">src=</span><span class="s">"src/client/store.js"</span><span class="nt">&gt;&lt;/script&gt;</span>
 <span class="nt">&lt;script&gt;</span>
@@ -113,7 +161,7 @@
 
   <span class="c1">// configure storage defaults </span>
   <span class="nx">Store</span><span class="p">.</span><span class="nx">configure</span><span class="p">({</span> 
-    <span class="nx">url</span><span class="o">:</span> <span class="s2">"http://localhost/datastore.php"</span><span class="p">,</span> 
+    <span class="nx">url</span><span class="o">:</span> <span class="s2">"http://localhost/store/docs/examples/store.php"</span><span class="p">,</span> 
     <span class="nx">ttl</span><span class="o">:</span> <span class="mi">36000</span>
   <span class="p">});</span>
 
@@ -158,9 +206,15 @@
 
   <span class="c1">// upon promises fulfillment</span>
   <span class="nx">Store</span><span class="p">.</span><span class="nx">when</span><span class="p">(</span><span class="nx">objects</span><span class="p">)</span>
-    <span class="p">.</span><span class="nx">done</span><span class="p">(</span><span class="kd">function</span><span class="p">(){})</span>
-    <span class="p">.</span><span class="nx">fail</span><span class="p">(</span><span class="kd">function</span><span class="p">(){})</span>
-    <span class="p">.</span><span class="nx">always</span><span class="p">(</span><span class="kd">function</span><span class="p">(){});</span>  
+    <span class="p">.</span><span class="nx">done</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">objects</span><span class="p">){</span>
+      <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">"done"</span><span class="p">,</span> <span class="nx">objects</span><span class="p">);</span>
+    <span class="p">})</span>
+    <span class="p">.</span><span class="nx">fail</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">objects</span><span class="p">){</span>
+      <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">"fail"</span><span class="p">,</span> <span class="nx">objects</span><span class="p">);</span>
+    <span class="p">})</span>
+    <span class="p">.</span><span class="nx">always</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">objects</span><span class="p">){</span>
+      <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">"always"</span><span class="p">,</span> <span class="nx">objects</span><span class="p">);</span>
+    <span class="p">});</span>  
 
   <span class="c1">// fetch all objects &amp; register callback </span>
   <span class="nx">objects</span> <span class="o">=</span> <span class="nx">objectStore</span><span class="p">.</span><span class="nx">list</span><span class="p">();</span>
@@ -183,100 +237,50 @@
 <span class="nt">&lt;/script&gt;</span>
 </pre></div>
 
-<h4>Files</h4>
+<h2>
+<a name="repositories" class="anchor" href="#repositories"><span class="octicon octicon-link"></span></a>Repositories</h2>
 
-<div class="highlight"><pre><span class="nt">&lt;script&gt;</span>
-  <span class="c1">// create container</span>
-  <span class="kd">var</span> <span class="nx">form</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">FormData</span><span class="p">();</span>
+<h3>
+<a name="php-store" class="anchor" href="#php-store"><span class="octicon octicon-link"></span></a>PHP Store</h3>
 
-  <span class="c1">// configure</span>
-  <span class="nx">form</span><span class="p">.</span><span class="nx">append</span><span class="p">(</span><span class="s1">'namespace'</span><span class="p">,</span> <span class="s1">'object'</span><span class="p">);</span>
-  <span class="nx">form</span><span class="p">.</span><span class="nx">append</span><span class="p">(</span><span class="s1">'action'</span><span class="p">,</span> <span class="s1">'update'</span><span class="p">);</span>  
+<p>Stores data using PHPs object serialization features for marshalling. Supports embedding files base64 encoded.</p>
 
-  <span class="c1">// attach file</span>
-  <span class="nx">form</span><span class="p">.</span><span class="nx">append</span><span class="p">(</span><span class="s1">'instance[document]'</span><span class="p">,</span> <span class="k">new</span> <span class="nx">Blob</span><span class="p">([</span><span class="s1">'&lt;file&gt;...&lt;/file&gt;'</span><span class="p">],</span> <span class="p">{</span> <span class="nx">type</span><span class="o">:</span> <span class="s1">'text/xml'</span> <span class="p">}));</span>
+<p><strong>Limitations</strong> </p>
 
-  <span class="c1">// store</span>
-  <span class="kd">var</span> <span class="nx">request</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">XMLHttpRequest</span><span class="p">();</span>
-  <span class="nx">request</span><span class="p">.</span><span class="nx">open</span><span class="p">(</span><span class="s1">'POST'</span><span class="p">,</span> <span class="s1">'http://localhost/datastore.php'</span><span class="p">);</span>
-  <span class="nx">request</span><span class="p">.</span><span class="nx">send</span><span class="p">(</span><span class="nx">form</span><span class="p">);</span>
-<span class="nt">&lt;/script&gt;</span>
-</pre></div>
+<p>Built with prototyping in mind. Won't scale.</p>
 
-<h3>HTML</h3>
-
-<h4>Arbitrary Objects</h4>
-
-<div class="highlight"><pre><span class="nt">&lt;form</span> <span class="na">method=</span><span class="s">"POST"</span> <span class="na">action=</span><span class="s">"datastore.php"</span><span class="nt">&gt;</span>
-  <span class="nt">&lt;input</span> <span class="na">type=</span><span class="s">"hidden"</span> <span class="na">name=</span><span class="s">"instance[id]"</span> <span class="na">value=</span><span class="s">"a5b1da03-c0d1-5f49-19e4-de94bb266d2e"</span><span class="nt">/&gt;</span>
-  <span class="nt">&lt;input</span> <span class="na">type=</span><span class="s">"hidden"</span> <span class="na">name=</span><span class="s">"namespace"</span> <span class="na">value=</span><span class="s">"object"</span><span class="nt">/&gt;</span>
-  <span class="nt">&lt;input</span> <span class="na">type=</span><span class="s">"text"</span> <span class="na">name=</span><span class="s">"instance[firstname]"</span> <span class="na">value=</span><span class="s">"firstname"</span><span class="nt">/&gt;</span>
-  <span class="nt">&lt;input</span> <span class="na">type=</span><span class="s">"text"</span> <span class="na">name=</span><span class="s">"instance[lastname]"</span> <span class="na">value=</span><span class="s">"lastname"</span><span class="nt">/&gt;</span>
-  <span class="nt">&lt;input</span> <span class="na">type=</span><span class="s">"submit"</span> <span class="na">name=</span><span class="s">"action"</span> <span class="na">value=</span><span class="s">"update"</span><span class="nt">/&gt;</span>
-  <span class="nt">&lt;input</span> <span class="na">type=</span><span class="s">"submit"</span> <span class="na">name=</span><span class="s">"action"</span> <span class="na">value=</span><span class="s">"remove"</span><span class="nt">/&gt;</span>
-  <span class="nt">&lt;input</span> <span class="na">type=</span><span class="s">"submit"</span> <span class="na">name=</span><span class="s">"action"</span> <span class="na">value=</span><span class="s">"cancel"</span><span class="nt">/&gt;</span>
-<span class="nt">&lt;/form&gt;</span>
-</pre></div>
-
-<h4>Files</h4>
-
-<div class="highlight"><pre><span class="nt">&lt;form</span> <span class="na">method=</span><span class="s">"POST"</span> <span class="na">action=</span><span class="s">"datastore.php"</span> <span class="na">enctype=</span><span class="s">"multipart/form-data"</span><span class="nt">&gt;</span>
-  <span class="nt">&lt;input</span> <span class="na">type=</span><span class="s">"hidden"</span> <span class="na">name=</span><span class="s">"instance[id]"</span> <span class="na">value=</span><span class="s">"55ff1e53-0bab-f317-d1d2-7e119fce405e9"</span><span class="nt">/&gt;</span>
-  <span class="nt">&lt;input</span> <span class="na">type=</span><span class="s">"hidden"</span> <span class="na">name=</span><span class="s">"namespace"</span> <span class="na">value=</span><span class="s">"object"</span><span class="nt">/&gt;</span>
-  <span class="nt">&lt;input</span> <span class="na">type=</span><span class="s">"file"</span> <span class="na">name=</span><span class="s">"instance[document]"</span> <span class="nt">/&gt;</span>
-  <span class="nt">&lt;input</span> <span class="na">type=</span><span class="s">"file"</span> <span class="na">name=</span><span class="s">"instance[audio]"</span> <span class="nt">/&gt;</span>
-  <span class="nt">&lt;input</span> <span class="na">type=</span><span class="s">"file"</span> <span class="na">name=</span><span class="s">"instance[video]"</span> <span class="nt">/&gt;</span>
-  <span class="nt">&lt;input</span> <span class="na">type=</span><span class="s">"file"</span> <span class="na">name=</span><span class="s">"instance[image]"</span> <span class="nt">/&gt;</span>
-  <span class="nt">&lt;input</span> <span class="na">type=</span><span class="s">"submit"</span> <span class="na">name=</span><span class="s">"action"</span> <span class="na">value=</span><span class="s">"update"</span><span class="nt">/&gt;</span>
-  <span class="nt">&lt;input</span> <span class="na">type=</span><span class="s">"submit"</span> <span class="na">name=</span><span class="s">"action"</span> <span class="na">value=</span><span class="s">"remove"</span><span class="nt">/&gt;</span>
-  <span class="nt">&lt;input</span> <span class="na">type=</span><span class="s">"submit"</span> <span class="na">name=</span><span class="s">"action"</span> <span class="na">value=</span><span class="s">"cancel"</span><span class="nt">/&gt;</span>
-<span class="nt">&lt;/form&gt;</span>
-</pre></div>
-
-<h2>Repositories</h2>
-
-<h3>PHP</h3>
-
-<p>Serialized object storage with embedded file support.</p>
-
-<h2>Limitations</h2>
-
-<p>...</p>
-
-<h2>Documentation</h2>
-
-<p>See <a href="https://github.com/alternatex/store/blob/master/docs/index.md">here</a></p>
-
-<h2>Roadmap</h2>
+<h2>
+<a name="documentation" class="anchor" href="#documentation"><span class="octicon octicon-link"></span></a>Documentation</h2>
 
 <ul>
-<li>Documentation / Test Coverage</li>
-<li>AMD/CommonJS</li>
-<li>Abstract Adapters/Stores/Repositories
+<li><a href="https://github.com/alternatex/store/blob/master/docs/api/index.html">API Docs</a></li>
+<li><a href="https://github.com/alternatex/store/blob/master/docs/index.md">Usage</a></li>
+</ul><h2>
+<a name="roadmap" class="anchor" href="#roadmap"><span class="octicon octicon-link"></span></a>Roadmap</h2>
 
 <ul>
-<li>Remote
+<li>Adapters/Stores/Repositories
 
 <ul>
-<li>PHP</li>
-<li>Node.js</li>
+<li>Remote/PHP Plain</li>
 </ul>
 </li>
-<li>Local
+<li>AMD/CommonJS </li>
+<li>Custom Form Handler</li>
+<li>CSRF Prevention w/Handshake+x *</li>
+<li>Documentation</li>
+<li>Test Coverage</li>
+</ul><h2>
+<a name="wishlist" class="anchor" href="#wishlist"><span class="octicon octicon-link"></span></a>Wishlist</h2>
 
 <ul>
-<li>Lawnchair</li>
-<li>WebSQL </li>
-<li>Localstorage</li>
-</ul>
-</li>
-</ul>
-</li>
-<li>Caching (TTL)</li>
-<li>JSON Schema Support</li>
-<li>REST Support for Client and PHP-Adapter</li>
-<li>Templating Examples Handlebars/Underscore.js/VanillaJS?</li>
-</ul><h2>License</h2>
+<li>REST Client/PHP-Adapter</li>
+<li>Filters JS/PHP</li>
+<li>Repositories Node.js Plain &amp; PHPCR</li>
+<li>HTML5 FileSystem API</li>
+<li>JSON Schema</li>
+</ul><h2>
+<a name="license" class="anchor" href="#license"><span class="octicon octicon-link"></span></a>License</h2>
 
 <p>Released under two licenses: new BSD, and MIT. You may pick the
 license that best suits your development needs.</p>
@@ -289,6 +293,16 @@ license that best suits your development needs.</p>
       </footer>
     </div>
     <script src="javascripts/scale.fix.js"></script>
-    
+              <script type="text/javascript">
+            var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+            document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+          </script>
+          <script type="text/javascript">
+            try {
+              var pageTracker = _gat._getTracker("UA-41532678-2");
+            pageTracker._trackPageview();
+            } catch(err) {}
+          </script>
+
   </body>
 </html>
