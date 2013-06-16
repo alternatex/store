@@ -245,9 +245,7 @@ Roadmap
 -------------
 - Ajax Requests
   - Proxy (CS)
-  - POST 
-      - *
-      - Files
+  - File Uploads
 - Security (CSRF & friends)
 - Test Coverage + 1
 - Documentation / Examples
