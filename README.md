@@ -195,18 +195,6 @@ objectStore.remove(object);
     }).update());
   });
 
-  // upon promises fulfillment
-  Store.when(objects)
-    .done(function(objects){
-      console.log("done", objects);
-    })
-    .fail(function(objects){
-      console.log("fail", objects);
-    })
-    .always(function(objects){
-      console.log("always", objects);
-    });  
-
   // fetch all objects & register callback 
   objects = objectStore.list();
 
@@ -217,15 +205,28 @@ objectStore.remove(object);
     objects.forEach(function(object, index){
       console.log(index, object);
     });
-  });
 
   // fetch object 
   object = objectStore.get(objectId);
 
   // process fetched object
-  Store.when(object).done(function(object){
-    console.log("object", object);
+  Store.when(object).done(function(object){  
+
+    // execute on success  
+    console.log("done", object);  
+
+  }).fail(function(objects){    
+
+    // execute on fail
+    console.log("fail", objects);    
+
+  }).always(function(objects){    
+
+    // always execute this block
+    console.log("always", objects);
+
   });
+
 })();
 </script>
 ```
