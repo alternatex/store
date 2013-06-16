@@ -148,7 +148,7 @@ objectStore.remove(object);
   // update on insert
   Store.when(object).done(function(object){
     
-    // wrap object
+    // wrap json object
     object = objectStore.create(object);
 
     // update properties
@@ -161,10 +161,10 @@ objectStore.remove(object);
     // update object
     object.update().done(function(object){        
 
-        // fetch object w/previously retrieve objectId
+        // fetch object w/previously retrieved objectId
         objectStore.get(objectId).done(function(object){
 
-           // wrap json into object
+           // wrap json object
            object = objectStore.create(object);
 
            // say hi
