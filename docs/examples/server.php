@@ -62,11 +62,8 @@ switch($action){
     break;
 }
 
-// write response 
-print json_encode($returnValue);
-
-// retrieve buffer
-$response = ob_get_clean();
+// ...
+$devnull = ob_get_clean();
 
 // send response
 print $store->response($dostore, $returnValue, $jsonp);
