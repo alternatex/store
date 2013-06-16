@@ -11,7 +11,9 @@
 require(dirname(__FILE__).'/store.php');
 
 /**
-* This is the description for my class.
+* PHP Object Store 
+*
+* Store data using `serialize()`
 *
 * @class Server
 * @constructor
@@ -19,7 +21,7 @@ require(dirname(__FILE__).'/store.php');
 class ObjectStore extends Store {
 
   /**
-  * Datastore ...
+  * Items collection
   * @property data
   * @private
   * @type {Array}
@@ -27,6 +29,13 @@ class ObjectStore extends Store {
   */
   private $items = array();
 
+  /**
+  * Datastore filename
+  * @property data
+  * @private
+  * @type {Array}
+  * @default array()
+  */
   private $datastore = null;
 
   /**
@@ -165,10 +174,12 @@ class ObjectStore extends Store {
   }
 
   /**
-  * Final step.. * TODO: docs!
-  *
-  * @method reply
-  * @param {Object} $files actually just $_FILES ...
+  * Send output
+  * 
+  * @method response
+  * @param {boolean} $dostore
+  * @param {Array} $response
+  * @param {String} $jsonp
   * @void
   */ 
   public function response($dostore, $response, $jsonp){
