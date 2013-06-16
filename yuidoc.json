@@ -1,0 +1,9 @@
+{
+    "name": "Store",
+    "description": "A lightweight datastore wrapper",
+    "version": "1.0.0",
+    "url": "http://example.com/",
+    "options": {
+        "outdir": "docs/api"
+    }
+}

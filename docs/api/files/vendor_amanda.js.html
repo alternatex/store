@@ -1,0 +1,2134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>vendor&#x2F;amanda.js - Store</title>
+    <link rel="stylesheet" href="http:&#x2F;&#x2F;yui.yahooapis.com&#x2F;3.7.0&#x2F;build&#x2F;cssgrids&#x2F;cssgrids-min.css">
+    <link rel="stylesheet" href="..&#x2F;assets/vendor/prettify/prettify-min.css">
+    <link rel="stylesheet" href="..&#x2F;assets/css/main.css" id="site_styles">
+    <link rel="shortcut icon" type="image/png" href="..&#x2F;assets/favicon.png">
+    <script src="http:&#x2F;&#x2F;yui.yahooapis.com&#x2F;combo?3.7.0&#x2F;build&#x2F;yui&#x2F;yui-min.js"></script>
+</head>
+<body class="yui3-skin-sam">
+
+<div id="doc">
+    <div id="hd" class="yui3-g header">
+        <div class="yui3-u-3-4">
+            
+                <h1><img src="..&#x2F;assets/css/logo.png" title="Store"></h1>
+            
+        </div>
+        <div class="yui3-u-1-4 version">
+            <em>API Docs for: 1.0.0</em>
+        </div>
+    </div>
+    <div id="bd" class="yui3-g">
+
+        <div class="yui3-u-1-4">
+            <div id="docs-sidebar" class="sidebar apidocs">
+                <div id="api-list">
+    <h2 class="off-left">APIs</h2>
+    <div id="api-tabview" class="tabview">
+        <ul class="tabs">
+            <li><a href="#api-classes">Classes</a></li>
+            <li><a href="#api-modules">Modules</a></li>
+        </ul>
+
+        <div id="api-tabview-filter">
+            <input type="search" id="api-filter" placeholder="Type to filter APIs">
+        </div>
+
+        <div id="api-tabview-panel">
+            <ul id="api-classes" class="apis classes">
+            
+                <li><a href="..&#x2F;classes/Store.html">Store</a></li>
+            
+            </ul>
+
+            <ul id="api-modules" class="apis modules">
+            
+                <li><a href="..&#x2F;modules/Client.html">Client</a></li>
+            
+            </ul>
+        </div>
+    </div>
+</div>
+
+            </div>
+        </div>
+        <div class="yui3-u-3-4">
+                <div id="api-options">
+        Show:
+        <label for="api-show-inherited">
+            <input type="checkbox" id="api-show-inherited" checked>
+            Inherited
+        </label>
+
+        <label for="api-show-protected">
+            <input type="checkbox" id="api-show-protected">
+            Protected
+        </label>
+
+        <label for="api-show-private">
+            <input type="checkbox" id="api-show-private">
+            Private
+        </label>
+        <label for="api-show-deprecated">
+            <input type="checkbox" id="api-show-deprecated">
+            Deprecated
+        </label>
+
+    </div>
+
+
+            <div class="apidocs">
+                <div id="docs-main">
+                    <div class="content">
+                        <h1 class="file-heading">File: vendor&#x2F;amanda.js</h1>
+
+<div class="file">
+    <pre class="code prettyprint linenums">
+(function() {
+
+  &#x2F;**
+   * Engines
+   * --------------------
+   *&#x2F;
+  var engines = {};
+
+&#x2F;**
+ * DetectType
+ *
+ * @param {object} input
+ *&#x2F;
+var detectType = function(input) {
+  return typeof input;
+};
+
+&#x2F;**
+ * Each
+ *
+ * Applies an iterator function to each item in an array or an object, in series.
+ *
+ * @param {object} list
+ * @param {function} iterator
+ * @param {function} callback
+ *&#x2F;
+var each = function(list, iterator, callback) {
+
+  &#x2F;**
+   * SyncEach
+   *
+   * @param {object} list
+   * @param {function} iterator
+   *&#x2F;
+  var syncEach = function(list, iterator) {
+
+    &#x2F;&#x2F; If the list is an array
+    if (isArray(list) &amp;&amp; !isEmpty(list)) {
+      for (var i = 0, len = list.length; i &lt; len; i++) {
+        iterator.apply(list, [i, list[i]]);
+      }
+    }
+
+    &#x2F;&#x2F; If the list is an object
+    if (isObject(list) &amp;&amp; !isEmpty(list)) {
+      for (var key in list) {
+        if (list.hasOwnProperty(key)) {
+          iterator.apply(list, [key, list[key]]);
+        }
+      } 
+    }
+
+  };
+
+  &#x2F;**
+   * AsyncEach
+   * @param {object} list
+   * @param {function} iterator
+   * @param {function} callback
+   *&#x2F;
+  var asyncEach = function(list, iterator, callback) {
+
+    var queue = [];
+
+    &#x2F;**
+     * AddToQueue
+     *
+     * @param {string} key
+     * @param {string|object} value
+     *&#x2F;
+    var addToQueue = function(key, value) {
+      var index = queue.length + 1;
+      queue.push(function() {
+
+        var next = function(error) {
+          var fn = queue[index];
+          if (!error &amp;&amp; fn) {
+            return fn();
+          } else if (!error &amp;&amp; !fn) {
+            return callback();
+          } else {
+            return callback(error);
+          }
+        };
+
+        return iterator(key, value, next);
+
+      });
+    };
+
+    &#x2F;&#x2F; If the list is an array
+    if (isArray(list) &amp;&amp; !isEmpty(list)) {
+      for (var i = 0, len = list.length; i &lt; len; i++) {
+        addToQueue(i, list[i]);
+      }
+
+    &#x2F;&#x2F; If the list is an object
+    } else if (isObject(list) &amp;&amp; !isEmpty(list)) {
+      for (var key in list) {
+        if (list.hasOwnProperty(key)) {
+          addToQueue(key, list[key]);
+        }
+      }
+
+    &#x2F;&#x2F; If the list is not an array or an object
+    } else {
+      return callback();
+    }
+
+    &#x2F;&#x2F; And go!
+    return queue[0]();
+
+  };
+
+  if (typeof callback === &#x27;undefined&#x27;) {
+    return syncEach.apply(this, arguments);
+  } else {
+    return asyncEach.apply(this, arguments);
+  }
+
+};
+
+&#x2F;**
+ * Every
+ *
+ * @param {object} arr
+ * @param {function} iterator
+ *&#x2F;
+var every = function(arr, iterator) {
+  return Array.prototype.every.apply(arr, [iterator]);
+};
+
+&#x2F;**
+ * Filter
+ *
+ * @param {object} arr
+ * @param {function} iterator
+ *&#x2F;
+var filter = function(arr, iterator, context) {
+  return Array.prototype.filter.apply(arr, [iterator, context || this]);
+};
+
+&#x2F;**
+ * HasProperty
+ *
+ * @param {object} input
+ *&#x2F;
+var hasProperty = function(obj, property) {
+  return Object.prototype.hasOwnProperty.apply(obj, [property]);
+};
+
+&#x2F;**
+ * IsArray
+ *
+ * Returns true if the passed-in object is an array.
+ *
+ * @param {object} input
+ *&#x2F;
+var isArray = function(input) {
+  return Object.prototype.toString.call(input) === &#x27;[object Array]&#x27;;
+};
+
+&#x2F;**
+ * IsBoolean
+ *
+ * @param {object} input
+ *&#x2F;
+var isBoolean = function(input) {
+  return typeof input === &#x27;boolean&#x27;;
+};
+
+&#x2F;**
+ * IsDefined
+ *
+ * @param {object} input
+ *&#x2F;
+var isDefined = function(input) {
+  return typeof input !== &#x27;undefined&#x27;;
+};
+
+&#x2F;**
+ * IsEmpty
+ *  
+ * Returns true if the passed-in object is empty.
+ *
+ * @param {object} input
+ *&#x2F;
+var isEmpty = function(input) {
+
+  if (isNumber(input)) {
+    return false;
+  }
+
+  if (input === null) {
+    return true;
+  }
+
+  &#x2F;&#x2F; If the passed-in object is an array or a string
+  if (isArray(input) || typeof input === &#x27;string&#x27;) {
+    return input.length === 0;
+  }
+
+  &#x2F;&#x2F; If the passed-in object is an object
+  if (isObject(input)) {
+    for (var key in input) {
+      if (hasOwnProperty.call(input, key)) return false;
+    }
+  }
+
+  return true;
+
+};
+
+&#x2F;**
+ * IsEqual
+ *
+ * @param {object} obj1
+ * @param {object} obj2
+ *&#x2F;
+var isEqual = function(obj1, obj2) {
+
+  &#x2F;**
+   * Arrays
+   *&#x2F;
+  if (isArray(obj1, obj2)) {
+
+    if (obj1.length !== obj2.length) {
+      return false;
+    }
+
+    return every(obj1, function(value, index, context) {
+      return obj2[index] === value;
+    });
+
+  }
+
+  &#x2F;**
+   * Objects
+   *&#x2F;
+  if (isObject(obj1, obj2)) {
+
+    var keys1 = keys(obj1),
+        keys2 = keys(obj2);
+
+    if (!isEqual(keys1, keys2)) {
+      return false;
+    }
+
+    for (key in obj1) {
+      if (!obj2[key] || obj1[key] !== obj2[key]) {
+        return false;
+      }
+    }
+
+    return true;
+
+  }
+
+  return false;
+
+};
+
+&#x2F;**
+ * IsFunction
+ *
+ * @param {object} input
+ *&#x2F;
+var isFunction = function(input) {
+  return typeof input === &#x27;function&#x27;;
+};
+
+&#x2F;**
+ * IsInteger
+ *
+ * @param {object} input
+ *&#x2F;
+var isInteger = function(input) {
+  return isNumber(input) &amp;&amp; input % 1 === 0;
+};
+
+&#x2F;**
+ * IsNull
+ *
+ * @param {object} input
+ *&#x2F;
+var isNull = function(input) {
+  return input === null;
+};
+
+&#x2F;**
+ * IsNumber
+ *
+ * @param {object} input
+ *&#x2F;
+var isNumber = function(input) {
+  return typeof input === &#x27;number&#x27;;
+};
+
+&#x2F;**
+ * IsObject
+ *
+ * Returns true if the passed-in object is an object.
+ *
+ * @param {object} input
+ *&#x2F;
+var isObject = function(input) {
+  return Object.prototype.toString.call(input) === &#x27;[object Object]&#x27;;
+};
+
+&#x2F;**
+ * IsString
+ *
+ * @param {object} input
+ *&#x2F;
+var isString = function(input) {
+  return typeof input === &#x27;string&#x27;;
+};
+
+&#x2F;**
+ * IsUndefined
+ *
+ * @param {object} input
+ *&#x2F;
+var isUndefined = function(input) {
+  return typeof input === &#x27;undefined&#x27;;
+};
+
+&#x2F;**
+ * Keys
+ *
+ * @param {object} obj
+ *&#x2F;
+var keys = function(obj) {
+  return Object.keys(obj);
+};
+
+&#x2F;**
+ * Merge
+ *
+ * Copy all of the properties in the source objects over to the destination object.
+ *
+ * @param {object} obj1
+ * @param {object} obj2
+ *&#x2F;
+var merge = function(obj1, obj2) {
+  for (var key in obj2) {
+    if (obj2.hasOwnProperty(key) &amp;&amp; !obj1.hasOwnProperty(key)) {
+      obj1[key] = obj2[key];
+    }
+  }
+  return obj1;
+};
+
+&#x2F;**
+ * Pluck
+ *
+ * Extracts a list of property values.
+ *
+ * @param {object} list
+ * @param {string} propertyName
+ *&#x2F;
+var pluck = function(list, propertyName) {
+  var output = [];
+  for (var i = 0, len = list.length; i &lt; len; i++) {
+    var property = list[i][propertyName];
+    if (output.indexOf(property) === -1) {
+      output.push(property);
+    }
+  }
+  return output;
+};
+
+&#x2F;**
+ * ReturnTrue
+ *&#x2F;
+var returnTrue = function() {
+  return true;
+};
+
+&#x2F;**
+ * Some
+ *
+ * @param {object} arr
+ * @param {function} iterator
+ *&#x2F;
+var some = function(arr, iterator) {
+  return Array.prototype.some.apply(arr, [iterator]);
+};
+
+(function() {
+
+&#x2F;**
+ * Validation
+ *
+ * @constructor
+ * @param {object} options
+ *&#x2F;
+var Validation = function(options) {
+
+  &#x2F;&#x2F; Save a reference to the ‘this’
+  var self = this;
+
+  var defaultOptions = {
+    singleError: true,
+    messages: errorMessages,
+    cache: false
+  };
+
+  each(defaultOptions, function(key, value) {
+
+    if (isObject(value) &amp;&amp; options[key]) {
+      self[key] = merge(options[key], defaultOptions[key]);
+
+    } else if (isObject(value) &amp;&amp; !options[key]) {
+      self[key] = merge ({}, defaultOptions[key]);
+
+    } else {
+      self[key] = (isDefined(options[key])) ? options[key] : defaultOptions[key];
+    }
+
+  });
+
+  this.errors = new ValidationError(this);
+
+};
+
+&#x2F;**
+ * Attributes
+ * --------------------
+ *&#x2F;
+Validation.prototype.attributes = {};
+
+&#x2F;**
+ * AddAttribute
+ *
+ * @param {string} attributeName
+ * @param {function} attributeFn
+ *&#x2F;
+Validation.prototype.addAttribute = function(attributeName, attributeFn) {
+  return Validation.prototype.attributes[attributeName] = attributeFn;
+};
+
+&#x2F;**
+ * AddAttributeConstructor
+ *
+ * @param {string} attributeName
+ * @param {function} attributeConstructor
+ *&#x2F;
+Validation.prototype.addAttributeConstructor = function(attributeName, attributeConstructor) {
+  return Validation.prototype.attributes[attributeName] = attributeConstructor();
+};
+
+&#x2F;**
+ * AdditionalProperties
+ *&#x2F;
+var additionalPropertiesAttribute = function additionalProperties(property, propertyValue, attributeValue, propertyAttributes, callback) {
+
+  var self = this;
+
+  &#x2F;**
+   * {
+   *   additionalProperties: true,
+   *   ...
+   * }
+   *&#x2F;
+  if (attributeValue === true) {
+    return callback();
+  }
+
+  &#x2F;&#x2F; Filter the forbidden properties
+  var propertyKeys = keys(propertyValue);
+  var forbiddenProperties = filter(propertyKeys, function(key) {
+    return !propertyAttributes.properties[key];
+  });
+
+  if (isEmpty(forbiddenProperties)) {
+    return callback();
+  }
+
+  &#x2F;**
+   * {
+   *   additionalProperties: false,
+   *   ...
+   * }
+   *&#x2F;
+  if (attributeValue === false) {
+
+    forbiddenProperties.forEach(function(forbiddenProperty) {
+      this.addError({
+        property: this.joinPath(property, forbiddenProperty),
+        propertyValue: propertyValue[forbiddenProperty]
+      });
+    }, this);
+
+    return callback();
+
+  }
+
+  &#x2F;**
+   * {
+   *   additionalProperties: {
+   *     type: &#x27;string&#x27;,
+   *     ...
+   *   },
+   *   ...
+   * }
+   *&#x2F;
+  if (isObject(attributeValue)) {
+    return each(forbiddenProperties, function(index, key, callback) {
+      return self.validateSchema(
+        propertyValue[key],
+        attributeValue,
+        property + key,
+        callback
+      );
+    }, callback);
+  }
+
+};
+
+&#x2F;&#x2F; Export
+Validation.prototype.addAttribute(&#x27;additionalProperties&#x27;, additionalPropertiesAttribute);
+
+&#x2F;**
+ * DivisibleBy
+ *&#x2F;
+var divisibleByAttribute = function divisibleBy(property, propertyValue, attributeValue, propertyAttributes, callback) {
+
+  if (attributeValue === 0) {
+    this.addError(&#x27;The value of this attribute should not be 0.&#x27;);
+    return callback();
+  }
+
+  if (isNumber(propertyValue) &amp;&amp; (propertyValue % attributeValue !== 0)) {
+    this.addError();
+  }
+
+  return callback();
+
+};
+
+&#x2F;&#x2F; Export
+Validation.prototype.addAttribute(&#x27;divisibleBy&#x27;, divisibleByAttribute);
+
+&#x2F;**
+ * Enum
+ *&#x2F;
+var enumAttribute = function(property, propertyValue, attributeValue, propertyAttributes, callback) {
+
+  if (attributeValue.indexOf(propertyValue) === -1) {
+    this.addError();
+  }
+
+  return callback();
+
+};
+
+&#x2F;&#x2F; Export
+Validation.prototype.addAttribute(&#x27;enum&#x27;, enumAttribute);
+
+&#x2F;**
+ * Except
+ *&#x2F;
+var exceptAttribute = function except(property, propertyValue, attributeValue, propertyAttributes, callback) {
+
+  if (attributeValue.indexOf(propertyValue) !== -1) {
+    this.addError();
+  }
+
+  return callback();
+
+};
+
+&#x2F;&#x2F; Export
+Validation.prototype.addAttribute(&#x27;except&#x27;, exceptAttribute);
+
+&#x2F;**
+ * Format
+ *&#x2F;
+Validation.prototype.addAttributeConstructor(&#x27;format&#x27;, function formatConstructor() {
+
+  &#x2F;&#x2F; Uložíme si referenci na this
+  var self = this;
+
+  &#x2F;**
+   * Formats
+   *&#x2F;
+  var formats = {
+
+    &#x2F;**
+     * date-time
+     *
+     * This should be a date in ISO 8601 format of YYYY-MM-DDThh:mm:ssZ in UTC
+     * time. This is the recommended form of date&#x2F;timestamp.
+     *&#x2F;
+    &#x27;date-time&#x27;: {
+      type: &#x27;string&#x27;,
+      pattern: &#x2F;^\d{4}-(?:0[0-9]{1}|1[0-2]{1})-[0-9]{2}T\d{2}:\d{2}:\d{2}\.\d{3}Z$&#x2F;
+    },
+
+    &#x2F;**
+     * date
+     *
+     * This should be a date in the format of YYYY-MM-DD. It is recommended that you
+     * use the &quot;date-time&quot; format instead of &quot;date&quot; unless you need to transfer only the date part.
+     *&#x2F;
+    date: function(input) {
+      if (isString(input)) {
+        return input.match(&#x2F;^\d{4}-(?:0[0-9]{1}|1[0-2]{1})-[0-9]{2}$&#x2F;);
+      }
+      if (isObject(input)) {
+        return Object.prototype.toString.call(input) === &#x27;[object Date]&#x27;;
+      }
+      return false;
+    },
+
+    &#x2F;**
+     * time
+     *
+     * This should be a time in the format of hh:mm:ss.
+     *&#x2F;
+    &#x27;time&#x27;: {
+      type: &#x27;string&#x27;,
+      pattern: &#x2F;^\d{2}:\d{2}:\d{2}$&#x2F;
+    },
+
+    &#x2F;**
+     * utc-milisec
+     *
+     * This should be the difference, measured in milliseconds, between the specified
+     * time and midnight, 00:00 of January 1, 1970 UTC.  The value
+     * should be a number (integer or float).
+     *&#x2F;
+    &#x27;utc-milisec&#x27;: {
+      type: &#x27;number&#x27;
+    },
+
+    &#x2F;**
+     * regex
+     *
+     * This should be a time in the format of hh:mm:ss.
+     *&#x2F;
+    regex: function(input) {
+      return input &amp;&amp; input.test &amp;&amp; input.exec;
+    },
+
+    &#x2F;**
+     * color
+     *
+     * This is a CSS color (like &quot;#FF0000&quot; or &quot;red&quot;), based on CSS 2.1.
+     *&#x2F;
+    &#x27;color&#x27;: {
+      type: &#x27;string&#x27;
+    },
+
+    &#x2F;**
+     * style
+     *
+     * This is a CSS style definition (like &quot;color: red; background-color:#FFF&quot;), based on CSS 2.1.
+     *&#x2F;
+    &#x27;style&#x27;: {
+      type: &#x27;string&#x27;
+    },
+
+    &#x2F;**
+     * phone
+     *
+     * This should be a phone number.
+     *&#x2F;
+    &#x27;phone&#x27;: {
+      type: &#x27;number&#x27;
+    },
+
+    &#x2F;**
+     * uri
+     *
+     * This value should be a URI.
+     *&#x2F;
+    &#x27;uri&#x27;: {
+      type: &#x27;string&#x27;,
+      pattern: &#x2F;^(?:(?:ht|f)tp(?:s?)\:\&#x2F;\&#x2F;|~\&#x2F;|\&#x2F;)?(?:\w+:\w+@)?((?:(?:[-\w\d{1-3}]+\.)+(?:com|org|cat|coop|int|pro|tel|xxx|net|gov|mil|biz|info|mobi|name|aero|jobs|edu|co\.uk|ac\.uk|it|fr|tv|museum|asia|local|travel|[a-z]{2})?)|((\b25[0-5]\b|\b[2][0-4][0-9]\b|\b[0-1]?[0-9]?[0-9]\b)(\.(\b25[0-5]\b|\b[2][0-4][0-9]\b|\b[0-1]?[0-9]?[0-9]\b)){3}))(?::[\d]{1,5})?(?:(?:(?:\&#x2F;(?:[-\w~!$+|.,=]|%[a-f\d]{2})+)+|\&#x2F;)+|\?|#)?(?:(?:\?(?:[-\w~!$+|.,*:]|%[a-f\d{2}])+=?(?:[-\w~!$+|.,*:=]|%[a-f\d]{2})*)(?:&amp;(?:[-\w~!$+|.,*:]|%[a-f\d{2}])+=?(?:[-\w~!$+|.,*:=]|%[a-f\d]{2})*)*)*(?:#(?:[-\w~!$ |\&#x2F;.,*:;=]|%[a-f\d]{2})*)?$&#x2F;
+    },
+
+    &#x2F;**
+     * email
+     *
+     * This should be an email address.
+     *&#x2F;
+    &#x27;email&#x27;: {
+      type: &#x27;string&#x27;,
+      pattern: &#x2F;^(?:[\w\!\#\$\%\&amp;\&#x27;\*\+\-\&#x2F;\=\?\^\&#x60;\{\|\}\~]+\.)*[\w\!\#\$\%\&amp;\&#x27;\*\+\-\&#x2F;\=\?\^\&#x60;\{\|\}\~]+@(?:(?:(?:[a-zA-Z0-9](?:[a-zA-Z0-9\-](?!\.)){0,61}[a-zA-Z0-9]?\.)+[a-zA-Z0-9](?:[a-zA-Z0-9\-](?!$)){0,61}[a-zA-Z0-9]?)|(?:\[(?:(?:[01]?\d{1,2}|2[0-4]\d|25[0-5])\.){3}(?:[01]?\d{1,2}|2[0-4]\d|25[0-5])\]))$&#x2F;
+    },
+
+    &#x2F;**
+     * ip-address
+     *
+     * This should be an ip version 4 address.
+     *&#x2F;
+    &#x27;ip-address&#x27;: {
+      type: &#x27;string&#x27;,
+      pattern: &#x2F;^(?:(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.){3}(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)$&#x2F;
+    },
+
+    &#x2F;**
+     * ipv6
+     *
+     * This should be an ip version 6 address.
+     *&#x2F;
+    &#x27;ipv6&#x27;: {
+      type: &#x27;string&#x27;,
+      pattern: &#x2F;(?:(?:[a-f\d]{1,4}:)*(?:[a-f\d]{1,4}|\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3})|(?:(?:[a-f\d]{1,4}:)*[a-f\d]{1,4})?::(?:(?:[a-f\d]{1,4}:)*(?:[a-f\d]{1,4}|\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}))?)&#x2F;
+    },
+
+    &#x2F;**
+     * host-name
+     *
+     * This should be a host-name.
+     *&#x2F;
+    &#x27;host-name&#x27;: {
+      type: &#x27;string&#x27;
+    }
+
+  };
+
+  &#x2F;**
+   * CustomFormats
+   * --------------------
+   *&#x2F;
+  formats.alpha = {
+    required: true,
+    type: &#x27;string&#x27;,
+    pattern: &#x2F;^[a-zA-Z]+$&#x2F;
+  };
+
+  formats.alphanumeric = {
+    required: true,
+    type: [&#x27;string&#x27;, &#x27;number&#x27;],
+    pattern: &#x2F;^[a-zA-Z0-9]+$&#x2F;
+  };
+
+  formats.decimal = function(input) {
+    if (!isNumber(input)) return false;
+    return (input + &#x27;&#x27;).match(&#x2F;^[0-9]+(\.[0-9]{1,2})?$&#x2F;);
+  };
+
+  formats.percentage = {
+    required: true,
+    type: [&#x27;string&#x27;, &#x27;number&#x27;],
+    pattern: &#x2F;^-?[0-9]{0,2}(\.[0-9]{1,2})?$|^-?(100)(\.[0]{1,2})?$&#x2F;,
+    minimum: -100,
+    maximum: 100
+  };
+
+  formats.port = {
+    required: true,
+    type: [&#x27;string&#x27;, &#x27;number&#x27;],
+    pattern: &#x2F;\:\d+&#x2F;
+  };
+
+  &#x2F;**
+   * Aliases
+   * --------------------
+   *&#x2F;
+  var aliases = {
+    url: &#x27;uri&#x27;,
+    ip: &#x27;ip-address&#x27;,
+    ipv4: &#x27;ip-address&#x27;,
+    host: &#x27;host-name&#x27;,
+    hostName: &#x27;host-name&#x27;
+  };
+
+  &#x2F;&#x2F; Apply aliases
+  each(aliases, function(alias, format) {
+    formats[alias] = formats[format];
+  });
+
+  &#x2F;&#x2F; Export
+  return function format(property, propertyValue, attributeValue, propertyAttributes, callback) {
+
+    &#x2F;**
+     * {
+     *   format: {
+     *     type: &#x27;string&#x27;,
+     *     pattern: &#x2F;abc&#x2F;
+     *     ...
+     *   }
+     *   ...
+     * }
+     *&#x2F;
+    if (isObject(attributeValue)) {
+      return this.validateProperty(property, propertyValue, attributeValue, callback);
+    }
+
+    &#x2F;**
+     * {
+     *   format: &#x27;lorem ipsum dolor&#x27;,
+     *   ...
+     * }
+     *&#x2F;
+    if (isString(attributeValue) &amp;&amp; !hasProperty(formats, attributeValue)) {
+      this.addError(&#x27;The format ‘&#x27; + attributeValue + &#x27;’ is not supported.&#x27;);
+      return callback();
+    }
+
+    &#x2F;**
+     * {
+     *   format: &#x27;phone&#x27;,
+     *   ...
+     * }
+     *&#x2F;
+    if (isString(attributeValue)) {
+
+      var fn = formats[attributeValue];
+
+      if (isFunction(fn)) {
+        var noError = fn(propertyValue);
+        if (!noError) {
+          this.addError();
+        }
+        return callback();
+      }
+
+      if (isObject(fn)) {
+        return this.validateProperty(property, propertyValue, fn, callback);
+      }
+
+    }
+
+  };
+
+});
+
+&#x2F;**
+ * Length
+ *&#x2F;
+var lengthAttribute = function length(property, propertyValue, attributeValue, propertyAttributes, callback) {
+
+  if (isString(propertyValue) &amp;&amp; propertyValue.length !== attributeValue) {
+    this.addError();
+  }
+
+  return callback();
+
+};
+
+&#x2F;&#x2F; Export
+Validation.prototype.addAttribute(&#x27;length&#x27;, lengthAttribute);
+
+&#x2F;**
+ * Maximum
+ *&#x2F;
+var maximumAttribute = function maximum(property, propertyValue, attributeValue, propertyAttributes, callback) {
+
+  if (isNumber(propertyValue)) {
+    if ((propertyAttributes.exclusiveMaximum &amp;&amp; propertyValue &gt;= attributeValue) || (propertyValue &gt; attributeValue)) {
+      this.addError();
+    }
+  }
+
+  return callback();
+
+};
+
+&#x2F;&#x2F; Export
+Validation.prototype.addAttribute(&#x27;maximum&#x27;, maximumAttribute);
+
+&#x2F;**
+ * MaxItems
+ *&#x2F;
+var maxItemsAttribute = function maxItems(property, propertyValue, attributeValue, propertyAttributes, callback) {
+
+  if (isArray(propertyValue) &amp;&amp; propertyValue.length &gt; attributeValue) {
+    this.addError();
+  }
+
+  return callback();
+
+};
+
+&#x2F;&#x2F; Export
+Validation.prototype.addAttribute(&#x27;maxItems&#x27;, maxItemsAttribute);
+
+&#x2F;**
+ * MaxLength
+ *&#x2F;
+var maxLengthAttribute = function maxLength(property, propertyValue, attributeValue, propertyAttributes, callback) {
+
+  if (isString(propertyValue) &amp;&amp; propertyValue.length &gt; attributeValue) {
+    this.addError();
+  }
+
+  return callback();
+
+};
+
+&#x2F;&#x2F; Export
+Validation.prototype.addAttribute(&#x27;maxLength&#x27;, maxLengthAttribute);
+
+&#x2F;**
+ * Minimum
+ *&#x2F;
+var minimumAttribute = function minimum(property, propertyValue, attributeValue, propertyAttributes, callback) {
+
+  if (isNumber(propertyValue)) {
+    if ((propertyAttributes.exclusiveMinimum &amp;&amp; propertyValue &lt;= attributeValue) || (propertyValue &lt; attributeValue)) {
+      this.addError();
+    }
+  }
+
+  return callback();
+
+};
+
+&#x2F;&#x2F; Export
+Validation.prototype.addAttribute(&#x27;minimum&#x27;, minimumAttribute);
+
+
+&#x2F;**
+ * MinItems
+ *&#x2F;
+var minItems = function minItems(property, propertyValue, attributeValue, propertyAttributes, callback) {
+
+  if (isArray(propertyValue) &amp;&amp; propertyValue.length &lt; attributeValue) {
+    this.addError();
+  }
+
+  return callback();
+
+};
+
+&#x2F;&#x2F; Export
+Validation.prototype.addAttribute(&#x27;minItems&#x27;, minItems);
+
+&#x2F;**
+ * MinLength
+ *&#x2F;
+var minLengthAttribute = function minLength(property, propertyValue, attributeValue, propertyAttributes, callback) {
+
+  if (isString(propertyValue) &amp;&amp; propertyValue.length &lt; attributeValue) {
+    this.addError();
+  }
+
+  return callback();
+
+};
+
+&#x2F;&#x2F; Export
+Validation.prototype.addAttribute(&#x27;minLength&#x27;, minLengthAttribute);
+
+&#x2F;**
+ * Pattern
+ *&#x2F;
+var patternAttribute = function pattern(property, propertyValue, attributeValue, propertyAttributes, callback) {
+
+  if (isString(propertyValue) &amp;&amp; !propertyValue.match(attributeValue)) {
+    this.addError();
+  }
+
+  return callback();
+
+};
+
+&#x2F;&#x2F; Export
+Validation.prototype.addAttribute(&#x27;pattern&#x27;, patternAttribute);
+
+(function() {
+
+  &#x2F;**
+   * PatternProperties
+   *&#x2F;
+  var attribute = function patternProperties(property, propertyValue, attributeValue, propertyAttributes, callback) {
+
+    &#x2F;&#x2F; Saves a reference to ‘this’
+    var self = this;
+
+    &#x2F;&#x2F; Skip
+    if (isEmpty(attributeValue)) {
+      return callback();
+    }
+
+    var matches = {};
+    var patterns = keys(attributeValue);
+
+    each(propertyValue, function(key, value) {
+
+      each(patterns, function(index, pattern) {
+        if (key.match(new RegExp(pattern))) {
+          matches[key] = attributeValue[pattern];
+        }
+      });
+
+    });
+
+    if (isEmpty(matches)) {
+      return callback();
+    }
+
+    each(matches, function(propertyName, propertySchema, callback) {
+      return self.validateSchema(
+        propertyValue[propertyName],
+        propertySchema,
+        self.joinPath(property, propertyName),
+        callback
+      );
+    }, callback);
+
+  };
+
+  &#x2F;&#x2F; Export
+  Validation.prototype.addAttribute(&#x27;patternProperties&#x27;, attribute);
+
+}());
+
+&#x2F;**
+ * Required
+ *&#x2F;
+var requiredAttribute = function required(property, propertyValue, attributeValue, propertyAttributes, callback) {
+
+  if (attributeValue) {
+
+    var undefinedCondition = isUndefined(propertyValue);
+    var emptyCondition = (isString(propertyValue) || isArray(propertyValue) || isObject(propertyValue)) &amp;&amp; isEmpty(propertyValue);
+
+    if (undefinedCondition || emptyCondition) {
+      this.addError();
+    }
+
+  }
+
+  return callback();
+
+};
+
+&#x2F;&#x2F; Export
+Validation.prototype.addAttribute(&#x27;required&#x27;, requiredAttribute);
+
+&#x2F;**
+ * Type
+ *&#x2F;
+var typeConstructor = function typeConstructor() {
+
+  &#x2F;**
+   * Types
+   *&#x2F;
+  var types = {
+    &#x27;string&#x27;: isString,
+    &#x27;number&#x27;: isNumber,
+    &#x27;function&#x27;: isFunction,
+    &#x27;boolean&#x27;: isBoolean,
+    &#x27;object&#x27;: isObject,
+    &#x27;array&#x27;: isArray,
+    &#x27;integer&#x27;: isInteger,
+    &#x27;int&#x27;: isInteger,
+    &#x27;null&#x27;: isNull,
+    &#x27;any&#x27;: returnTrue
+  };
+
+  &#x2F;&#x2F; Export
+  return function type(property, propertyValue, attributeValue, propertyAttributes, callback) {
+
+    &#x2F;**
+     * {
+     *   type: [&#x27;string&#x27;, &#x27;number&#x27;]
+     * }
+     *&#x2F;
+    if (isArray(attributeValue)) {
+
+      var typesSupported;
+
+      typesSupported = every(attributeValue, function(type) {
+        return hasProperty(types, type);
+      });
+
+      if (!typesSupported) {
+        this.addError(&#x27;One of the following types ‘&#x27; + attributeValue.join(&#x27;,&#x27;) + &#x27;’ is not supported.&#x27;);
+        return callback();
+      }
+
+
+      var noError = attributeValue.some(function(type) {
+        return types[type](propertyValue);
+      });
+
+      if (!noError) {
+        this.addError();
+      }
+
+      return callback();
+
+    &#x2F;**
+     * {
+     *   type: &#x27;string&#x27;
+     * }
+     *&#x2F;
+    } else {
+
+      if (!hasProperty(types, attributeValue)) {
+        this.addError(&#x27;Type ‘&#x27; + attributeValue + &#x27;’ is not supported.&#x27;);
+      } else {
+        var testSuccess = types[attributeValue](propertyValue);
+        if (!testSuccess) {
+          this.addError();
+        }
+      }
+
+      return callback();
+
+    }
+
+  };
+
+};
+
+&#x2F;&#x2F; Export
+Validation.prototype.addAttributeConstructor(&#x27;type&#x27;, typeConstructor);
+
+(function() {
+
+  &#x2F;**
+   * UniqueItems
+   *&#x2F;
+  var attribute = function uniqueItems(property, propertyValue, attributeValue, propertyAttributes, callback) {
+
+    var self =  this;
+
+    each(propertyValue, function(index, value) {
+
+      if (isString(value)) {
+        if ((propertyValue.indexOf(value) &lt; index)) {
+          self.addError();
+        }
+      }
+
+      if (isObject(value) || isArray(value)) {
+        propertyValue.forEach(function(subValue, subIndex) {
+
+          if (subIndex !== index) {
+            if (isEqual(value, subValue)) {
+              self.addError({
+                property: self.joinPath(property, subIndex)
+              });
+            }
+          }
+
+        });
+      }
+
+    });
+
+    return callback();
+
+  };
+
+  &#x2F;&#x2F; Export
+  Validation.prototype.addAttribute(&#x27;uniqueItems&#x27;, attribute);
+
+}());
+
+&#x2F;**
+ * Error
+ *
+ * @constructor
+ *&#x2F;
+var ValidationError = function(parent) {
+
+  this.length = 0;
+  
+  this.errorMessages = parent.messages;
+
+};
+
+ValidationError.prototype.renderErrorMessage = function(error) {
+
+  var errorMessage = this.errorMessages[error.attributeName];
+
+  if (errorMessage &amp;&amp; isFunction(errorMessage)) {
+    return errorMessage(
+      error.property,
+      error.propertyValue,
+      error.attributeValue
+    );
+  }
+
+  if (errorMessage &amp;&amp; isString(errorMessage)) {
+
+    [
+      &#x27;property&#x27;,
+      &#x27;propertyValue&#x27;,
+      &#x27;attributeValue&#x27;
+    ].forEach(function(placeholder) {
+      errorMessage = errorMessage.replace(new RegExp(&#x27;{{&#x27; + placeholder + &#x27;}}&#x27;, &#x27;g&#x27;), error[placeholder]);
+    });
+
+    &#x2F;&#x2F; Deprecated
+    errorMessage = errorMessage.replace(&#x2F;{{validator}}&#x2F;g, error[&#x27;attributeValue&#x27;]);
+
+    return errorMessage.replace(&#x2F;\s+&#x2F;g, &#x27; &#x27;);
+
+  }
+
+  return error.message;
+
+};
+
+ValidationError.prototype.push = function(error) {
+
+  this[this.length] = {
+
+    property: error.property,
+    propertyValue: error.propertyValue,
+    attributeName: error.attributeName,
+    attributeValue: error.attributeValue,
+    message: this.renderErrorMessage(error),
+
+    &#x2F;&#x2F; Deprecated
+    validator: error.attributeName,
+    validatorName: error.attributeName,
+    validatorValue: error.attributeValue
+
+  };
+
+  this.length += 1;
+
+};
+
+&#x2F;**
+ * GetProperties
+ *&#x2F;
+ValidationError.prototype.getProperties = function() {
+  return pluck(this, &#x27;property&#x27;);
+};
+
+&#x2F;**
+ * GetMessages
+ *&#x2F;
+ValidationError.prototype.getMessages = function() {
+  return pluck(this, &#x27;message&#x27;);
+};
+
+&#x2F;**
+ * Messages
+ * --------------------
+ *&#x2F;
+var vowels = &quot;aeiou&quot;,
+errorMessages = {
+
+  &#x2F;**
+   * Maximum
+   *
+   * @param {string} property
+   * @param {any} propertyValue
+   * @param {string} attributeValue
+   *&#x2F;
+  required: function(property, propertyValue, attributeValue) {
+    return &#x27;The ‘&#x27; + property + &#x27;’ property is required.&#x27;;
+  },
+
+  &#x2F;**
+   * MinLength
+   *
+   * @param {string} property
+   * @param {any} propertyValue
+   * @param {string} attributeValue
+   *&#x2F;
+  minLength: function(property, propertyValue, attributeValue) {
+    return [
+      &#x27;The &#x27; + property + &#x27; property must be at least &#x27; + attributeValue + &#x27; characters.&#x27;,
+      &#x27;The length of the property is &#x27; + propertyValue.length + &#x27;.&#x27;
+    ].join(&#x27; &#x27;);
+  },
+
+  &#x2F;**
+   * MaxLength
+   *
+   * @param {string} property
+   * @param {any} propertyValue
+   * @param {string} attributeValue
+   *&#x2F;
+  maxLength: function(property, propertyValue, attributeValue) {
+    return [
+      &#x27;The &#x27; + property + &#x27; property must not exceed &#x27; + attributeValue + &#x27; character&#x27; + (attributeValue &gt; 1 ? &#x27;s&#x27; : &#x27;&#x27;)  + &#x27;.&#x27;,
+      &#x27;The length of the property is &#x27; + propertyValue.length + &#x27;.&#x27;
+    ].join(&#x27; &#x27;);
+  },
+
+  &#x2F;**
+   * MaxLength
+   *
+   * @param {string} property
+   * @param {any} propertyValue
+   * @param {string} attributeValue
+   *&#x2F;
+  length: function(property, propertyValue, attributeValue) {
+    return [
+      &#x27;The &#x27; + property + &#x27; property must be exactly &#x27; + attributeValue + &#x27; character&#x27; + (attributeValue &gt; 1 ? &#x27;s&#x27; : &#x27;&#x27;)  + &#x27;.&#x27;,
+      &#x27;The length of the property is &#x27; + propertyValue.length + &#x27;.&#x27;
+    ].join(&#x27; &#x27;);
+  },
+
+  &#x2F;**
+   * Format
+   *
+   * @param {string} property
+   * @param {any} propertyValue
+   * @param {string} attributeValue
+   *&#x2F;
+  format: function(property, propertyValue, attributeValue) {
+    return [
+      &#x27;The ‘&#x27; + property + &#x27;’ property must be a&#x2F;an ‘&#x27; + attributeValue + &#x27;’.&#x27;,
+      &#x27;The current value of the property is ‘&#x27; + propertyValue  + &#x27;’&#x27;
+    ].join(&#x27; &#x27;);
+  },
+
+  &#x2F;**
+   * Type
+   *
+   * @param {string} property
+   * @param {any} propertyValue
+   * @param {string} attributeValue
+   *&#x2F;
+  type: function(property, propertyValue, attributeValue) {
+    return [
+      &#x27;The ‘&#x27; + property + &#x27;’ property must be &#x27; + (vowels.indexOf(attributeValue[0]) &gt; -1 ? &#x27;an&#x27; : &#x27;a&#x27;) + &#x27; ‘&#x27; + attributeValue + &#x27;’.&#x27;,
+      &#x27;The type of the property is ‘&#x27; + detectType(propertyValue)  + &#x27;’&#x27;
+    ].join(&#x27; &#x27;);
+  },
+
+  &#x2F;**
+   * Except
+   *
+   * @param {string} property
+   * @param {any} propertyValue
+   * @param {string} attributeValue
+   *&#x2F;
+  except: function(property, propertyValue, attributeValue) {
+    return;
+  },
+
+  &#x2F;**
+   * Minimum
+   *
+   * @param {string} property
+   * @param {any} propertyValue
+   * @param {string} attributeValue
+   *&#x2F;
+  minimum: function(property, propertyValue, attributeValue) {
+    return [
+      &#x27;The minimum value of the ‘&#x27; + property + &#x27;’ must be &#x27; + attributeValue + &#x27;.&#x27;,
+      &#x27;The current value of the property is ‘&#x27; + propertyValue  + &#x27;’&#x27;
+    ].join(&#x27; &#x27;);
+  },
+
+  &#x2F;**
+   * Maximum
+   *
+   * @param {string} property
+   * @param {any} propertyValue
+   * @param {string} attributeValue
+   *&#x2F;
+  maximum: function(property, propertyValue, attributeValue) {
+    return [
+      &#x27;The maximum value of the ‘&#x27; + property + &#x27;’ must be &#x27; + attributeValue + &#x27;.&#x27;,
+      &#x27;The current value of the property is ‘&#x27; + propertyValue  + &#x27;’.&#x27;
+    ].join(&#x27; &#x27;);
+  },
+
+  &#x2F;**
+   * Maximum
+   *
+   * @param {string} property
+   * @param {any} propertyValue
+   * @param {string} attributeValue
+   *&#x2F;
+  pattern: function(property, propertyValue, attributeValue) {
+    return &#x27;The ‘&#x27; + property + &#x27;’ does not match the ‘&#x27; + attributeValue + &#x27;’ pattern.&#x27;;
+  },
+
+  &#x2F;**
+   * MaxItems
+   *
+   * @param {string} property
+   * @param {any} propertyValue
+   * @param {string} attributeValue
+   *&#x2F;
+  maxItems: function(property, propertyValue, attributeValue) {
+    return [
+      &#x27;The ‘&#x27; + property + &#x27;’ property must not contain more than ‘&#x27; + attributeValue + &#x27;’ items.&#x27;,
+      &#x27;Currently it contains ‘&#x27; + propertyValue.items  + &#x27;’ items.&#x27;
+    ].join(&#x27; &#x27;);
+  },
+
+  &#x2F;**
+   * MinItems
+   *
+   * @param {string} property
+   * @param {any} propertyValue
+   * @param {string} attributeValue
+   *&#x2F;
+  minItems: function(property, propertyValue, attributeValue) {
+    return [
+      &#x27;The ‘&#x27; + property + &#x27;’ property must contain at least ‘&#x27; + attributeValue + &#x27;’ items.&#x27;,
+      &#x27;Currently it contains ‘&#x27; + propertyValue.items  + &#x27;’ items.&#x27;
+    ].join(&#x27; &#x27;);
+  },
+
+  &#x2F;**
+   * Maximum
+   *
+   * @param {string} property
+   * @param {any} propertyValue
+   * @param {string} attributeValue
+   *&#x2F;
+  divisibleBy: function(property, propertyValue, attributeValue) {
+    return &#x27;The ‘&#x27; + property + &#x27;’ is not divisible by ‘&#x27; + attributeValue + &#x27;’.&#x27;;
+  },
+
+  &#x2F;**
+   * Maximum
+   *
+   * @param {string} property
+   * @param {any} propertyValue
+   * @param {string} attributeValue
+   *&#x2F;
+  uniqueItems: function(property, propertyValue, attributeValue) {
+    return &#x27;All items in the ‘&#x27; + property + &#x27;’ property must be unique.&#x27;;
+  },
+
+  &#x2F;**
+   * Enum
+   *
+   * @param {string} property
+   * @param {any} propertyValue
+   * @param {string} attributeValue
+   *&#x2F;
+  &#x27;enum&#x27;: function(property, propertyValue, attributeValue) {
+    return &#x27;Value of the ‘&#x27; + property + &#x27;’ must be &#x27; + attributeValue.join(&#x27; or &#x27;) + &#x27;.&#x27;;
+  }
+
+};
+
+&#x2F;**
+ * GetProperty
+ *
+ * @param {string} property
+ * @param {object} source
+ *&#x2F;
+Validation.prototype.getProperty = function(property, source) {
+  if (source) {
+    return (isDefined(source[property])) ? source[property] : undefined;
+  } else {
+    return undefined;
+  }
+};
+
+&#x2F;**
+ * JoinPath
+ *
+ * @param {string} path
+ * @param {string} property
+ *&#x2F;
+Validation.prototype.joinPath = function(path, property) {
+
+  &#x2F;&#x2F; If the ‘path’ is undefined (object), convert the path to a string
+  path = path || &#x27;&#x27;;
+
+  &#x2F;&#x2F; Converts the ‘property’ to a string
+  property = property + &#x27;&#x27;;
+
+  if (property.match(&#x2F;^[a-zA-Z][a-zA-Z0-9]*$&#x2F;)) {
+    return (path) ? (path + &#x27;.&#x27; + property) : property;
+  } else if (property.match(&#x2F;\d+&#x2F;)) {
+    return path + &#x27;[&#x27; + property + &#x27;]&#x27;;
+  } else  {
+    return path + &#x27;[&quot;&#x27; + property + &#x27;&quot;]&#x27;;
+  }
+
+};
+
+&#x2F;**
+ * Validation.validate
+ *
+ * @param {object} instance
+ * @param {object} schema
+ * @param {boolean} singleError
+ * @param {function} callback
+ *&#x2F;
+Validation.prototype.validate = function(instance, schema, callback) {
+
+  &#x2F;&#x2F; Save a reference to the ‘this’
+  var self = this;
+
+  this.instance = instance;
+  this.schema = schema;
+
+  &#x2F;**
+   * Basic Types
+   *&#x2F;
+  var basicTypes = [
+    &#x27;string&#x27;,
+    &#x27;number&#x27;,
+    &#x27;function&#x27;,
+    &#x27;boolean&#x27;,
+    &#x27;integer&#x27;,
+    &#x27;int&#x27;,
+    &#x27;null&#x27;
+  ];
+
+  &#x2F;**
+   * Object Types
+   *&#x2F;
+  var objectTypes = [
+    &#x27;object&#x27;,
+    &#x27;array&#x27;
+  ];
+
+  &#x2F;**
+   * CallbackProxy
+   *&#x2F;
+  var callbackProxy = function() {
+    if (self.errors.length !== 0) {
+      return callback(self.errors);
+    } else {
+      return callback();
+    }
+  };
+
+  &#x2F;**
+   * {
+   *   type: &#x27;string&#x27;,
+   *   ...
+   * }
+   *&#x2F;
+  if (basicTypes.indexOf(schema.type) !== -1) {
+    return this.validateProperty(undefined, instance, schema, callbackProxy);
+  }
+
+  &#x2F;**
+   * {
+   *   type: &#x27;object&#x27;,
+   *   ...
+   * }
+   *&#x2F;
+  if (objectTypes.indexOf(schema.type) !== -1) {
+
+    if (isString(instance)) {
+      try {
+        instance = JSON.parse(instance);
+      } catch(parseError) {
+
+      }
+    }
+
+    return this.validateSchema(instance, schema, &#x27;&#x27;, callbackProxy);
+
+  }
+
+  &#x2F;**
+   * {
+   *   type: ???,
+   *   ...
+   * }
+   *&#x2F;
+  if (schema.type === &#x27;any&#x27; || !schema.type) {
+
+    if (isString(instance)) {
+      try {
+        instance = JSON.parse(instance);
+        return this.validateSchema(instance, schema, &#x27;&#x27;, callbackProxy);
+      } catch(parseError2) {
+
+      }
+    }
+
+    if (isObject(instance) || isArray (instance)) {
+      return this.validateSchema(instance, schema, &#x27;&#x27;, callbackProxy); 
+    }
+
+    return this.validateProperty(undefined, instance, schema, callbackProxy);
+
+  }
+
+};
+
+&#x2F;**
+ * Validation.validateItems
+ *
+ * @param {object} instance
+ * @param {object} schema
+ * @param {string} path
+ * @param {function} callback
+ *&#x2F;
+Validation.prototype.validateItems = function(instance, schema, path, callback) {
+
+  &#x2F;&#x2F; Save a reference to the ‘this’
+  var self = this;
+
+  &#x2F;**
+   * {
+   *   type: &#x27;array&#x27;
+   *   items: [
+   *     {
+   *       type: &#x27;string&#x27;
+   *     },
+   *     {
+   *       type: &#x27;number&#x27;
+   *     },
+   *     ...
+   *   ],
+   *   ...
+   * }
+   *&#x2F;
+  if (isArray(schema.items)) {
+
+    &#x2F;&#x2F; Additional items are allowed
+    if (isUndefined(schema.additionalItems) || schema.additionalItems === true) {
+      return each(schema.items, function(itemIndex, itemSchema, callback) {
+        return self.validateSchema(
+          instance[itemIndex],
+          itemSchema,
+          self.joinPath(path, itemIndex),
+          callback
+        );
+      }, callback);
+    }
+
+    return each(instance, function(itemIndex, itemValue, callback) {
+
+      &#x2F;&#x2F; The ‘additionalItems’ attribute is a schema that defines
+      &#x2F;&#x2F; the schema of the additional items
+      if (schema.items[itemIndex] || isObject(schema.additionalItems)) {
+        return self.validateSchema(
+          itemValue,
+          schema.items[itemIndex],
+          self.joinPath(path, itemIndex),
+          callback
+        );
+      }
+
+      &#x2F;&#x2F; Additional items are disallowed
+      if (schema.additionalItems === false) {
+        self.errors.push({
+          property: self.joinPath(path, itemIndex),
+          propertyValue: itemValue,
+          attributeName: &#x27;additionalItems&#x27;,
+          attributeValue: false
+        });
+        return callback();
+      }
+
+    }, callback);
+
+  }
+
+  &#x2F;**
+   * {
+   *   type: &#x27;array&#x27;
+   *   items: {
+   *     type: &#x27;string&#x27;
+   *   },
+   *   ...
+   * }
+   *&#x2F;
+  if (isObject(schema.items) &amp;&amp; instance &amp;&amp; !isEmpty(instance)) {
+    return each(instance, function(itemIndex, itemValue, callback) {
+      return self.validateSchema(
+        instance[itemIndex],
+        schema.items,
+        self.joinPath(path, itemIndex),
+        callback
+      );
+    }, callback);
+  } else {
+    return callback();
+  }
+
+};
+
+&#x2F;**
+ * Validation.validateProperties
+ *
+ * @param {object} instance
+ * @param {object} schema
+ * @param {string} path
+ * @param {function} callback
+ *&#x2F;
+Validation.prototype.validateProperties = function(instance, schema, path, callback) {
+  
+  &#x2F;&#x2F; Save a reference to the ‘this’
+  var self = this;
+
+  &#x2F;&#x2F; Goes
+  return each(schema.properties, function(property, propertyAttributes, callback) {
+
+    var isObject = propertyAttributes.type === &#x27;object&#x27; &amp;&amp; propertyAttributes.properties,
+        isArray =  propertyAttributes.type === &#x27;array&#x27;;
+
+    &#x2F;&#x2F; Get the value of property (instance[property])
+    var propertyValue = self.getProperty(property, instance);
+    var propertyPath = self.joinPath(path, property);
+
+    &#x2F;**
+     * {
+     *   type: &#x27;object&#x27;,
+     *   properties: {
+     *     user: {
+     *       type: &#x27;object&#x27;,
+     *       properties: {
+     *         ...
+     *       }
+     *     }
+     *   }
+     * }
+     *&#x2F;
+    if (isObject || isArray)  {
+      return self.validateSchema(
+        propertyValue,
+        schema.properties[property],
+        propertyPath,
+        callback
+      );
+    } else {
+      return self.validateProperty(
+        propertyPath,
+        propertyValue,
+        propertyAttributes,
+        callback
+      );
+    }
+
+  }, callback);
+
+};
+
+&#x2F;**
+ * Validation.validateProperty
+ *
+ * @param {string} propertyName
+ * @param {object} propertyAttributes
+ * @param {string|object} propertyValue
+ * @param {boolean} singleError
+ * @param {function} callback
+ *&#x2F;
+Validation.prototype.validateProperty = function(property, propertyValue, propertyAttributes, callback) {
+
+  &#x2F;&#x2F; Save a reference to the ‘this’
+  var self = this;
+
+  var context = {};
+
+  [
+    &#x27;validateItems&#x27;,
+    &#x27;validateProperties&#x27;,
+    &#x27;validateSchema&#x27;,
+    &#x27;validateProperty&#x27;,
+    &#x27;getProperty&#x27;,
+    &#x27;attributes&#x27;,
+    &#x27;errors&#x27;,
+    &#x27;joinPath&#x27;
+  ].forEach(function(key) {
+    context[key] = this[key];
+  }, self);
+
+  &#x2F;**
+   * Iterator
+   *
+   * @param {string} attributeName
+   * @param {function} attributeFn
+   * @param {function} callback
+   *&#x2F;
+  var iterator = function(attributeName, attributeFn, callback) {
+
+    var lastLength = self.errors.length;
+
+    &#x2F;&#x2F; Overwrite the ‘addError’ method
+    context.addError = function(message) {
+
+      if (isObject(message)) {
+        return self.errors.push({
+          property: message.property || property,
+          propertyValue: message.propertyValue || propertyValue,
+          attributeName: message.attributeName || attributeName,
+          attributeValue: message.attributeValue || propertyAttributes[attributeName],
+          message: message.message || undefined
+        });
+      }
+
+      return self.errors.push({
+        property: property,
+        propertyValue: propertyValue,
+        attributeName: attributeName,
+        attributeValue: propertyAttributes[attributeName],
+        message: message
+      });
+
+    };
+
+    &#x2F;**
+     * OnComplete
+     *&#x2F;
+    var onComplete = function(error) {
+
+      &#x2F;&#x2F; Deprecated
+      if (error === true || isString(error)) {
+        context.addError(error);
+        return callback(true);
+      };
+
+      if (self.errors.length &gt; lastLength &amp;&amp; self.singleError) {
+        return callback(true);
+      } else {
+        return callback();
+      }
+
+    };
+
+    if (isDefined(propertyAttributes[attributeName])) {
+      return attributeFn.apply(context, [
+        property,
+        propertyValue,
+        propertyAttributes[attributeName],
+        propertyAttributes,
+        onComplete
+      ]);
+    } else {
+      return callback();
+    }
+
+  };
+
+  &#x2F;&#x2F; If it&#x27;s not a required param and it&#x27;s empty, skip
+  if (propertyAttributes.required !== true &amp;&amp; isUndefined(propertyValue)) {
+    return callback();
+  }
+  
+  &#x2F;&#x2F; Validate the property  
+  return each(self.attributes, iterator, callback);
+
+};
+
+&#x2F;**
+ * Validation.validateSchema
+ *
+ * @param {object} instance
+ * @param {object} schema
+ * @param {string} path
+ * @param {function} callback
+ *&#x2F;
+Validation.prototype.validateSchema = function(instance, schema, path, callback) {
+
+  var self = this;
+
+  return self.validateProperty(path, instance, schema, function(error) {
+
+    &#x2F;**
+     * {
+     *   type: &#x27;object&#x27;,
+     *   properties: {
+     *     ... 
+     *   }
+     * }
+     *&#x2F;
+    if (schema.properties) {
+      return self.validateProperties(
+        instance,
+        schema,
+        path,
+        callback
+      );
+
+    &#x2F;**
+     * {
+     *   type: &#x27;array&#x27;,
+     *   items: {
+     *     type: &#x27;string&#x27;
+     *     ... 
+     *   }
+     * }
+     *&#x2F;
+    } else if (schema.items) {
+      return self.validateItems(
+        instance,
+        schema,
+        path,
+        callback
+      );
+
+    &#x2F;**
+     * {
+     *   type: &#x27;array&#x27;
+     * }
+     * — or —
+     * {
+     *   type: &#x27;object&#x27;
+     * }
+     *&#x2F;
+    } else {
+      return callback();
+    }
+
+  });
+
+};
+
+  
+  &#x2F;**
+   * Export
+   * --------------------
+   *&#x2F;
+  engines.json = (function() {
+
+    &#x2F;**
+     * Cache
+     *&#x2F;
+    var cache = [];
+    var cacheIndex = {};
+
+    return {
+
+      &#x2F;**
+       * Validate
+       *
+       * @param {object} instance
+       * @param {object} schema
+       * @param {object} options
+       * @param {function} callback
+       *&#x2F;
+      validate: function(instance, schema, options, callback) {
+        if (typeof options === &#x27;function&#x27;) {
+          callback = options;
+          options = {};
+        }
+        return (new Validation(options)).validate(instance, schema, callback);
+      },
+
+      &#x2F;**
+       * AddAttribute
+       *
+       * @param {string} attributeName
+       * @param {function} attributeFn
+       *&#x2F;
+      addAttribute: function(attributeName, attributeFn) {
+        return Validation.prototype.addAttribute.apply(Validation, arguments);
+      },
+
+      &#x2F;**
+       * AddAttributeConstructor
+       *
+       * @param {string} attributeName
+       * @param {function} attributeConstructor
+       *&#x2F;
+      addAttributeConstructor: function(attributeName, attributeConstructor) {
+        return Validation.prototype.addAttributeConstructor.apply(Validation, arguments);
+      }
+
+    };
+
+  }());
+
+}());
+
+var amanda = function(engine) {
+
+  if (!hasProperty(engines, engine)) {
+    throw new Error(&#x27;The ‘&#x27; + engine + &#x27;’ engine is not supported. Please use a different one.&#x27;);
+  }
+
+  return engines[engine];
+
+};
+
+&#x2F;**
+ * Amanda.validate
+ *
+ * This method is deprecated, please use ‘amanda(&#x27;json&#x27;).validate’ instead.
+ *&#x2F;
+amanda.validate = function(instance, schema, options, callback) {
+  var json = engines.json;
+  return json.validate.apply(json, arguments);
+};
+
+&#x2F;**
+ * Amanda.addValidator
+ *
+ * This method is deprecated, please use ‘amanda(&#x27;json&#x27;).addValidator’ instead.
+ *&#x2F;
+amanda.addValidator = function(attributeName, attributeFn) {
+  var json = engines.json;
+  return json.addAttribute.apply(json, arguments);
+};
+
+&#x2F;**
+ * Amanda.addAttribute
+ *
+ * This method is deprecated, please use ‘amanda(&#x27;json&#x27;).addAttribute’ instead.
+ *&#x2F;
+amanda.addAttribute = function(attributeName, attributeFn) {
+  var json = engines.json;
+  return json.addAttribute.apply(json, arguments);
+};
+
+&#x2F;**
+ * Amanda.addAttributeConstructor
+ *
+ * This method is deprecated, please use ‘amanda(&#x27;json&#x27;).addAttributeConstructor’ instead.
+ *&#x2F;
+amanda.addAttributeConstructor = function(attributeName, attributeConstructor) {
+  var json = engines.json;
+  return json.addAttributeConstructor.apply(json, arguments);
+};
+
+  &#x2F;**
+   * Export
+   * --------------------
+   *&#x2F;
+  if (typeof module !== &#x27;undefined&#x27; &amp;&amp; module.exports) {
+    module.exports = amanda;
+  } else if (typeof define !== &#x27;undefined&#x27;) {
+    define(function() {
+      return amanda;
+    });
+  } else {
+    this.amanda = amanda;
+  }
+
+}());
+    </pre>
+</div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="..&#x2F;assets/vendor/prettify/prettify-min.js"></script>
+<script>prettyPrint();</script>
+<script src="..&#x2F;assets/js/yui-prettify.js"></script>
+<script src="..&#x2F;assets/../api.js"></script>
+<script src="..&#x2F;assets/js/api-filter.js"></script>
+<script src="..&#x2F;assets/js/api-list.js"></script>
+<script src="..&#x2F;assets/js/api-search.js"></script>
+<script src="..&#x2F;assets/js/apidocs.js"></script>
+</body>
+</html>
