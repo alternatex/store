@@ -74,8 +74,10 @@ class ObjectStore extends Store {
   * @return {Boolean} Returns true on success
   */ 
   public function update($instance){
-    $dostore = true;
+
+    // existing vs new
     if(is_numeric($index=$this->find($instance))) {
+
       // preserve files if empty *
       $preservefiles = $this->files($_FILES, $instance);
       foreach($preservefiles as $prop){
@@ -127,7 +129,7 @@ class ObjectStore extends Store {
   }  
 
   /**
-  * Find item (currently just: UUID - TODO: enhance signature w/UUID as default)
+  * Find item (currently just: UUID - TODO: enhance signature w/UUID as default / Widespread Merge ?!)
   *
   * @method find
   * @return {Array} List of item instances
@@ -142,6 +144,18 @@ class ObjectStore extends Store {
     return false;
   }
 
+
+  /**
+  * Filter items
+  *
+  * @method find
+  * @return {Array} List of matching item instances
+  */ 
+  public function filter($filter){
+    // TODO: implement
+    return array();
+  }  
+
   /**
   * Process HTTP file uploads
   *
@@ -150,6 +164,7 @@ class ObjectStore extends Store {
   * @void
   */ 
   public function files(&$files, &$instance) {
+
     // handle files *
     $preservefiles = array();
     if(array_key_exists(Store::REQUEST_DATA, $files) && is_array($files[Store::REQUEST_DATA][Store::TRANSFER_TARGET])){
@@ -176,6 +191,7 @@ class ObjectStore extends Store {
   * @void
   */ 
   public function response($dostore, $response, $jsonp){
+
     // update datastore * perf *
     if($dostore) file_put_contents($this->datastore, serialize($this->items));
 

@@ -14,7 +14,7 @@ Index
       * [Create](#create)
       * [Get](#get)
       * [Store](#store)
-      * [Remove](#remove)
+      * [Remove](#Remove)
   * [Summary](#summary)
 * [Repositories](#repositories)
 * [Wishlist](#wishlist)
@@ -253,12 +253,12 @@ Roadmap
   - File Uploads
 - Client Queries (Memory/Localstorage)
   - Remote List » Local Get
-- Security (CSRF & friends)
-- Test Coverage + 1
 - Documentation / Examples
   - Stores
   - Settings
   - Todo-App
+- Security (CSRF & friends)
+- Test Coverage + 1
 
 Wishlist
 -------------
