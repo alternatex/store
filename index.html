@@ -230,8 +230,10 @@
   <span class="c1">// fetch all objects &amp; register callback </span>
   <span class="nx">objects</span> <span class="o">=</span> <span class="nx">objectStore</span><span class="p">.</span><span class="nx">list</span><span class="p">();</span>
 
-  <span class="c1">// process fetched objects</span>
+  <span class="c1">// when all objects have been retrieved</span>
   <span class="nx">Store</span><span class="p">.</span><span class="nx">when</span><span class="p">(</span><span class="nx">objects</span><span class="p">).</span><span class="nx">done</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">objects</span><span class="p">){</span>
+
+    <span class="c1">// log each</span>
     <span class="nx">objects</span><span class="p">.</span><span class="nx">forEach</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">object</span><span class="p">,</span> <span class="nx">index</span><span class="p">){</span>
       <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">index</span><span class="p">,</span> <span class="nx">object</span><span class="p">);</span>
     <span class="p">});</span>
