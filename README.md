@@ -223,7 +223,7 @@ Repositories
 
 ### PHP Object Store
 
-Stores data using PHPs `serialize()` function. Supports embedding binary contents using base64 encoding.
+Stores data using PHPs `serialize()` function. Supports embedding binary data (base64).
 
 **Limitations** 
 
