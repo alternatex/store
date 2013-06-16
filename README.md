@@ -148,6 +148,7 @@ objectStore.remove(object);
   // update on insert
   Store.when(object).done(function(object){
     
+    // wrap object
     object = objectStore.create(object);
 
     // update properties
@@ -159,8 +160,14 @@ objectStore.remove(object);
 
     // update object
     object.update().done(function(object){        
+
+        // fetch object w/previously retrieve objectId
         objectStore.get(objectId).done(function(object){
+
+           // wrap json into object
            object = objectStore.create(object);
+
+           // say hi
            console.log(object.get('firstname') + " " + object.get('lastname'));
         });
     });
@@ -171,6 +178,8 @@ objectStore.remove(object);
 
   // create some objects
   Store.times(10, function(count){
+
+    // store update promises
     objects.push(objectStore.create({ 
       title: 'No.' + count,       
       abstract: 'Lorem Ipsum [...]',       
@@ -218,7 +227,7 @@ Repositories
 
 ### PHP Object Store
 
-Stores data using PHPs `serialize()` function. Supports embedding binary data (base64).
+Stores data using PHPs `serialize()` function. Supports embedding binary data base64 encoded.
 
 **Limitations** 
 
