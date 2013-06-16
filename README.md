@@ -17,6 +17,7 @@ Index
       * [Remove](#remove-object)
   * [Summary](#summary)
 * [Repositories](#repositories)
+* [Wishlist](#wishlist)
 * [Documentation](#documentation)
 * [Roadmap](#roadmap)
 * [License](#license)
@@ -242,6 +243,7 @@ Documentation
 
 Roadmap
 -------------
+- Ajax Requests through Proxy
 - Security (CSRF & friends)
 - Test Coverage + 1
 - Documentation / Examples
