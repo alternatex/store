@@ -148,11 +148,8 @@ objectStore.remove(object);
     lastname: 'Colbert' 
   });
   
-  // insert object
-  object = object.update();
-
-  // update on insert
-  Store.when(object).done(function(object){
+  // update on insert 
+  object.update().done(function(object){
     
     // wrap json object
     object = objectStore.create(object);
