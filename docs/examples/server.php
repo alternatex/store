@@ -54,7 +54,7 @@ switch($action){
     $returnValue = $store->get($instance);
     break;
   case Store::STORE_ACTION_LIST:     
-    $returnValue = $store->_list();
+    $returnValue = $store->get();
     break;
   default:
     $err = json_encode(array(Store::RESPONSE_ERROR => "unknown action: $action"));

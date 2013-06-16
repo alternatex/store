@@ -116,22 +116,15 @@ class ObjectStore extends Store {
   * @param {Object} $item what it's about
   * @return {Object} item instance
   */ 
-  public function get($instance){
+  public function get($instance=null){
+    
+    if($instance==null) return $this->items;
+
     if(is_numeric($index=$this->find($instance))) {
       return $this->items[$index];
     }
     return false;
   }  
-
-  /**
-  * List all items *
-  *
-  * @method update
-  * @return {Array} List of item instances
-  */ 
-  public function _list(){
-    return $this->items;
-  }
 
   /**
   * Find item (currently just: UUID - TODO: enhance signature w/UUID as default)

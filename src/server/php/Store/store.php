@@ -142,7 +142,7 @@ abstract class Store {
   * @default true
   * @readOnly
   */  
-  const STORE_ACTION_LIST = '_list';
+  const STORE_ACTION_LIST = 'list';
 
   /**
   * Action `remove`
@@ -185,7 +185,6 @@ abstract class Store {
   const TRANSFER_TARGET = 'name';  
 
   abstract function update($instance);
-  abstract function get($instance);
+  abstract function get($instance=null);
   abstract function remove($instance);
-  abstract function _list();
 }

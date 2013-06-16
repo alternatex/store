@@ -124,7 +124,7 @@ objectStore.remove(object);
 (function(){
 
   // local variables
-  var objectStore, objects, object, objectId;
+  var object, objectId, objectStore, objects;
 
   // configure storage defaults 
   Store.configure({ 

@@ -138,6 +138,9 @@ Remote.prototype.process = function process(action, options, item, oncallback, e
 
   var decallback = _.Deferred();
 
+  // TODO AJAX FORM UPLOAD => POST *
+  // 
+
   // attach custom callback handler
   root[callback]=function(data){
     
@@ -444,7 +447,7 @@ Store.prototype = {
   * @return {Boolean} Returns true on success
   */
   list: function list(callback, each){
-    return this.repository.process("_list", this.options, undefined, callback, each);
+    return this.repository.process("list", this.options, undefined, callback, each);
   },
 
   /**
