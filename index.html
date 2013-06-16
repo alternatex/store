@@ -66,7 +66,7 @@
 
 <p><strong>Note</strong></p>
 
-<p><code>configure()</code> alters the prototype object, therefore modifications are propagated to it's instances on property level given that the respective instance property has not been modified directly yet.</p>
+<p><code>configure()</code> alters the prototype object, hence modifications are propagated to instances on property level given that the respective instance properties have not been modified previously.</p>
 
 <h3>
 <a name="create-store" class="anchor" href="#create-store"><span class="octicon octicon-link"></span></a>Create Store</h3>
@@ -191,7 +191,7 @@
     <span class="c1">// update object</span>
     <span class="nx">object</span><span class="p">.</span><span class="nx">update</span><span class="p">().</span><span class="nx">done</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">object</span><span class="p">){</span>        
         <span class="nx">objectStore</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">objectId</span><span class="p">).</span><span class="nx">done</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">object</span><span class="p">){</span>
-           <span class="nx">object</span> <span class="o">=</span> <span class="nx">objectStore</span><span class="p">.</span><span class="nx">create</span><span class="p">(</span><span class="nx">JSON</span><span class="p">.</span><span class="nx">parse</span><span class="p">(</span><span class="nx">object</span><span class="p">));</span>
+           <span class="nx">object</span> <span class="o">=</span> <span class="nx">objectStore</span><span class="p">.</span><span class="nx">create</span><span class="p">(</span><span class="nx">object</span><span class="p">);</span>
            <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">object</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">'firstname'</span><span class="p">)</span> <span class="o">+</span> <span class="s2">" "</span> <span class="o">+</span> <span class="nx">object</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">'lastname'</span><span class="p">));</span>
         <span class="p">});</span>
     <span class="p">});</span>
@@ -228,7 +228,7 @@
 
   <span class="c1">// process fetched objects</span>
   <span class="nx">Store</span><span class="p">.</span><span class="nx">when</span><span class="p">(</span><span class="nx">objects</span><span class="p">).</span><span class="nx">done</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">objects</span><span class="p">){</span>
-    <span class="nx">JSON</span><span class="p">.</span><span class="nx">parse</span><span class="p">(</span><span class="nx">objects</span><span class="p">).</span><span class="nx">forEach</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">object</span><span class="p">,</span> <span class="nx">index</span><span class="p">){</span>
+    <span class="nx">objects</span><span class="p">.</span><span class="nx">forEach</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">object</span><span class="p">,</span> <span class="nx">index</span><span class="p">){</span>
       <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">index</span><span class="p">,</span> <span class="nx">object</span><span class="p">);</span>
     <span class="p">});</span>
   <span class="p">});</span>
@@ -248,9 +248,9 @@
 <a name="repositories" class="anchor" href="#repositories"><span class="octicon octicon-link"></span></a>Repositories</h2>
 
 <h3>
-<a name="php-store" class="anchor" href="#php-store"><span class="octicon octicon-link"></span></a>PHP Store</h3>
+<a name="php-object-store" class="anchor" href="#php-object-store"><span class="octicon octicon-link"></span></a>PHP Object Store</h3>
 
-<p>Stores data using PHPs object serialization features for marshalling. Supports embedding files base64 encoded.</p>
+<p>Stores data using PHPs <code>serialize()</code> function. Supports embedding binary contents using base64 encoding.</p>
 
 <p><strong>Limitations</strong> </p>
 
@@ -292,8 +292,8 @@
 <li>Repositories 
 
 <ul>
-<li>Node.js </li>
-<li>PHPCR</li>
+<li>MongoDB</li>
+<li>Redis</li>
 </ul>
 </li>
 <li>HTML5 FileSystem API</li>
