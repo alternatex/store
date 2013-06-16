@@ -49,7 +49,10 @@
 </pre></div>
 
 <h3>
-<a name="defaults" class="anchor" href="#defaults"><span class="octicon octicon-link"></span></a>Defaults</h3>
+<a name="store" class="anchor" href="#store"><span class="octicon octicon-link"></span></a>Store</h3>
+
+<h4>
+<a name="defaults" class="anchor" href="#defaults"><span class="octicon octicon-link"></span></a>Defaults</h4>
 
 <p>Defaults are modified as follows:</p>
 
@@ -63,17 +66,20 @@
 
 <p><code>configure()</code> alters the prototype object, hence modifications are propagated to instances on property level given that the respective instance properties have not been modified previously.</p>
 
-<h3>
-<a name="create-store" class="anchor" href="#create-store"><span class="octicon octicon-link"></span></a>Create Store</h3>
+<h4>
+<a name="create" class="anchor" href="#create"><span class="octicon octicon-link"></span></a>Create</h4>
 
 <div class="highlight"><pre><span class="kd">var</span> <span class="nx">objectStore</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Store</span><span class="p">({</span> <span class="nx">namespace</span><span class="o">:</span> <span class="s1">'object'</span> <span class="p">});</span>
 </pre></div>
 
 <h3>
-<a name="create-object" class="anchor" href="#create-object"><span class="octicon octicon-link"></span></a>Create Object</h3>
+<a name="object" class="anchor" href="#object"><span class="octicon octicon-link"></span></a>Object</h3>
 
 <h4>
-<a name="preset" class="anchor" href="#preset"><span class="octicon octicon-link"></span></a>Preset</h4>
+<a name="create-1" class="anchor" href="#create-1"><span class="octicon octicon-link"></span></a>Create</h4>
+
+<h5>
+<a name="preset" class="anchor" href="#preset"><span class="octicon octicon-link"></span></a>Preset</h5>
 
 <div class="highlight"><pre><span class="kd">var</span> <span class="nx">object</span> <span class="o">=</span> <span class="nx">objectStore</span><span class="p">.</span><span class="nx">create</span><span class="p">({</span> 
   <span class="nx">country</span><span class="o">:</span> <span class="s1">'USA'</span><span class="p">,</span> 
@@ -82,8 +88,8 @@
 <span class="p">});</span> 
 </pre></div>
 
-<h4>
-<a name="barebone" class="anchor" href="#barebone"><span class="octicon octicon-link"></span></a>Barebone</h4>
+<h5>
+<a name="barebone" class="anchor" href="#barebone"><span class="octicon octicon-link"></span></a>Barebone</h5>
 
 <div class="highlight"><pre><span class="kd">var</span> <span class="nx">object</span> <span class="o">=</span> <span class="nx">objectStore</span><span class="p">.</span><span class="nx">create</span><span class="p">();</span> 
 <span class="nx">object</span><span class="p">.</span><span class="nx">set</span><span class="p">(</span><span class="s1">'country'</span><span class="p">,</span> <span class="s1">'USA'</span><span class="p">);</span>
@@ -91,53 +97,53 @@
 <span class="nx">object</span><span class="p">.</span><span class="nx">set</span><span class="p">(</span><span class="s1">'lastname'</span><span class="p">,</span> <span class="s1">'Stewart'</span><span class="p">);</span> 
 </pre></div>
 
-<h3>
-<a name="get-object" class="anchor" href="#get-object"><span class="octicon octicon-link"></span></a>Get Object</h3>
-
 <h4>
-<a name="list" class="anchor" href="#list"><span class="octicon octicon-link"></span></a>List</h4>
+<a name="get" class="anchor" href="#get"><span class="octicon octicon-link"></span></a>Get</h4>
+
+<h5>
+<a name="list" class="anchor" href="#list"><span class="octicon octicon-link"></span></a>List</h5>
 
 <div class="highlight"><pre><span class="nx">objectStore</span><span class="p">.</span><span class="nx">list</span><span class="p">();</span>
 </pre></div>
 
-<h4>
-<a name="single" class="anchor" href="#single"><span class="octicon octicon-link"></span></a>Single</h4>
+<h5>
+<a name="single" class="anchor" href="#single"><span class="octicon octicon-link"></span></a>Single</h5>
 
 <div class="highlight"><pre><span class="nx">objectStore</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">'8c0c1ff0-d0fe-38b7-376a-b0b1d53bd557'</span><span class="p">);</span>
 </pre></div>
 
-<h3>
-<a name="store-object" class="anchor" href="#store-object"><span class="octicon octicon-link"></span></a>Store Object</h3>
-
 <h4>
-<a name="instance" class="anchor" href="#instance"><span class="octicon octicon-link"></span></a>Instance</h4>
+<a name="store-1" class="anchor" href="#store-1"><span class="octicon octicon-link"></span></a>Store</h4>
+
+<h5>
+<a name="instance" class="anchor" href="#instance"><span class="octicon octicon-link"></span></a>Instance</h5>
 
 <div class="highlight"><pre><span class="nx">object</span><span class="p">.</span><span class="nx">update</span><span class="p">();</span>
 </pre></div>
 
-<h4>
-<a name="datastore" class="anchor" href="#datastore"><span class="octicon octicon-link"></span></a>Datastore</h4>
+<h5>
+<a name="datastore" class="anchor" href="#datastore"><span class="octicon octicon-link"></span></a>Datastore</h5>
 
 <div class="highlight"><pre><span class="nx">objectStore</span><span class="p">.</span><span class="nx">update</span><span class="p">(</span><span class="nx">object</span><span class="p">);</span>
 </pre></div>
 
-<h4>
-<a name="datastore-w-arbitrary-object" class="anchor" href="#datastore-w-arbitrary-object"><span class="octicon octicon-link"></span></a>Datastore w/ arbitrary object</h4>
+<h5>
+<a name="datastore-w-arbitrary-object" class="anchor" href="#datastore-w-arbitrary-object"><span class="octicon octicon-link"></span></a>Datastore w/ arbitrary object</h5>
 
 <div class="highlight"><pre><span class="nx">objectStore</span><span class="p">.</span><span class="nx">update</span><span class="p">({</span> <span class="nx">name</span><span class="o">:</span> <span class="s1">'XXXXX'</span><span class="p">,</span> <span class="nx">type</span><span class="o">:</span> <span class="s1">'XXXXX'</span><span class="p">,</span> <span class="nx">rank</span><span class="o">:</span> <span class="s1">'XXXXX'</span> <span class="p">});</span>
 </pre></div>
 
-<h3>
-<a name="remove-object" class="anchor" href="#remove-object"><span class="octicon octicon-link"></span></a>Remove Object</h3>
-
 <h4>
-<a name="instance-1" class="anchor" href="#instance-1"><span class="octicon octicon-link"></span></a>Instance</h4>
+<a name="remove" class="anchor" href="#remove"><span class="octicon octicon-link"></span></a>Remove</h4>
+
+<h5>
+<a name="instance-1" class="anchor" href="#instance-1"><span class="octicon octicon-link"></span></a>Instance</h5>
 
 <div class="highlight"><pre><span class="nx">object</span><span class="p">.</span><span class="nx">remove</span><span class="p">();</span>
 </pre></div>
 
-<h4>
-<a name="datastore-1" class="anchor" href="#datastore-1"><span class="octicon octicon-link"></span></a>Datastore</h4>
+<h5>
+<a name="datastore-1" class="anchor" href="#datastore-1"><span class="octicon octicon-link"></span></a>Datastore</h5>
 
 <div class="highlight"><pre><span class="nx">objectStore</span><span class="p">.</span><span class="nx">remove</span><span class="p">(</span><span class="nx">object</span><span class="p">);</span>
 </pre></div>
@@ -272,12 +278,26 @@
 <a name="roadmap" class="anchor" href="#roadmap"><span class="octicon octicon-link"></span></a>Roadmap</h2>
 
 <ul>
+<li>Ajax Requests
+
+<ul>
+<li>Proxy (CS)</li>
+<li>File Uploads</li>
+</ul>
+</li>
+<li>Client Queries (Memory/Localstorage)
+
+<ul>
+<li>Remote List » Local Get</li>
+</ul>
+</li>
 <li>Security (CSRF &amp; friends)</li>
 <li>Test Coverage + 1</li>
 <li>Documentation / Examples
 
 <ul>
 <li>Stores</li>
+<li>Settings</li>
 <li>Todo-App</li>
 </ul>
 </li>
@@ -311,7 +331,7 @@
 <p>Released under two licenses: new BSD, and MIT. You may pick the
 license that best suits your development needs.</p>
 
-<p><a href="https://raw.github.com/alternatex/store/master/LICENSE">https://raw.github.com/alternatex/store/master/LICENSE</a></p>
+<p><a href="https://raw.github.com/alternatex/store/stable/LICENSE">https://raw.github.com/alternatex/store/stable/LICENSE</a></p>
       </section>
       <footer>
         <p>This project is maintained by <a href="https://github.com/alternatex">alternatex</a></p>
