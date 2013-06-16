@@ -204,8 +204,10 @@ objectStore.remove(object);
   // fetch all objects & register callback 
   objects = objectStore.list();
 
-  // process fetched objects
+  // when all objects have been retrieved
   Store.when(objects).done(function(objects){
+
+    // log each
     objects.forEach(function(object, index){
       console.log(index, object);
     });
