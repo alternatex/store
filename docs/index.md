@@ -15,4 +15,4 @@ sudo pecl install mongo
 ```
 ##### Configuration
 
-"extension=mongo.so" to php.ini
+Add "extension=mongo.so" to php.ini
