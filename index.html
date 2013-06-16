@@ -37,20 +37,15 @@
 <h4>
 <a name="requirejs" class="anchor" href="#requirejs"><span class="octicon octicon-link"></span></a>Require.js</h4>
 
-<div class="highlight"><pre><span class="nt">&lt;script&gt;</span>
-<span class="nx">require</span><span class="p">([</span><span class="s2">"store"</span><span class="p">],</span> <span class="kd">function</span><span class="p">(</span><span class="nx">Store</span><span class="p">)</span> <span class="p">{</span>
+<div class="highlight"><pre><span class="nx">require</span><span class="p">([</span><span class="s2">"store"</span><span class="p">],</span> <span class="kd">function</span><span class="p">(</span><span class="nx">Store</span><span class="p">)</span> <span class="p">{</span>
   <span class="c1">// ...</span>
 <span class="p">});</span>
-<span class="nt">&lt;/script&gt;</span>
 </pre></div>
 
 <h4>
 <a name="html" class="anchor" href="#html"><span class="octicon octicon-link"></span></a>HTML</h4>
 
 <div class="highlight"><pre><span class="nt">&lt;script </span><span class="na">src=</span><span class="s">"src/client/store.js"</span><span class="nt">&gt;&lt;/script&gt;</span>
-<span class="nt">&lt;script&gt;</span>
-  <span class="c1">// ...</span>
-<span class="nt">&lt;/script&gt;</span>
 </pre></div>
 
 <h3>
@@ -250,7 +245,7 @@
 <h3>
 <a name="php-object-store" class="anchor" href="#php-object-store"><span class="octicon octicon-link"></span></a>PHP Object Store</h3>
 
-<p>Stores data using PHPs <code>serialize()</code> function. Supports embedding binary contents using base64 encoding.</p>
+<p>Stores data using PHPs <code>serialize()</code> function. Supports embedding binary data (base64).</p>
 
 <p><strong>Limitations</strong> </p>
 
