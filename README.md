@@ -39,7 +39,9 @@ require(["store"], function(Store) {
 <script src="src/client/store.js"></script>
 ```
 
-### Defaults
+### Store
+
+#### Defaults
 
 Defaults are modified as follows:
 
@@ -53,14 +55,17 @@ Store.configure({
 
 `configure()` alters the prototype object, hence modifications are propagated to instances on property level given that the respective instance properties have not been modified previously.
 
-### Create Store
+#### Create 
+
 ```javascript
 var objectStore = new Store({ namespace: 'object' });
 ```
 
-### Create Object
+### Object
 
-#### Preset 
+#### Create 
+
+##### Preset 
 ```javascript
 var object = objectStore.create({ 
   country: 'USA', 
@@ -69,7 +74,7 @@ var object = objectStore.create({
 }); 
 ```
 
-#### Barebone
+##### Barebone
 ```javascript
 var object = objectStore.create(); 
 object.set('country', 'USA');
@@ -77,43 +82,43 @@ object.set('firstname', 'John');
 object.set('lastname', 'Stewart'); 
 ```
 
-### Get Object
+#### Get
 
-#### List
+##### List
 ```javascript
 objectStore.list();
 ```
 
-#### Single
+##### Single
 ```javascript
 objectStore.get('8c0c1ff0-d0fe-38b7-376a-b0b1d53bd557');
 ```
 
-### Store Object
+#### Store
 
-#### Instance
+##### Instance
 ```javascript
 object.update();
 ```
 
-#### Datastore
+##### Datastore
 ```javascript
 objectStore.update(object);
 ```
 
-#### Datastore w/ arbitrary object
+##### Datastore w/ arbitrary object
 ```javascript
 objectStore.update({ name: 'XXXXX', type: 'XXXXX', rank: 'XXXXX' });
 ```
 
-### Remove Object
+#### Remove
 
-#### Instance
+##### Instance
 ```javascript
 object.remove();
 ```
 
-#### Datastore
+##### Datastore
 ```javascript
 objectStore.remove(object);
 ```
@@ -246,10 +251,13 @@ Roadmap
 - Ajax Requests
   - Proxy (CS)
   - File Uploads
+- Client Queries (Memory/Localstorage)
+  - Remote List » Local Get
 - Security (CSRF & friends)
 - Test Coverage + 1
 - Documentation / Examples
   - Stores
+  - Settings
   - Todo-App
 
 Wishlist
