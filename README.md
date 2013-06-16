@@ -226,8 +226,8 @@ Built with prototyping in mind. Won't scale.
 
 Documentation
 -------------
-- [API Docs](https://github.com/alternatex/store/blob/master/docs/api/index.html)
-- [Usage](https://github.com/alternatex/store/blob/master/docs/index.md)
+- [API Docs](https://github.com/alternatex/store/blob/stable/docs/api/index.html)
+- [Usage](https://github.com/alternatex/store/blob/stable/docs/index.md)
 
 Roadmap
 -------------
