@@ -27,20 +27,15 @@ Quickstart
 ### Embedding
 
 #### Require.js
-```html
-<script>
+```javascript
 require(["store"], function(Store) {
   // ...
 });
-</script>
 ```
 
 #### HTML
 ```html
 <script src="src/client/store.js"></script>
-<script>
-  // ...
-</script>
 ```
 
 ### Defaults
