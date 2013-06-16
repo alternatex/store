@@ -9,7 +9,6 @@
 // TODO: include Widespread » FilterData *
 
 require(dirname(__FILE__).'/store.php');
-require(dirname(__FILE__).'/../Util/proxy.php');
 
 /**
 * PHP Object Store 
