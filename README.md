@@ -233,7 +233,9 @@ Roadmap
 -------------
 - Security (CSRF & friends)
 - Test Coverage + 1
-- Documentation
+- Documentation / Examples
+  - Stores
+  - Todo-App
 
 Wishlist
 -------------
@@ -244,6 +246,9 @@ Wishlist
 - Repositories 
   - MongoDB
   - Redis
+  - HTML5
+  - PHPCR
+- Synchronization
 - HTML5 FileSystem API
 - Filters Client/Server
 

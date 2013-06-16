@@ -7,5 +7,7 @@ $baseDir = dirname($vendorDir);
 
 return array(
     'Widespread' => $vendorDir . '/alternatex/widespread/src',
+    'Predis' => $vendorDir . '/predis/predis/lib/',
+    'PHPCR' => $vendorDir . '/phpcr/phpcr/src',
     'Buzz' => $vendorDir . '/kriswallsmith/buzz/lib/',
 );

@@ -85,5 +85,108 @@
         ],
         "description": "Common utilities packed together",
         "homepage": "https://github.com/alternatex/widespread"
+    },
+    {
+        "name": "predis/predis",
+        "version": "v0.8.3",
+        "version_normalized": "0.8.3.0",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/nrk/predis.git",
+            "reference": "v0.8.3"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/nrk/predis/zipball/v0.8.3",
+            "reference": "v0.8.3",
+            "shasum": ""
+        },
+        "require": {
+            "php": ">=5.3.2"
+        },
+        "suggest": {
+            "ext-phpiredis": "Allows faster serialization and deserialization of the Redis protocol",
+            "ext-curl": "Allows access to Webdis when paired with phpiredis"
+        },
+        "time": "2013-02-18 14:03:45",
+        "type": "library",
+        "installation-source": "dist",
+        "autoload": {
+            "psr-0": {
+                "Predis": "lib/"
+            }
+        },
+        "license": [
+            "MIT"
+        ],
+        "authors": [
+            {
+                "name": "Daniele Alessandri",
+                "email": "suppakilla@gmail.com",
+                "homepage": "http://clorophilla.net"
+            }
+        ],
+        "description": "Flexible and feature-complete PHP client library for Redis",
+        "homepage": "http://github.com/nrk/predis",
+        "keywords": [
+            "nosql",
+            "redis",
+            "predis"
+        ]
+    },
+    {
+        "name": "phpcr/phpcr",
+        "version": "dev-master",
+        "version_normalized": "9999999-dev",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/phpcr/phpcr.git",
+            "reference": "2.1.0-beta11"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/phpcr/phpcr/zipball/2.1.0-beta11",
+            "reference": "2.1.0-beta11",
+            "shasum": ""
+        },
+        "require": {
+            "php": ">=5.3.0"
+        },
+        "time": "2013-06-07 13:45:21",
+        "type": "library",
+        "extra": {
+            "branch-alias": {
+                "dev-master": "2.1-dev"
+            }
+        },
+        "installation-source": "source",
+        "autoload": {
+            "psr-0": {
+                "PHPCR": "src"
+            }
+        },
+        "license": [
+            "Apache-2.0"
+        ],
+        "authors": [
+            {
+                "name": "Lukas Kahwe Smith",
+                "email": "smith@pooteeweet.org"
+            },
+            {
+                "name": "David Buchmann",
+                "email": "david@liip.ch"
+            },
+            {
+                "name": "Karsten Dambekalns",
+                "email": "karsten@typo3.org"
+            }
+        ],
+        "description": "PHP Content Repository interfaces",
+        "homepage": "http://phpcr.github.com",
+        "keywords": [
+            "phpcr",
+            "contentrepository"
+        ]
     }
 ]
