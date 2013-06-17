@@ -106,11 +106,6 @@ object.update();
 objectStore.update(object);
 ```
 
-##### Datastore w/ arbitrary object
-```javascript
-objectStore.update({ name: 'XXXXX', type: 'XXXXX', rank: 'XXXXX' });
-```
-
 #### Remove
 
 ##### Instance
@@ -202,6 +197,8 @@ objectStore.remove(object);
     objects.forEach(function(object, index){
       console.log(index, object);
     });
+    
+  });
 
   // fetch object 
   object = objectStore.get(objectId);

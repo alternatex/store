@@ -5,7 +5,6 @@
 
 // module definition 
 (function (root) { var amdExports; define(["underscore"], function () { (function () {
-
 /**
 * configuration object
 * 
@@ -643,9 +642,13 @@ return pairs.join('&');
 
 // expose
 root.Store = Store;  
-
 amdExports = Store;
 
+// call w/scope
 }.call(root));
-    return amdExports;
-}); }(this));
+  
+  // export *
+  return amdExports;
+
+}); 
+}(this));
