@@ -127,12 +127,6 @@
 <div class="highlight"><pre><span class="nx">objectStore</span><span class="p">.</span><span class="nx">update</span><span class="p">(</span><span class="nx">object</span><span class="p">);</span>
 </pre></div>
 
-<h5>
-<a name="datastore-w-arbitrary-object" class="anchor" href="#datastore-w-arbitrary-object"><span class="octicon octicon-link"></span></a>Datastore w/ arbitrary object</h5>
-
-<div class="highlight"><pre><span class="nx">objectStore</span><span class="p">.</span><span class="nx">update</span><span class="p">({</span> <span class="nx">name</span><span class="o">:</span> <span class="s1">'XXXXX'</span><span class="p">,</span> <span class="nx">type</span><span class="o">:</span> <span class="s1">'XXXXX'</span><span class="p">,</span> <span class="nx">rank</span><span class="o">:</span> <span class="s1">'XXXXX'</span> <span class="p">});</span>
-</pre></div>
-
 <h4>
 <a name="remove" class="anchor" href="#remove"><span class="octicon octicon-link"></span></a>Remove</h4>
 
@@ -174,11 +168,8 @@
     <span class="nx">lastname</span><span class="o">:</span> <span class="s1">'Colbert'</span> 
   <span class="p">});</span>
 
-  <span class="c1">// insert object</span>
-  <span class="nx">object</span> <span class="o">=</span> <span class="nx">object</span><span class="p">.</span><span class="nx">update</span><span class="p">();</span>
-
-  <span class="c1">// update on insert</span>
-  <span class="nx">Store</span><span class="p">.</span><span class="nx">when</span><span class="p">(</span><span class="nx">object</span><span class="p">).</span><span class="nx">done</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">object</span><span class="p">){</span>
+  <span class="c1">// update on insert </span>
+  <span class="nx">object</span><span class="p">.</span><span class="nx">update</span><span class="p">().</span><span class="nx">done</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">object</span><span class="p">){</span>
 
     <span class="c1">// wrap json object</span>
     <span class="nx">object</span> <span class="o">=</span> <span class="nx">objectStore</span><span class="p">.</span><span class="nx">create</span><span class="p">(</span><span class="nx">object</span><span class="p">);</span>
@@ -221,18 +212,6 @@
     <span class="p">}).</span><span class="nx">update</span><span class="p">());</span>
   <span class="p">});</span>
 
-  <span class="c1">// upon promises fulfillment</span>
-  <span class="nx">Store</span><span class="p">.</span><span class="nx">when</span><span class="p">(</span><span class="nx">objects</span><span class="p">)</span>
-    <span class="p">.</span><span class="nx">done</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">objects</span><span class="p">){</span>
-      <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">"done"</span><span class="p">,</span> <span class="nx">objects</span><span class="p">);</span>
-    <span class="p">})</span>
-    <span class="p">.</span><span class="nx">fail</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">objects</span><span class="p">){</span>
-      <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">"fail"</span><span class="p">,</span> <span class="nx">objects</span><span class="p">);</span>
-    <span class="p">})</span>
-    <span class="p">.</span><span class="nx">always</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">objects</span><span class="p">){</span>
-      <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">"always"</span><span class="p">,</span> <span class="nx">objects</span><span class="p">);</span>
-    <span class="p">});</span>  
-
   <span class="c1">// fetch all objects &amp; register callback </span>
   <span class="nx">objects</span> <span class="o">=</span> <span class="nx">objectStore</span><span class="p">.</span><span class="nx">list</span><span class="p">();</span>
 
@@ -243,15 +222,30 @@
     <span class="nx">objects</span><span class="p">.</span><span class="nx">forEach</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">object</span><span class="p">,</span> <span class="nx">index</span><span class="p">){</span>
       <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">index</span><span class="p">,</span> <span class="nx">object</span><span class="p">);</span>
     <span class="p">});</span>
+
   <span class="p">});</span>
 
   <span class="c1">// fetch object </span>
   <span class="nx">object</span> <span class="o">=</span> <span class="nx">objectStore</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">objectId</span><span class="p">);</span>
 
   <span class="c1">// process fetched object</span>
-  <span class="nx">Store</span><span class="p">.</span><span class="nx">when</span><span class="p">(</span><span class="nx">object</span><span class="p">).</span><span class="nx">done</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">object</span><span class="p">){</span>
-    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">"object"</span><span class="p">,</span> <span class="nx">object</span><span class="p">);</span>
+  <span class="nx">Store</span><span class="p">.</span><span class="nx">when</span><span class="p">(</span><span class="nx">object</span><span class="p">).</span><span class="nx">done</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">object</span><span class="p">){</span>  
+
+    <span class="c1">// execute on success  </span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">"done"</span><span class="p">,</span> <span class="nx">object</span><span class="p">);</span>  
+
+  <span class="p">}).</span><span class="nx">fail</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">objects</span><span class="p">){</span>    
+
+    <span class="c1">// execute on fail</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">"fail"</span><span class="p">,</span> <span class="nx">objects</span><span class="p">);</span>    
+
+  <span class="p">}).</span><span class="nx">always</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">objects</span><span class="p">){</span>    
+
+    <span class="c1">// always execute this block</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">"always"</span><span class="p">,</span> <span class="nx">objects</span><span class="p">);</span>
+
   <span class="p">});</span>
+
 <span class="p">})();</span>
 <span class="nt">&lt;/script&gt;</span>
 </pre></div>
