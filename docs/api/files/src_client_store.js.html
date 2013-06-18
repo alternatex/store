@@ -95,7 +95,6 @@
 
 &#x2F;&#x2F; module definition 
 (function (root) { var amdExports; define([&quot;underscore&quot;], function () { (function () {
-
 &#x2F;**
 * configuration object
 * 
@@ -227,6 +226,9 @@ Remote.prototype.process = function process(action, options, item, oncallback, e
   script.id = callback;
 
   var decallback = _.Deferred();
+
+  &#x2F;&#x2F; TODO AJAX FORM UPLOAD =&gt; POST *
+  &#x2F;&#x2F; 
 
   &#x2F;&#x2F; attach custom callback handler
   root[callback]=function(data){
@@ -534,7 +536,7 @@ Store.prototype = {
   * @return {Boolean} Returns true on success
   *&#x2F;
   list: function list(callback, each){
-    return this.repository.process(&quot;_list&quot;, this.options, undefined, callback, each);
+    return this.repository.process(&quot;list&quot;, this.options, undefined, callback, each);
   },
 
   &#x2F;**
@@ -730,12 +732,16 @@ return pairs.join(&#x27;&amp;&#x27;);
 
 &#x2F;&#x2F; expose
 root.Store = Store;  
-
 amdExports = Store;
 
+&#x2F;&#x2F; call w&#x2F;scope
 }.call(root));
-    return amdExports;
-}); }(this));
+  
+  &#x2F;&#x2F; export *
+  return amdExports;
+
+}); 
+}(this));
     </pre>
 </div>
 

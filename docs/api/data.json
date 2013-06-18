@@ -43,7 +43,7 @@
             "namespaces": {},
             "tag": "module",
             "file": "src/client/store.js",
-            "line": 189,
+            "line": 191,
             "description": "A lightweight datastore wrapper"
         }
     },
@@ -59,7 +59,7 @@
             "module": "Client",
             "namespace": "",
             "file": "src/client/store.js",
-            "line": 189,
+            "line": 191,
             "description": "Store consumer",
             "is_constructor": 1
         }
@@ -384,7 +384,7 @@
         },
         {
             "file": "src/client/store.js",
-            "line": 9,
+            "line": 8,
             "description": "configuration object",
             "itemtype": "method",
             "name": "Options",
@@ -397,7 +397,7 @@
         },
         {
             "file": "src/client/store.js",
-            "line": 19,
+            "line": 18,
             "description": "configuration object.constructor",
             "itemtype": "method",
             "name": "Options.constructor",
@@ -410,7 +410,7 @@
         },
         {
             "file": "src/client/store.js",
-            "line": 29,
+            "line": 28,
             "description": "Remote storage location",
             "itemtype": "property",
             "name": "options.url",
@@ -421,7 +421,7 @@
         },
         {
             "file": "src/client/store.js",
-            "line": 38,
+            "line": 37,
             "description": "Storage namespace",
             "itemtype": "property",
             "name": "options.namespace",
@@ -432,7 +432,7 @@
         },
         {
             "file": "src/client/store.js",
-            "line": 47,
+            "line": 46,
             "description": "JSONP callback fnc name",
             "itemtype": "property",
             "name": "options.jsonp",
@@ -443,7 +443,7 @@
         },
         {
             "file": "src/client/store.js",
-            "line": 56,
+            "line": 55,
             "description": "Cache enabled",
             "itemtype": "property",
             "name": "options.cache",
@@ -454,7 +454,7 @@
         },
         {
             "file": "src/client/store.js",
-            "line": 65,
+            "line": 64,
             "description": "Cache Lifetime",
             "itemtype": "property",
             "name": "options.ttl",
@@ -465,7 +465,7 @@
         },
         {
             "file": "src/client/store.js",
-            "line": 75,
+            "line": 74,
             "description": "Repository - Storage Base Class",
             "itemtype": "method",
             "name": "Repository",
@@ -478,7 +478,7 @@
         },
         {
             "file": "src/client/store.js",
-            "line": 85,
+            "line": 84,
             "description": "Repository constructor",
             "itemtype": "method",
             "name": "Repository.constructor",
@@ -491,7 +491,7 @@
         },
         {
             "file": "src/client/store.js",
-            "line": 95,
+            "line": 94,
             "description": "Repository: Remote",
             "itemtype": "method",
             "name": "Remote",
@@ -504,7 +504,7 @@
         },
         {
             "file": "src/client/store.js",
-            "line": 105,
+            "line": 104,
             "description": "Repository: Remote.constructor",
             "itemtype": "method",
             "name": "Remote.constructor",
@@ -517,7 +517,7 @@
         },
         {
             "file": "src/client/store.js",
-            "line": 115,
+            "line": 114,
             "description": "My method description.  Like other pieces of your comment blocks, \nthis can span multiple lines.",
             "itemtype": "method",
             "name": "process",
@@ -557,7 +557,7 @@
         },
         {
             "file": "src/client/store.js",
-            "line": 196,
+            "line": 198,
             "description": "Self-Reference",
             "itemtype": "property",
             "name": "self",
@@ -570,7 +570,7 @@
         },
         {
             "file": "src/client/store.js",
-            "line": 206,
+            "line": 208,
             "description": "My property description.  Like other pieces of your comment blocks, \nthis can span multiple lines.",
             "itemtype": "property",
             "name": "options",
@@ -581,7 +581,7 @@
         },
         {
             "file": "src/client/store.js",
-            "line": 216,
+            "line": 218,
             "description": "configuration options",
             "itemtype": "property",
             "name": "options",
@@ -594,7 +594,7 @@
         },
         {
             "file": "src/client/store.js",
-            "line": 226,
+            "line": 228,
             "description": "Repository",
             "itemtype": "property",
             "name": "repository",
@@ -607,7 +607,7 @@
         },
         {
             "file": "src/client/store.js",
-            "line": 236,
+            "line": 238,
             "description": "Repository Item",
             "itemtype": "property",
             "name": "Item",
@@ -620,7 +620,7 @@
         },
         {
             "file": "src/client/store.js",
-            "line": 251,
+            "line": 253,
             "description": "Item.constructor",
             "itemtype": "property",
             "name": "Item.constructor",
@@ -633,7 +633,7 @@
         },
         {
             "file": "src/client/store.js",
-            "line": 261,
+            "line": 263,
             "description": "Store-Reference",
             "itemtype": "property",
             "name": "datastore",
@@ -646,7 +646,7 @@
         },
         {
             "file": "src/client/store.js",
-            "line": 271,
+            "line": 273,
             "description": "Object's Datastore",
             "itemtype": "property",
             "name": "data",
@@ -659,7 +659,7 @@
         },
         {
             "file": "src/client/store.js",
-            "line": 281,
+            "line": 283,
             "description": "Set item property",
             "itemtype": "method",
             "name": "set",
@@ -684,7 +684,7 @@
         },
         {
             "file": "src/client/store.js",
-            "line": 297,
+            "line": 299,
             "description": "Get item property",
             "itemtype": "method",
             "name": "get",
@@ -704,7 +704,7 @@
         },
         {
             "file": "src/client/store.js",
-            "line": 308,
+            "line": 310,
             "description": "Persist item",
             "itemtype": "method",
             "name": "update",
@@ -724,7 +724,7 @@
         },
         {
             "file": "src/client/store.js",
-            "line": 319,
+            "line": 321,
             "description": "Remove item",
             "itemtype": "method",
             "name": "remove",
@@ -744,7 +744,7 @@
         },
         {
             "file": "src/client/store.js",
-            "line": 332,
+            "line": 334,
             "description": "Retrieves all items",
             "itemtype": "method",
             "name": "all",
@@ -757,7 +757,7 @@
         },
         {
             "file": "src/client/store.js",
-            "line": 346,
+            "line": 348,
             "description": "Interface *",
             "itemtype": "property",
             "name": "api",
@@ -770,7 +770,7 @@
         },
         {
             "file": "src/client/store.js",
-            "line": 371,
+            "line": 373,
             "description": "Store prototype definition",
             "itemtype": "property",
             "name": "prototype",
@@ -781,7 +781,7 @@
         },
         {
             "file": "src/client/store.js",
-            "line": 380,
+            "line": 382,
             "description": "LRU cache * - TODO: implement",
             "itemtype": "property",
             "name": "cache",
@@ -792,7 +792,7 @@
         },
         {
             "file": "src/client/store.js",
-            "line": 389,
+            "line": 391,
             "description": "Items collection",
             "itemtype": "property",
             "name": "items",
@@ -803,7 +803,7 @@
         },
         {
             "file": "src/client/store.js",
-            "line": 398,
+            "line": 400,
             "description": "JSON Schema *",
             "itemtype": "property",
             "name": "schema",
@@ -814,7 +814,7 @@
         },
         {
             "file": "src/client/store.js",
-            "line": 407,
+            "line": 409,
             "description": "Insert/update item",
             "itemtype": "method",
             "name": "update",
@@ -827,7 +827,7 @@
         },
         {
             "file": "src/client/store.js",
-            "line": 419,
+            "line": 421,
             "description": "Remove item",
             "itemtype": "method",
             "name": "remove",
@@ -840,7 +840,7 @@
         },
         {
             "file": "src/client/store.js",
-            "line": 429,
+            "line": 431,
             "description": "Retrieve item",
             "itemtype": "method",
             "name": "get",
@@ -860,7 +860,7 @@
         },
         {
             "file": "src/client/store.js",
-            "line": 440,
+            "line": 442,
             "description": "Retrieves all items",
             "itemtype": "method",
             "name": "list",
@@ -873,7 +873,7 @@
         },
         {
             "file": "src/client/store.js",
-            "line": 450,
+            "line": 452,
             "description": "Filter list - TODO: implement",
             "itemtype": "method",
             "name": "filter",
@@ -886,7 +886,7 @@
         },
         {
             "file": "src/client/store.js",
-            "line": 460,
+            "line": 462,
             "description": "Instance configuration",
             "itemtype": "method",
             "name": "configure",
@@ -899,7 +899,7 @@
         },
         {
             "file": "src/client/store.js",
-            "line": 473,
+            "line": 475,
             "description": "Item accessor *",
             "itemtype": "method",
             "name": "item",
@@ -912,7 +912,7 @@
         },
         {
             "file": "src/client/store.js",
-            "line": 483,
+            "line": 485,
             "description": "create instance / new item (bound to datastore)",
             "itemtype": "method",
             "name": "create",
@@ -925,7 +925,7 @@
         },
         {
             "file": "src/client/store.js",
-            "line": 501,
+            "line": 503,
             "description": "JSON schema getter/setter",
             "itemtype": "method",
             "name": "schema",
@@ -938,7 +938,7 @@
         },
         {
             "file": "src/client/store.js",
-            "line": 515,
+            "line": 517,
             "description": "Apply general options - default / fallback",
             "itemtype": "method",
             "name": "__configure",
@@ -958,7 +958,7 @@
         },
         {
             "file": "src/client/store.js",
-            "line": 527,
+            "line": 529,
             "description": "one-dimensional object merge *",
             "itemtype": "method",
             "name": "extend",
@@ -971,7 +971,7 @@
         },
         {
             "file": "src/client/store.js",
-            "line": 540,
+            "line": 542,
             "description": "Passthrough if item is object. If type is string » wrapped into Item instance with id set to `item`",
             "itemtype": "method",
             "name": "wrap",
@@ -991,7 +991,7 @@
         },
         {
             "file": "src/client/store.js",
-            "line": 556,
+            "line": 558,
             "description": "Generate GUID",
             "itemtype": "method",
             "name": "guid",
@@ -1004,7 +1004,7 @@
         },
         {
             "file": "src/client/store.js",
-            "line": 573,
+            "line": 575,
             "description": "Convenience iteration helper",
             "itemtype": "method",
             "name": "times",
@@ -1024,7 +1024,7 @@
         },
         {
             "file": "src/client/store.js",
-            "line": 586,
+            "line": 588,
             "description": "Convenience deferred wrapper",
             "itemtype": "method",
             "name": "times",
@@ -1044,7 +1044,7 @@
         },
         {
             "file": "src/client/store.js",
-            "line": 597,
+            "line": 599,
             "description": "TODO: borrowed from ???? mention!!!!\nserialize object for url *",
             "itemtype": "method",
             "name": "serialize",
