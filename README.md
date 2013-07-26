@@ -78,7 +78,7 @@ var object = objectStore.create({
 ```javascript
 var object = objectStore.create(); 
 object.set('country', 'USA');
-object.set('firstname', 'John'); 
+object.set('firstname', 'Jon'); 
 object.set('lastname', 'Stewart'); 
 ```
 
@@ -150,7 +150,7 @@ objectStore.remove(object);
     object = objectStore.create(object);
 
     // update properties
-    object.set('firstname', 'John');
+    object.set('firstname', 'Jon');
     object.set('lastname', 'Stewart');
 
     // extract

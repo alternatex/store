@@ -7,9 +7,9 @@ requirejs.config({
     "deps": ["jquery", "underscore", "store"],
     "paths": {
       "app": "../app",
-      "store": "../../../../src/client/store",
-      "configuration": "../../configuration",
-      "underscore": "../../../../vendor/underscore.deferred",
+      "store": "../../../src/client/store",
+      "configuration": "../configuration",
+      "underscore": "../../../vendor/underscore.deferred",
       "jquery": "//ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min"
     },
     "shim": {
