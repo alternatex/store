@@ -6,14 +6,17 @@
 * @module PHP
 **/
 
-// TODO: include Widespread » FilterData *
-
+// Load API
 require(dirname(__FILE__).'/store.php');
 
 /**
 * PHP Object Store 
 *
-* Store data using `serialize()`
+* Store data using `serialize()`. Prototyping-Only.
+* 
+* TODO
+* ----
+* - IncludeWidespread.FilterData
 *
 * @class Server
 * @constructor
