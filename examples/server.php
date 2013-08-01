@@ -7,7 +7,7 @@
 ob_start();
 
 // include core
-include('../../src/server/php/Store/object.php');
+include('../src/server/php/Store/object.php');
 
 // defaults
 $user='anonymous';
