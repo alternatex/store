@@ -17,6 +17,7 @@ require(dirname(__FILE__).'/store.php');
 * TODO
 * ----
 * - IncludeWidespread.FilterData
+* - Throw exception w/Store::MESSAGE_* » handle as json/jsonp generic (2)
 *
 * @class Server
 * @constructor
@@ -62,9 +63,9 @@ class ObjectStore extends Store {
       // handle format err
       if(!is_array($this->items)) { 
 
-        // ...
+        // ... (2)
         $err = json_encode(array(Store::RESPONSE_ERROR => array("500" => Store::MESSAGE_ERROR_DATASTORE_CORRUPT.$class)));
-        die(strlen($jsonp)>0 ? $jsonp."("."console.error(".$err."));":$err);
+        die(strlen($jsonp)>0 ? $jsonp."("."console.error(".$err."));":$err);        
       }
     }     
   }
