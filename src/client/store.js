@@ -4,7 +4,7 @@
 **/
 
 // module definition 
-(function (root) { var amdExports; define(['underscore'], function () { (function () {
+(function (root) { var amdExports; define(["underscore"], function () { (function () {
 
 /**
 * configuration object
@@ -33,7 +33,7 @@ Options.prototype = {
   * @type {Object}
   * @default "foo"
   */      
-  url: 'http://localhost/datastore.php',
+  url: "http://localhost/datastore.php",
 
   /**
   * Storage namespace  
@@ -42,7 +42,7 @@ Options.prototype = {
   * @type {Object}
   * @default "foo"
   */      
-  namespace: 'documents',
+  namespace: "documents",
 
   /**
   * JSONP callback fnc name
@@ -51,7 +51,7 @@ Options.prototype = {
   * @type {Object}
   * @default "foo"
   */      
-  jsonp: 'callback',
+  jsonp: "callback",
 
   /**
   * Cache enabled
@@ -128,10 +128,10 @@ Remote.prototype.process = function process(action, options, item, oncallback, e
 
   // prepare
   var each = each || false, 
-      serialized = (typeof(item)!='undefined' && typeof(item.data)!='undefined') ? Store.serialize(item.data) : 'instance=false',
-      callback = 'callback_'+Store.guid('_'),
+      serialized = (typeof(item)!="undefined" && typeof(item.data)!="undefined") ? Store.serialize(item.data) : "instance=false",
+      callback = "callback_"+Store.guid('_'),
       options = options,
-      script = document.createElement('script');
+      script = document.createElement("script");
 
   // mark callback *
   script.id = callback;
@@ -145,7 +145,7 @@ Remote.prototype.process = function process(action, options, item, oncallback, e
   root[callback]=function(data){
     
     // custom callback?
-    if(typeof(oncallback)!='undefined'){
+    if(typeof(oncallback)!="undefined"){
 
       // callback per item or block?
       if(each!==false) {
@@ -172,7 +172,7 @@ Remote.prototype.process = function process(action, options, item, oncallback, e
   };
 
   // setup
-  script.src = options.url+'?namespace='+options.namespace+'&action='+action+'&jsonp='+callback /*options.jsonp*/+'&bust='+(new Date().getTime())+'&'+serialized;
+  script.src = options.url+"?namespace="+options.namespace+"&action="+action+"&jsonp="+callback /*options.jsonp*/+"&bust="+(new Date().getTime())+"&"+serialized;
   
   // load
   setTimeout(function(){
@@ -182,7 +182,7 @@ Remote.prototype.process = function process(action, options, item, oncallback, e
   // ttl exceeded - fail *
   // TODO: server late reply handle? » just because we're ignorants doesn't mean nothing happens.
   setTimeout(function(){
-    decallback.reject('took too long');
+    decallback.reject("TOOK TOOOOO LONG...");
   },options.ttl);      
 
   // return deferred *
@@ -339,7 +339,7 @@ function Store(options){
     * @return {Boolean} Returns true on success
     */             
     all: function all(data){
-      if(typeof(data)!='undefined'){
+      if(typeof(data)!="undefined"){
         this.data.instance = data;  
       }
       return this.data.instance;
@@ -416,7 +416,7 @@ Store.prototype = {
   update: function update(item, callback){
     
     // TODO: check against schema if set *
-    return this.repository.process('update', this.options, Store.wrap(this, item), callback);
+    return this.repository.process("update", this.options, Store.wrap(this, item), callback);
   },
 
   /**
@@ -426,7 +426,7 @@ Store.prototype = {
   * @return {Boolean} Returns true on success
   */
   remove: function remove(item, callback){
-    return this.repository.process('remove', this.options, Store.wrap(this, item), callback);
+    return this.repository.process("remove", this.options, Store.wrap(this, item), callback);
   },
   
   /**
@@ -437,7 +437,7 @@ Store.prototype = {
   * @return {Boolean} Returns true on success
   */
   get: function get(item, callback){
-    return this.repository.process('get', this.options, Store.wrap(this, item), callback);
+    return this.repository.process("get", this.options, Store.wrap(this, item), callback);
   },
 
   /**
@@ -447,7 +447,7 @@ Store.prototype = {
   * @return {Boolean} Returns true on success
   */
   list: function list(callback, each){
-    return this.repository.process('list', this.options, undefined, callback, each);
+    return this.repository.process("list", this.options, undefined, callback, each);
   },
 
   /**
@@ -457,7 +457,7 @@ Store.prototype = {
   * @return {Boolean} Returns true on success
   */
   filter: function filter(callback, each, filters){
-    return this.repository.process('filter', this.options, undefined, callback, each);
+    return this.repository.process("list", this.options, undefined, callback, each);
   },
 
   /**
@@ -467,7 +467,7 @@ Store.prototype = {
   * @return {Boolean} Returns true on success
   */
   configure: function configure(options){
-    if(typeof(options)!='undefined'){
+    if(typeof(options)!="undefined"){
       this.options = Store.extend(options, this.options);    
     } 
     return this.options;
@@ -548,9 +548,9 @@ Store.extend = function extend(source, target){
 * @return {Object} Returns item object 
 */   
 Store.wrap = function wrap(datastore, item){    
-  if(typeof(item)=='string'){
+  if(typeof(item)=="string"){
     return new datastore.Item({'id': item});          
-  } else if(typeof(item)=='object' && !item instanceof datastore.Item){      
+  } else if(typeof(item)=="object" && !item instanceof datastore.Item){      
     return new datastore.Item(item);  
   }
   return item;
@@ -597,48 +597,59 @@ Store.when = function when(callback){
   return _.when(callback);
 }; 
 
-/**
-* TODO: borrowed from ???? mention!!!!
-* serialize object for url *
+/**!
+* Stringify object structure (deep!) into url 
+*
+* @example (borrowed from: http://stackoverflow.com/a/9472534)
+*
+* // helpers
+* var serialized,
+*     data = {a: 1, b: 2, c: {d: 4, e: [6, 7, 8], f: {asdf: 10}}};  
+*
+* // transform
+* serialized = Store.serialize(data);
+*
+* // verify
+* console.log(serialized, serialized === "a=1&b=2&c[d]=4&c[e][0]=6&c[e][1]=7&c[e][2]=8&c[f][asdf]=10");
 *
 * @method serialize
-* @return {Boolean} Returns true on success
+* @return {String} Serialized 
 */
 Store.serialize = function serialize(params){
-  var pairs, proc;
-  pairs = [];
-  (proc = function(object, prefix) {
-    var el, i, key, value, _results;
-    if (object == null) object = params;
-    if (prefix == null) prefix = null;
-    _results = [];
-    for (key in object) {
-      if (!Object.hasOwnProperty.call(object, key)) continue;
-      value = object[key];
-      if (value instanceof Array) {
-        _results.push((function() {
-          var _len, _results2;
-          _results2 = [];
-          for (i = 0, _len = value.length; i < _len; i++) {
-            el = value[i];
-            _results2.push(proc(el, prefix != null ? '' + prefix + '[' + key + '][]' : '' + key + '[]'));
-          }
-          return _results2;
-        })());
-      } else if (value instanceof Object) {
-        if (prefix != null) {
-          prefix += '[' + key + ']';
-        } else {
-          prefix = key;
+var pairs, proc;
+pairs = [];
+(proc = function(object, prefix) {
+  var el, i, key, value, _results;
+  if (object == null) object = params;
+  if (prefix == null) prefix = null;
+  _results = [];
+  for (key in object) {
+    if (!Object.hasOwnProperty.call(object, key)) continue;
+    value = object[key];
+    if (value instanceof Array) {
+      _results.push((function() {
+        var _len, _results2;
+        _results2 = [];
+        for (i = 0, _len = value.length; i < _len; i++) {
+          el = value[i];
+          _results2.push(proc(el, prefix != null ? "" + prefix + "[" + key + "][]" : "" + key + "[]"));
         }
-        _results.push(proc(value, prefix));
+        return _results2;
+      })());
+    } else if (value instanceof Object) {
+      if (prefix != null) {
+        prefix += "[" + key + "]";
       } else {
-        _results.push(pairs.push(prefix != null ? '' + prefix + '[' + key + ']=' + value : '' + key + '=' + value));
+        prefix = key;
       }
+      _results.push(proc(value, prefix));
+    } else {
+      _results.push(pairs.push(prefix != null ? "" + prefix + "[" + key + "]=" + value : "" + key + "=" + value));
     }
-    return _results;
-  })();
-  return pairs.join('&');    
+  }
+  return _results;
+})();
+return pairs.join('&');    
 };  
 
 // expose
