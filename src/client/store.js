@@ -4,7 +4,7 @@
 **/
 
 // module definition 
-(function (root) { var amdExports; define(["underscore"], function () { (function () {
+(function (root) { var amdExports; define('Store', ["underscore"], function (_) { (function () {
 
 /**
 * configuration object
@@ -613,43 +613,43 @@ Store.when = function when(callback){
 * console.log(serialized, serialized === "a=1&b=2&c[d]=4&c[e][0]=6&c[e][1]=7&c[e][2]=8&c[f][asdf]=10");
 *
 * @method serialize
-* @return {String} Serialized 
+* @return {String} 
 */
 Store.serialize = function serialize(params){
-var pairs, proc;
-pairs = [];
-(proc = function(object, prefix) {
-  var el, i, key, value, _results;
-  if (object == null) object = params;
-  if (prefix == null) prefix = null;
-  _results = [];
-  for (key in object) {
-    if (!Object.hasOwnProperty.call(object, key)) continue;
-    value = object[key];
-    if (value instanceof Array) {
-      _results.push((function() {
-        var _len, _results2;
-        _results2 = [];
-        for (i = 0, _len = value.length; i < _len; i++) {
-          el = value[i];
-          _results2.push(proc(el, prefix != null ? "" + prefix + "[" + key + "][]" : "" + key + "[]"));
+  var pairs, proc;
+  pairs = [];
+  (proc = function(object, prefix) {
+    var el, i, key, value, _results;
+    if (object == null) object = params;
+    if (prefix == null) prefix = null;
+    _results = [];
+    for (key in object) {
+      if (!Object.hasOwnProperty.call(object, key)) continue;
+      value = object[key];
+      if (value instanceof Array) {
+        _results.push((function() {
+          var _len, _results2;
+          _results2 = [];
+          for (i = 0, _len = value.length; i < _len; i++) {
+            el = value[i];
+            _results2.push(proc(el, prefix != null ? "" + prefix + "[" + key + "][]" : "" + key + "[]"));
+          }
+          return _results2;
+        })());
+      } else if (value instanceof Object) {
+        if (prefix != null) {
+          prefix += "[" + key + "]";
+        } else {
+          prefix = key;
         }
-        return _results2;
-      })());
-    } else if (value instanceof Object) {
-      if (prefix != null) {
-        prefix += "[" + key + "]";
+        _results.push(proc(value, prefix));
       } else {
-        prefix = key;
+        _results.push(pairs.push(prefix != null ? "" + prefix + "[" + key + "]=" + value : "" + key + "=" + value));
       }
-      _results.push(proc(value, prefix));
-    } else {
-      _results.push(pairs.push(prefix != null ? "" + prefix + "[" + key + "]=" + value : "" + key + "=" + value));
     }
-  }
-  return _results;
-})();
-return pairs.join('&');    
+    return _results;
+  })();
+  return pairs.join('&');    
 };  
 
 // expose
