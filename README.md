@@ -262,10 +262,12 @@ Wishlist
   - Node.js
   - PHP
 - Repositories 
+  - Riak
+  - JCR
   - MongoDB
   - Redis
-  - HTML5
   - PHPCR
+  - HTML5 Stores (*)
 - Synchronization
 - HTML5 FileSystem API
 - Filters Client/Server
