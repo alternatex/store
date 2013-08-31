@@ -14,7 +14,10 @@ Index
       * [Create](#create-1)
       * [Get](#get)
       * [Store](#store-2)
-      * [Remove](#Remove)
+      * [Remove](#remove)
+  * [Access Control](#access-control)
+      * [Auth](#auth)
+      * [User](#user)
   * [Summary](#summary)
 * [Repositories](#repositories)
 * [Wishlist](#wishlist)
@@ -117,6 +120,15 @@ object.remove();
 ```javascript
 objectStore.remove(object);
 ```
+
+### Access Control
+...
+
+#### Auth 
+...
+
+#### User
+...
 
 ### Summary
 ```html

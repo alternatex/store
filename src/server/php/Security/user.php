@@ -14,8 +14,8 @@ class User {
   * @private
   * @type {String}
   * @default ''
-  */	
-	private $username = '';
+  */  
+  private $username = '';
 
   /**
   * User's password
@@ -23,18 +23,18 @@ class User {
   * @private
   * @type {String}
   * @default ''
-  */	
-	private $password = '';
+  */  
+  private $password = '';
 
   /**
   * Constructor
   *
   * @method User
   */
-	public User($username, $password){
-		$this->username = $username;
-		$this->password = $password;
-	}
+  public User($username, $password){
+    $this->username = $username;
+    $this->password = $password;
+  }
 
   /**
   * Retrieve user's name
@@ -42,7 +42,7 @@ class User {
   * @method Init
   * @return String username
   */
-	public function getUsername(){
-		return $this->username;
-	}
+  public function getUsername(){
+    return $this->username;
+  }
 }

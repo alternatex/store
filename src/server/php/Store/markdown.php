@@ -6,7 +6,6 @@
 * @module PHP
 **/
 
-// Load API
 require(dirname(__FILE__).'/store.php');
 
 /**
@@ -18,54 +17,43 @@ require(dirname(__FILE__).'/store.php');
 class MarkdownStore extends Store {
 
   /**
-  * Items collection
-  * @property data
+  * Path to file
+  * @property filepath
   * @private
   * @type {Array}
   * @default array()
   */
-  private $items = array();
-
-  /**
-  * Datastore filename
-  * @property data
-  * @private
-  * @type {Array}
-  * @default array()
-  */
-  private $datastore = null;
+  private $filepath = null;
 
   /**
   * Load repository 
   *
   * @method load
-  * @param {String} $datastore context identifier
+  * @param {String} $filepath context identifier
   * @void
   */ 
-  public function load($datastore){}
+  public function load($filepath){}
 
   /**
-  * Insert or update item data in datastore
+  * Insert or update item data in filepath
   *
   * @method update
   * @param {Object} $item what it's about
   * @return {Boolean} Returns true on success
   */ 
   public function update($instance){
-
-    // just write *
-  	return file_put_contents($instance['path'], $instance['content'])
+    return file_put_contents($instance['path'], $instance['content'])
   }
 
   /**
-  * Removes an item from datastore
+  * Removes an item from filepath
   *
   * @method remove
   * @param {Object} $item what it's about
   * @return {Boolean} Returns true on success
   */ 
   public function remove($instance){
-  	@unlink($instance['path'])
+    @unlink($instance['path'])
   }
 
   /**
@@ -76,6 +64,6 @@ class MarkdownStore extends Store {
   * @return {Object} item instance
   */ 
   public function get($instance=null){    
-		return @file_get_contents($instance['path']);
+    return @file_get_contents($instance['path']);
   }  
 }

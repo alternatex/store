@@ -1,14 +1,16 @@
 <?php namespace Store;
 
-// cookie ext *
-// session_start();
+// initialize 
+session_start();
 
 // buffer output
 ob_start();
 
-// include core
+// include access control helpers
 include('../src/server/php/Security/auth.php');
 include('../src/server/php/Security/user.php');
+
+// include stores
 include('../src/server/php/Store/markdown.php');
 include('../src/server/php/Store/object.php');
 
