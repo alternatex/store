@@ -32,17 +32,45 @@ class User {
   * @method User
   */
   public User($username, $password){
-    $this->username = $username;
-    $this->password = $password;
+    $this->setUsername($username);
+    $this->setPassword($password);
   }
 
   /**
   * Retrieve user's name
   *
-  * @method Init
+  * @method getUsername
   * @return String username
   */
   public function getUsername(){
     return $this->username;
+  }
+
+  /**
+  * Set user's name
+  *
+  * @method setUsername
+  */
+  protected function setUsername($username){
+    $this->username = $username;
+  }  
+
+  /**
+  * Retrieve user's password
+  *
+  * @method getPassword
+  * @return String password
+  */
+  public function getPassword(){
+    return $this->password;
+  }
+
+  /**
+  * Set user's password
+  *
+  * @method setPassword
+  */
+  protected function setPassword($password){
+    $this->password = sha1($password);
   }
 }

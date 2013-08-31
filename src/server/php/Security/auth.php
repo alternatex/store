@@ -1,5 +1,8 @@
 <?php namespace Store\Security;
 
+// load dependencies
+require_once(__DIR__.DIRECTORY_SEPARATOR.'user.php');
+
 /**
 * Authentication Service
 *
