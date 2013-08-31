@@ -7,6 +7,9 @@
 ob_start();
 
 // include core
+include('../src/server/php/Security/auth.php');
+include('../src/server/php/Security/user.php');
+include('../src/server/php/Store/markdown.php');
 include('../src/server/php/Store/object.php');
 
 // defaults
@@ -14,6 +17,7 @@ $user='anonymous';
 
 // initialize store
 $store = new ObjectStore();
+$markdownStore = new MarkdownStore();
 
 // extract request params
 foreach(array(Store::REQUEST_NAMESPACE, Store::REQUEST_ACTION, Store::REQUEST_DATA, Store::REQUEST_JSONP) as $param) {
