@@ -12,6 +12,16 @@ require_once(__DIR__.DIRECTORY_SEPARATOR.'user.php');
 class Auth {
 
   /**
+  * Singleton
+  * @property $instance
+  * @private
+  * @static
+  * @type {Auth}
+  * @default null
+  */  
+  private static $instance = null;
+
+  /**
   * Superuser's name
   * @property $superuser
   * @private
@@ -53,19 +63,32 @@ class Auth {
   * Constructor
   *
   * @method Auth
+  * @param {String} $database  
   */  
-  public function Auth($database){
+  private function Auth($database){
     $this->database = $database;
+  }
+
+  /**
+  * Retrieve instance 
+  *
+  * @method getInstance
+  * @param {String} $database  
+  */  
+  public static function GetInstance($database){
+    if(self::$instance==null) self::$instance = new Auth($database);
+    return self::$instance;
   }
 
   /**
   * Initialize Access Control
   *
   * @method Init
+  * @param {String} $database  
   */  
-  public static function Init(){
-    if(file_exists($this->database)){
-      $this->acl = json_decode(file_get_contents($this->database));
+  public static function Init($database){    
+    if(file_exists(self::$instance->database)){
+      self::$instance->acl = json_decode(file_get_contents(self::$instance->database));
     }
   } 
 
@@ -73,6 +96,7 @@ class Auth {
   * User modification handler
   *
   * @method Modify
+  * @param {User} $user
   */
   public static function Modify(User $user){
     if($_SESSION['username']==self::$superuser || $_SESSION['username']!=$user->getUsername()){
@@ -84,6 +108,7 @@ class Auth {
   * Validate resource access
   *
   * @method Validate
+  * @param {User} $user  
   */
   public static function Validate(User $user){
 
