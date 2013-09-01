@@ -93,7 +93,7 @@
 
 <div class="highlight"><pre><span class="kd">var</span> <span class="nx">object</span> <span class="o">=</span> <span class="nx">objectStore</span><span class="p">.</span><span class="nx">create</span><span class="p">();</span> 
 <span class="nx">object</span><span class="p">.</span><span class="nx">set</span><span class="p">(</span><span class="s1">'country'</span><span class="p">,</span> <span class="s1">'USA'</span><span class="p">);</span>
-<span class="nx">object</span><span class="p">.</span><span class="nx">set</span><span class="p">(</span><span class="s1">'firstname'</span><span class="p">,</span> <span class="s1">'John'</span><span class="p">);</span> 
+<span class="nx">object</span><span class="p">.</span><span class="nx">set</span><span class="p">(</span><span class="s1">'firstname'</span><span class="p">,</span> <span class="s1">'Jon'</span><span class="p">);</span> 
 <span class="nx">object</span><span class="p">.</span><span class="nx">set</span><span class="p">(</span><span class="s1">'lastname'</span><span class="p">,</span> <span class="s1">'Stewart'</span><span class="p">);</span> 
 </pre></div>
 
@@ -143,6 +143,21 @@
 </pre></div>
 
 <h3>
+<a name="access-control" class="anchor" href="#access-control"><span class="octicon octicon-link"></span></a>Access Control</h3>
+
+<p>...</p>
+
+<h4>
+<a name="auth" class="anchor" href="#auth"><span class="octicon octicon-link"></span></a>Auth</h4>
+
+<p>...</p>
+
+<h4>
+<a name="user" class="anchor" href="#user"><span class="octicon octicon-link"></span></a>User</h4>
+
+<p>...</p>
+
+<h3>
 <a name="summary" class="anchor" href="#summary"><span class="octicon octicon-link"></span></a>Summary</h3>
 
 <div class="highlight"><pre><span class="nt">&lt;script </span><span class="na">src=</span><span class="s">"src/client/store.js"</span><span class="nt">&gt;&lt;/script&gt;</span>
@@ -175,7 +190,7 @@
     <span class="nx">object</span> <span class="o">=</span> <span class="nx">objectStore</span><span class="p">.</span><span class="nx">create</span><span class="p">(</span><span class="nx">object</span><span class="p">);</span>
 
     <span class="c1">// update properties</span>
-    <span class="nx">object</span><span class="p">.</span><span class="nx">set</span><span class="p">(</span><span class="s1">'firstname'</span><span class="p">,</span> <span class="s1">'John'</span><span class="p">);</span>
+    <span class="nx">object</span><span class="p">.</span><span class="nx">set</span><span class="p">(</span><span class="s1">'firstname'</span><span class="p">,</span> <span class="s1">'Jon'</span><span class="p">);</span>
     <span class="nx">object</span><span class="p">.</span><span class="nx">set</span><span class="p">(</span><span class="s1">'lastname'</span><span class="p">,</span> <span class="s1">'Stewart'</span><span class="p">);</span>
 
     <span class="c1">// extract</span>
@@ -310,10 +325,12 @@
 <li>Repositories 
 
 <ul>
+<li>Riak</li>
+<li>JCR</li>
 <li>MongoDB</li>
 <li>Redis</li>
-<li>HTML5</li>
 <li>PHPCR</li>
+<li>HTML5 Stores (*)</li>
 </ul>
 </li>
 <li>Synchronization</li>
