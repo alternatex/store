@@ -7,12 +7,12 @@ session_start();
 ob_start();
 
 // include access control helpers
-include('../src/server/php/Security/auth.php');
-include('../src/server/php/Security/user.php');
+require_once(__DIR__.'/../src/server/php/Security/auth.php');
+require_once(__DIR__.'/../src/server/php/Security/user.php');
 
 // include stores
-include('../src/server/php/Store/markdown.php');
-include('../src/server/php/Store/object.php');
+require_once(__DIR__.'/../src/server/php/Store/markdown.php');
+require_once(__DIR__.'/../src/server/php/Store/object.php');
 
 // defaults
 $user='anonymous';

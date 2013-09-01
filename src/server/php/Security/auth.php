@@ -19,7 +19,7 @@ class Auth {
   * @type {String}
   * @default 'admin'
   */  
-  private final static $superuser = 'admin';
+  private static $superuser = 'admin';
 
   /**
   * Superuser's pass
@@ -29,7 +29,7 @@ class Auth {
   * @type {String}
   * @default ''
   */  
-  private final static $superpass = 'd033e22ae348aeb5660fc2140aec35850c4da997';
+  private static $superpass = 'd033e22ae348aeb5660fc2140aec35850c4da997';
 
   /**
   * Filepath disk «database»
@@ -54,7 +54,7 @@ class Auth {
   *
   * @method Auth
   */  
-  public Auth($database){
+  public function Auth($database){
     $this->database = $database;
   }
 
@@ -76,7 +76,7 @@ class Auth {
   */
   public static function Modify(User $user){
     if($_SESSION['username']==self::$superuser || $_SESSION['username']!=$user->getUsername()){
-      die('Requested user does not match current or no administrative privileges given.')
+      die('Requested user does not match current or no administrative privileges given.');
     }
   }
 

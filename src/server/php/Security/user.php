@@ -31,7 +31,7 @@ class User {
   *
   * @method User
   */
-  public User($username, $password){
+  public function User($username, $password){
     $this->setUsername($username);
     $this->setPassword($password);
   }
