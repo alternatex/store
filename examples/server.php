@@ -1,4 +1,4 @@
-<?php namespace Store;
+<?php
 
 // initialize 
 session_start();
@@ -6,20 +6,43 @@ session_start();
 // buffer output
 ob_start();
 
-// include access control helpers
-require_once(__DIR__.'/../src/server/php/Security/auth.php');
-require_once(__DIR__.'/../src/server/php/Security/user.php');
+// TODO: include autoloader?!?!?! -> update classes *
+// TODO: include autoloader?!?!?! -> update classes *
+// TODO: include autoloader?!?!?! -> update classes *
 
-// include stores
-require_once(__DIR__.'/../src/server/php/Store/markdown.php');
-require_once(__DIR__.'/../src/server/php/Store/object.php');
+// TODO: CRSF....
+// TODO: CRSF....
+// TODO: CRSF.... 
+
+require_once('vendor/autoload.php');
+
+use \Store\Server\SocketServer as SocketServer;
+
+$socketServer = new SocketServer('127.0.0.1', 8080);
+
+// include access control helpers
+require_once(__DIR__.'/../src/server/php/Store/Security/Auth.php');
+require_once(__DIR__.'/../src/server/php/Store/Security/User.php');
+require_once(__DIR__.'/../src/server/php/Store/Security/Token.php');
+
+// determine store based on special header field
+// x-store-type: object,markdown,... 4 client driven
+// json configuration by path, ..... 4 server driven 
 
 // defaults
 $user='anonymous';
 
-// initialize store
-$store = new ObjectStore();
-$markdownStore = new MarkdownStore();
+use \Store\Store as Store;
+
+use \Store\Driver\BitTorrent as BitTorrent;
+
+$bitTorrentClient = new BitTorrent(); 
+
+// initialize storage
+$Store = '\\Store\\Driver\\'.(false ? 'Object' : 'Markdown');
+
+// hold store opening party
+$store = new $Store();
 
 // extract request params
 foreach(array(Store::REQUEST_NAMESPACE, Store::REQUEST_ACTION, Store::REQUEST_DATA, Store::REQUEST_JSONP) as $param) {

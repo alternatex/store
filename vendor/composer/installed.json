@@ -6,12 +6,12 @@
         "source": {
             "type": "git",
             "url": "https://github.com/kriswallsmith/Buzz.git",
-            "reference": "v0.10"
+            "reference": "759432d66387e3433d3b06cb6f773b97225b9b17"
         },
         "dist": {
             "type": "zip",
-            "url": "https://api.github.com/repos/kriswallsmith/Buzz/zipball/v0.10",
-            "reference": "v0.10",
+            "url": "https://api.github.com/repos/kriswallsmith/Buzz/zipball/759432d66387e3433d3b06cb6f773b97225b9b17",
+            "reference": "759432d66387e3433d3b06cb6f773b97225b9b17",
             "shasum": ""
         },
         "require": {
@@ -31,6 +31,7 @@
                 "Buzz": "lib/"
             }
         },
+        "notification-url": "https://packagist.org/downloads/",
         "license": [
             "MIT"
         ],
@@ -55,18 +56,18 @@
         "source": {
             "type": "git",
             "url": "https://github.com/alternatex/widespread.git",
-            "reference": "2.1.4"
+            "reference": "6b0ef6675032c077ffa1e1b92107406b613d3145"
         },
         "dist": {
             "type": "zip",
-            "url": "https://api.github.com/repos/alternatex/widespread/zipball/2.1.4",
-            "reference": "2.1.4",
+            "url": "https://api.github.com/repos/alternatex/widespread/zipball/6b0ef6675032c077ffa1e1b92107406b613d3145",
+            "reference": "6b0ef6675032c077ffa1e1b92107406b613d3145",
             "shasum": ""
         },
         "require": {
             "php": ">=5.3.0"
         },
-        "time": "2013-04-03 17:30:58",
+        "time": "2013-04-03 17:38:33",
         "type": "library",
         "installation-source": "dist",
         "autoload": {
@@ -74,6 +75,7 @@
                 "Widespread": "src"
             }
         },
+        "notification-url": "https://packagist.org/downloads/",
         "license": [
             "MIT"
         ],
@@ -88,27 +90,27 @@
     },
     {
         "name": "predis/predis",
-        "version": "v0.8.3",
-        "version_normalized": "0.8.3.0",
+        "version": "v0.8.4",
+        "version_normalized": "0.8.4.0",
         "source": {
             "type": "git",
             "url": "https://github.com/nrk/predis.git",
-            "reference": "v0.8.3"
+            "reference": "cb18d67b6ab6b8e567c1ab50fe999d1d624f9884"
         },
         "dist": {
             "type": "zip",
-            "url": "https://api.github.com/repos/nrk/predis/zipball/v0.8.3",
-            "reference": "v0.8.3",
+            "url": "https://api.github.com/repos/nrk/predis/zipball/cb18d67b6ab6b8e567c1ab50fe999d1d624f9884",
+            "reference": "cb18d67b6ab6b8e567c1ab50fe999d1d624f9884",
             "shasum": ""
         },
         "require": {
             "php": ">=5.3.2"
         },
         "suggest": {
-            "ext-phpiredis": "Allows faster serialization and deserialization of the Redis protocol",
-            "ext-curl": "Allows access to Webdis when paired with phpiredis"
+            "ext-curl": "Allows access to Webdis when paired with phpiredis",
+            "ext-phpiredis": "Allows faster serialization and deserialization of the Redis protocol"
         },
-        "time": "2013-02-18 14:03:45",
+        "time": "2013-07-27 09:13:54",
         "type": "library",
         "installation-source": "dist",
         "autoload": {
@@ -116,6 +118,7 @@
                 "Predis": "lib/"
             }
         },
+        "notification-url": "https://packagist.org/downloads/",
         "license": [
             "MIT"
         ],
@@ -130,8 +133,8 @@
         "homepage": "http://github.com/nrk/predis",
         "keywords": [
             "nosql",
-            "redis",
-            "predis"
+            "predis",
+            "redis"
         ]
     },
     {
@@ -141,18 +144,18 @@
         "source": {
             "type": "git",
             "url": "https://github.com/phpcr/phpcr.git",
-            "reference": "2.1.0-beta11"
+            "reference": "f35bdeab4233c03594662e03b2989eca6b087959"
         },
         "dist": {
             "type": "zip",
-            "url": "https://api.github.com/repos/phpcr/phpcr/zipball/2.1.0-beta11",
-            "reference": "2.1.0-beta11",
+            "url": "https://api.github.com/repos/phpcr/phpcr/zipball/f35bdeab4233c03594662e03b2989eca6b087959",
+            "reference": "f35bdeab4233c03594662e03b2989eca6b087959",
             "shasum": ""
         },
         "require": {
             "php": ">=5.3.0"
         },
-        "time": "2013-06-07 13:45:21",
+        "time": "2013-08-28 21:04:44",
         "type": "library",
         "extra": {
             "branch-alias": {
@@ -165,7 +168,9 @@
                 "PHPCR": "src"
             }
         },
+        "notification-url": "https://packagist.org/downloads/",
         "license": [
+            "MIT",
             "Apache-2.0"
         ],
         "authors": [
@@ -183,10 +188,58 @@
             }
         ],
         "description": "PHP Content Repository interfaces",
-        "homepage": "http://phpcr.github.com",
+        "homepage": "http://phpcr.github.io",
         "keywords": [
-            "phpcr",
-            "contentrepository"
+            "contentrepository",
+            "phpcr"
+        ]
+    },
+    {
+        "name": "christeredvartsen/php-bittorrent",
+        "version": "1.1.0",
+        "version_normalized": "1.1.0.0",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/christeredvartsen/php-bittorrent.git",
+            "reference": "a9315b6f93b45872667875668423cdb823f615d0"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/christeredvartsen/php-bittorrent/zipball/a9315b6f93b45872667875668423cdb823f615d0",
+            "reference": "a9315b6f93b45872667875668423cdb823f615d0",
+            "shasum": ""
+        },
+        "require": {
+            "php": ">=5.3.2"
+        },
+        "require-dev": {
+            "phpunit/phpunit": "3.7.*"
+        },
+        "time": "2013-01-11 12:12:20",
+        "type": "library",
+        "installation-source": "dist",
+        "autoload": {
+            "psr-0": {
+                "PHP\\BitTorrent": ""
+            }
+        },
+        "notification-url": "https://packagist.org/downloads/",
+        "license": [
+            "MIT"
+        ],
+        "authors": [
+            {
+                "name": "Christer Edvartsen",
+                "email": "cogo@starzinger.net",
+                "homepage": "http://cogo.wordpress.com",
+                "role": "Project lead"
+            }
+        ],
+        "description": "PHP\\BitTorrent is a set of components that can be used to interact with torrent files (read+write) and classes that can encode/decode to/from the BitTorrent format.",
+        "homepage": "https://github.com/christeredvartsen/php-bittorrent",
+        "keywords": [
+            "bittorrent",
+            "torrent"
         ]
     }
 ]

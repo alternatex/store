@@ -1,0 +1,21 @@
+{
+  "name": "alternatex/store-example",
+  "description": "Lightweight storage wrapper example",
+  "license": "MIT",    
+  "authors": [
+    {
+      "name": "Gianni Furger",
+      "email": "gianni.furger@gmail.com"
+    }
+  ],    
+  "require": {
+    "php": ">=5.3.0",
+    "kriswallsmith/buzz": "*",
+    "predis/predis": "*",
+    "phpcr/phpcr": "2.1.*@dev",
+    "christeredvartsen/php-bittorrent": "*"
+  },
+  "autoload": {
+    "psr-0": { "Store": "src" }
+  }
+}

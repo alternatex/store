@@ -4,7 +4,7 @@
 **/
 
 // module definition 
-(function (root) { var amdExports; define('Markdown', ['Store', 'Markdown.Converter', 'underscore'], function (_) { (function () {
+(function (root) { var amdExports; define('Markdown', ['Store', 'Markdown.Converter', 'underscore'], function (_) { (function (store, converter, underscore) {
 
 /**
 * Repository: MarkdownRepository

@@ -4,7 +4,7 @@
 **/
 
 // module definition 
-(function (root) { var amdExports; define('Store', ["underscore"], function (_) { (function () {
+(function (root) { var amdExports; define('store', ["underscore"], function (_) { (function () {
 
 /**
 * configuration object
