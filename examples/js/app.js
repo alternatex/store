@@ -11,7 +11,8 @@ requirejs.config({
       "configuration": "../configuration",
       "epiceditor": "../vendor/epiceditor/js/epiceditor",
       "underscore": "../../../vendor/underscore.deferred",
-      "jquery": "//ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min"
+      "jquery": "//ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min",
+      "data": "http://localhost/store/examples/data/data.php"
     },
     "shim": {
       "underscore": {
