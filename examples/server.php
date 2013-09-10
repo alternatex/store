@@ -6,24 +6,22 @@ session_start();
 // buffer output
 ob_start();
 
-// TODO: include autoloader?!?!?! -> update classes *
-// TODO: include autoloader?!?!?! -> update classes *
-// TODO: include autoloader?!?!?! -> update classes *
-
 // TODO: CRSF....
 // TODO: CRSF....
 // TODO: CRSF.... 
 
 require_once('vendor/autoload.php');
 
-use \Store\Server\SocketServer as SocketServer;
+use \Store\Driver\BitTorrent,
+    \Store\Security\Auth,
+    \Store\Security\Token,
+    \Store\Security\User,
+    \Store\Server\SocketServer,
+    \Store\Store;
 
 $socketServer = new SocketServer('127.0.0.1', 8080);
 
-// include access control helpers
-require_once(__DIR__.'/../src/server/php/Store/Security/Auth.php');
-require_once(__DIR__.'/../src/server/php/Store/Security/User.php');
-require_once(__DIR__.'/../src/server/php/Store/Security/Token.php');
+// include access control helpers;
 
 // determine store based on special header field
 // x-store-type: object,markdown,... 4 client driven
@@ -31,10 +29,6 @@ require_once(__DIR__.'/../src/server/php/Store/Security/Token.php');
 
 // defaults
 $user='anonymous';
-
-use \Store\Store as Store;
-
-use \Store\Driver\BitTorrent as BitTorrent;
 
 $bitTorrentClient = new BitTorrent(); 
 
@@ -94,5 +88,10 @@ switch($action){
 // ...
 $devnull = ob_get_clean();
 
+// write changes to disk *
+if($dostore){
+  $store->persist();
+}
+
 // send response
-print $store->response($dostore, $returnValue, $jsonp);
+print $store->response($returnValue, $jsonp);

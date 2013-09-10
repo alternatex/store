@@ -67,7 +67,17 @@ class Markdown extends FileSystem {
     return @file_get_contents($instance['path']);
   }  
 
-  public function response(){
+  /**
+  * Persist data
+  * 
+  * @method persist
+  * @param {String} filepath
+  * @param {String} contents
+  * @void
+  */ 
+  public function persist($path=null, $content=null){
 
+    // ...
+    return parent::persist($path, $content);
   }
 }
