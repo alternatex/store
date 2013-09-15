@@ -7,8 +7,6 @@ session_start();
 ob_start();
 
 // TODO: CRSF....
-// TODO: CRSF....
-// TODO: CRSF.... 
 
 require_once('vendor/autoload.php');
 
@@ -86,7 +84,7 @@ switch($action){
 }
 
 // ...
-$devnull = ob_get_clean();
+$blackhole = ob_get_clean();
 
 // write changes to disk *
 if($dostore){
