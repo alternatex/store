@@ -15,34 +15,28 @@ use Store\Store;
 *
 * @class Json
 */
-class Json extends Object {
+class Json extends FileFormat {
 
   /**
-  * Load repository 
+  * Encode to format
   *
-  * @method load
+  * @method decode
   * @param {String} $datastore context identifier
   * @void
   */ 
-  public function load($datastore){
-    
-    // store *
-    $this->datastore = $datastore;
+  protected function encode($data){
+    return json_encode($data);
+  }
 
-    // load from disk if exists
-    if(file_exists($datastore)) { 
-
-      // convert object data
-      $this->items = json_decode(file_get_contents($datastore)); 
-
-      // handle format err
-      if(!is_array($this->items)) { 
-
-        // ... (2)
-        $err = json_encode(array(Store::RESPONSE_ERROR => array("500" => Store::MESSAGE_ERROR_DATASTORE_CORRUPT.$class)));
-        die(strlen($jsonp)>0 ? $jsonp."("."console.error(".$err."));":$err);        
-      }
-    }     
+  /**
+  * Decode from format 
+  *
+  * @method decode
+  * @param {String} $datastore context identifier
+  * @void
+  */ 
+  protected function decode($data){
+    return json_decode($data);
   }
 
   /**
@@ -62,26 +56,5 @@ class Json extends Object {
     }  
     return false;
   }
-
-  /**
-  * Send output
-  * 
-  * @method response
-  * @param {boolean} $dostore
-  * @param {Array} $response
-  * @param {String} $jsonp
-  * @void
-  */ 
-  public function response($dostore, $response, $jsonp){
-
-    // update datastore * perf *
-    if($dostore) file_put_contents($this->datastore, json_encode($this->items));
-
-    // send response
-    if(strlen($jsonp)>0) {
-      return $jsonp."(".json_encode($response).");";
-    } else {
-      return json_encode($response);
-    }    
-  }
+  
 }

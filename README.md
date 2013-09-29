@@ -261,12 +261,6 @@ Documentation
 curl -h ...
 ```
 
-### CURL
-```shell
-
-curl -h ...
-```
-
 Roadmap
 -------------
 - Record/Playback

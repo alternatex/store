@@ -1,5 +1,12 @@
 <?php
 
+// TODO: export - configuration: socket 
+define('SERVER_HOST', '127.0.0.1');
+define('SERVER_PORT', 8080);
+
+// TODO: export - configuration: request
+define('HEADER_STORE_TYPE', 'X-Store-Type');
+
 // class loader
 require_once('vendor/autoload.php');
 
@@ -9,8 +16,7 @@ session_start();
 // buffer output
 ob_start();
 
-require_once('vendor/autoload.php');
-
+// aliases
 use \Store\Driver\BitTorrent,
     \Store\Security\Auth,
     \Store\Security\Token,
@@ -18,24 +24,19 @@ use \Store\Driver\BitTorrent,
     \Store\Server\SocketServer,
     \Store\Store;
 
-$socketServer = new SocketServer('127.0.0.1', 8080);
+// connect to socket
+$socketServer = new SocketServer(SERVER_HOST, SERVER_PORT);
 
-define('REQUEST_STORE_TYPE', 'X-Store-Type');
+// retrieve request headers
+$requestHeaders = getallheaders();
 
-$headers = getallheaders();
-if(isset($headers[REQUEST_STORE_TYPE])) die($headers[REQUEST_STORE_TYPE].'!');
+// extract storage type
+if(isset($requestHeaders[HEADER_STORE_TYPE])) die($requestHeaders[HEADER_STORE_TYPE]);
 
 // determine store based on special header field
 // x-store-type: object/json,markdown,... 4 client driven -> limonade
 // json configuration by path, ..... 4 server driven -> limonade
 // -> limonade
-// -> limonade
-// -> limonade
-// -> limonade
-// -> limonade
-
-$socketServer = new SocketServer('127.0.0.1', 8080);
-$bitTorrentClient = new BitTorrent(); 
 
 // defaults
 $user='anonymous';
@@ -60,8 +61,7 @@ if(trim($namespace)=="" || trim($action)=="") {
 }
 
 // determine datastore filename
-$datastore = $user.".".$namespace.'.xdat';
-$datastore = $user.".".$namespace.'.dat';
+$datastore = $user.".".$namespace.(false?'x':'').'.dat';
 
 // load contents
 $store->load($datastore);
@@ -94,7 +94,8 @@ switch($action){
     break;
 }
 
-$blackhole = ob_get_clean();
+// empty buffer
+ob_get_clean();
 
 // write changes to disk *
 if($dostore){
