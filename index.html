@@ -37,7 +37,7 @@
 <h4>
 <a name="requirejs" class="anchor" href="#requirejs"><span class="octicon octicon-link"></span></a>Require.js</h4>
 
-<div class="highlight"><pre><span class="nx">require</span><span class="p">([</span><span class="s2">"store"</span><span class="p">],</span> <span class="kd">function</span><span class="p">(</span><span class="nx">Store</span><span class="p">)</span> <span class="p">{</span>
+<div class="highlight highlight-javascript"><pre><span class="nx">require</span><span class="p">([</span><span class="s2">"store"</span><span class="p">],</span> <span class="kd">function</span><span class="p">(</span><span class="nx">Store</span><span class="p">)</span> <span class="p">{</span>
   <span class="c1">// ...</span>
 <span class="p">});</span>
 </pre></div>
@@ -45,7 +45,7 @@
 <h4>
 <a name="html" class="anchor" href="#html"><span class="octicon octicon-link"></span></a>HTML</h4>
 
-<div class="highlight"><pre><span class="nt">&lt;script </span><span class="na">src=</span><span class="s">"src/client/store.js"</span><span class="nt">&gt;&lt;/script&gt;</span>
+<div class="highlight highlight-html"><pre><span class="nt">&lt;script </span><span class="na">src=</span><span class="s">"src/client/store.js"</span><span class="nt">&gt;&lt;/script&gt;</span>
 </pre></div>
 
 <h3>
@@ -56,7 +56,7 @@
 
 <p>Defaults are modified as follows:</p>
 
-<div class="highlight"><pre><span class="nx">Store</span><span class="p">.</span><span class="nx">configure</span><span class="p">({</span> 
+<div class="highlight highlight-javascript"><pre><span class="nx">Store</span><span class="p">.</span><span class="nx">configure</span><span class="p">({</span> 
   <span class="nx">url</span><span class="o">:</span> <span class="s2">"http://localhost/datastore.php"</span><span class="p">,</span> 
   <span class="nx">ttl</span><span class="o">:</span> <span class="mi">36000</span>
 <span class="p">});</span>
@@ -69,7 +69,7 @@
 <h4>
 <a name="create" class="anchor" href="#create"><span class="octicon octicon-link"></span></a>Create</h4>
 
-<div class="highlight"><pre><span class="kd">var</span> <span class="nx">objectStore</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Store</span><span class="p">({</span> <span class="nx">namespace</span><span class="o">:</span> <span class="s1">'object'</span> <span class="p">});</span>
+<div class="highlight highlight-javascript"><pre><span class="kd">var</span> <span class="nx">objectStore</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Store</span><span class="p">({</span> <span class="nx">namespace</span><span class="o">:</span> <span class="s1">'object'</span> <span class="p">});</span>
 </pre></div>
 
 <h3>
@@ -81,7 +81,7 @@
 <h5>
 <a name="preset" class="anchor" href="#preset"><span class="octicon octicon-link"></span></a>Preset</h5>
 
-<div class="highlight"><pre><span class="kd">var</span> <span class="nx">object</span> <span class="o">=</span> <span class="nx">objectStore</span><span class="p">.</span><span class="nx">create</span><span class="p">({</span> 
+<div class="highlight highlight-javascript"><pre><span class="kd">var</span> <span class="nx">object</span> <span class="o">=</span> <span class="nx">objectStore</span><span class="p">.</span><span class="nx">create</span><span class="p">({</span> 
   <span class="nx">country</span><span class="o">:</span> <span class="s1">'USA'</span><span class="p">,</span> 
   <span class="nx">firstname</span><span class="o">:</span> <span class="s1">'Stephen'</span><span class="p">,</span> 
   <span class="nx">lastname</span><span class="o">:</span> <span class="s1">'Colbert'</span> 
@@ -91,7 +91,7 @@
 <h5>
 <a name="barebone" class="anchor" href="#barebone"><span class="octicon octicon-link"></span></a>Barebone</h5>
 
-<div class="highlight"><pre><span class="kd">var</span> <span class="nx">object</span> <span class="o">=</span> <span class="nx">objectStore</span><span class="p">.</span><span class="nx">create</span><span class="p">();</span> 
+<div class="highlight highlight-javascript"><pre><span class="kd">var</span> <span class="nx">object</span> <span class="o">=</span> <span class="nx">objectStore</span><span class="p">.</span><span class="nx">create</span><span class="p">();</span> 
 <span class="nx">object</span><span class="p">.</span><span class="nx">set</span><span class="p">(</span><span class="s1">'country'</span><span class="p">,</span> <span class="s1">'USA'</span><span class="p">);</span>
 <span class="nx">object</span><span class="p">.</span><span class="nx">set</span><span class="p">(</span><span class="s1">'firstname'</span><span class="p">,</span> <span class="s1">'Jon'</span><span class="p">);</span> 
 <span class="nx">object</span><span class="p">.</span><span class="nx">set</span><span class="p">(</span><span class="s1">'lastname'</span><span class="p">,</span> <span class="s1">'Stewart'</span><span class="p">);</span> 
@@ -103,13 +103,13 @@
 <h5>
 <a name="list" class="anchor" href="#list"><span class="octicon octicon-link"></span></a>List</h5>
 
-<div class="highlight"><pre><span class="nx">objectStore</span><span class="p">.</span><span class="nx">list</span><span class="p">();</span>
+<div class="highlight highlight-javascript"><pre><span class="nx">objectStore</span><span class="p">.</span><span class="nx">list</span><span class="p">();</span>
 </pre></div>
 
 <h5>
 <a name="single" class="anchor" href="#single"><span class="octicon octicon-link"></span></a>Single</h5>
 
-<div class="highlight"><pre><span class="nx">objectStore</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">'8c0c1ff0-d0fe-38b7-376a-b0b1d53bd557'</span><span class="p">);</span>
+<div class="highlight highlight-javascript"><pre><span class="nx">objectStore</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">'8c0c1ff0-d0fe-38b7-376a-b0b1d53bd557'</span><span class="p">);</span>
 </pre></div>
 
 <h4>
@@ -118,13 +118,13 @@
 <h5>
 <a name="instance" class="anchor" href="#instance"><span class="octicon octicon-link"></span></a>Instance</h5>
 
-<div class="highlight"><pre><span class="nx">object</span><span class="p">.</span><span class="nx">update</span><span class="p">();</span>
+<div class="highlight highlight-javascript"><pre><span class="nx">object</span><span class="p">.</span><span class="nx">update</span><span class="p">();</span>
 </pre></div>
 
 <h5>
 <a name="datastore" class="anchor" href="#datastore"><span class="octicon octicon-link"></span></a>Datastore</h5>
 
-<div class="highlight"><pre><span class="nx">objectStore</span><span class="p">.</span><span class="nx">update</span><span class="p">(</span><span class="nx">object</span><span class="p">);</span>
+<div class="highlight highlight-javascript"><pre><span class="nx">objectStore</span><span class="p">.</span><span class="nx">update</span><span class="p">(</span><span class="nx">object</span><span class="p">);</span>
 </pre></div>
 
 <h4>
@@ -133,13 +133,13 @@
 <h5>
 <a name="instance-1" class="anchor" href="#instance-1"><span class="octicon octicon-link"></span></a>Instance</h5>
 
-<div class="highlight"><pre><span class="nx">object</span><span class="p">.</span><span class="nx">remove</span><span class="p">();</span>
+<div class="highlight highlight-javascript"><pre><span class="nx">object</span><span class="p">.</span><span class="nx">remove</span><span class="p">();</span>
 </pre></div>
 
 <h5>
 <a name="datastore-1" class="anchor" href="#datastore-1"><span class="octicon octicon-link"></span></a>Datastore</h5>
 
-<div class="highlight"><pre><span class="nx">objectStore</span><span class="p">.</span><span class="nx">remove</span><span class="p">(</span><span class="nx">object</span><span class="p">);</span>
+<div class="highlight highlight-javascript"><pre><span class="nx">objectStore</span><span class="p">.</span><span class="nx">remove</span><span class="p">(</span><span class="nx">object</span><span class="p">);</span>
 </pre></div>
 
 <h3>
@@ -160,7 +160,7 @@
 <h3>
 <a name="summary" class="anchor" href="#summary"><span class="octicon octicon-link"></span></a>Summary</h3>
 
-<div class="highlight"><pre><span class="nt">&lt;script </span><span class="na">src=</span><span class="s">"src/client/store.js"</span><span class="nt">&gt;&lt;/script&gt;</span>
+<div class="highlight highlight-html"><pre><span class="nt">&lt;script </span><span class="na">src=</span><span class="s">"src/client/store.js"</span><span class="nt">&gt;&lt;/script&gt;</span>
 <span class="nt">&lt;script&gt;</span>
 <span class="p">(</span><span class="kd">function</span><span class="p">(){</span>
 
@@ -169,7 +169,7 @@
 
   <span class="c1">// configure storage defaults </span>
   <span class="nx">Store</span><span class="p">.</span><span class="nx">configure</span><span class="p">({</span> 
-    <span class="nx">url</span><span class="o">:</span> <span class="s2">"http://localhost/store/docs/examples/server.php"</span><span class="p">,</span> 
+    <span class="nx">url</span><span class="o">:</span> <span class="s2">"http://localhost/store/examples/server.php"</span><span class="p">,</span> 
     <span class="nx">ttl</span><span class="o">:</span> <span class="mi">36000</span>
   <span class="p">});</span>
 
@@ -283,10 +283,23 @@
 <ul>
 <li><a href="https://github.com/alternatex/store/blob/stable/docs/api/index.html">API Docs</a></li>
 <li><a href="https://github.com/alternatex/store/blob/stable/docs/index.md">Usage</a></li>
-</ul><h2>
+</ul><h3>
+<a name="curl" class="anchor" href="#curl"><span class="octicon octicon-link"></span></a>CURL</h3>
+
+<pre lang="shell"><code>
+curl -h ...
+</code></pre>
+
+<h2>
 <a name="roadmap" class="anchor" href="#roadmap"><span class="octicon octicon-link"></span></a>Roadmap</h2>
 
 <ul>
+<li>Record/Playback
+
+<ul>
+<li>Inspector</li>
+</ul>
+</li>
 <li>Ajax Requests
 
 <ul>
@@ -325,6 +338,8 @@
 <li>Repositories 
 
 <ul>
+<li>Dropbox</li>
+<li>Git</li>
 <li>Riak</li>
 <li>JCR</li>
 <li>MongoDB</li>
