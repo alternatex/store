@@ -3,8 +3,8 @@
   <head>
     <title>RequireJS Store Example</title>
     <script type="text/javascript">
-      function nickname(dat){
-        alert(dat.nickname);
+      function nickname(entry){
+        alert(entry.nickname);
       }
     </script>
     <script src="http://localhost/store/examples/server.php?namespace=customers&amp;instance[path]=rootdirectoryname&amp;instance[content]=somecontent&amp;action=get&amp;instance[type]=default&amp;instance[id]=user@host.tld&amp;instance[name]=johnny_walker&amp;instance[nickname]=nickynicknicknick&amp;jsonp=console.log&amp;jsonp=nickname"></script>    
@@ -18,7 +18,10 @@
     ...See console...
 
     Todo's: 
-      - Auto-Attachment of application auth request headers 
+      - Mega menu
+      - Inline edit w/bootstrap ext x-edit
+      - Auto-Attachment of application auth request headers
+
     </pre>
 		<div id="epiceditor"></div>
 		<script data-main="js/app" src="js/lib/require.js"></script>
