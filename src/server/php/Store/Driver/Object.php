@@ -1,6 +1,8 @@
 <?php namespace Store\Driver;
 
-use Store\Store;
+// TODO: Object store extends file system store call parent at the end -> process o real storage / gathering *
+
+use Store\FileSystem;
 
 /**
 * PHP Components *
@@ -21,7 +23,7 @@ use Store\Store;
 * @class Server
 * @constructor
 */
-class Object extends Store {
+class Object extends FileSystem {
 
   /**
   * Items collection
@@ -187,24 +189,24 @@ class Object extends Store {
   }
 
   /**
-  * Send output
+  * Persist data
   * 
-  * @method response
-  * @param {boolean} $dostore
-  * @param {Array} $response
-  * @param {String} $jsonp
+  * @method persist
+  * @param {String} filepath
+  * @param {String} contents
   * @void
   */ 
-  public function response($dostore, $response, $jsonp){
+  public function persist($path=null, $content=null){
 
-    // update datastore * perf *
-    if($dostore) file_put_contents($this->datastore, serialize($this->items));
+    // ...
+    if($path==null)
+      $path = $this->datastore;
 
-    // send response
-    if(strlen($jsonp)>0) {
-      return $jsonp."(".json_encode($response).");";
-    } else {
-      return json_encode($response);
-    }    
+    // ...
+    if($content==null)
+      $content = serialize($this->items);
+    
+    // ...
+    return parent::persist($path, $content);
   }
 }

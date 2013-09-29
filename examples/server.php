@@ -9,10 +9,17 @@ session_start();
 // buffer output
 ob_start();
 
-// debug
-use \Store\Store as Store;
-use \Store\Driver\BitTorrent as BitTorrent;
-use \Store\Server\SocketServer as SocketServer;
+require_once('vendor/autoload.php');
+
+use \Store\Driver\BitTorrent,
+    \Store\Security\Auth,
+    \Store\Security\Token,
+    \Store\Security\User,
+    \Store\Server\SocketServer,
+    \Store\Store;
+
+$socketServer = new SocketServer('127.0.0.1', 8080);
+
 
 // determine store based on special header field
 // x-store-type: object/json,markdown,... 4 client driven -> limonade
@@ -83,8 +90,12 @@ switch($action){
     break;
 }
 
-// ...
-ob_get_clean();
+$blackhole = ob_get_clean();
+
+// write changes to disk *
+if($dostore){
+  $store->persist();
+}
 
 // send response
-print $store->response($dostore, $returnValue, $jsonp);
+print $store->response($returnValue, $jsonp);

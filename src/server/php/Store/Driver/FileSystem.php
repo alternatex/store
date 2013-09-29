@@ -66,4 +66,18 @@ class FileSystem extends Store {
   public function get($instance=null){    
     return @file_get_contents($instance['path']);
   }  
+
+  /**
+  * Persist data
+  * 
+  * @method persist
+  * @param {String} filepath
+  * @param {String} contents
+  * @void
+  */ 
+  public function persist($path=null, $content=null){
+
+    // update datastore * perf *
+    return file_put_contents($path, $content);
+  }
 }
