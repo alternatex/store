@@ -94,8 +94,8 @@ $blackhole = ob_get_clean();
 
 // write changes to disk *
 if($dostore){
-  $store->persist();
+  $store->persist($datastore);
 }
 
 // send response
-print $store->response($returnValue, $jsonp);
+print $store->response($dostore, $returnValue, $jsonp);

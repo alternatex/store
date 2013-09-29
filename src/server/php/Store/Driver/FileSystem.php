@@ -8,6 +8,12 @@ use Store\Store;
 * @module PHP
 **/
 
+// TODO: thread-safety
+// TODO: thread-safety
+// TODO: thread-safety
+// TODO: thread-safety
+// TODO: thread-safety
+
 /**
 * FileSystem Plaintext Store 
 *
@@ -23,7 +29,16 @@ class FileSystem extends Store {
   * @type {Array}
   * @default array()
   */
-  private $filepath = null;
+  protected $filepath = null;
+
+  /**
+  * File content
+  * @property content
+  * @private
+  * @type {String}
+  * @default ''
+  */
+  protected $content = '';
 
   /**
   * Load repository 
@@ -32,7 +47,9 @@ class FileSystem extends Store {
   * @param {String} $filepath context identifier
   * @void
   */ 
-  public function load($filepath){}
+  public function load($filepath){
+    $this->content = @file_get_contents($instance['path']);
+  }
 
   /**
   * Insert or update item data in filepath
@@ -79,5 +96,5 @@ class FileSystem extends Store {
 
     // update datastore * perf *
     return file_put_contents($path, $content);
-  }
+  }  
 }

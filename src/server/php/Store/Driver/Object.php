@@ -2,7 +2,7 @@
 
 // TODO: Object store extends file system store call parent at the end -> process o real storage / gathering *
 
-use Store\FileSystem;
+use Store\Store;
 
 /**
 * PHP Components *
@@ -24,24 +24,6 @@ use Store\FileSystem;
 * @constructor
 */
 class Object extends FileSystem {
-
-  /**
-  * Items collection
-  * @property data
-  * @private
-  * @type {Array}
-  * @default array()
-  */
-  private $items = array();
-
-  /**
-  * Datastore filename
-  * @property data
-  * @private
-  * @type {Array}
-  * @default array()
-  */
-  private $datastore = null;
 
   /**
   * Load repository 
@@ -86,7 +68,7 @@ class Object extends FileSystem {
       // preserve files if empty *
       $preservefiles = $this->files($_FILES, $instance);
       foreach($preservefiles as $prop){
-        if(trim($instance[$prop])=="") {
+        if(trim($instance[$prop])==="") {
           $instance[$prop] = $this->items[$index][$prop];
         }         
       }
@@ -144,7 +126,7 @@ class Object extends FileSystem {
     $this->items = $this->items;
     foreach($this->items as $index => $entry) {
       $entry = $entry;
-      if($entry[Store::ENTITY_IDENTIFIER]==$instance[Store::ENTITY_IDENTIFIER]) {
+      if($entry[Store::ENTITY_IDENTIFIER]===$instance[Store::ENTITY_IDENTIFIER]) {
         return $index;
       }
     }  
@@ -208,5 +190,6 @@ class Object extends FileSystem {
     
     // ...
     return parent::persist($path, $content);
-  }
+  }   
+
 }

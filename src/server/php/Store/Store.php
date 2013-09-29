@@ -15,6 +15,24 @@
 abstract class Store { 
 
   /**
+  * Items collection
+  * @property data
+  * @private
+  * @type {Array}
+  * @default array()
+  */
+  protected $items = array();
+
+  /**
+  * Datastore filename
+  * @property data
+  * @private
+  * @type {Array}
+  * @default array()
+  */
+  protected $datastore = null;
+
+  /**
   * HTTP Header storage type indicator
   * @property REQUEST_STORAGE_TYPE_HEADER_FIELD
   * @public
@@ -196,5 +214,27 @@ abstract class Store {
 
   abstract function update($instance);
   abstract function get($instance=null);
-  abstract function remove($instance);
+  abstract function remove($instance);  
+
+  /**
+  * Send output
+  * 
+  * @method response
+  * @param {boolean} $dostore
+  * @param {Array} $response
+  * @param {String} $jsonp
+  * @void
+  */ 
+  public function response($dostore, $response, $jsonp){
+
+    // update datastore * perf *
+    if($dostore) file_put_contents($this->datastore, serialize($this->items));
+
+    // send response
+    if(strlen($jsonp)>0) {
+      return $jsonp."(".json_encode($response).");";
+    } else {
+      return json_encode($response);
+    }    
+  }    
 }

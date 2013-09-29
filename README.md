@@ -141,7 +141,7 @@ objectStore.remove(object);
 
   // configure storage defaults 
   Store.configure({ 
-    url: "http://localhost/store/docs/examples/server.php", 
+    url: "http://localhost/store/examples/server.php", 
     ttl: 36000
   });
 
