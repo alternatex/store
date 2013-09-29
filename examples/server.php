@@ -1,9 +1,5 @@
 <?php
 
-// TODO: export - configuration: socket 
-define('SERVER_HOST', '127.0.0.1');
-define('SERVER_PORT', 8080);
-
 // TODO: export - configuration: request
 define('HEADER_STORE_TYPE', 'X-Store-Type');
 
@@ -24,8 +20,19 @@ use \Store\Driver\BitTorrent,
     \Store\Server\SocketServer,
     \Store\Store;
 
+// TODO: implement (1st direct, 2nd by integration of `authenticate` library)
+if(false){
+
+  // user
+  $user = new User('username', 'password');
+
+  // authorization 
+  $auth = Auth::GetInstance('acl.json');  
+  $auth->validate($user);
+}
+
 // connect to socket
-$socketServer = new SocketServer(SERVER_HOST, SERVER_PORT);
+$socketServer = new SocketServer();
 
 // retrieve request headers
 $requestHeaders = getallheaders();
@@ -41,8 +48,11 @@ if(isset($requestHeaders[HEADER_STORE_TYPE])) die($requestHeaders[HEADER_STORE_T
 // defaults
 $user='anonymous';
 
+// debug helper
+$objectStore = true;
+
 // initialize storage
-$Store = '\\Store\\Driver\\'.(true ? 'Object' : 'Markdown');
+$Store = '\\Store\\Driver\\'.($objectStore ? 'Object' : 'Markdown');
 
 // hold store opening party
 $store = new $Store();
@@ -61,7 +71,7 @@ if(trim($namespace)=="" || trim($action)=="") {
 }
 
 // determine datastore filename
-$datastore = $user.".".$namespace.(false?'x':'').'.dat';
+$datastore = $user.".".$namespace.(!$objectStore?'x':'').'.dat';
 
 // load contents
 $store->load($datastore);

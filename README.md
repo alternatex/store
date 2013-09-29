@@ -141,16 +141,16 @@ objectStore.remove(object);
   // local variables
   var object, objectId, objectStore, objects;
 
-  // configure storage defaults 
+  // configure store defaults 
   Store.configure({ 
     url: "http://localhost/store/examples/server.php", 
     ttl: 36000
   });
 
-  // create new storage
+  // create new store
   objectStore = new Store({ namespace: 'object' });
 
-  // create new storage bound object
+  // create new store bound object
   object = objectStore.create({ 
     country: 'US', 
     firstname: 'Stephen', 
@@ -201,17 +201,20 @@ objectStore.remove(object);
     }).update());
   });
 
-  // fetch all objects & register callback 
-  objects = objectStore.list();
-
-  // when all objects have been retrieved
+  // when all objects have been updated
   Store.when(objects).done(function(objects){
-
-    // log each
-    objects.forEach(function(object, index){
-      console.log(index, object);
-    });
+  
+    // fetch all objects 
+    objects = objectStore.list();
     
+    // print when object have been retrieved
+    Store.when(objects).done(function(objects){
+
+      // log each
+      objects.forEach(function(object, index){
+        console.log(index, object);
+      });
+    });    
   });
 
   // fetch object 

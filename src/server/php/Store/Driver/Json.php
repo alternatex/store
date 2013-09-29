@@ -1,6 +1,7 @@
 <?php namespace Store\Driver;
 
 use Store\Store;
+use Store\Format\Json as JsonFormat;
 
 /**
 * PHP Components *
@@ -15,7 +16,7 @@ use Store\Store;
 *
 * @class Json
 */
-class Json extends FileFormat {
+class Json extends File {
 
   /**
   * Encode to format
@@ -25,7 +26,9 @@ class Json extends FileFormat {
   * @void
   */ 
   protected function encode($data){
-    return json_encode($data);
+    //return json_encode($data);
+    $format = new JsonFormat();    
+    return $format->encode($data);
   }
 
   /**
@@ -36,7 +39,9 @@ class Json extends FileFormat {
   * @void
   */ 
   protected function decode($data){
-    return json_decode($data);
+    //return json_decode($data);
+    $format = new JsonFormat();    
+    return $format->decode($data);    
   }
 
   /**
@@ -56,5 +61,5 @@ class Json extends FileFormat {
     }  
     return false;
   }
-  
+
 }

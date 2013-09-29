@@ -3,6 +3,7 @@
 // TODO: Object store extends file system store call parent at the end -> process o real storage / gathering *
 
 use Store\Store;
+use Store\Format\Object as ObjectFormat;
 
 /**
 * PHP Components *
@@ -22,7 +23,7 @@ use Store\Store;
 *
 * @class Object
 */
-class Object extends FileFormat {
+class Object extends File {
 
   /**
   * Encode to format
@@ -32,7 +33,9 @@ class Object extends FileFormat {
   * @void
   */ 
   protected function encode($data){
-    return serialize($data);
+    //return serialize($data);
+    $format = new ObjectFormat();    
+    return $format->encode($data);    
   }
 
   /**
@@ -43,6 +46,8 @@ class Object extends FileFormat {
   * @void
   */ 
   protected function decode($data){
-    return unserialize($data);
+    //return unserialize($data);
+    $format = new ObjectFormat();    
+    return $format->decode($data);        
   }
 }

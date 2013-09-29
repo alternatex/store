@@ -17,7 +17,7 @@ use Store\Store;
 *
 * @class Object
 */
-abstract class FileFormat extends FileSystem { 
+abstract class File extends FileSystem { 
 
   /**
   * Encode to format

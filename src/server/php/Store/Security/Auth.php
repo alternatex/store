@@ -54,6 +54,7 @@ class Auth {
   */  
   private function __construct($database){
     $this->database = $database;
+    $this->init();
   }
 
   /**
@@ -65,17 +66,17 @@ class Auth {
   */  
   public static function GetInstance($database){
     static $instance = null;
-    if($instance==null) $instance = new Auth();
+    if($instance==null) $instance = new Auth($database);
     return $instance;
   }
 
   /**
   * Initialize Access Control
   *
-  * @method Init
+  * @method init
   * @param {String} $database  
   */  
-  public function Init($database){    
+  private function init(){    
     if(file_exists($this->database)){
       $this->acl = json_decode(file_get_contents($this->database));
     }
@@ -87,7 +88,7 @@ class Auth {
   * @method Modify
   * @param {User} $user
   */
-  public function Modify(User $user){
+  public function modify(User $user){
     if($_SESSION['username']==self::$superuser || $_SESSION['username']!=$user->getUsername()){
       die('Requested user does not match current or no administrative privileges given.');
     }
@@ -99,8 +100,8 @@ class Auth {
   * @method Validate
   * @param {User} $user  
   */
-  public function Validate(User $user){
-
+  public function validate(User $user=null){
+    if($user==null) die("is null");
   }
 
 }
