@@ -1,6 +1,7 @@
-define(["jquery", "store", "require.store", "underscore", "configuration" , "epiceditor", "data"], function($, Store, res, u, conf, EpicEditor, data) {
+define(["jquery", "store", "require.store", "underscore", "configuration" , "epiceditor", "data", "shop"], function($, Store, res, u, conf, EpicEditor, data, shop) {
 
   console.log("DATA IS:", data);
+  console.log("SHOP IS:", shop);
 
 	var epicEditor = new EpicEditor({
     file: {

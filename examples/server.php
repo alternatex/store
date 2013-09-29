@@ -1,45 +1,36 @@
 <?php
 
+// class loader
+require_once('vendor/autoload.php');
+
 // initialize 
 session_start();
 
 // buffer output
 ob_start();
 
-// TODO: include autoloader?!?!?! -> update classes *
-// TODO: include autoloader?!?!?! -> update classes *
-// TODO: include autoloader?!?!?! -> update classes *
-
-// TODO: CRSF....
-// TODO: CRSF....
-// TODO: CRSF.... 
-
-require_once('vendor/autoload.php');
-
+// debug
+use \Store\Store as Store;
+use \Store\Driver\BitTorrent as BitTorrent;
 use \Store\Server\SocketServer as SocketServer;
 
-$socketServer = new SocketServer('127.0.0.1', 8080);
-
-// include access control helpers
-require_once(__DIR__.'/../src/server/php/Store/Security/Auth.php');
-require_once(__DIR__.'/../src/server/php/Store/Security/User.php');
-require_once(__DIR__.'/../src/server/php/Store/Security/Token.php');
-
 // determine store based on special header field
-// x-store-type: object,markdown,... 4 client driven
-// json configuration by path, ..... 4 server driven 
+// x-store-type: object/json,markdown,... 4 client driven -> limonade
+// json configuration by path, ..... 4 server driven -> limonade
+// -> limonade
+// -> limonade
+// -> limonade
+// -> limonade
+// -> limonade
+
+$socketServer = new SocketServer('127.0.0.1', 8080);
+$bitTorrentClient = new BitTorrent(); 
 
 // defaults
 $user='anonymous';
 
-use \Store\Store as Store;
-
-use \Store\Driver\BitTorrent as BitTorrent;
-
-$bitTorrentClient = new BitTorrent(); 
-
 // initialize storage
-$Store = '\\Store\\Driver\\'.(false ? 'Object' : 'Markdown');
+$Store = '\\Store\\Driver\\'.(true ? 'Object' : 'Markdown');
 
 // hold store opening party
 $store = new $Store();
@@ -58,6 +49,7 @@ if(trim($namespace)=="" || trim($action)=="") {
 }
 
 // determine datastore filename
+$datastore = $user.".".$namespace.'.xdat';
 $datastore = $user.".".$namespace.'.dat';
 
 // load contents
@@ -92,7 +84,7 @@ switch($action){
 }
 
 // ...
-$devnull = ob_get_clean();
+ob_get_clean();
 
 // send response
 print $store->response($dostore, $returnValue, $jsonp);

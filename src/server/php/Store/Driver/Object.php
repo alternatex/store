@@ -139,7 +139,9 @@ class Object extends Store {
   */ 
   public function find($instance){
     if(!isset($instance[Store::ENTITY_IDENTIFIER])) return false;
+    $this->items = $this->items;
     foreach($this->items as $index => $entry) {
+      $entry = $entry;
       if($entry[Store::ENTITY_IDENTIFIER]==$instance[Store::ENTITY_IDENTIFIER]) {
         return $index;
       }
