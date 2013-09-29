@@ -7,7 +7,7 @@
 **/
 
 /**
-* This is the description for my class.
+* Store fundamentals
 *
 * @class Server
 * @constructor

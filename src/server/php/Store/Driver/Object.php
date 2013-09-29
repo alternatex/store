@@ -20,8 +20,7 @@ use Store\Store;
 * - IncludeWidespread.FilterData
 * - Throw exception w/Store::MESSAGE_* » handle as json/jsonp generic (2)
 *
-* @class Server
-* @constructor
+* @class Object
 */
 class Object extends FileSystem {
 

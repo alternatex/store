@@ -113,8 +113,7 @@ var Remote = function Remote(){};
 Remote.prototype = new Repository();
 
 /**
-* My method description.  Like other pieces of your comment blocks, 
-* this can span multiple lines.
+* Process action on remote 
 *
 * @method process
 * @param {String} action [list, get, update, remove]
@@ -138,8 +137,7 @@ Remote.prototype.process = function process(action, options, item, oncallback, e
 
   var decallback = _.Deferred();
 
-  // TODO AJAX FORM UPLOAD => POST *
-  // 
+  // TODO: ajax form upload => post *
 
   // attach custom callback handler
   root[callback]=function(data){
@@ -182,7 +180,7 @@ Remote.prototype.process = function process(action, options, item, oncallback, e
   // ttl exceeded - fail *
   // TODO: server late reply handle? » just because we're ignorants doesn't mean nothing happens.
   setTimeout(function(){
-    decallback.reject("TOOK TOOOOO LONG...");
+    decallback.reject('request timed out (' + options.ttl + ')');
   },options.ttl);      
 
   // return deferred *
@@ -207,8 +205,7 @@ function Store(options){
   var self = this; 
 
   /**
-  * My property description.  Like other pieces of your comment blocks, 
-  * this can span multiple lines.
+  * Store configuration
   * 
   * @property options
   * @type {Object}

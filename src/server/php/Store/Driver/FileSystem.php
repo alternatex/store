@@ -18,7 +18,6 @@ use Store\Store;
 * FileSystem Plaintext Store 
 *
 * @class FileSystem
-* @constructor
 */
 class FileSystem extends Store {
 

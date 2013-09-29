@@ -13,8 +13,7 @@ use Store\Store;
 *
 * Store data using `json_encode()`. Prototyping-Only.
 *
-* @class Server
-* @constructor
+* @class Json
 */
 class Json extends Object {
 

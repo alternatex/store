@@ -20,6 +20,10 @@ use \Store\Driver\BitTorrent,
 
 $socketServer = new SocketServer('127.0.0.1', 8080);
 
+define('REQUEST_STORE_TYPE', 'X-Store-Type');
+
+$headers = getallheaders();
+if(isset($headers[REQUEST_STORE_TYPE])) die($headers[REQUEST_STORE_TYPE].'!');
 
 // determine store based on special header field
 // x-store-type: object/json,markdown,... 4 client driven -> limonade

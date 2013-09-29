@@ -22,6 +22,7 @@ Index
 * [Repositories](#repositories)
 * [Wishlist](#wishlist)
 * [Documentation](#documentation)
+  * [CURL](#curl)
 * [Roadmap](#roadmap)
 * [License](#license)
 
@@ -131,6 +132,7 @@ objectStore.remove(object);
 ...
 
 ### Summary
+
 ```html
 <script src="src/client/store.js"></script>
 <script>
@@ -253,8 +255,22 @@ Documentation
 - [API Docs](https://github.com/alternatex/store/blob/stable/docs/api/index.html)
 - [Usage](https://github.com/alternatex/store/blob/stable/docs/index.md)
 
+### CURL
+```shell
+
+curl -h ...
+```
+
+### CURL
+```shell
+
+curl -h ...
+```
+
 Roadmap
 -------------
+- Record/Playback
+  - Inspector
 - Ajax Requests
   - Proxy (CS)
   - File Uploads
@@ -275,6 +291,7 @@ Wishlist
   - PHP
 - Repositories 
   - Dropbox
+  - Git
   - Riak
   - JCR
   - MongoDB
