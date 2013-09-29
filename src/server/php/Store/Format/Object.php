@@ -15,6 +15,8 @@
 */
 class Object extends Format {
 
+  const FILE_EXTENSION = 'obj';
+
   /**
   * Encode to format
   *
@@ -22,7 +24,7 @@ class Object extends Format {
   * @param {String} $datastore context identifier
   * @void
   */ 
-  public function encode($data){
+  public static function Encode($data){
     return serialize($data);
   }
 
@@ -33,7 +35,7 @@ class Object extends Format {
   * @param {String} $datastore context identifier
   * @void
   */ 
-  public function decode($data){
+  public static function Decode($data){
     return unserialize($data);
   }
 }

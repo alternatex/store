@@ -1,10 +1,8 @@
 <?php namespace Store\Driver;
 
-// TODO: Object store extends file system store call parent at the end -> process o real storage / gathering *
-
 use Store\Store;
 use Store\Format\Object as ObjectFormat;
-
+  
 /**
 * PHP Components *
 *
@@ -22,6 +20,7 @@ use Store\Format\Object as ObjectFormat;
 * - Throw exception w/Store::MESSAGE_* » handle as json/jsonp generic (2)
 *
 * @class Object
+* @deprecated use Store\Driver\File instead with an filename matching the target format
 */
 class Object extends File {
 
@@ -33,9 +32,7 @@ class Object extends File {
   * @void
   */ 
   protected function encode($data){
-    //return serialize($data);
-    $format = new ObjectFormat();    
-    return $format->encode($data);    
+    return ObjectFormat::Encode($data);    
   }
 
   /**
@@ -46,8 +43,6 @@ class Object extends File {
   * @void
   */ 
   protected function decode($data){
-    //return unserialize($data);
-    $format = new ObjectFormat();    
-    return $format->decode($data);        
+    return ObjectFormat::Decode($data);    
   }
 }

@@ -24,7 +24,7 @@ abstract class Format {
   * @param {String} $datastore context identifier
   * @void
   */ 
-  public abstract function encode($data);
+  public static abstract function Encode($data);
 
   /**
   * Decode from format 
@@ -33,5 +33,5 @@ abstract class Format {
   * @param {String} $datastore context identifier
   * @void
   */ 
-	public abstract function decode($data);
+	public static abstract function Decode($data);
 }

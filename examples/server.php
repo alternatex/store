@@ -1,7 +1,8 @@
 <?php
 
 // TODO: export - configuration: request
-define('HEADER_STORE_TYPE', 'X-Store-Type');
+define('HEADER_STORE_TYPE',     'X-Store-Type');
+define('HEADER_STORE_CALLBACK', 'X-Store-Callback');
 
 // class loader
 require_once('vendor/autoload.php');
@@ -48,6 +49,9 @@ if(isset($requestHeaders[HEADER_STORE_TYPE])) die($requestHeaders[HEADER_STORE_T
 // defaults
 $user='anonymous';
 
+// determine datastore filename
+$datastore = $user.".".$namespace.'.json';
+
 // debug helper
 $objectStore = true;
 
@@ -86,11 +90,11 @@ $returnValue = null;
 switch($action){
   case Store::STORE_ACTION_UPDATE:
     $returnValue = $store->update($instance);
-    $dostore = true;
+    $store->pending(true);
     break;
   case Store::STORE_ACTION_REMOVE:
     $returnValue = $store->remove($instance);
-    $dostore = true;
+    $store->pending(true);
     break;
   case Store::STORE_ACTION_GET:
     $returnValue = $store->get($instance);
@@ -108,9 +112,9 @@ switch($action){
 ob_get_clean();
 
 // write changes to disk *
-if($dostore){
+if($store->pending()){
   $store->persist($datastore);
 }
 
 // send response
-print $store->response($dostore, $returnValue, $jsonp);
+print $store->response($store->pending(), $returnValue, $jsonp);

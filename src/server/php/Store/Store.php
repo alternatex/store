@@ -15,6 +15,15 @@
 abstract class Store { 
 
   /**
+  * Flag to indicated pending changes
+  * @property data
+  * @private
+  * @type {Array}
+  * @default array()
+  */
+  private $pending = false;
+
+  /**
   * Items collection
   * @property data
   * @private
@@ -214,27 +223,18 @@ abstract class Store {
 
   abstract function update($instance);
   abstract function get($instance=null);
-  abstract function remove($instance);  
-
+  abstract function remove($instance);
+  abstract function response($dostore, $response, $jsonp);
+  
   /**
-  * Send output
+  * Get/Set pending changes flag
   * 
-  * @method response
-  * @param {boolean} $dostore
-  * @param {Array} $response
-  * @param {String} $jsonp
-  * @void
+  * @method isPending
+  * @param {boolean} $pending
+  * @return {boolean} 
   */ 
-  public function response($dostore, $response, $jsonp){
-
-    // update datastore * perf *
-    if($dostore) file_put_contents($this->datastore, serialize($this->items));
-
-    // send response
-    if(strlen($jsonp)>0) {
-      return $jsonp."(".json_encode($response).");";
-    } else {
-      return json_encode($response);
-    }    
-  }    
+  public function pending($pending=null){
+    if($pending!=null) $this->pending = $pending;
+    return $this->pending;
+  }   
 }

@@ -1,8 +1,10 @@
 <?php namespace Store\Driver;
 
-// TODO: Object store extends file system store call parent at the end -> process o real storage / gathering *
+// TODO: Implement format detection based on filename / mapping table (1st hardcoded, but within modular collection)
 
 use Store\Store;
+use Store\Format\Json as JsonFormat;
+use Store\Format\Object as ObjectFormat;
 
 /**
 * PHP Components *
@@ -18,6 +20,33 @@ use Store\Store;
 * @class Object
 */
 abstract class File extends FileSystem { 
+
+	// file format
+	private $format = null;
+
+  /**
+  * Encode to format
+  *
+  * @method decode
+  * @param {String} $datastore context identifier
+  * @void
+  */ 
+  protected function encode2($data){
+  	$format = $this->format;
+    $format::Encode($data);
+  }
+
+  /**
+  * Decode from format 
+  *
+  * @method decode
+  * @param {String} $datastore context identifier
+  * @void
+  */ 
+  protected function decode2($data){
+  	$format = $this->format;  	
+		$format::Decode($data);  
+	}
 
   /**
   * Encode to format
@@ -45,9 +74,15 @@ abstract class File extends FileSystem {
   * @void
   */ 
   public function load($datastore){
-    
+
     // store *
     $this->datastore = $datastore;
+
+    // helper json format class (aliases cannot be used in variable expansion -> $jsonFormat::FILE_EXTENSION)
+		$jsonFormat = 'Store\Format\Object';
+
+    // determine/attach formatting helper (TODO: implement 4 real)    
+    $this->format = 'Store\Format\Object'; // "Store\Format\\".(strpos($datastore, '.'.($jsonFormat::FILE_EXTENSION!==false?'Json':'Object')));
 
     // load from disk if exists
     if(file_exists($datastore)) { 
@@ -137,13 +172,13 @@ abstract class File extends FileSystem {
     if(!isset($instance[Store::ENTITY_IDENTIFIER])) return false;
     $this->items = $this->items;
     foreach($this->items as $index => $entry) {
-      $entry = $entry;
+      $entry = (array) $entry;
       if($entry[Store::ENTITY_IDENTIFIER]===$instance[Store::ENTITY_IDENTIFIER]) {
         return $index;
       }
     }  
     return false;
-  }
+   }
 
 
   /**
@@ -204,4 +239,25 @@ abstract class File extends FileSystem {
     return parent::persist($path, $content);
   }   
 
+  /**
+  * Send output
+  * 
+  * @method response
+  * @param {boolean} $dostore
+  * @param {Array} $response
+  * @param {String} $jsonp
+  * @void
+  */ 
+  public function response($dostore, $response, $jsonp){
+
+    // update datastore * perf *
+    if($dostore) file_put_contents($this->datastore, $this->encode($this->items));
+
+    // send response
+    if(strlen($jsonp)>0) {
+      return $jsonp."(".json_encode($response).");";
+    } else {
+      return json_encode($response);
+    }    
+  } 
 }

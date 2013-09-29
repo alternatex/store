@@ -13,6 +13,8 @@
 */
 class Json extends Format {
 
+  const FILE_EXTENSION = 'json';
+  
   /**
   * Encode to format
   *
@@ -20,7 +22,7 @@ class Json extends Format {
   * @param {String} $datastore context identifier
   * @void
   */ 
-  public function encode($data){
+  public static function Encode($data){
     return json_encode($data);
   }
 
@@ -31,7 +33,7 @@ class Json extends Format {
   * @param {String} $datastore context identifier
   * @void
   */ 
-  public function decode($data){
+  public static function Decode($data){
     return json_decode($data);
   }
 }

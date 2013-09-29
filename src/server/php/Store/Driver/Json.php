@@ -15,6 +15,7 @@ use Store\Format\Json as JsonFormat;
 * Store data using `json_encode()`. Prototyping-Only.
 *
 * @class Json
+* @deprecated use Store\Driver\File instead with an filename matching the target format
 */
 class Json extends File {
 
@@ -26,9 +27,7 @@ class Json extends File {
   * @void
   */ 
   protected function encode($data){
-    //return json_encode($data);
-    $format = new JsonFormat();    
-    return $format->encode($data);
+    return JsonFormat::Encode($data);
   }
 
   /**
@@ -39,9 +38,7 @@ class Json extends File {
   * @void
   */ 
   protected function decode($data){
-    //return json_decode($data);
-    $format = new JsonFormat();    
-    return $format->decode($data);    
+    return JsonFormat::Decode($data);    
   }
 
   /**
@@ -60,6 +57,5 @@ class Json extends File {
       }
     }  
     return false;
-  }
-
+   }  
 }

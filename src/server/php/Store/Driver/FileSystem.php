@@ -19,7 +19,7 @@ use Store\Store;
 *
 * @class FileSystem
 */
-class FileSystem extends Store {
+abstract class FileSystem extends Store {
 
   /**
   * Path to file
