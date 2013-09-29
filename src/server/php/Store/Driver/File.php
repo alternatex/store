@@ -169,17 +169,16 @@ abstract class File extends FileSystem {
   * @return {Array} List of item instances
   */ 
   public function find($instance){
-    if(!isset($instance[Store::ENTITY_IDENTIFIER])) return false;
-    $this->items = $this->items;
-    foreach($this->items as $index => $entry) {
-      $entry = (array) $entry;
-      if($entry[Store::ENTITY_IDENTIFIER]===$instance[Store::ENTITY_IDENTIFIER]) {
-        return $index;
-      }
-    }  
-    return false;
-   }
-
+		if(!isset($instance[Store::ENTITY_IDENTIFIER])) return false;
+		$this->items = (array) $this->items;
+		foreach($this->items as $index => $entry) {
+		  $entry = (array) $entry;
+		  if($entry[Store::ENTITY_IDENTIFIER]===$instance[Store::ENTITY_IDENTIFIER]) {
+		    return $index;
+		  }
+		}  
+		return false;
+  } 
 
   /**
   * Filter items
@@ -249,6 +248,9 @@ abstract class File extends FileSystem {
   * @void
   */ 
   public function response($dostore, $response, $jsonp){
+
+  	// be nice
+  	header('Content-Type: text/javascript');
 
     // update datastore * perf *
     if($dostore) file_put_contents($this->datastore, $this->encode($this->items));

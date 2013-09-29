@@ -1,7 +1,13 @@
-define(["jquery", "store", "require.store", "underscore", "configuration" , "epiceditor", "data", "shop"], function($, Store, res, u, conf, EpicEditor, data, shop) {
+define(["jquery", "store", "require.store", "underscore", "configuration" , "data", "shop"], function($, Store, res, u, conf, data, shop) {
 
   console.log("DATA IS:", data);
   console.log("SHOP IS:", shop);
+
+  _.when(documentStore.list()).done(function(data){
+    console.log((data));
+  }); 
+
+  return true;
 
 	var epicEditor = new EpicEditor({
     file: {
@@ -32,7 +38,5 @@ define(["jquery", "store", "require.store", "underscore", "configuration" , "epi
     autogrow: true          
   }).load();
 	console.log("EpicEditor", epicEditor);
-  _.when(documentStore.list()).done(function(data){
-    console.log((data));
-  });        
+       
 });
