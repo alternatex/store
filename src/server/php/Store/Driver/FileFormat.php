@@ -11,14 +11,9 @@ use Store\Store;
 **/
 
 /**
-* PHP Object Store 
+* FileFormat
 *
-* Store data using `serialize()`. Prototyping-Only.
-* 
-* TODO
-* ----
-* - IncludeWidespread.FilterData
-* - Throw exception w/Store::MESSAGE_* » handle as json/jsonp generic (2)
+* Abstract file format content type (encoding/decoding)
 *
 * @class Object
 */
