@@ -25,6 +25,11 @@ if(isset($requestHeaders[HEADER_STORE_TYPE])) die($requestHeaders[HEADER_STORE_T
 // determine store based on special header field
 // x-store-type: object/json,markdown,... 4 client driven -> limonade
 // json configuration by path, ..... 4 server driven -> limonade
+
+// -> limonade
+// -> limonade
+// -> limonade
+// -> limonade
 // -> limonade
 
 // defaults
