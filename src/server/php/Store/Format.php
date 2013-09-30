@@ -1,9 +1,7 @@
-<?php namespace Store\Format;
-
-use Store\Store;
+<?php namespace Store;
 
 /**
-* FileFormat
+* Format fundamentals
 *
 * Abstract file format content type (encoding/decoding)
 *

@@ -1,5 +1,7 @@
 <?php namespace Store\Format;
 
+use Store\Format;
+
 /**
 * Json Formatted Contents
 *

@@ -1,5 +1,7 @@
 <?php namespace Store\Format;
 
+use Store\Format;
+
 // TODO: Object store extends file system store call parent at the end -> process o real storage / gathering *
 
 /**
