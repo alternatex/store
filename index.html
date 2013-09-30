@@ -167,16 +167,16 @@
   <span class="c1">// local variables</span>
   <span class="kd">var</span> <span class="nx">object</span><span class="p">,</span> <span class="nx">objectId</span><span class="p">,</span> <span class="nx">objectStore</span><span class="p">,</span> <span class="nx">objects</span><span class="p">;</span>
 
-  <span class="c1">// configure storage defaults </span>
+  <span class="c1">// configure store defaults </span>
   <span class="nx">Store</span><span class="p">.</span><span class="nx">configure</span><span class="p">({</span> 
     <span class="nx">url</span><span class="o">:</span> <span class="s2">"http://localhost/store/examples/server.php"</span><span class="p">,</span> 
     <span class="nx">ttl</span><span class="o">:</span> <span class="mi">36000</span>
   <span class="p">});</span>
 
-  <span class="c1">// create new storage</span>
+  <span class="c1">// create new store</span>
   <span class="nx">objectStore</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Store</span><span class="p">({</span> <span class="nx">namespace</span><span class="o">:</span> <span class="s1">'object'</span> <span class="p">});</span>
 
-  <span class="c1">// create new storage bound object</span>
+  <span class="c1">// create new store bound object</span>
   <span class="nx">object</span> <span class="o">=</span> <span class="nx">objectStore</span><span class="p">.</span><span class="nx">create</span><span class="p">({</span> 
     <span class="nx">country</span><span class="o">:</span> <span class="s1">'US'</span><span class="p">,</span> 
     <span class="nx">firstname</span><span class="o">:</span> <span class="s1">'Stephen'</span><span class="p">,</span> 
@@ -227,17 +227,20 @@
     <span class="p">}).</span><span class="nx">update</span><span class="p">());</span>
   <span class="p">});</span>
 
-  <span class="c1">// fetch all objects &amp; register callback </span>
-  <span class="nx">objects</span> <span class="o">=</span> <span class="nx">objectStore</span><span class="p">.</span><span class="nx">list</span><span class="p">();</span>
-
-  <span class="c1">// when all objects have been retrieved</span>
+  <span class="c1">// when all objects have been updated</span>
   <span class="nx">Store</span><span class="p">.</span><span class="nx">when</span><span class="p">(</span><span class="nx">objects</span><span class="p">).</span><span class="nx">done</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">objects</span><span class="p">){</span>
 
-    <span class="c1">// log each</span>
-    <span class="nx">objects</span><span class="p">.</span><span class="nx">forEach</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">object</span><span class="p">,</span> <span class="nx">index</span><span class="p">){</span>
-      <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">index</span><span class="p">,</span> <span class="nx">object</span><span class="p">);</span>
-    <span class="p">});</span>
+    <span class="c1">// fetch all objects </span>
+    <span class="nx">objects</span> <span class="o">=</span> <span class="nx">objectStore</span><span class="p">.</span><span class="nx">list</span><span class="p">();</span>
 
+    <span class="c1">// print when object have been retrieved</span>
+    <span class="nx">Store</span><span class="p">.</span><span class="nx">when</span><span class="p">(</span><span class="nx">objects</span><span class="p">).</span><span class="nx">done</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">objects</span><span class="p">){</span>
+
+      <span class="c1">// log each</span>
+      <span class="nx">objects</span><span class="p">.</span><span class="nx">forEach</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">object</span><span class="p">,</span> <span class="nx">index</span><span class="p">){</span>
+        <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">index</span><span class="p">,</span> <span class="nx">object</span><span class="p">);</span>
+      <span class="p">});</span>
+    <span class="p">});</span>    
   <span class="p">});</span>
 
   <span class="c1">// fetch object </span>
@@ -269,7 +272,27 @@
 <a name="repositories" class="anchor" href="#repositories"><span class="octicon octicon-link"></span></a>Repositories</h2>
 
 <h3>
-<a name="php-object-store" class="anchor" href="#php-object-store"><span class="octicon octicon-link"></span></a>PHP Object Store</h3>
+<a name="file-stores" class="anchor" href="#file-stores"><span class="octicon octicon-link"></span></a>File Stores</h3>
+
+<p>Collections stored on a per file basis.</p>
+
+<h4>
+<a name="csv" class="anchor" href="#csv"><span class="octicon octicon-link"></span></a>CSV</h4>
+
+<p>...</p>
+
+<h4>
+<a name="json" class="anchor" href="#json"><span class="octicon octicon-link"></span></a>JSON</h4>
+
+<p>...</p>
+
+<h4>
+<a name="markdown" class="anchor" href="#markdown"><span class="octicon octicon-link"></span></a>Markdown</h4>
+
+<p>...</p>
+
+<h4>
+<a name="serialized" class="anchor" href="#serialized"><span class="octicon octicon-link"></span></a>Serialized</h4>
 
 <p>Stores data using PHPs <code>serialize()</code> function. Supports embedding binary data base64 encoded.</p>
 
@@ -299,6 +322,8 @@ curl -h ...
 <ul>
 <li>Inspector</li>
 </ul>
+</li>
+<li>Driver/Format Base Classes/Extraction<br>
 </li>
 <li>Ajax Requests
 
