@@ -1,10 +1,12 @@
-<?php namespace Store\Driver;
+<?php namespace Store\Resource;
 
 // TODO: Implement format detection based on filename / mapping table (1st hardcoded, but within modular collection)
 // TODO: File should be a resource only 
 // -> create additional layer for collection files (which is what the current json/object implementation is)
+// TODO: Combine w/Dropbox -> introduce "locations"
 
 use Store\Store;
+use Store\Protocol\FileSystem;
 
 /**
 * FileFormat

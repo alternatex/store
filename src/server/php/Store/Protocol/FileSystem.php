@@ -1,4 +1,4 @@
-<?php namespace Store\Driver;
+<?php namespace Store\Protocol;
 
 use Store\Store;
 

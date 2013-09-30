@@ -1,4 +1,4 @@
-<?php namespace Store\Driver;
+<?php namespace Store\Protocol;
 
 // TODO: 
 // - implement store inherited functions & add test scripts

@@ -14,7 +14,7 @@ session_start();
 ob_start();
 
 // aliases
-use \Store\Driver\BitTorrent,
+use \Store\Protocol\BitTorrent,
     \Store\Security\Auth,
     \Store\Security\Token,
     \Store\Security\User,
@@ -56,7 +56,7 @@ $datastore = $user.".".$namespace.'.json';
 $objectStore = true;
 
 // initialize storage
-$Store = '\\Store\\Driver\\'.($objectStore ? 'File' : 'Markdown');
+$Store = '\\Store\\Resource\\File';
 
 // hold store opening party
 $store = new $Store();
