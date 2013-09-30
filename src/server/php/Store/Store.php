@@ -274,4 +274,34 @@ abstract class Store {
     if($pending!=null) $this->pending = $pending;
     return $this->pending;
   }   
+
+  /**
+  * Mirror store actions *
+  * 
+  * @method mirror
+  * @void
+  */
+  public function mirror(){
+    // TODO: implement
+  }
+
+  /**
+  * AMD/CommonJS helper utility
+  * 
+  * @method PrintCommonJSModule
+  * @void
+  */
+  public static function PrintCommonJSModule($key, $data){
+    header('content-type: application/javascript');
+    print str_replace(array("\n", "\t", "   ", "   ", "  "), "","
+  (function (root, factory) {
+    if (typeof define === 'function' && define.amd) {
+      define(factory);
+    } else {
+      root.".$key." = factory();
+    }
+  }(this, function () {
+    return ".json_encode($data).";
+  }));");  
+  }  
 }

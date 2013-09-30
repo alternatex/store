@@ -1,12 +1,8 @@
 <?php namespace Store\Protocol;
 
-use Store\Store;
+// TODO: thread-safety
 
-// TODO: thread-safety
-// TODO: thread-safety
-// TODO: thread-safety
-// TODO: thread-safety
-// TODO: thread-safety
+use Store\Store;
 
 /**
 * FileSystem Plaintext Store 

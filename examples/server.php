@@ -33,9 +33,6 @@ $user='anonymous';
 // determine datastore filename
 $datastore = $user.".".$namespace.'.json';
 
-// debug helper
-$objectStore = true;
-
 // initialize storage
 $Store = '\\Store\\Driver\\File';
 
@@ -56,7 +53,7 @@ if(trim($namespace)=="" || trim($action)=="") {
 }
 
 // determine datastore filename
-$datastore = $user.".".$namespace.(!$objectStore?'x':'').'.dat';
+$datastore = $user.".".$namespace.'.dat';
 
 // load contents
 $store->load($datastore);
