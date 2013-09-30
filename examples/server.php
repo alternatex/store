@@ -56,7 +56,7 @@ $datastore = $user.".".$namespace.'.json';
 $objectStore = true;
 
 // initialize storage
-$Store = '\\Store\\Driver\\'.($objectStore ? 'Object' : 'Markdown');
+$Store = '\\Store\\Driver\\'.($objectStore ? 'File' : 'Markdown');
 
 // hold store opening party
 $store = new $Store();

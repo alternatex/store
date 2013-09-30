@@ -96,6 +96,7 @@ class Git extends Store {
   * @void
   */  
   public function update($filename){
+    $this->add($filename);
     die($filename);
   }
 

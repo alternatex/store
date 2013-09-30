@@ -13,7 +13,7 @@ use Store\Store;
 *
 * @class Object
 */
-abstract class File extends FileSystem { 
+class File extends FileSystem { 
 
   // file format(s)
   private $format = null;
@@ -26,9 +26,9 @@ abstract class File extends FileSystem {
   * @param {String} $datastore context identifier
   * @void
   */ 
-  protected function encode2($data){
+  protected function encode($data){
     $format = $this->format;
-    $format::Encode($data);
+    return $format::Encode($data);
   }
 
   /**
@@ -38,28 +38,10 @@ abstract class File extends FileSystem {
   * @param {String} $datastore context identifier
   * @void
   */ 
-  protected function decode2($data){
+  protected function decode($data){
     $format = $this->format;    
-    $format::Decode($data);  
+    return $format::Decode($data);  
   }
-
-  /**
-  * Encode to format
-  *
-  * @method decode
-  * @param {String} $datastore context identifier
-  * @void
-  */ 
-  protected abstract function encode($data);
-
-  /**
-  * Decode from format 
-  *
-  * @method decode
-  * @param {String} $datastore context identifier
-  * @void
-  */ 
-  protected abstract function decode($data);
 
   /**
   * Load repository 

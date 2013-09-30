@@ -287,36 +287,21 @@ curl -h ...
 
 Roadmap
 -------------
-- Record/Playback
-  - Inspector
-- Driver/Format Base Classes/Extraction  
-- Ajax Requests
-  - Proxy (CS)
-  - File Uploads
-- Client Queries (Memory/Localstorage)
-  - Remote List » Local Get
-- Documentation / Examples
+- Authorization Layer
+- Security Basics (CSRF, ..)
+- Client Request MockAPI
+- Documentation
   - Stores
   - Settings
   - Todo-App
-- Security (CSRF & friends)
+- Record/Playback
+  - Inspector
 - Test Coverage + 1
 
 Wishlist
 -------------
 - JSON Schema
-- REST Client
-  - Node.js
-  - PHP
-- Repositories 
-  - Dropbox
-  - Git
-  - Riak
-  - JCR
-  - MongoDB
-  - Redis
-  - PHPCR
-  - HTML5 Stores (*)
+- Scaffold Support/Generators
 - Synchronization
 - HTML5 FileSystem API
 - Filters Client/Server
