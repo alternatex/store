@@ -1,12 +1,6 @@
 <?php namespace Store;
 
 /**
-* PHP Components *
-*
-* @module PHP
-**/
-
-/**
 * Store fundamentals
 *
 * @class Server
@@ -18,8 +12,8 @@ abstract class Store {
   * Flag to indicated pending changes
   * @property data
   * @private
-  * @type {Array}
-  * @default array()
+  * @type {Boolean}
+  * @default false
   */
   private $pending = false;
 
@@ -34,22 +28,22 @@ abstract class Store {
 
   /**
   * Datastore filename
-  * @property data
+  * @property datastore
   * @private
-  * @type {Array}
-  * @default array()
+  * @type {String}
+  * @default null
   */
   protected $datastore = null;
 
   /**
   * HTTP Header storage type indicator
-  * @property REQUEST_STORAGE_TYPE_HEADER_FIELD
+  * @property REQUEST_STORE_TYPE_HEADER_FIELD
   * @public
   * @type {String}
   * @default x-storage-type
   * @readOnly
   */
-  const REQUEST_STORAGE_TYPE_HEADER_FIELD = 'x-storage-type';
+  const REQUEST_STORE_TYPE_HEADER_FIELD = 'X-Storage-Type';
 
   /**
   * Toggle JSONP
@@ -221,11 +215,44 @@ abstract class Store {
   */  
   const TRANSFER_TARGET = 'name';  
 
+  /**
+  * Insert or update item data in datastore
+  *
+  * @method update
+  * @param {Object} $item what it's about
+  * @return {Boolean} Returns true on success
+  */ 
   abstract function update($instance);
+
+  /**
+  * Get item data
+  *
+  * @method get
+  * @param {Object} $item what it's about
+  * @return {Object} item instance
+  */ 
   abstract function get($instance=null);
+
+  /**
+  * Removes an item from datastore
+  *
+  * @method remove
+  * @param {Object} $item what it's about
+  * @return {Boolean} Returns true on success
+  */   
   abstract function remove($instance);
+
+  /**
+  * Send output
+  * 
+  * @method response
+  * @param {boolean} $dostore
+  * @param {Array} $response
+  * @param {String} $jsonp
+  * @void
+  */  
   abstract function response($dostore, $response, $jsonp);
-  
+
   /**
   * Get/Set pending changes flag
   * 

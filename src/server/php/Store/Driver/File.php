@@ -1,16 +1,10 @@
 <?php namespace Store\Driver;
 
 // TODO: Implement format detection based on filename / mapping table (1st hardcoded, but within modular collection)
+// TODO: File should be a resource only 
+// -> create additional layer for collection files (which is what the current json/object implementation is)
 
 use Store\Store;
-use Store\Format\Json as JsonFormat;
-use Store\Format\Object as ObjectFormat;
-
-/**
-* PHP Components *
-*
-* @module PHP
-**/
 
 /**
 * FileFormat

@@ -3,6 +3,8 @@
 * @module Client
 **/
 
+// TODO: add enhanced "class" support w/ getter/setter if avail: Object.defineProperty(fnc.prototype, ...)
+
 // module definition 
 (function (root) { var amdExports; define('store', ["underscore"], function (_) { (function () {
 

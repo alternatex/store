@@ -2,12 +2,6 @@
 
 use Store\Store;
 
-/**
-* PHP Components *
-*
-* @module PHP
-**/
-
 // TODO: thread-safety
 // TODO: thread-safety
 // TODO: thread-safety

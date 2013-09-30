@@ -1,83 +1,37 @@
 <?php namespace Store\Driver;
 
-use Store\Driver\FileSystem;
+// TODO: Implement when File got abstracted for json/object formats
 
-/**
-* PHP Components *
-*
-* @module PHP
-**/
+use Store\Driver\FileSystem;
 
 /**
 * Markdown Plaintext Store 
 *
 * @class Markdown
 * @constructor
+* @deprecated use Store\Driver\File instead with an filename matching the target format
 */
-class Markdown extends FileSystem {
+class Markdown extends File {
 
   /**
-  * Path to file
-  * @property filepath
-  * @private
-  * @type {Array}
-  * @default array()
-  */
-  private $filepath = null;
-
-  /**
-  * Load repository 
+  * Encode to format
   *
-  * @method load
-  * @param {String} $filepath context identifier
+  * @method decode
+  * @param {String} $datastore context identifier
   * @void
   */ 
-  public function load($filepath){}
-
-  /**
-  * Insert or update item data in filepath
-  *
-  * @method update
-  * @param {Object} $item what it's about
-  * @return {Boolean} Returns true on success
-  */ 
-  public function update($instance){
-    return file_put_contents($instance['path'], $instance['content']);
+  protected function encode($data){
+    return MarkdownFormat::Encode($data);
   }
 
   /**
-  * Removes an item from filepath
+  * Decode from format 
   *
-  * @method remove
-  * @param {Object} $item what it's about
-  * @return {Boolean} Returns true on success
-  */ 
-  public function remove($instance){
-    @unlink($instance['path']);
-  }
-
-  /**
-  * Get item data
-  *
-  * @method get
-  * @param {Object} $item what it's about
-  * @return {Object} item instance
-  */ 
-  public function get($instance=null){    
-    return @file_get_contents($instance['path']);
-  }  
-
-  /**
-  * Persist data
-  * 
-  * @method persist
-  * @param {String} filepath
-  * @param {String} contents
+  * @method decode
+  * @param {String} $datastore context identifier
   * @void
   */ 
-  public function persist($path=null, $content=null){
-
-    // ...
-    return parent::persist($path, $content);
-  }
+  protected function decode($data){
+    return MarkdownFormat::Decode($data);    
+  } 
 }

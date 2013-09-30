@@ -7,12 +7,6 @@
 use Store\Store;
 
 /**
-* PHP Components *
-*
-* @module PHP
-**/
-
-/**
 * Git Store 
 *
 * Basic git integration

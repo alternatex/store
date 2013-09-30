@@ -1,16 +1,14 @@
 <?php namespace Store\Format;
 
-// TODO: Object store extends file system store call parent at the end -> process o real storage / gathering *
-
 /**
-* Serialized Objects
+* Csv Formatted Contents
 *
-* @class Object
+* @class Csv
 */
-class Object extends Format {
+class Csv extends Format {
 
-  const FILE_EXTENSION = 'obj';
-
+  const FILE_EXTENSION = 'csv';
+  
   /**
   * Encode to format
   *
@@ -19,7 +17,7 @@ class Object extends Format {
   * @void
   */ 
   public static function Encode($data){
-    return serialize($data);
+    return die("Implement: ".__CLASS__."::".__FUNCTION__);
   }
 
   /**
@@ -30,6 +28,6 @@ class Object extends Format {
   * @void
   */ 
   public static function Decode($data){
-    return unserialize($data);
+    return die("Implement: ".__CLASS__."::".__FUNCTION__);
   }
 }

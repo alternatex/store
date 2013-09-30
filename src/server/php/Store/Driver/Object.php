@@ -4,12 +4,6 @@ use Store\Store;
 use Store\Format\Object as ObjectFormat;
   
 /**
-* PHP Components *
-*
-* @module PHP
-**/
-
-/**
 * PHP Object Store 
 *
 * Store data using `serialize()`. Prototyping-Only.

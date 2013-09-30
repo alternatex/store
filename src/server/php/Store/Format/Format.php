@@ -3,12 +3,6 @@
 use Store\Store;
 
 /**
-* PHP Components *
-*
-* @module PHP
-**/
-
-/**
 * FileFormat
 *
 * Abstract file format content type (encoding/decoding)

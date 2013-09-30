@@ -1,12 +1,6 @@
 <?php namespace Store\Format;
 
 /**
-* PHP Components *
-*
-* @module PHP
-**/
-
-/**
 * Json Formatted Contents
 *
 * @class Json

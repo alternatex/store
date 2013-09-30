@@ -4,12 +4,6 @@ use Store\Store;
 use Store\Format\Json as JsonFormat;
 
 /**
-* PHP Components *
-*
-* @module PHP
-**/
-
-/**
 * PHP Json Store 
 *
 * Store data using `json_encode()`. Prototyping-Only.

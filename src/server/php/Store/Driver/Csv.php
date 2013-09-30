@@ -1,15 +1,11 @@
 <?php namespace Store\Driver;
 
+// TODO: Implement
+
 use Store\Store;
 
 /**
-* PHP Components *
-*
-* @module PHP
-**/
-
-/**
-* PHP Object Store 
+* CSV Store 
 *
 * Store data using `serialize()`. Prototyping-Only.
 * 
@@ -19,8 +15,9 @@ use Store\Store;
 * - Throw exception w/Store::MESSAGE_* » handle as json/jsonp generic (2)
 *
 * @class Csv
+* @deprecated use Store\Driver\File instead with an filename matching the target format
 */
-class Csv extends Object {
+class Csv extends File {
 
   /**
   * Items collection
