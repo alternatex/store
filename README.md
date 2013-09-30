@@ -16,11 +16,11 @@ Index
       * [Store](#store-2)
       * [Remove](#remove)
   * [Summary](#summary)
+* [API](#api)  
 * [Repositories](#repositories)
       * [File Stores](#file-stores)
           * [CSV](#csv)
           * [JSON](#json)
-          * [Markdown](#markdown)
           * [Serialized](#serialized)
 * [Documentation](#documentation)
   * [CURL](#curl)
@@ -235,6 +235,13 @@ objectStore.remove(object);
 </script>
 ```
 
+API
+-------------
+
+### Routes
+
+...
+
 Repositories
 -------------
 
@@ -248,11 +255,7 @@ Collections stored on a per file basis.
 
 #### JSON
 
-...
-
-#### Markdown
-
-...
+Supports embedding binary data base64 encoded.
 
 #### Serialized
 
