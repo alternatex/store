@@ -20,10 +20,15 @@ Index
       * [User](#user)
   * [Summary](#summary)
 * [Repositories](#repositories)
-* [Wishlist](#wishlist)
+      * [File Stores](#file-stores)
+          * [CSV](#csv)
+          * [JSON](#json)
+          * [Markdown](#markdown)
+          * [Serialized](#serialized)
 * [Documentation](#documentation)
-  * [CURL](#curl)
+  * [CURL](#curl)          
 * [Roadmap](#roadmap)
+* [Wishlist](#wishlist)
 * [License](#license)
 
 Quickstart
@@ -245,7 +250,23 @@ objectStore.remove(object);
 Repositories
 -------------
 
-### PHP Object Store
+### File Stores
+
+Collections stored on a per file basis.
+
+#### CSV
+
+...
+
+#### JSON
+
+...
+
+#### Markdown
+
+...
+
+#### Serialized
 
 Stores data using PHPs `serialize()` function. Supports embedding binary data base64 encoded.
 

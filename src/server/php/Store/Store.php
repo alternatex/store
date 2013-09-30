@@ -242,7 +242,6 @@ abstract class Store {
   */   
   abstract function remove($instance);
 
-
   /**
   * Persist data
   * 
@@ -252,7 +251,7 @@ abstract class Store {
   * @void
   */ 
   abstract function persist($path=null, $content=null);
-  
+
   /**
   * Send output
   * 
