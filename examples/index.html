@@ -6,10 +6,14 @@
       function nickname(entry){
         alert(entry.nickname);
       }
+      function name(entry){
+        alert(entry.name);
+      }
     </script>
-    <script src="http://localhost/store/examples/server.php?namespace=resources&amp;instance[path]=rootdirectoryname&amp;instance[content]=somecontent&amp;action=get&amp;instance[type]=default&amp;instance[id]=user@host.tld&amp;instance[name]=johnny_walker&amp;instance[nickname]=nickynicknicknick&amp;jsonp=console.log&amp;jsonp=nickname"></script>    
-    <script src="http://localhost/store/examples/server.php?namespace=resources&amp;instance[path]=rootdirectoryname&amp;instance[content]=somecontent&amp;action=update&amp;instance[type]=default&amp;instance[name]=johnny_walker&amp;instance[nickname]=sally&amp;jsonp=console.log&amp;jsonp=console.log"></script>    
+    <script src="http://localhost/store/examples/server.php?namespace=resources&amp;action=update&amp;instance[type]=default&amp;instance[name]=johnny_walker&amp;instance[nickname]=sally&amp;jsonp=console.log&amp;jsonp=console.log"></script>    
     <script src="http://localhost/store/examples/server.php?namespace=resources&amp;action=list&amp;instance[type]=default&amp;instance[name]=johnny_walker&amp;instance[nickname]=sally&amp;jsonp=console.log&amp;jsonp=console.log"></script>    
+    <script src="http://localhost/store/examples/server.php?namespace=resources&amp;action=get&amp;instance[type]=default&amp;instance[id]=user@host.tld&amp;jsonp=console.log&amp;jsonp=nickname"></script>    
+    <script src="http://localhost/store/examples/server.php?namespace=pony&amp;action=get&amp;instance[type]=default&amp;instance[id]=1ae0dd01-1659-58af-1369-bc615041e73e&amp;jsonp=name"></script>    
   </head>
   <body>    
     <pre>

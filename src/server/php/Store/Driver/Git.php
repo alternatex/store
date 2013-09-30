@@ -53,7 +53,7 @@ class Git extends Store {
   * @param {String} $remote  
   * @param {Boolean} $unset  
   */
-  public function remote($remote, $unset=false){
+  protected function remote($remote, $unset=false){
     if($unset===true){
       unset($this->remotes[$remote]);
     } else {
@@ -68,7 +68,7 @@ class Git extends Store {
   * @param {String} $branch  
   * @param {Boolean} $unset  
   */
-  public function branch($branch, $unset=false){
+  protected function branch($branch, $unset=false){
     if($unset===true){
       unset($this->branches[$branch]);
     } else {
@@ -144,7 +144,7 @@ class Git extends Store {
   * @param {String} $filename 
   * @void
   */    
-  public function add($filename){
+  protected function add($filename){
     exec('git add '.$filename);
     $this->commit('added '.$filename);              
   }
