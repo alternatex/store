@@ -13,9 +13,9 @@ Index
       * [Create](#create)
   * [Object](#object)
       * [Create](#create-1)
-      * [Get](#get)
+      * [Read](#read)
       * [Update](#update)
-      * [Remove](#remove)
+      * [Delete](#delete)
   * [Summary](#summary)
 * [Repositories](#repositories)
       * [File Stores](#file-stores)
@@ -91,7 +91,7 @@ object.set('firstname', 'Jon');
 object.set('lastname', 'Stewart'); 
 ```
 
-#### Get
+#### Read
 
 ##### List
 ```javascript
@@ -115,7 +115,7 @@ object.update();
 objectStore.update(object);
 ```
 
-#### Remove
+#### Delete
 
 ##### Instance
 ```javascript
