@@ -8,22 +8,22 @@ Index
 * [Quickstart](#quickstart)
   * [Embedding](#embedding)
   * [Defaults](#defaults)
+* [Client API](#client-api)  
   * [Store](#store-1)
       * [Create](#create)
   * [Object](#object)
       * [Create](#create-1)
       * [Get](#get)
-      * [Store](#store-2)
+      * [Update](#update)
       * [Remove](#remove)
   * [Summary](#summary)
-* [API](#api)  
 * [Repositories](#repositories)
       * [File Stores](#file-stores)
           * [CSV](#csv)
           * [JSON](#json)
           * [Serialized](#serialized)
 * [Documentation](#documentation)
-  * [CURL](#curl)
+      * [CURL](#curl)
 * [Roadmap](#roadmap)
 * [Wishlist](#wishlist)
 * [License](#license)
@@ -44,6 +44,9 @@ require(["store"], function(Store) {
 ```html
 <script src="src/client/store.js"></script>
 ```
+
+Client API
+-------------
 
 ### Store
 
@@ -100,7 +103,7 @@ objectStore.list();
 objectStore.get('8c0c1ff0-d0fe-38b7-376a-b0b1d53bd557');
 ```
 
-#### Store
+#### Update
 
 ##### Instance
 ```javascript
@@ -234,9 +237,6 @@ objectStore.remove(object);
 })();
 </script>
 ```
-
-API
--------------
 
 ### Routes
 
