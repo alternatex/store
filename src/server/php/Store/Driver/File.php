@@ -1,4 +1,4 @@
-<?php namespace Store\Resource;
+<?php namespace Store\Driver;
 
 // TODO: Implement format detection based on filename / mapping table (1st hardcoded, but within modular collection)
 // TODO: File should be a resource only 

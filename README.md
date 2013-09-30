@@ -15,9 +15,6 @@ Index
       * [Get](#get)
       * [Store](#store-2)
       * [Remove](#remove)
-  * [Access Control](#access-control)
-      * [Auth](#auth)
-      * [User](#user)
   * [Summary](#summary)
 * [Repositories](#repositories)
       * [File Stores](#file-stores)
@@ -26,7 +23,7 @@ Index
           * [Markdown](#markdown)
           * [Serialized](#serialized)
 * [Documentation](#documentation)
-  * [CURL](#curl)          
+  * [CURL](#curl)
 * [Roadmap](#roadmap)
 * [Wishlist](#wishlist)
 * [License](#license)
@@ -126,15 +123,6 @@ object.remove();
 ```javascript
 objectStore.remove(object);
 ```
-
-### Access Control
-...
-
-#### Auth 
-...
-
-#### User
-...
 
 ### Summary
 
@@ -287,8 +275,6 @@ curl -h ...
 
 Roadmap
 -------------
-- Authorization Layer
-- Security Basics (CSRF, ..)
 - Client Request MockAPI
 - Documentation
   - Stores
@@ -305,6 +291,7 @@ Wishlist
 - Synchronization
 - HTML5 FileSystem API
 - Filters Client/Server
+- ACL
 
 License
 -------------

@@ -14,26 +14,7 @@ session_start();
 ob_start();
 
 // aliases
-use \Store\Protocol\BitTorrent,
-    \Store\Security\Auth,
-    \Store\Security\Token,
-    \Store\Security\User,
-    \Store\Server\SocketServer,
-    \Store\Store;
-
-// TODO: implement (1st direct, 2nd by integration of `authenticate` library)
-if(false){
-
-  // user
-  $user = new User('username', 'password');
-
-  // authorization 
-  $auth = Auth::GetInstance('acl.json');  
-  $auth->validate($user);
-}
-
-// connect to socket
-$socketServer = new SocketServer();
+use \Store\Store;
 
 // retrieve request headers
 $requestHeaders = getallheaders();
@@ -56,7 +37,7 @@ $datastore = $user.".".$namespace.'.json';
 $objectStore = true;
 
 // initialize storage
-$Store = '\\Store\\Resource\\File';
+$Store = '\\Store\\Driver\\File';
 
 // hold store opening party
 $store = new $Store();
