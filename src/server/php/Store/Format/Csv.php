@@ -7,7 +7,7 @@ use Store\Format;
 *
 * @class Csv
 */
-class Csv extends Format {
+class Csv implements Format {
 
   const FILE_EXTENSION = 'csv';
   

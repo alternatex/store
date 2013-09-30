@@ -7,7 +7,7 @@ use Store\Format;
 *
 * @class Json
 */
-class Json extends Format {
+class Json implements Format {
 
   const FILE_EXTENSION = 'json';
   

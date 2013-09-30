@@ -9,7 +9,7 @@ use Store\Format;
 *
 * @class Object
 */
-class Object extends Format {
+class Object implements Format {
 
   const FILE_EXTENSION = 'obj';
 

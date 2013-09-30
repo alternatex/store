@@ -7,7 +7,7 @@ use Store\Format;
 *
 * @class Markdown
 */
-class Markdown extends Format {
+class Markdown implements Format {
 
   const FILE_EXTENSION = 'md';
   

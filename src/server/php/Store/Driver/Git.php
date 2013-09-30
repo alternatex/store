@@ -22,7 +22,7 @@ class Git extends Store {
   * @type {Array}
   * @default array()
   */
-	protected $remotes = array();
+  protected $remotes = array();
 
   /**
   * Branch collection
@@ -31,7 +31,7 @@ class Git extends Store {
   * @type {Array}
   * @default array()
   */
-	protected $branches = array();
+  protected $branches = array();
 
   /**
   * Constructor
@@ -42,8 +42,8 @@ class Git extends Store {
   * @param {String} $branch  
   */
   public function __construct($remote='origin', $branch='master'){
-  	$this->remote($remote);
-  	$this->branch($branch);
+    $this->remote($remote);
+    $this->branch($branch);
   }
 
   /**
@@ -54,11 +54,11 @@ class Git extends Store {
   * @param {Boolean} $unset  
   */
   public function remote($remote, $unset=false){
-  	if($unset!==false){
-  		$this->remotes[$remote] = array();
-  	} else {
-  		unset($this->remotes[$remote]);
-  	}
+    if($unset===true){
+      unset($this->remotes[$remote]);
+    } else {
+      $this->remotes[$remote] = array();      
+    }
   }
 
   /**
@@ -69,11 +69,11 @@ class Git extends Store {
   * @param {Boolean} $unset  
   */
   public function branch($branch, $unset=false){
-  	if($unset!==false){
-  		$this->branches[$branch] = array();
-  	} else {
-  		unset($this->branches[$branch]);
-  	}
+    if($unset===true){
+      unset($this->branches[$branch]);
+    } else {
+      $this->branches[$branch] = array();      
+    }
   }
 
   /**
@@ -84,8 +84,8 @@ class Git extends Store {
   * @param {String} &$branch    
   */
   protected function defaults(&$remote, &$branch) {
-  	if($remote==='') $remote = $this->remote;
-  	if($branch==='') $branch = $this->branch;
+    if($remote==='') $remote = $this->remote;
+    if($branch==='') $branch = $this->branch;
   }
 
   /**
@@ -96,7 +96,7 @@ class Git extends Store {
   * @void
   */  
   public function update($filename){
-  	die($filename);
+    die($filename);
   }
 
   /**
@@ -107,7 +107,7 @@ class Git extends Store {
   * @void
   */  
   public function get($filename=''){
-  	die($filename);
+    die($filename);
   }
   
   /**
@@ -119,8 +119,8 @@ class Git extends Store {
   * @void
   */  
   public function load($origin='', $branch=''){
-  	$this->defaults($remote, $branch);
-		$this->pull($remote, $branch); 				
+    $this->defaults($remote, $branch);
+    $this->pull($remote, $branch);        
   }
 
   /**
@@ -131,10 +131,10 @@ class Git extends Store {
   * @param {String} $branch 
   * @void
   */  
-  public function persist($remote, $branch){
-  	$this->defaults($remote, $branch);
-  	$this->commit();
-  	$this->push($remote, $branch);
+  public function persist($remote='', $branch=''){
+    $this->defaults($remote, $branch);
+    $this->commit();
+    $this->push($remote, $branch);
   }
   
   /**
@@ -145,8 +145,8 @@ class Git extends Store {
   * @void
   */    
   public function add($filename){
-		exec('git add '.$filename);
-		$this->commit('added '.$filename);							
+    exec('git add '.$filename);
+    $this->commit('added '.$filename);              
   }
   
   /**
@@ -157,8 +157,8 @@ class Git extends Store {
   * @void
   */       
   public function remove($filename){
-		exec('git rm -rf '.$filename);
-		$this->commit('removed '.$filename);				
+    exec('git rm -rf '.$filename);
+    $this->commit('removed '.$filename);        
   }
 
   /**
@@ -169,7 +169,7 @@ class Git extends Store {
   * @void
   */       
   protected function commit($message='commit message'){
-		exec('git commit -m "'.$message.'" -a ');
+    exec('git commit -m "'.$message.'" -a ');
   }
 
   /**
@@ -180,7 +180,7 @@ class Git extends Store {
   * @void
   */  
   protected function checkout($branch){
-		exec('git checkout -b '.$branch);
+    exec('git checkout -b '.$branch);
   }
 
   /**
@@ -192,8 +192,8 @@ class Git extends Store {
   * @void
   */  
   protected function push($remote='', $branch=''){
-  	$this->defaults($remote, $branch);
-  	exec('git push '.$remote.' '.$branch);
+    $this->defaults($remote, $branch);
+    exec('git push '.$remote.' '.$branch);
   }
 
   /**
@@ -205,8 +205,8 @@ class Git extends Store {
   * @void
   */    
   protected function pull($remote='', $branch=''){
-  	$this->defaults($remote, $branch);
-  	exec('git pull '.$remote.' '.$branch);
+    $this->defaults($remote, $branch);
+    exec('git pull '.$remote.' '.$branch);
   }
 
 }

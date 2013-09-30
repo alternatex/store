@@ -7,7 +7,7 @@
 *
 * @class Object
 */
-abstract class Format { 
+interface Format { 
 
   /**
   * Encode to format
@@ -16,7 +16,7 @@ abstract class Format {
   * @param {String} $datastore context identifier
   * @void
   */ 
-  public static abstract function Encode($data);
+  public static function Encode($data);
 
   /**
   * Decode from format 
@@ -25,5 +25,5 @@ abstract class Format {
   * @param {String} $datastore context identifier
   * @void
   */ 
-  public static abstract function Decode($data);
+  public static function Decode($data);
 }

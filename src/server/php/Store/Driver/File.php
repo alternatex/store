@@ -15,8 +15,9 @@ use Store\Store;
 */
 abstract class File extends FileSystem { 
 
-	// file format
-	private $format = null;
+  // file format(s)
+  private $format = null;
+  private $formats = array();
 
   /**
   * Encode to format
@@ -26,7 +27,7 @@ abstract class File extends FileSystem {
   * @void
   */ 
   protected function encode2($data){
-  	$format = $this->format;
+    $format = $this->format;
     $format::Encode($data);
   }
 
@@ -38,9 +39,9 @@ abstract class File extends FileSystem {
   * @void
   */ 
   protected function decode2($data){
-  	$format = $this->format;  	
-		$format::Decode($data);  
-	}
+    $format = $this->format;    
+    $format::Decode($data);  
+  }
 
   /**
   * Encode to format
@@ -58,7 +59,7 @@ abstract class File extends FileSystem {
   * @param {String} $datastore context identifier
   * @void
   */ 
-	protected abstract function decode($data);
+  protected abstract function decode($data);
 
   /**
   * Load repository 
@@ -73,7 +74,9 @@ abstract class File extends FileSystem {
     $this->datastore = $datastore;
 
     // helper json format class (aliases cannot be used in variable expansion -> $jsonFormat::FILE_EXTENSION)
-		$jsonFormat = 'Store\Format\Object';
+    $jsonFormat = 'Store\Format\Object';
+
+    // TODO: get format by file extension -> load into static property in function
 
     // determine/attach formatting helper (TODO: implement 4 real)    
     $this->format = 'Store\Format\Object'; // "Store\Format\\".(strpos($datastore, '.'.($jsonFormat::FILE_EXTENSION!==false?'Json':'Object')));
@@ -163,15 +166,15 @@ abstract class File extends FileSystem {
   * @return {Array} List of item instances
   */ 
   public function find($instance){
-		if(!isset($instance[Store::ENTITY_IDENTIFIER])) return false;
-		$this->items = (array) $this->items;
-		foreach($this->items as $index => $entry) {
-		  $entry = (array) $entry;
-		  if($entry[Store::ENTITY_IDENTIFIER]===$instance[Store::ENTITY_IDENTIFIER]) {
-		    return $index;
-		  }
-		}  
-		return false;
+    if(!isset($instance[Store::ENTITY_IDENTIFIER])) return false;
+    $this->items = (array) $this->items;
+    foreach($this->items as $index => $entry) {
+      $entry = (array) $entry;
+      if($entry[Store::ENTITY_IDENTIFIER]===$instance[Store::ENTITY_IDENTIFIER]) {
+        return $index;
+      }
+    }  
+    return false;
   } 
 
   /**
@@ -243,8 +246,8 @@ abstract class File extends FileSystem {
   */ 
   public function response($dostore, $response, $jsonp){
 
-  	// be nice
-  	header('Content-Type: text/javascript');
+    // be nice
+    header('Content-Type: text/javascript');
 
     // update datastore * perf *
     if($dostore) file_put_contents($this->datastore, $this->encode($this->items));
