@@ -34,26 +34,26 @@ Options.prototype = {
   * Remote storage location
   * 
   * @property options.url
-  * @type {Object}
-  * @default "foo"
+  * @type {String}
+  * @default "//localhost/store/examples/server.php"
   */      
-  url: "http://localhost/datastore.php",
+  url: "//localhost/store/examples/server.php",
 
   /**
   * Storage namespace  
   * 
   * @property options.namespace
-  * @type {Object}
-  * @default "foo"
+  * @type {String}
+  * @default "default"
   */      
-  namespace: "documents",
+  namespace: "default",
 
   /**
   * JSONP callback fnc name
   * 
   * @property options.jsonp
-  * @type {Object}
-  * @default "foo"
+  * @type {String}
+  * @default "callback"
   */      
   jsonp: "callback",
 
@@ -61,8 +61,8 @@ Options.prototype = {
   * Cache enabled
   * 
   * @property options.cache
-  * @type {Object}
-  * @default "foo"
+  * @type {Boolean}
+  * @default true
   */      
   cache: true,
 
@@ -70,8 +70,8 @@ Options.prototype = {
   * Cache Lifetime
   * 
   * @property options.ttl
-  * @type {Object}
-  * @default "foo"
+  * @type {Number}
+  * @default 3600
   */      
   ttl: 3600
 };
@@ -204,7 +204,6 @@ function Store(options){
   * @property self
   * @private
   * @type {Object}
-  * @default "foo"
   */      
   var self = this; 
 
@@ -243,7 +242,6 @@ function Store(options){
   * @property Item
   * @private
   * @type {Function}
-  * @default Function
   */
   this.Item = function Item(data){
     this.data = { instance: {} };
@@ -258,7 +256,6 @@ function Store(options){
   * @property Item.constructor
   * @private
   * @type {Object}
-  * @default Object
   */    
   this.Item.prototype = {
     
@@ -268,7 +265,6 @@ function Store(options){
     * @property datastore
     * @private
     * @type {Object}
-    * @default Self-Reference
     */    
     datastore: this,
 
@@ -278,7 +274,6 @@ function Store(options){
     * @property data
     * @private
     * @type {Object}
-    * @default { instance: {} }
     */ 
     contents: { instance: {} },
 
@@ -353,7 +348,6 @@ function Store(options){
   * @property api
   * @private
   * @type {Object}
-  * @default "foo"
   */
   var api = {};
 
@@ -377,7 +371,6 @@ function Store(options){
 *
 * @property prototype
 * @type {Object}
-* @default {}
 */
 Store.prototype = {
   
@@ -498,7 +491,6 @@ Store.prototype = {
       data = {};
     }
 
-    // TODO ensure data handled properly * !!! // ADD warning if id in data => overwritten (?)
     var instance = new this.Item(data);
     
     if(typeof(data['id'])=='undefined'){
@@ -660,14 +652,12 @@ Store.serialize = function serialize(params){
 };  
 
 // expose
-root.Store = Store;  
-amdExports = Store;
+amdExports = root.Store = Store;  
 
 // call w/scope
 }.call(root));
   
-  // export *
-  return amdExports;
+// export *
+return amdExports;
 
-}); 
-}(this));
+}); }(this));
