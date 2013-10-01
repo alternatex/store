@@ -25,6 +25,11 @@ if(isset($requestHeaders[HEADER_STORE_TYPE])) die($requestHeaders[HEADER_STORE_T
 // determine store based on special header field
 // x-store-type: object/json,markdown,... 4 client driven -> limonade
 // json configuration by path, ..... 4 server driven -> limonade
+
+// -> limonade
+// -> limonade
+// -> limonade
+// -> limonade
 // -> limonade
 
 // defaults
@@ -32,9 +37,6 @@ $user='anonymous';
 
 // determine datastore filename
 $datastore = $user.".".$namespace.'.json';
-
-// debug helper
-$objectStore = true;
 
 // initialize storage
 $Store = '\\Store\\Driver\\File';
@@ -56,7 +58,7 @@ if(trim($namespace)=="" || trim($action)=="") {
 }
 
 // determine datastore filename
-$datastore = $user.".".$namespace.(!$objectStore?'x':'').'.dat';
+$datastore = $user.".".$namespace.'.dat';
 
 // load contents
 $store->load($datastore);
