@@ -5,7 +5,7 @@
 
 // TODO: 
 // - add enhanced "class" support w/ getter/setter if avail: Object.defineProperty(fnc.prototype, ...)
-// - process customer X-Store-* response headers
+// - process custom X-Store-* response headers
 
 // module definition 
 (function (root) { var amdExports; define('store', ["underscore"], function (_) { (function () {
