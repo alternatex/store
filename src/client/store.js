@@ -492,6 +492,12 @@ Store.prototype = {
   */
   create: function create(data){
 
+    // bc?
+    if(typeof(data)=='undefined'){
+      console.warn('Store.create: data is undefined, empty object assigned');
+      data = {};
+    }
+
     // TODO ensure data handled properly * !!! // ADD warning if id in data => overwritten (?)
     var instance = new this.Item(data);
     

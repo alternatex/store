@@ -7,7 +7,7 @@ define(["store"], function(Store){
 
   // initialize custom stores
   ['document', 'user', 'article'].forEach(function(context){
-    window[context.toLowerCase()+'Store'] = new Store({ classname: context });
+    window[context.toLowerCase()+'Store'] = new Store({ namespace: context });
   });
   
 });
