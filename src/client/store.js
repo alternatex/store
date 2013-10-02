@@ -559,6 +559,7 @@ Store.wrap = function wrap(datastore, item){
 * Generate GUID
 *
 * @method guid
+* @param separator (defaults to dash)
 * @return {String} GUID
 */
 Store.guid = function guid(separator){
@@ -589,8 +590,8 @@ Store.times = function times(count, callback){
 * Convenience deferred wrapper
 *
 * @method times
-* @param {Integer} times 
-* @return {String} GUID
+* @param {Function} callback
+* @return {Promise} 
 */
 Store.when = function when(callback){
   return _.when(callback);
@@ -612,6 +613,7 @@ Store.when = function when(callback){
 * console.log(serialized, serialized === "a=1&b=2&c[d]=4&c[e][0]=6&c[e][1]=7&c[e][2]=8&c[f][asdf]=10");
 *
 * @method serialize
+* @param {Object} params
 * @return {String} 
 */
 Store.serialize = function serialize(params){
