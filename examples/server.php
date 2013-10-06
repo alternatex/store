@@ -120,13 +120,16 @@ switch($action){
 ob_get_clean();
 
 // write changes to disk *
-
-// TODO: implement correct » w/ response stuff moved * - adjust signature!!!!
-// TODO: implement correct » w/ response stuff moved * - adjust signature!!!!
-// TODO: implement correct » w/ response stuff moved * - adjust signature!!!!
 if($store->pending()){
   $store->persist($datastore);
 }
 
+// be nice
+header('Content-Type: text/javascript');
+
 // send response
-print $store->response($store->pending(), $returnValue, $jsonp);
+if(strlen($jsonp)>0) {
+  print $jsonp."(".json_encode($returnValue).");";
+} else {
+  print json_encode($returnValue);
+} 

@@ -53,22 +53,7 @@ abstract class Repository extends Store {
   * @void
   */ 
   //abstract function persist($dsn);
-
-  /**
-  * Send output
-  * 
-  * @method response
-  * @param {boolean} $dostore
-  * @param {Array} $response
-  * @param {String} $jsonp
-  * @void
-  */  
-  abstract function response($dostore, $response, $jsonp);
-
-  // TODO: make private *
-  // TODO: make private *
-  // TODO: make private *
-
+  
   /**
   * Get/Set pending changes flag
   * 

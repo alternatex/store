@@ -94,6 +94,8 @@ class Memory extends Repository {
     // Quick Hack > TODO: solve properly
     $instance = $resource->data();
 
+    $this->pending(true);
+
     // existing vs new
     if(is_numeric($index=$this->find($resource))) {
 
@@ -114,8 +116,7 @@ class Memory extends Repository {
       $this->items[] = $instance;
       
       return array(Store::ENTITY_COUNT => sizeof($this->items)-1);      
-    }
-    $this->pending(true);
+    }   
     return false;
   }
 
@@ -227,33 +228,4 @@ class Memory extends Repository {
     // ...
     return FileSystem::persist($file->path(), $file->content());
   }   
-
-  /**
-  * Send output
-  * 
-  * @method response
-  * @param {boolean} $dostore
-  * @param {Array} $response
-  * @param {String} $jsonp
-  * @void
-  */ 
-  public function response($dostore, $response, $jsonp){
-
-    // be nice
-    header('Content-Type: text/javascript');
-
-    // update datastore * perf *
-    $resource = new \Store\Resource\File();
-    $resource->path($this->datastore);
-    $resource->content($this->encode($this->items));
-
-    if($dostore) file_put_contents($this->datastore, $this->encode($this->items));
-
-    // send response
-    if(strlen($jsonp)>0) {
-      return $jsonp."(".json_encode($response).");";
-    } else {
-      return json_encode($response);
-    }    
-  } 
 }
