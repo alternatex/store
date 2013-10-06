@@ -1,9 +1,14 @@
 <?php namespace Store\Repository;
 
-// TODO: thread-safety
+// TODO: 
+// - thread-safety » file locks
+// - load($data/collection)
+// - persist » throw error? -> retrieve data from memory and store by external logic *
+// - externalize sendResponse
 
 use Store\Store;
 use Store\Repository;
+use Store\Repository\FileSystem;
 use Store\Resource;
 use Store\Resource\File;
 
@@ -13,10 +18,6 @@ use Store\Resource\File;
 * @class Memory
 */
 class Memory extends Repository {
-
-  // TODO: Memory has no source » PassIn » just use and not extend. Duh!
-  // TODO: Memory has no source » PassIn » just use and not extend. Duh!
-  // TODO: Memory has no source » PassIn » just use and not extend. Duh!
 
   // file format(s)
   private $format = null;
@@ -53,10 +54,12 @@ class Memory extends Repository {
   * @param {String} $DSN
   * @void
   */ 
+
+  // TODO: data ...
   public function load($dsn){
 
     // store *
-    $this->datastore = $datastore;
+    $this->datastore = $datastore = $dsn;
 
     // TODO: get format by file extension -> load into static property in function
 
@@ -64,14 +67,14 @@ class Memory extends Repository {
     $this->format = 'Store\Format\Json'; // "Store\Format\\".(strpos($datastore, '.'.($jsonFormat::FILE_EXTENSION!==false?'Json':'Object')));
 
     // load from disk if exists
-    if(file_exists($datastore->path())) { 
+    if(file_exists($dsn)) { 
 
       // convert object data
-      $this->items = $this->decode(file_get_contents($datastore->path())); 
+      $this->items = $this->decode(file_get_contents($dsn)); 
 
       // handle format err
       if(!is_array($this->items)) { 
-
+        $class=$jsonp='';
         // ... (2)
         $err = json_encode(array(Store::RESPONSE_ERROR => array("500" => Store::MESSAGE_ERROR_DATASTORE_CORRUPT.$class)));
         die(strlen($jsonp)>0 ? $jsonp."("."console.error(".$err."));":$err);        
@@ -86,10 +89,13 @@ class Memory extends Repository {
   * @param {Object} $item what it's about
   * @return {Boolean} Returns true on success
   */ 
-  public function update(Resource $instance){
+  public function update(Resource $resource){
+
+    // Quick Hack > TODO: solve properly
+    $instance = $resource->data();
 
     // existing vs new
-    if(is_numeric($index=$this->find($instance))) {
+    if(is_numeric($index=$this->find($resource))) {
 
       // preserve files if empty *
       $preservefiles = $this->files($_FILES, $instance);
@@ -104,9 +110,12 @@ class Memory extends Repository {
       if(!isset($instance[Store::ENTITY_IDENTIFIER]) && strlen(trim($instance[Store::ENTITY_IDENTIFIER]))==0) {
         $instance[Store::ENTITY_IDENTIFIER] = sprintf('%04x%04x-%04x-%04x-%04x-%04x%04x%04x',mt_rand(0, 0xffff), mt_rand(0, 0xffff), mt_rand(0, 0xffff), mt_rand(0, 0x0fff) | 0x4000, mt_rand(0, 0x3fff) | 0x8000, mt_rand(0, 0xffff), mt_rand(0, 0xffff), mt_rand(0, 0xffff));
       }
+      $this->files($_FILES, $instance);
       $this->items[] = $instance;
+      
       return array(Store::ENTITY_COUNT => sizeof($this->items)-1);      
     }
+    $this->pending(true);
     return false;
   }
 
@@ -117,9 +126,11 @@ class Memory extends Repository {
   * @param {Object} $item what it's about
   * @return {Boolean} Returns true on success
   */ 
-  public function remove(Resource $instance){
-    if(is_numeric($index=$this->find($instance))) {
+  public function remove(Resource $resource){
+    $instance = $resource->data();
+    if(is_numeric($index=$this->find($resource))) {
       array_splice($this->items, $index, 1);
+      $this->pending(true);
       return array(Store::ENTITY_COUNT => sizeof($this->items)-1);
     }
   }
@@ -131,11 +142,13 @@ class Memory extends Repository {
   * @param {Object} $item what it's about
   * @return {Object} item instance
   */ 
-  public function get(Resource $instance=null){
+  public function get(Resource $resource=null){
     
+    $instance = $resource!=null ? $resource->data() : null;
+
     if($instance==null) return $this->items;
 
-    if(is_numeric($index=$this->find($instance))) {
+    if(is_numeric($index=$this->find($resource))) {
       return $this->items[$index];
     }
     return false;
@@ -147,12 +160,14 @@ class Memory extends Repository {
   * @method find
   * @return {Array} List of item instances
   */ 
-  public function find(Resource $instance){
+  public function find(Resource $resource){
+    $instance = $resource->data();
+
     if(!isset($instance[Store::ENTITY_IDENTIFIER])) return false;
     $this->items = (array) $this->items;
-    foreach($this->items as $index => $entry) {
-      $entry = (array) $entry;
-      if($entry[Store::ENTITY_IDENTIFIER]===$instance[Store::ENTITY_IDENTIFIER]) {
+    foreach($this->items as $index => $item) {
+      $item = (array) $item;
+      if($item[Store::ENTITY_IDENTIFIER]===$instance[Store::ENTITY_IDENTIFIER]) {
         return $index;
       }
     }  
@@ -178,13 +193,13 @@ class Memory extends Repository {
   * @void
   */ 
   public function files(&$files, &$instance) {
-
+    
     // handle files *
     $preservefiles = array();
     if(array_key_exists(Store::REQUEST_DATA, $files) && is_array($files[Store::REQUEST_DATA][Store::TRANSFER_TARGET])){
-      $files = array_keys($files[Store::REQUEST_DATA][Store::TRANSFER_TARGET]);
-      if(is_array($files)){
-        foreach($files as $file){
+      $filesx = array_keys($files[Store::REQUEST_DATA][Store::TRANSFER_TARGET]);
+      if(is_array($filesx)){
+        foreach($filesx as $file){
           array_push($preservefiles, $file);
           if(strlen(trim($files[Store::REQUEST_DATA][Store::TRANSFER_SOURCE][$file]))){
             $instance[$file]='data: '.mime_content_type($files[Store::REQUEST_DATA][Store::TRANSFER_SOURCE][$file]).';base64,'.base64_encode(file_get_contents($files[Store::REQUEST_DATA][Store::TRANSFER_SOURCE][$file]));
@@ -203,18 +218,14 @@ class Memory extends Repository {
   * @param {String} contents
   * @void
   */ 
-  public function persist(Resource $file){
+  public function persist($filepath, $content=null){
+
+    $file = new File();
+    $file->path($filepath);
+    $file->content($content==null ? $this->encode($this->items) : $content);
 
     // ...
-    if($path==null)
-      $path = $file->path();
-
-    // ...
-    if($content==null)
-      $content = $this->encode($this->items);
-    
-    // ...
-    return parent::persist($file);
+    return FileSystem::persist($file->path(), $file->content());
   }   
 
   /**

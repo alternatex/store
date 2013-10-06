@@ -20,8 +20,8 @@ abstract class FileSystem extends Repository {
   * @param {String} $filepath context identifier
   * @void
   */ 
-  public function load(Resource $file){
-    $this->content = @file_get_contents($file->path());
+  public function load($filepath){
+    $this->content = @file_get_contents($filepath);
   }
 
   /**
@@ -65,9 +65,9 @@ abstract class FileSystem extends Repository {
   * @param {String} contents
   * @void
   */ 
-  public function persist(Resource $file){
+  public static function persist($filepath, $content=''){
 
     // update datastore * perf *
-    return file_put_contents($file->path(), $file->content());
+    return file_put_contents($filepath, $content);
   }  
 }

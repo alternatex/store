@@ -431,6 +431,12 @@ Store.prototype = {
   * @return {Boolean} Returns true on success
   */
   get: function get(item, callback){
+
+    // ensure Store.wrap on retrieval!!!
+    // ensure Store.wrap on retrieval!!!
+    // ensure Store.wrap on retrieval!!!
+    // ensure Store.wrap on retrieval!!!
+
     return this.repository.process("get", this.options, Store.wrap(this, item), callback);
   },
 
@@ -511,7 +517,8 @@ Store.prototype = {
       this.options.schema = schema;
     }
     return this.options.schema;
-  }
+  },
+
 };
 
 /**

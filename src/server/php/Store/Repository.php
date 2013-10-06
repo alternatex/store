@@ -37,14 +37,22 @@ abstract class Repository extends Store {
   abstract function remove(Resource $resource);
 
   /**
+  * Load data
+  * 
+  * @method load
+  * @param {String} dsn
+  * @void
+  */ 
+  abstract function load($dsn);  
+
+  /**
   * Persist data
   * 
   * @method persist
-  * @param {String} filepath
-  * @param {String} contents
+  * @param {String} dsn
   * @void
   */ 
-  abstract function persist(Resource $resource);
+  //abstract function persist($dsn);
 
   /**
   * Send output
@@ -56,6 +64,10 @@ abstract class Repository extends Store {
   * @void
   */  
   abstract function response($dostore, $response, $jsonp);
+
+  // TODO: make private *
+  // TODO: make private *
+  // TODO: make private *
 
   /**
   * Get/Set pending changes flag

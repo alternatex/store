@@ -14,7 +14,7 @@ session_start();
 ob_start();
 
 // aliases
-use \Store\Store, \Store\Resource\File, \Store\Format, Store\Resource;
+use \Store\Store, \Store\Resource\File, \Store\Resource\Item, \Store\Format, Store\Resource;
 
 $format = new Format\Object();
 $file = new File();
@@ -37,6 +37,18 @@ if(isset($requestHeaders[HEADER_STORE_TYPE])) die($requestHeaders[HEADER_STORE_T
 // -> limonade
 // -> limonade
 // -> limonade
+
+// -> amanda validation *
+// -> amanda validation *
+// -> amanda validation *
+// -> amanda validation *
+// -> amanda validation *
+
+// -> acl sample ?
+// -> acl sample ?
+// -> acl sample ?
+// -> acl sample ?
+// -> acl sample ?
 
 // defaults
 $user='anonymous';
@@ -65,12 +77,13 @@ if(trim($namespace)=="" || trim($action)=="") {
 
 // determine datastore filename
 $datastore = $user.".".$namespace.'.dat';
+$datastore = $user.".".$namespace.'.json';
 
 $file = new File();
 $file->path($datastore);
 
 // load contents
-$store->load($file);
+$store->load($file->path());
 
 // helper - store to disk *
 $dostore = false;
@@ -78,18 +91,21 @@ $dostore = false;
 // return value helper 
 $returnValue = null;
 
+// wrap data (refactor step1; refactor step2 will be scaffolding..)
+$item = new Item($instance);
+
 // handle action *
 switch($action){
   case Store::STORE_ACTION_UPDATE:
-    $returnValue = $store->update($instance);
+    $returnValue = $store->update($item);
     $store->pending(true);
     break;
   case Store::STORE_ACTION_REMOVE:
-    $returnValue = $store->remove($instance);
+    $returnValue = $store->remove($item);
     $store->pending(true);
     break;
   case Store::STORE_ACTION_GET:
-    $returnValue = $store->get($instance);
+    $returnValue = $store->get($item);
     break;
   case Store::STORE_ACTION_LIST:     
     $returnValue = $store->get();
@@ -104,6 +120,10 @@ switch($action){
 ob_get_clean();
 
 // write changes to disk *
+
+// TODO: implement correct » w/ response stuff moved * - adjust signature!!!!
+// TODO: implement correct » w/ response stuff moved * - adjust signature!!!!
+// TODO: implement correct » w/ response stuff moved * - adjust signature!!!!
 if($store->pending()){
   $store->persist($datastore);
 }
