@@ -1,11 +1,13 @@
 <?php namespace Store;
 
+use Store\Resource;
+
 /**
-* Format fundamentals
+* Format
 *
-* Abstract file format content type (encoding/decoding)
+* Abstract format aka content type (encoding/decoding)
 *
-* @class Object
+* @class Format
 */
 interface Format { 
 
@@ -16,7 +18,7 @@ interface Format {
   * @param {String} $datastore context identifier
   * @void
   */ 
-  public static function Encode($data);
+  public static function Encode(Resource $resource);
 
   /**
   * Decode from format 
@@ -25,5 +27,5 @@ interface Format {
   * @param {String} $datastore context identifier
   * @void
   */ 
-  public static function Decode($data);
+  public static function Decode(Resource $resource);
 }

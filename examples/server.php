@@ -14,7 +14,13 @@ session_start();
 ob_start();
 
 // aliases
-use \Store\Store;
+use \Store\Store, \Store\Resource\File, \Store\Format, Store\Resource;
+
+$format = new Format\Object();
+$file = new File();
+
+$file->format($format);
+$file->content("lalalala");
 
 // retrieve request headers
 $requestHeaders = getallheaders();
@@ -39,7 +45,7 @@ $user='anonymous';
 $datastore = $user.".".$namespace.'.json';
 
 // initialize storage
-$Store = '\\Store\\Driver\\File';
+$Store = '\\Store\\Repository\\Memory';
 
 // hold store opening party
 $store = new $Store();
@@ -60,8 +66,11 @@ if(trim($namespace)=="" || trim($action)=="") {
 // determine datastore filename
 $datastore = $user.".".$namespace.'.dat';
 
+$file = new File();
+$file->path($datastore);
+
 // load contents
-$store->load($datastore);
+$store->load($file);
 
 // helper - store to disk *
 $dostore = false;

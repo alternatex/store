@@ -1,10 +1,10 @@
-<?php namespace Store\Protocol;
+<?php namespace Store\Repository;
 
 // TODO: 
 // - implement store inherited functions & add test scripts
 // - add support for additional commands: init, clone
 
-use Store\Store;
+use Store\Repository;
 
 /**
 * Git Store 
@@ -13,7 +13,7 @@ use Store\Store;
 *
 * @class Git
 */
-class Git extends Store {
+class Git extends Repository {
 
   /**
   * Remote collection

@@ -3,6 +3,7 @@
 // TODO: Object store extends file system store call parent at the end -> process o real storage / gathering *
 
 use Store\Format;
+use Store\Resource;
 
 /**
 * Serialized Objects
@@ -20,8 +21,8 @@ class Object implements Format {
   * @param {String} $datastore context identifier
   * @void
   */ 
-  public static function Encode($data){
-    return serialize($data);
+  public static function Encode(Resource $resource){
+    return serialize($resource->content());
   }
 
   /**
@@ -31,7 +32,7 @@ class Object implements Format {
   * @param {String} $datastore context identifier
   * @void
   */ 
-  public static function Decode($data){
-    return unserialize($data);
+  public static function Decode(Resource $resource){
+    return unserialize($resource->content());
   }
 }

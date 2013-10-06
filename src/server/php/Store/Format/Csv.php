@@ -1,6 +1,7 @@
 <?php namespace Store\Format;
 
 use Store\Format;
+use Store\Resource;
 
 /**
 * Csv Formatted Contents
@@ -18,7 +19,7 @@ class Csv implements Format {
   * @param {String} $datastore context identifier
   * @void
   */ 
-  public static function Encode($data){
+  public static function Encode(Resource $resource){
     return die("Implement: ".__CLASS__."::".__FUNCTION__);
   }
 
@@ -29,7 +30,7 @@ class Csv implements Format {
   * @param {String} $datastore context identifier
   * @void
   */ 
-  public static function Decode($data){
+  public static function Decode(Resource $resource){
     return die("Implement: ".__CLASS__."::".__FUNCTION__);
   }
 }

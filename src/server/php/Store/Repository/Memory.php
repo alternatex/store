@@ -1,22 +1,22 @@
-<?php namespace Store\Driver;
+<?php namespace Store\Repository;
 
-// TODO: 
-// - Implement format detection based on filename / mapping table (1st hardcoded, but within modular collection)
-// - File should be a resource only 
-//   -> Create additional layer for collection files (which is what the current json/object implementation is)
-// - Combine w/Dropbox -> introduce "locations"
+// TODO: thread-safety
 
 use Store\Store;
-use Store\Protocol\FileSystem;
+use Store\Repository;
+use Store\Resource;
+use Store\Resource\File;
 
 /**
-* FileFormat
+* Memory Store 
 *
-* Abstract file format content type (encoding/decoding)
-*
-* @class Object
+* @class Memory
 */
-class File extends FileSystem { 
+class Memory extends Repository {
+
+  // TODO: Memory has no source » PassIn » just use and not extend. Duh!
+  // TODO: Memory has no source » PassIn » just use and not extend. Duh!
+  // TODO: Memory has no source » PassIn » just use and not extend. Duh!
 
   // file format(s)
   private $format = null;
@@ -31,7 +31,7 @@ class File extends FileSystem {
   */ 
   protected function encode($data){
     $format = $this->format;
-    return $format::Encode($data);
+    return $format::Encode(new File($data));
   }
 
   /**
@@ -43,34 +43,31 @@ class File extends FileSystem {
   */ 
   protected function decode($data){
     $format = $this->format;    
-    return $format::Decode($data);  
+    return $format::Decode(new File($data));  
   }
 
   /**
   * Load repository 
   *
   * @method load
-  * @param {String} $datastore context identifier
+  * @param {String} $DSN
   * @void
   */ 
-  public function load($datastore){
+  public function load($dsn){
 
     // store *
     $this->datastore = $datastore;
 
-    // helper json format class (aliases cannot be used in variable expansion -> $jsonFormat::FILE_EXTENSION)
-    $jsonFormat = 'Store\Format\Object';
-
     // TODO: get format by file extension -> load into static property in function
 
     // determine/attach formatting helper (TODO: implement 4 real)    
-    $this->format = 'Store\Format\Object'; // "Store\Format\\".(strpos($datastore, '.'.($jsonFormat::FILE_EXTENSION!==false?'Json':'Object')));
+    $this->format = 'Store\Format\Json'; // "Store\Format\\".(strpos($datastore, '.'.($jsonFormat::FILE_EXTENSION!==false?'Json':'Object')));
 
     // load from disk if exists
-    if(file_exists($datastore)) { 
+    if(file_exists($datastore->path())) { 
 
       // convert object data
-      $this->items = $this->decode(file_get_contents($datastore)); 
+      $this->items = $this->decode(file_get_contents($datastore->path())); 
 
       // handle format err
       if(!is_array($this->items)) { 
@@ -89,7 +86,7 @@ class File extends FileSystem {
   * @param {Object} $item what it's about
   * @return {Boolean} Returns true on success
   */ 
-  public function update($instance){
+  public function update(Resource $instance){
 
     // existing vs new
     if(is_numeric($index=$this->find($instance))) {
@@ -120,7 +117,7 @@ class File extends FileSystem {
   * @param {Object} $item what it's about
   * @return {Boolean} Returns true on success
   */ 
-  public function remove($instance){
+  public function remove(Resource $instance){
     if(is_numeric($index=$this->find($instance))) {
       array_splice($this->items, $index, 1);
       return array(Store::ENTITY_COUNT => sizeof($this->items)-1);
@@ -134,7 +131,7 @@ class File extends FileSystem {
   * @param {Object} $item what it's about
   * @return {Object} item instance
   */ 
-  public function get($instance=null){
+  public function get(Resource $instance=null){
     
     if($instance==null) return $this->items;
 
@@ -150,7 +147,7 @@ class File extends FileSystem {
   * @method find
   * @return {Array} List of item instances
   */ 
-  public function find($instance){
+  public function find(Resource $instance){
     if(!isset($instance[Store::ENTITY_IDENTIFIER])) return false;
     $this->items = (array) $this->items;
     foreach($this->items as $index => $entry) {
@@ -206,18 +203,18 @@ class File extends FileSystem {
   * @param {String} contents
   * @void
   */ 
-  public function persist($path=null, $content=null){
+  public function persist(Resource $file){
 
     // ...
     if($path==null)
-      $path = $this->datastore;
+      $path = $file->path();
 
     // ...
     if($content==null)
       $content = $this->encode($this->items);
     
     // ...
-    return parent::persist($path, $content);
+    return parent::persist($file);
   }   
 
   /**
@@ -235,6 +232,10 @@ class File extends FileSystem {
     header('Content-Type: text/javascript');
 
     // update datastore * perf *
+    $resource = new \Store\Resource\File();
+    $resource->path($this->datastore);
+    $resource->content($this->encode($this->items));
+
     if($dostore) file_put_contents($this->datastore, $this->encode($this->items));
 
     // send response

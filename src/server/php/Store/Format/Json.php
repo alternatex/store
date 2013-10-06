@@ -1,6 +1,7 @@
 <?php namespace Store\Format;
 
 use Store\Format;
+use Store\Resource;
 
 /**
 * Json Formatted Contents
@@ -18,8 +19,8 @@ class Json implements Format {
   * @param {String} $datastore context identifier
   * @void
   */ 
-  public static function Encode($data){
-    return json_encode($data);
+  public static function Encode(Resource $resource){
+    return json_encode($resource->content());
   }
 
   /**
@@ -29,7 +30,7 @@ class Json implements Format {
   * @param {String} $datastore context identifier
   * @void
   */ 
-  public static function Decode($data){
-    return json_decode($data);
+  public static function Decode(Resource $resource){
+    return json_decode($resource->content());
   }
 }

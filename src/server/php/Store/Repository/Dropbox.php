@@ -1,8 +1,8 @@
-<?php namespace Store\Protocol;
+<?php namespace Store\Repository;
 
-use Store\Store;
+use Store\Repository;
 
-class Dropbox extends Store {
+class Dropbox extends Repository {
 
   public function __construct(){
     

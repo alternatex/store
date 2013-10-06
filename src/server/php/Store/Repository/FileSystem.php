@@ -1,33 +1,17 @@
-<?php namespace Store\Protocol;
+<?php namespace Store\Repository;
 
 // TODO: thread-safety
 
-use Store\Store;
+use Store\Repository;
+use Store\Resource;
+use Store\Resource\File;
 
 /**
 * FileSystem Plaintext Store 
 *
 * @class FileSystem
 */
-abstract class FileSystem extends Store {
-
-  /**
-  * Path to file
-  * @property filepath
-  * @private
-  * @type {Array}
-  * @default array()
-  */
-  protected $filepath = null;
-
-  /**
-  * File content
-  * @property content
-  * @private
-  * @type {String}
-  * @default ''
-  */
-  protected $content = '';
+abstract class FileSystem extends Repository {
 
   /**
   * Load repository 
@@ -36,8 +20,8 @@ abstract class FileSystem extends Store {
   * @param {String} $filepath context identifier
   * @void
   */ 
-  public function load($filepath){
-    $this->content = @file_get_contents($instance['path']);
+  public function load(Resource $file){
+    $this->content = @file_get_contents($file->path());
   }
 
   /**
@@ -47,8 +31,8 @@ abstract class FileSystem extends Store {
   * @param {Object} $item what it's about
   * @return {Boolean} Returns true on success
   */ 
-  public function update($instance){
-    return file_put_contents($instance['path'], $instance['content']);
+  public function update(Resource $file){
+    return file_put_contents($file->path(), $file->content());
   }
 
   /**
@@ -58,8 +42,8 @@ abstract class FileSystem extends Store {
   * @param {Object} $item what it's about
   * @return {Boolean} Returns true on success
   */ 
-  public function remove($instance){
-    @unlink($instance['path']);
+  public function remove(Resource $file){
+    @unlink($file->path());
   }
 
   /**
@@ -69,8 +53,8 @@ abstract class FileSystem extends Store {
   * @param {Object} $item what it's about
   * @return {Object} item instance
   */ 
-  public function get($instance=null){    
-    return @file_get_contents($instance['path']);
+  public function get(Resource $file=null){    
+    return @file_get_contents($file->path());
   }  
 
   /**
@@ -81,9 +65,9 @@ abstract class FileSystem extends Store {
   * @param {String} contents
   * @void
   */ 
-  public function persist($path=null, $content=null){
+  public function persist(Resource $file){
 
     // update datastore * perf *
-    return file_put_contents($path, $content);
+    return file_put_contents($file->path(), $file->content());
   }  
 }

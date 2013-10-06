@@ -8,7 +8,7 @@ Index
 * [Quickstart](#quickstart)
   * [Embedding](#embedding)
   * [Defaults](#defaults)
-* [Client API](#client-api)  
+* [Client API](#client-api)
   * [Store](#store-1)
       * [Create](#create)
   * [Object](#object)

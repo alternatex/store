@@ -1,8 +1,8 @@
-<?php namespace Store\Protocol;
+<?php namespace Store\Repository;
 
-use Store\Store;
+use Store\Repository;
 
-class BitTorrent extends Store {
+class BitTorrent extends Repository {
 
   // 3rd party torrent encoding helper
   private $encoder = null; 
