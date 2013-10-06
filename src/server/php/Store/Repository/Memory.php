@@ -74,10 +74,8 @@ class Memory extends Repository {
 
       // handle format err
       if(!is_array($this->items)) { 
-        $class=$jsonp='';
-        // ... (2)
-        $err = json_encode(array(Store::RESPONSE_ERROR => array("500" => Store::MESSAGE_ERROR_DATASTORE_CORRUPT.$class)));
-        die(strlen($jsonp)>0 ? $jsonp."("."console.error(".$err."));":$err);        
+        $err = json_encode(array(Store::RESPONSE_ERROR => array("500" => Store::MESSAGE_ERROR_DATASTORE_CORRUPT)));
+        die('console.error('.$err.');');        
       }
     }     
   }

@@ -14,7 +14,11 @@ session_start();
 ob_start();
 
 // aliases
-use \Store\Store, \Store\Resource\File, \Store\Resource\Item, \Store\Format, Store\Resource;
+use \Store\Store, 
+    \Store\Resource\File, 
+    \Store\Resource\Item, 
+    \Store\Format,
+    \Store\Resource;
 
 $format = new Format\Object();
 $file = new File();
