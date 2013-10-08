@@ -7,6 +7,7 @@ use Store\Resource;
 * Csv Formatted Contents
 *
 * @class Csv
+* @module Server
 */
 class Csv implements Format {
 
@@ -15,7 +16,7 @@ class Csv implements Format {
   /**
   * Encode to format
   *
-  * @method decode
+  * @method encode
   * @param {String} $datastore context identifier
   * @void
   */ 

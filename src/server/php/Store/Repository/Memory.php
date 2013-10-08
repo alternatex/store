@@ -16,6 +16,7 @@ use Store\Resource\File;
 * Memory Store 
 *
 * @class Memory
+* @module Server
 */
 class Memory extends Repository {
 

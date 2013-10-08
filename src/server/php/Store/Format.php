@@ -8,13 +8,14 @@ use Store\Resource;
 * Abstract format aka content type (encoding/decoding)
 *
 * @class Format
+* @module Server
 */
 interface Format { 
 
   /**
   * Encode to format
   *
-  * @method decode
+  * @method encode
   * @param {String} $datastore context identifier
   * @void
   */ 

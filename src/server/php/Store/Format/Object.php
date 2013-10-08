@@ -1,7 +1,5 @@
 <?php namespace Store\Format;
 
-// TODO: Object store extends file system store call parent at the end -> process o real storage / gathering *
-
 use Store\Format;
 use Store\Resource;
 
@@ -9,6 +7,7 @@ use Store\Resource;
 * Serialized Objects
 *
 * @class Object
+* @module Server
 */
 class Object implements Format {
 
@@ -17,7 +16,7 @@ class Object implements Format {
   /**
   * Encode to format
   *
-  * @method decode
+  * @method encode
   * @param {String} $datastore context identifier
   * @void
   */ 

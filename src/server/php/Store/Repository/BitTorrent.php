@@ -1,5 +1,11 @@
 <?php namespace Store\Repository;
 
+/**
+* BitTorrent Repository
+*
+* @class BitTorrent
+* @module Server
+*/
 use Store\Repository;
 
 class BitTorrent extends Repository {

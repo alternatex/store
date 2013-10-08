@@ -4,6 +4,7 @@
 * Store fundamentals
 *
 * @class Store
+* @module Server
 */
 abstract class Store { 
 

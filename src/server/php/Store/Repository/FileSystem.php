@@ -10,6 +10,7 @@ use Store\Resource\File;
 * FileSystem Plaintext Store 
 *
 * @class FileSystem
+* @module Server
 */
 abstract class FileSystem extends Repository {
 

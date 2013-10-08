@@ -1,11 +1,13 @@
 /**
 * A lightweight datastore wrapper
 * @module Client
+* @class ClientStore
 **/
 
 // TODO: 
 // - add enhanced "class" support w/ getter/setter if avail: Object.defineProperty(fnc.prototype, ...)
 // - process custom X-Store-* response headers
+// - HEAD; GET; POST; PATCH; PUT; DELETE 
 
 // module definition 
 (function (root) { var amdExports; define('store', ["underscore"], function (_) { (function () {

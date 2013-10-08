@@ -12,6 +12,134 @@
                 "Client": 1
             },
             "classes": {
+                "ClientStore": 1
+            },
+            "fors": {},
+            "namespaces": {}
+        },
+        "src/server/php/Store/Format/Csv.php": {
+            "name": "src/server/php/Store/Format/Csv.php",
+            "modules": {
+                "Server": 1
+            },
+            "classes": {
+                "Csv": 1
+            },
+            "fors": {},
+            "namespaces": {}
+        },
+        "src/server/php/Store/Format/Json.php": {
+            "name": "src/server/php/Store/Format/Json.php",
+            "modules": {},
+            "classes": {
+                "Json": 1
+            },
+            "fors": {},
+            "namespaces": {}
+        },
+        "src/server/php/Store/Format/Object.php": {
+            "name": "src/server/php/Store/Format/Object.php",
+            "modules": {},
+            "classes": {
+                "Object": 1
+            },
+            "fors": {},
+            "namespaces": {}
+        },
+        "src/server/php/Store/Repository/BitTorrent.php": {
+            "name": "src/server/php/Store/Repository/BitTorrent.php",
+            "modules": {},
+            "classes": {
+                "BitTorrent": 1
+            },
+            "fors": {},
+            "namespaces": {}
+        },
+        "src/server/php/Store/Repository/Dropbox.php": {
+            "name": "src/server/php/Store/Repository/Dropbox.php",
+            "modules": {},
+            "classes": {
+                "Dropbox": 1
+            },
+            "fors": {},
+            "namespaces": {}
+        },
+        "src/server/php/Store/Repository/FileSystem.php": {
+            "name": "src/server/php/Store/Repository/FileSystem.php",
+            "modules": {},
+            "classes": {
+                "FileSystem": 1
+            },
+            "fors": {},
+            "namespaces": {}
+        },
+        "src/server/php/Store/Repository/Git.php": {
+            "name": "src/server/php/Store/Repository/Git.php",
+            "modules": {},
+            "classes": {
+                "Git": 1
+            },
+            "fors": {},
+            "namespaces": {}
+        },
+        "src/server/php/Store/Repository/Memory.php": {
+            "name": "src/server/php/Store/Repository/Memory.php",
+            "modules": {},
+            "classes": {
+                "Memory": 1
+            },
+            "fors": {},
+            "namespaces": {}
+        },
+        "src/server/php/Store/Resource/File.php": {
+            "name": "src/server/php/Store/Resource/File.php",
+            "modules": {},
+            "classes": {
+                "File": 1
+            },
+            "fors": {},
+            "namespaces": {}
+        },
+        "src/server/php/Store/Resource/Item.php": {
+            "name": "src/server/php/Store/Resource/Item.php",
+            "modules": {},
+            "classes": {
+                "Item": 1
+            },
+            "fors": {},
+            "namespaces": {}
+        },
+        "src/server/php/Store/Format.php": {
+            "name": "src/server/php/Store/Format.php",
+            "modules": {},
+            "classes": {
+                "Format": 1
+            },
+            "fors": {},
+            "namespaces": {}
+        },
+        "src/server/php/Store/Repository.php": {
+            "name": "src/server/php/Store/Repository.php",
+            "modules": {},
+            "classes": {
+                "Repository": 1
+            },
+            "fors": {},
+            "namespaces": {}
+        },
+        "src/server/php/Store/Resource.php": {
+            "name": "src/server/php/Store/Resource.php",
+            "modules": {},
+            "classes": {
+                "Resource": 1
+            },
+            "fors": {},
+            "namespaces": {}
+        },
+        "src/server/php/Store/Store.php": {
+            "name": "src/server/php/Store/Store.php",
+            "modules": {},
+            "classes": {
                 "Store": 1
             },
             "fors": {},
@@ -23,20 +151,46 @@
             "name": "Client",
             "submodules": {},
             "classes": {
-                "Store": 1
+                "ClientStore": 1
             },
             "fors": {},
             "namespaces": {},
             "tag": "module",
             "file": "src/client/store.js",
-            "line": 194,
+            "line": 1,
             "description": "A lightweight datastore wrapper"
+        },
+        "Server": {
+            "name": "Server",
+            "submodules": {},
+            "classes": {
+                "Store": 1,
+                "Csv": 1,
+                "Json": 1,
+                "Object": 1,
+                "BitTorrent": 1,
+                "Dropbox": 1,
+                "FileSystem": 1,
+                "Git": 1,
+                "Memory": 1,
+                "File": 1,
+                "Item": 1,
+                "Format": 1,
+                "Repository": 1,
+                "Resource": 1
+            },
+            "fors": {},
+            "namespaces": {},
+            "tag": "module",
+            "file": "src/server/php/Store/Resource.php",
+            "line": 3,
+            "description": "Csv Formatted Contents"
         }
     },
     "classes": {
-        "Store": {
-            "name": "Store",
-            "shortname": "Store",
+        "ClientStore": {
+            "name": "ClientStore",
+            "shortname": "ClientStore",
             "classitems": [],
             "plugins": [],
             "extensions": [],
@@ -45,15 +199,211 @@
             "module": "Client",
             "namespace": "",
             "file": "src/client/store.js",
-            "line": 194,
-            "description": "Store consumer",
+            "line": 1,
+            "description": "A lightweight datastore wrapper"
+        },
+        "Store": {
+            "name": "Store",
+            "shortname": "Store",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "module": "Server",
+            "namespace": "",
+            "file": "src/server/php/Store/Store.php",
+            "line": 3,
+            "description": "Store fundamentals",
             "is_constructor": 1
+        },
+        "Csv": {
+            "name": "Csv",
+            "shortname": "Csv",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "module": "Server",
+            "namespace": "",
+            "file": "src/server/php/Store/Format/Csv.php",
+            "line": 6,
+            "description": "Csv Formatted Contents"
+        },
+        "Json": {
+            "name": "Json",
+            "shortname": "Json",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "module": "Server",
+            "namespace": "",
+            "file": "src/server/php/Store/Format/Json.php",
+            "line": 6,
+            "description": "Json Formatted Contents"
+        },
+        "Object": {
+            "name": "Object",
+            "shortname": "Object",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "module": "Server",
+            "namespace": "",
+            "file": "src/server/php/Store/Format/Object.php",
+            "line": 8,
+            "description": "Serialized Objects"
+        },
+        "BitTorrent": {
+            "name": "BitTorrent",
+            "shortname": "BitTorrent",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "module": "Server",
+            "namespace": "",
+            "file": "src/server/php/Store/Repository/BitTorrent.php",
+            "line": 3,
+            "description": "BitTorrent Repository"
+        },
+        "Dropbox": {
+            "name": "Dropbox",
+            "shortname": "Dropbox",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "module": "Server",
+            "namespace": "",
+            "file": "src/server/php/Store/Repository/Dropbox.php",
+            "line": 3,
+            "description": "Dropbox Repository"
+        },
+        "FileSystem": {
+            "name": "FileSystem",
+            "shortname": "FileSystem",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "module": "Server",
+            "namespace": "",
+            "file": "src/server/php/Store/Repository/FileSystem.php",
+            "line": 9,
+            "description": "FileSystem Plaintext Store"
+        },
+        "Git": {
+            "name": "Git",
+            "shortname": "Git",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "module": "Server",
+            "namespace": "",
+            "file": "src/server/php/Store/Repository/Git.php",
+            "line": 9,
+            "description": "Git Store \n\nBasic git integration"
+        },
+        "Memory": {
+            "name": "Memory",
+            "shortname": "Memory",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "module": "Server",
+            "namespace": "",
+            "file": "src/server/php/Store/Repository/Memory.php",
+            "line": 15,
+            "description": "Memory Store"
+        },
+        "File": {
+            "name": "File",
+            "shortname": "File",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "module": "Server",
+            "namespace": "",
+            "file": "src/server/php/Store/Resource/File.php",
+            "line": 8,
+            "description": "File\n\n..."
+        },
+        "Item": {
+            "name": "Item",
+            "shortname": "Item",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "module": "Server",
+            "namespace": "",
+            "file": "src/server/php/Store/Resource/Item.php",
+            "line": 5,
+            "description": "Item aka Collection » TBD"
+        },
+        "Format": {
+            "name": "Format",
+            "shortname": "Format",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "module": "Server",
+            "namespace": "",
+            "file": "src/server/php/Store/Format.php",
+            "line": 5,
+            "description": "Format\n\nAbstract format aka content type (encoding/decoding)"
+        },
+        "Repository": {
+            "name": "Repository",
+            "shortname": "Repository",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "module": "Server",
+            "namespace": "",
+            "file": "src/server/php/Store/Repository.php",
+            "line": 5,
+            "description": "Repository"
+        },
+        "Resource": {
+            "name": "Resource",
+            "shortname": "Resource",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "module": "Server",
+            "namespace": "",
+            "file": "src/server/php/Store/Resource.php",
+            "line": 3,
+            "description": "Resource"
         }
     },
     "classitems": [
         {
             "file": "src/client/store.js",
-            "line": 13,
+            "line": 14,
             "description": "configuration object",
             "itemtype": "method",
             "name": "Options",
@@ -61,12 +411,12 @@
             "tagname": "",
             "type": "{Object}",
             "default": "{Object} instance",
-            "class": "Store",
+            "class": "ClientStore",
             "module": "Client"
         },
         {
             "file": "src/client/store.js",
-            "line": 23,
+            "line": 24,
             "description": "configuration object.constructor",
             "itemtype": "method",
             "name": "Options.constructor",
@@ -74,67 +424,67 @@
             "tagname": "",
             "type": "{Object}",
             "default": "{Object} instance",
-            "class": "Store",
+            "class": "ClientStore",
             "module": "Client"
         },
         {
             "file": "src/client/store.js",
-            "line": 33,
+            "line": 34,
             "description": "Remote storage location",
             "itemtype": "property",
             "name": "options.url",
-            "type": "{Object}",
-            "default": "\"foo\"",
-            "class": "Store",
+            "type": "{String}",
+            "default": "\"//localhost/store/examples/server.php\"",
+            "class": "ClientStore",
             "module": "Client"
         },
         {
             "file": "src/client/store.js",
-            "line": 42,
+            "line": 43,
             "description": "Storage namespace",
             "itemtype": "property",
             "name": "options.namespace",
-            "type": "{Object}",
-            "default": "\"foo\"",
-            "class": "Store",
+            "type": "{String}",
+            "default": "\"default\"",
+            "class": "ClientStore",
             "module": "Client"
         },
         {
             "file": "src/client/store.js",
-            "line": 51,
+            "line": 52,
             "description": "JSONP callback fnc name",
             "itemtype": "property",
             "name": "options.jsonp",
-            "type": "{Object}",
-            "default": "\"foo\"",
-            "class": "Store",
+            "type": "{String}",
+            "default": "\"callback\"",
+            "class": "ClientStore",
             "module": "Client"
         },
         {
             "file": "src/client/store.js",
-            "line": 60,
+            "line": 61,
             "description": "Cache enabled",
             "itemtype": "property",
             "name": "options.cache",
-            "type": "{Object}",
-            "default": "\"foo\"",
-            "class": "Store",
+            "type": "{Boolean}",
+            "default": "true",
+            "class": "ClientStore",
             "module": "Client"
         },
         {
             "file": "src/client/store.js",
-            "line": 69,
+            "line": 70,
             "description": "Cache Lifetime",
             "itemtype": "property",
             "name": "options.ttl",
-            "type": "{Object}",
-            "default": "\"foo\"",
-            "class": "Store",
+            "type": "{Number}",
+            "default": "3600",
+            "class": "ClientStore",
             "module": "Client"
         },
         {
             "file": "src/client/store.js",
-            "line": 79,
+            "line": 80,
             "description": "Repository - Storage Base Class",
             "itemtype": "method",
             "name": "Repository",
@@ -142,12 +492,12 @@
             "tagname": "",
             "type": "{Object}",
             "default": "{Object} instance",
-            "class": "Store",
+            "class": "ClientStore",
             "module": "Client"
         },
         {
             "file": "src/client/store.js",
-            "line": 89,
+            "line": 90,
             "description": "Repository constructor",
             "itemtype": "method",
             "name": "Repository.constructor",
@@ -155,12 +505,12 @@
             "tagname": "",
             "type": "{Object}",
             "default": "{Object} instance",
-            "class": "Store",
+            "class": "ClientStore",
             "module": "Client"
         },
         {
             "file": "src/client/store.js",
-            "line": 99,
+            "line": 100,
             "description": "Repository: Remote",
             "itemtype": "method",
             "name": "Remote",
@@ -168,12 +518,12 @@
             "tagname": "",
             "type": "{Object}",
             "default": "{Object} instance",
-            "class": "Store",
+            "class": "ClientStore",
             "module": "Client"
         },
         {
             "file": "src/client/store.js",
-            "line": 109,
+            "line": 110,
             "description": "Repository: Remote.constructor",
             "itemtype": "method",
             "name": "Remote.constructor",
@@ -181,13 +531,53 @@
             "tagname": "",
             "type": "{Object}",
             "default": "{Object} instance",
-            "class": "Store",
+            "class": "ClientStore",
             "module": "Client"
         },
         {
             "file": "src/client/store.js",
-            "line": 119,
-            "description": "Process action on remote",
+            "line": 120,
+            "description": "Synchronous remote action processing",
+            "itemtype": "method",
+            "name": "processSync",
+            "params": [
+                {
+                    "name": "action",
+                    "description": "[list, get, update, remove]",
+                    "type": "String"
+                },
+                {
+                    "name": "options",
+                    "description": "configuration",
+                    "type": "Object"
+                },
+                {
+                    "name": "item",
+                    "description": "arbitrary object *",
+                    "type": "Object"
+                },
+                {
+                    "name": "callback",
+                    "description": "handle",
+                    "type": "Function"
+                },
+                {
+                    "name": "each",
+                    "description": "apply callback fnc for each object? (default: false)",
+                    "type": "Boolean"
+                }
+            ],
+            "return": {
+                "description": "Returns true on success",
+                "type": "Boolean"
+            },
+            "class": "ClientStore",
+            "module": "Client"
+        },
+        {
+            "file": "src/client/store.js",
+            "line": 134,
+            "description": "Asynchronous remote action processing",
             "itemtype": "method",
             "name": "process",
             "params": [
@@ -221,25 +611,24 @@
                 "description": "Returns true on success",
                 "type": "Boolean"
             },
-            "class": "Store",
+            "class": "ClientStore",
             "module": "Client"
         },
         {
             "file": "src/client/store.js",
-            "line": 201,
+            "line": 238,
             "description": "Self-Reference",
             "itemtype": "property",
             "name": "self",
             "access": "private",
             "tagname": "",
             "type": "{Object}",
-            "default": "\"foo\"",
             "class": "Store",
             "module": "Client"
         },
         {
             "file": "src/client/store.js",
-            "line": 211,
+            "line": 247,
             "description": "Store configuration",
             "itemtype": "property",
             "name": "options",
@@ -250,7 +639,7 @@
         },
         {
             "file": "src/client/store.js",
-            "line": 220,
+            "line": 256,
             "description": "configuration options",
             "itemtype": "property",
             "name": "options",
@@ -263,7 +652,7 @@
         },
         {
             "file": "src/client/store.js",
-            "line": 230,
+            "line": 266,
             "description": "Repository",
             "itemtype": "property",
             "name": "repository",
@@ -276,59 +665,55 @@
         },
         {
             "file": "src/client/store.js",
-            "line": 240,
+            "line": 276,
             "description": "Repository Item",
             "itemtype": "property",
             "name": "Item",
             "access": "private",
             "tagname": "",
             "type": "{Function}",
-            "default": "Function",
             "class": "Store",
             "module": "Client"
         },
         {
             "file": "src/client/store.js",
-            "line": 255,
+            "line": 290,
             "description": "Item.constructor",
             "itemtype": "property",
             "name": "Item.constructor",
             "access": "private",
             "tagname": "",
             "type": "{Object}",
-            "default": "Object",
             "class": "Store",
             "module": "Client"
         },
         {
             "file": "src/client/store.js",
-            "line": 265,
+            "line": 299,
             "description": "Store-Reference",
             "itemtype": "property",
             "name": "datastore",
             "access": "private",
             "tagname": "",
             "type": "{Object}",
-            "default": "Self-Reference",
             "class": "Store",
             "module": "Client"
         },
         {
             "file": "src/client/store.js",
-            "line": 275,
+            "line": 308,
             "description": "Object's Datastore",
             "itemtype": "property",
             "name": "data",
             "access": "private",
             "tagname": "",
             "type": "{Object}",
-            "default": "{ instance: {} }",
             "class": "Store",
             "module": "Client"
         },
         {
             "file": "src/client/store.js",
-            "line": 285,
+            "line": 317,
             "description": "Set item property",
             "itemtype": "method",
             "name": "set",
@@ -353,7 +738,7 @@
         },
         {
             "file": "src/client/store.js",
-            "line": 301,
+            "line": 333,
             "description": "Get item property",
             "itemtype": "method",
             "name": "get",
@@ -373,7 +758,7 @@
         },
         {
             "file": "src/client/store.js",
-            "line": 312,
+            "line": 344,
             "description": "Persist item",
             "itemtype": "method",
             "name": "update",
@@ -393,7 +778,7 @@
         },
         {
             "file": "src/client/store.js",
-            "line": 323,
+            "line": 355,
             "description": "Remove item",
             "itemtype": "method",
             "name": "remove",
@@ -413,7 +798,7 @@
         },
         {
             "file": "src/client/store.js",
-            "line": 336,
+            "line": 368,
             "description": "Retrieves all items",
             "itemtype": "method",
             "name": "all",
@@ -426,31 +811,29 @@
         },
         {
             "file": "src/client/store.js",
-            "line": 350,
+            "line": 382,
             "description": "Interface *",
             "itemtype": "property",
             "name": "api",
             "access": "private",
             "tagname": "",
             "type": "{Object}",
-            "default": "\"foo\"",
             "class": "Store",
             "module": "Client"
         },
         {
             "file": "src/client/store.js",
-            "line": 375,
+            "line": 406,
             "description": "Store prototype definition",
             "itemtype": "property",
             "name": "prototype",
             "type": "{Object}",
-            "default": "{}",
             "class": "Store",
             "module": "Client"
         },
         {
             "file": "src/client/store.js",
-            "line": 384,
+            "line": 414,
             "description": "LRU cache * - TODO: implement",
             "itemtype": "property",
             "name": "cache",
@@ -461,7 +844,7 @@
         },
         {
             "file": "src/client/store.js",
-            "line": 393,
+            "line": 423,
             "description": "Items collection",
             "itemtype": "property",
             "name": "items",
@@ -472,7 +855,7 @@
         },
         {
             "file": "src/client/store.js",
-            "line": 402,
+            "line": 432,
             "description": "JSON Schema *",
             "itemtype": "property",
             "name": "schema",
@@ -483,7 +866,7 @@
         },
         {
             "file": "src/client/store.js",
-            "line": 411,
+            "line": 441,
             "description": "Insert/update item",
             "itemtype": "method",
             "name": "update",
@@ -496,7 +879,7 @@
         },
         {
             "file": "src/client/store.js",
-            "line": 423,
+            "line": 453,
             "description": "Remove item",
             "itemtype": "method",
             "name": "remove",
@@ -509,7 +892,7 @@
         },
         {
             "file": "src/client/store.js",
-            "line": 433,
+            "line": 463,
             "description": "Retrieve item",
             "itemtype": "method",
             "name": "get",
@@ -529,7 +912,7 @@
         },
         {
             "file": "src/client/store.js",
-            "line": 444,
+            "line": 474,
             "description": "Retrieves all items",
             "itemtype": "method",
             "name": "list",
@@ -542,7 +925,7 @@
         },
         {
             "file": "src/client/store.js",
-            "line": 454,
+            "line": 484,
             "description": "Filter list - TODO: implement",
             "itemtype": "method",
             "name": "filter",
@@ -555,7 +938,7 @@
         },
         {
             "file": "src/client/store.js",
-            "line": 464,
+            "line": 494,
             "description": "Instance configuration",
             "itemtype": "method",
             "name": "configure",
@@ -568,7 +951,7 @@
         },
         {
             "file": "src/client/store.js",
-            "line": 477,
+            "line": 507,
             "description": "Item accessor *",
             "itemtype": "method",
             "name": "item",
@@ -581,7 +964,7 @@
         },
         {
             "file": "src/client/store.js",
-            "line": 487,
+            "line": 517,
             "description": "create instance / new item (bound to datastore)",
             "itemtype": "method",
             "name": "create",
@@ -594,7 +977,7 @@
         },
         {
             "file": "src/client/store.js",
-            "line": 505,
+            "line": 540,
             "description": "JSON schema getter/setter",
             "itemtype": "method",
             "name": "schema",
@@ -607,7 +990,7 @@
         },
         {
             "file": "src/client/store.js",
-            "line": 519,
+            "line": 555,
             "description": "Apply general options - default / fallback",
             "itemtype": "method",
             "name": "__configure",
@@ -627,7 +1010,7 @@
         },
         {
             "file": "src/client/store.js",
-            "line": 531,
+            "line": 567,
             "description": "one-dimensional object merge *",
             "itemtype": "method",
             "name": "extend",
@@ -640,7 +1023,7 @@
         },
         {
             "file": "src/client/store.js",
-            "line": 544,
+            "line": 580,
             "description": "Passthrough if item is object. If type is string » wrapped into Item instance with id set to `item`",
             "itemtype": "method",
             "name": "wrap",
@@ -660,10 +1043,16 @@
         },
         {
             "file": "src/client/store.js",
-            "line": 560,
+            "line": 596,
             "description": "Generate GUID",
             "itemtype": "method",
             "name": "guid",
+            "params": [
+                {
+                    "name": "separator",
+                    "description": "(defaults to dash)"
+                }
+            ],
             "return": {
                 "description": "GUID",
                 "type": "String"
@@ -673,7 +1062,7 @@
         },
         {
             "file": "src/client/store.js",
-            "line": 577,
+            "line": 614,
             "description": "Convenience iteration helper",
             "itemtype": "method",
             "name": "times",
@@ -693,40 +1082,1379 @@
         },
         {
             "file": "src/client/store.js",
-            "line": 590,
+            "line": 627,
             "description": "Convenience deferred wrapper",
             "itemtype": "method",
             "name": "times",
             "params": [
                 {
-                    "name": "times",
+                    "name": "callback",
                     "description": "",
-                    "type": "Integer"
+                    "type": "Function"
                 }
             ],
             "return": {
-                "description": "GUID",
-                "type": "String"
+                "description": "",
+                "type": "Promise"
             },
             "class": "Store",
             "module": "Client"
         },
         {
             "file": "src/client/store.js",
-            "line": 601,
+            "line": 638,
             "description": "Stringify object structure (deep!) into url",
             "example": [
                 " (borrowed from: http://stackoverflow.com/a/9472534)\n\n// helpers\nvar serialized,\n    data = {a: 1, b: 2, c: {d: 4, e: [6, 7, 8], f: {asdf: 10}}};  \n\n// transform\nserialized = Store.serialize(data);\n\n// verify\nconsole.log(serialized, serialized === \"a=1&b=2&c[d]=4&c[e][0]=6&c[e][1]=7&c[e][2]=8&c[f][asdf]=10\");"
             ],
             "itemtype": "method",
             "name": "serialize",
+            "params": [
+                {
+                    "name": "params",
+                    "description": "",
+                    "type": "Object"
+                }
+            ],
             "return": {
                 "description": "",
                 "type": "String"
             },
             "class": "Store",
             "module": "Client"
+        },
+        {
+            "file": "src/server/php/Store/Format/Csv.php",
+            "line": 16,
+            "description": "Encode to format",
+            "itemtype": "method",
+            "name": "encode",
+            "params": [
+                {
+                    "name": "$datastore",
+                    "description": "context identifier",
+                    "type": "String"
+                }
+            ],
+            "void": "",
+            "class": "Csv",
+            "module": "Server"
+        },
+        {
+            "file": "src/server/php/Store/Format/Csv.php",
+            "line": 27,
+            "description": "Decode from format",
+            "itemtype": "method",
+            "name": "decode",
+            "params": [
+                {
+                    "name": "$datastore",
+                    "description": "context identifier",
+                    "type": "String"
+                }
+            ],
+            "void": "",
+            "class": "Csv",
+            "module": "Server"
+        },
+        {
+            "file": "src/server/php/Store/Format/Json.php",
+            "line": 16,
+            "description": "Encode to format",
+            "itemtype": "method",
+            "name": "encode",
+            "params": [
+                {
+                    "name": "$datastore",
+                    "description": "context identifier",
+                    "type": "String"
+                }
+            ],
+            "void": "",
+            "class": "Json",
+            "module": "Server"
+        },
+        {
+            "file": "src/server/php/Store/Format/Json.php",
+            "line": 27,
+            "description": "Decode from format",
+            "itemtype": "method",
+            "name": "decode",
+            "params": [
+                {
+                    "name": "$datastore",
+                    "description": "context identifier",
+                    "type": "String"
+                }
+            ],
+            "void": "",
+            "class": "Json",
+            "module": "Server"
+        },
+        {
+            "file": "src/server/php/Store/Format/Object.php",
+            "line": 18,
+            "description": "Encode to format",
+            "itemtype": "method",
+            "name": "encode",
+            "params": [
+                {
+                    "name": "$datastore",
+                    "description": "context identifier",
+                    "type": "String"
+                }
+            ],
+            "void": "",
+            "class": "Object",
+            "module": "Server"
+        },
+        {
+            "file": "src/server/php/Store/Format/Object.php",
+            "line": 29,
+            "description": "Decode from format",
+            "itemtype": "method",
+            "name": "decode",
+            "params": [
+                {
+                    "name": "$datastore",
+                    "description": "context identifier",
+                    "type": "String"
+                }
+            ],
+            "void": "",
+            "class": "Object",
+            "module": "Server"
+        },
+        {
+            "file": "src/server/php/Store/Repository/FileSystem.php",
+            "line": 17,
+            "description": "Load repository",
+            "itemtype": "method",
+            "name": "load",
+            "params": [
+                {
+                    "name": "$filepath",
+                    "description": "context identifier",
+                    "type": "String"
+                }
+            ],
+            "void": "",
+            "class": "FileSystem",
+            "module": "Server"
+        },
+        {
+            "file": "src/server/php/Store/Repository/FileSystem.php",
+            "line": 28,
+            "description": "Insert or update item data in filepath",
+            "itemtype": "method",
+            "name": "update",
+            "params": [
+                {
+                    "name": "$item",
+                    "description": "what it's about",
+                    "type": "Object"
+                }
+            ],
+            "return": {
+                "description": "Returns true on success",
+                "type": "Boolean"
+            },
+            "class": "FileSystem",
+            "module": "Server"
+        },
+        {
+            "file": "src/server/php/Store/Repository/FileSystem.php",
+            "line": 39,
+            "description": "Removes an item from filepath",
+            "itemtype": "method",
+            "name": "remove",
+            "params": [
+                {
+                    "name": "$item",
+                    "description": "what it's about",
+                    "type": "Object"
+                }
+            ],
+            "return": {
+                "description": "Returns true on success",
+                "type": "Boolean"
+            },
+            "class": "FileSystem",
+            "module": "Server"
+        },
+        {
+            "file": "src/server/php/Store/Repository/FileSystem.php",
+            "line": 50,
+            "description": "Get item data",
+            "itemtype": "method",
+            "name": "get",
+            "params": [
+                {
+                    "name": "$item",
+                    "description": "what it's about",
+                    "type": "Object"
+                }
+            ],
+            "return": {
+                "description": "item instance",
+                "type": "Object"
+            },
+            "class": "FileSystem",
+            "module": "Server"
+        },
+        {
+            "file": "src/server/php/Store/Repository/FileSystem.php",
+            "line": 61,
+            "description": "Persist data",
+            "itemtype": "method",
+            "name": "persist",
+            "params": [
+                {
+                    "name": "filepath",
+                    "description": "",
+                    "type": "String"
+                },
+                {
+                    "name": "contents",
+                    "description": "",
+                    "type": "String"
+                }
+            ],
+            "void": "",
+            "class": "FileSystem",
+            "module": "Server"
+        },
+        {
+            "file": "src/server/php/Store/Repository/FileSystem.php",
+            "line": 75,
+            "description": "Persist data static",
+            "itemtype": "method",
+            "name": "persistToDisk",
+            "params": [
+                {
+                    "name": "filepath",
+                    "description": "",
+                    "type": "String"
+                },
+                {
+                    "name": "contents",
+                    "description": "",
+                    "type": "String"
+                }
+            ],
+            "void": "",
+            "class": "FileSystem",
+            "module": "Server"
+        },
+        {
+            "file": "src/server/php/Store/Repository/Git.php",
+            "line": 19,
+            "description": "Remote collection",
+            "itemtype": "property",
+            "name": "remotes",
+            "access": "private",
+            "tagname": "",
+            "type": "{Array}",
+            "default": "array()",
+            "class": "Git",
+            "module": "Server"
+        },
+        {
+            "file": "src/server/php/Store/Repository/Git.php",
+            "line": 28,
+            "description": "Branch collection",
+            "itemtype": "property",
+            "name": "branches",
+            "access": "private",
+            "tagname": "",
+            "type": "{Array}",
+            "default": "array()",
+            "class": "Git",
+            "module": "Server"
+        },
+        {
+            "file": "src/server/php/Store/Repository/Git.php",
+            "line": 37,
+            "description": "Constructor",
+            "is_constructor": 1,
+            "itemtype": "method",
+            "name": "__construct",
+            "params": [
+                {
+                    "name": "$remote",
+                    "description": "",
+                    "type": "String"
+                },
+                {
+                    "name": "$branch",
+                    "description": "",
+                    "type": "String"
+                }
+            ],
+            "class": "Git",
+            "module": "Server"
+        },
+        {
+            "file": "src/server/php/Store/Repository/Git.php",
+            "line": 50,
+            "description": "Helper to add/remove remote",
+            "itemtype": "method",
+            "name": "remote",
+            "params": [
+                {
+                    "name": "$remote",
+                    "description": "",
+                    "type": "String"
+                },
+                {
+                    "name": "$unset",
+                    "description": "",
+                    "type": "Boolean"
+                }
+            ],
+            "class": "Git",
+            "module": "Server"
+        },
+        {
+            "file": "src/server/php/Store/Repository/Git.php",
+            "line": 65,
+            "description": "Helper to add/remove branch",
+            "itemtype": "method",
+            "name": "branch",
+            "params": [
+                {
+                    "name": "$branch",
+                    "description": "",
+                    "type": "String"
+                },
+                {
+                    "name": "$unset",
+                    "description": "",
+                    "type": "Boolean"
+                }
+            ],
+            "class": "Git",
+            "module": "Server"
+        },
+        {
+            "file": "src/server/php/Store/Repository/Git.php",
+            "line": 80,
+            "description": "Helper to determine default remote/branch",
+            "itemtype": "method",
+            "name": "defaults",
+            "params": [
+                {
+                    "name": "&$remote",
+                    "description": "",
+                    "type": "String"
+                },
+                {
+                    "name": "&$branch",
+                    "description": "",
+                    "type": "String"
+                }
+            ],
+            "class": "Git",
+            "module": "Server"
+        },
+        {
+            "file": "src/server/php/Store/Repository/Git.php",
+            "line": 92,
+            "description": "Update file (commit & push)",
+            "itemtype": "method",
+            "name": "update",
+            "params": [
+                {
+                    "name": "$filename",
+                    "description": "",
+                    "type": "String"
+                }
+            ],
+            "void": "",
+            "class": "Git",
+            "module": "Server"
+        },
+        {
+            "file": "src/server/php/Store/Repository/Git.php",
+            "line": 104,
+            "description": "Retrieve file (pull)",
+            "itemtype": "method",
+            "name": "get",
+            "params": [
+                {
+                    "name": "$filename",
+                    "description": "",
+                    "type": "String"
+                }
+            ],
+            "void": "",
+            "class": "Git",
+            "module": "Server"
+        },
+        {
+            "file": "src/server/php/Store/Repository/Git.php",
+            "line": 115,
+            "description": "Load repository",
+            "itemtype": "method",
+            "name": "load",
+            "params": [
+                {
+                    "name": "$remote",
+                    "description": "",
+                    "type": "String"
+                },
+                {
+                    "name": "$branch",
+                    "description": "",
+                    "type": "String"
+                }
+            ],
+            "void": "",
+            "class": "Git",
+            "module": "Server"
+        },
+        {
+            "file": "src/server/php/Store/Repository/Git.php",
+            "line": 128,
+            "description": "Persist changes (commit & push)",
+            "itemtype": "method",
+            "name": "persist",
+            "params": [
+                {
+                    "name": "$remote",
+                    "description": "",
+                    "type": "String"
+                },
+                {
+                    "name": "$branch",
+                    "description": "",
+                    "type": "String"
+                }
+            ],
+            "void": "",
+            "class": "Git",
+            "module": "Server"
+        },
+        {
+            "file": "src/server/php/Store/Repository/Git.php",
+            "line": 142,
+            "description": "Add file to repository (add & commit)",
+            "itemtype": "method",
+            "name": "add",
+            "params": [
+                {
+                    "name": "$filename",
+                    "description": "",
+                    "type": "String"
+                }
+            ],
+            "void": "",
+            "class": "Git",
+            "module": "Server"
+        },
+        {
+            "file": "src/server/php/Store/Repository/Git.php",
+            "line": 154,
+            "description": "Remove file from repository (rm & commit)",
+            "itemtype": "method",
+            "name": "remove",
+            "params": [
+                {
+                    "name": "$filename",
+                    "description": "",
+                    "type": "String"
+                }
+            ],
+            "void": "",
+            "class": "Git",
+            "module": "Server"
+        },
+        {
+            "file": "src/server/php/Store/Repository/Git.php",
+            "line": 166,
+            "description": "Commit file changes (commit -m $message -a)",
+            "itemtype": "method",
+            "name": "commit",
+            "params": [
+                {
+                    "name": "$message",
+                    "description": "",
+                    "type": "String"
+                }
+            ],
+            "void": "",
+            "class": "Git",
+            "module": "Server"
+        },
+        {
+            "file": "src/server/php/Store/Repository/Git.php",
+            "line": 177,
+            "description": "Checkout branch",
+            "itemtype": "method",
+            "name": "checkout",
+            "params": [
+                {
+                    "name": "$branch",
+                    "description": "",
+                    "type": "String"
+                }
+            ],
+            "void": "",
+            "class": "Git",
+            "module": "Server"
+        },
+        {
+            "file": "src/server/php/Store/Repository/Git.php",
+            "line": 188,
+            "description": "Push changes to remote",
+            "itemtype": "method",
+            "name": "push",
+            "params": [
+                {
+                    "name": "$remote",
+                    "description": "",
+                    "type": "String"
+                },
+                {
+                    "name": "$branch",
+                    "description": "",
+                    "type": "String"
+                }
+            ],
+            "void": "",
+            "class": "Git",
+            "module": "Server"
+        },
+        {
+            "file": "src/server/php/Store/Repository/Git.php",
+            "line": 201,
+            "description": "Pull changes from remote",
+            "itemtype": "method",
+            "name": "push",
+            "params": [
+                {
+                    "name": "$remote",
+                    "description": "",
+                    "type": "String"
+                },
+                {
+                    "name": "$branch",
+                    "description": "",
+                    "type": "String"
+                }
+            ],
+            "void": "",
+            "class": "Git",
+            "module": "Server"
+        },
+        {
+            "file": "src/server/php/Store/Repository/Memory.php",
+            "line": 27,
+            "description": "Encode to format",
+            "itemtype": "method",
+            "name": "decode",
+            "params": [
+                {
+                    "name": "$datastore",
+                    "description": "context identifier",
+                    "type": "String"
+                }
+            ],
+            "void": "",
+            "class": "Memory",
+            "module": "Server"
+        },
+        {
+            "file": "src/server/php/Store/Repository/Memory.php",
+            "line": 39,
+            "description": "Decode from format",
+            "itemtype": "method",
+            "name": "decode",
+            "params": [
+                {
+                    "name": "$datastore",
+                    "description": "context identifier",
+                    "type": "String"
+                }
+            ],
+            "void": "",
+            "class": "Memory",
+            "module": "Server"
+        },
+        {
+            "file": "src/server/php/Store/Repository/Memory.php",
+            "line": 51,
+            "description": "Load repository",
+            "itemtype": "method",
+            "name": "load",
+            "params": [
+                {
+                    "name": "$DSN",
+                    "description": "",
+                    "type": "String"
+                }
+            ],
+            "void": "",
+            "class": "Memory",
+            "module": "Server"
+        },
+        {
+            "file": "src/server/php/Store/Repository/Memory.php",
+            "line": 84,
+            "description": "Insert or update item data in datastore",
+            "itemtype": "method",
+            "name": "update",
+            "params": [
+                {
+                    "name": "$item",
+                    "description": "what it's about",
+                    "type": "Object"
+                }
+            ],
+            "return": {
+                "description": "Returns true on success",
+                "type": "Boolean"
+            },
+            "class": "Memory",
+            "module": "Server"
+        },
+        {
+            "file": "src/server/php/Store/Repository/Memory.php",
+            "line": 122,
+            "description": "Removes an item from datastore",
+            "itemtype": "method",
+            "name": "remove",
+            "params": [
+                {
+                    "name": "$item",
+                    "description": "what it's about",
+                    "type": "Object"
+                }
+            ],
+            "return": {
+                "description": "Returns true on success",
+                "type": "Boolean"
+            },
+            "class": "Memory",
+            "module": "Server"
+        },
+        {
+            "file": "src/server/php/Store/Repository/Memory.php",
+            "line": 138,
+            "description": "Get item data",
+            "itemtype": "method",
+            "name": "get",
+            "params": [
+                {
+                    "name": "$item",
+                    "description": "what it's about",
+                    "type": "Object"
+                }
+            ],
+            "return": {
+                "description": "item instance",
+                "type": "Object"
+            },
+            "class": "Memory",
+            "module": "Server"
+        },
+        {
+            "file": "src/server/php/Store/Repository/Memory.php",
+            "line": 157,
+            "description": "Find item (currently just: UUID - TODO: enhance signature w/UUID as default / Widespread Merge ?!)",
+            "itemtype": "method",
+            "name": "find",
+            "return": {
+                "description": "List of item instances",
+                "type": "Array"
+            },
+            "class": "Memory",
+            "module": "Server"
+        },
+        {
+            "file": "src/server/php/Store/Repository/Memory.php",
+            "line": 177,
+            "description": "Filter items",
+            "itemtype": "method",
+            "name": "find",
+            "return": {
+                "description": "List of matching item instances",
+                "type": "Array"
+            },
+            "class": "Memory",
+            "module": "Server"
+        },
+        {
+            "file": "src/server/php/Store/Repository/Memory.php",
+            "line": 188,
+            "description": "Process HTTP file uploads",
+            "itemtype": "method",
+            "name": "files",
+            "params": [
+                {
+                    "name": "$files",
+                    "description": "actually just $_FILES ...",
+                    "type": "Object"
+                }
+            ],
+            "void": "",
+            "class": "Memory",
+            "module": "Server"
+        },
+        {
+            "file": "src/server/php/Store/Repository/Memory.php",
+            "line": 213,
+            "description": "Persist data",
+            "itemtype": "method",
+            "name": "persist",
+            "params": [
+                {
+                    "name": "filepath",
+                    "description": "",
+                    "type": "String"
+                },
+                {
+                    "name": "contents",
+                    "description": "",
+                    "type": "String"
+                }
+            ],
+            "void": "",
+            "class": "Memory",
+            "module": "Server"
+        },
+        {
+            "file": "src/server/php/Store/Resource/File.php",
+            "line": 18,
+            "description": "Path to file",
+            "itemtype": "property",
+            "name": "path",
+            "access": "private",
+            "tagname": "",
+            "type": "{String}",
+            "default": "''",
+            "class": "File",
+            "module": "Server"
+        },
+        {
+            "file": "src/server/php/Store/Resource/File.php",
+            "line": 27,
+            "description": "File content",
+            "itemtype": "property",
+            "name": "content",
+            "access": "private",
+            "tagname": "",
+            "type": "{String}",
+            "default": "''",
+            "class": "File",
+            "module": "Server"
+        },
+        {
+            "file": "src/server/php/Store/Resource/File.php",
+            "line": 36,
+            "description": "File format",
+            "itemtype": "property",
+            "name": "format",
+            "access": "private",
+            "tagname": "",
+            "type": "{Format}",
+            "default": "null",
+            "class": "File",
+            "module": "Server"
+        },
+        {
+            "file": "src/server/php/Store/Resource/Item.php",
+            "line": 13,
+            "description": "Data",
+            "itemtype": "property",
+            "name": "data",
+            "access": "private",
+            "tagname": "",
+            "type": "{Array}",
+            "default": "''",
+            "class": "Item",
+            "module": "Server"
+        },
+        {
+            "file": "src/server/php/Store/Format.php",
+            "line": 15,
+            "description": "Encode to format",
+            "itemtype": "method",
+            "name": "encode",
+            "params": [
+                {
+                    "name": "$datastore",
+                    "description": "context identifier",
+                    "type": "String"
+                }
+            ],
+            "void": "",
+            "class": "Format",
+            "module": "Server"
+        },
+        {
+            "file": "src/server/php/Store/Format.php",
+            "line": 24,
+            "description": "Decode from format",
+            "itemtype": "method",
+            "name": "decode",
+            "params": [
+                {
+                    "name": "$datastore",
+                    "description": "context identifier",
+                    "type": "String"
+                }
+            ],
+            "void": "",
+            "class": "Format",
+            "module": "Server"
+        },
+        {
+            "file": "src/server/php/Store/Repository.php",
+            "line": 13,
+            "description": "Insert or update item data in datastore",
+            "itemtype": "method",
+            "name": "update",
+            "params": [
+                {
+                    "name": "$item",
+                    "description": "what it's about",
+                    "type": "Object"
+                }
+            ],
+            "return": {
+                "description": "Returns true on success",
+                "type": "Boolean"
+            },
+            "class": "Repository",
+            "module": "Server"
+        },
+        {
+            "file": "src/server/php/Store/Repository.php",
+            "line": 22,
+            "description": "Get item data",
+            "itemtype": "method",
+            "name": "get",
+            "params": [
+                {
+                    "name": "$item",
+                    "description": "what it's about",
+                    "type": "Object"
+                }
+            ],
+            "return": {
+                "description": "item instance",
+                "type": "Object"
+            },
+            "class": "Repository",
+            "module": "Server"
+        },
+        {
+            "file": "src/server/php/Store/Repository.php",
+            "line": 31,
+            "description": "Removes an item from datastore",
+            "itemtype": "method",
+            "name": "remove",
+            "params": [
+                {
+                    "name": "$item",
+                    "description": "what it's about",
+                    "type": "Object"
+                }
+            ],
+            "return": {
+                "description": "Returns true on success",
+                "type": "Boolean"
+            },
+            "class": "Repository",
+            "module": "Server"
+        },
+        {
+            "file": "src/server/php/Store/Repository.php",
+            "line": 40,
+            "description": "Load data",
+            "itemtype": "method",
+            "name": "load",
+            "params": [
+                {
+                    "name": "dsn",
+                    "description": "",
+                    "type": "String"
+                }
+            ],
+            "void": "",
+            "class": "Repository",
+            "module": "Server"
+        },
+        {
+            "file": "src/server/php/Store/Repository.php",
+            "line": 49,
+            "description": "Persist data",
+            "itemtype": "method",
+            "name": "persist",
+            "params": [
+                {
+                    "name": "dsn",
+                    "description": "",
+                    "type": "String"
+                }
+            ],
+            "void": "",
+            "class": "Repository",
+            "module": "Server"
+        },
+        {
+            "file": "src/server/php/Store/Repository.php",
+            "line": 58,
+            "description": "Get/Set pending changes flag",
+            "itemtype": "method",
+            "name": "isPending",
+            "params": [
+                {
+                    "name": "$pending",
+                    "description": "",
+                    "type": "Boolean"
+                }
+            ],
+            "return": {
+                "description": "",
+                "type": "Boolean"
+            },
+            "class": "Repository",
+            "module": "Server"
+        },
+        {
+            "file": "src/server/php/Store/Repository.php",
+            "line": 70,
+            "description": "Mirror store actions *",
+            "itemtype": "method",
+            "name": "mirror",
+            "void": "",
+            "class": "Repository",
+            "module": "Server"
+        },
+        {
+            "file": "src/server/php/Store/Repository.php",
+            "line": 80,
+            "description": "AMD/CommonJS helper utility",
+            "itemtype": "method",
+            "name": "PrintCommonJSModule",
+            "void": "",
+            "class": "Repository",
+            "module": "Server"
+        },
+        {
+            "file": "src/server/php/Store/Store.php",
+            "line": 11,
+            "description": "Flag to indicated pending changes",
+            "itemtype": "property",
+            "name": "data",
+            "access": "protected",
+            "tagname": "",
+            "type": "{Boolean}",
+            "default": "false",
+            "class": "Store",
+            "module": "Server"
+        },
+        {
+            "file": "src/server/php/Store/Store.php",
+            "line": 20,
+            "description": "Items collection",
+            "itemtype": "property",
+            "name": "data",
+            "access": "protected",
+            "tagname": "",
+            "type": "{Array}",
+            "default": "array()",
+            "class": "Store",
+            "module": "Server"
+        },
+        {
+            "file": "src/server/php/Store/Store.php",
+            "line": 29,
+            "description": "Datastore filename",
+            "itemtype": "property",
+            "name": "datastore",
+            "access": "protected",
+            "tagname": "",
+            "type": "{String}",
+            "default": "null",
+            "class": "Store",
+            "module": "Server"
+        },
+        {
+            "file": "src/server/php/Store/Store.php",
+            "line": 38,
+            "description": "HTTP Header storage type indicator",
+            "itemtype": "property",
+            "name": "REQUEST_STORE_TYPE_HEADER_FIELD",
+            "access": "public",
+            "tagname": "",
+            "type": "{String}",
+            "default": "x-storage-type",
+            "readonly": "",
+            "class": "Store",
+            "module": "Server"
+        },
+        {
+            "file": "src/server/php/Store/Store.php",
+            "line": 48,
+            "description": "Toggle JSONP",
+            "itemtype": "property",
+            "name": "RESPONSE_JSONP_ENABLED",
+            "access": "public",
+            "tagname": "",
+            "type": "{Boolean}",
+            "default": "true",
+            "readonly": "",
+            "class": "Store",
+            "module": "Server"
+        },
+        {
+            "file": "src/server/php/Store/Store.php",
+            "line": 58,
+            "description": "JSON callback identifier",
+            "itemtype": "property",
+            "name": "RESPONSE_JSONP_CALLBACK",
+            "access": "public",
+            "tagname": "",
+            "type": "{Boolean}",
+            "default": "true",
+            "readonly": "",
+            "class": "Store",
+            "module": "Server"
+        },
+        {
+            "file": "src/server/php/Store/Store.php",
+            "line": 68,
+            "description": "Entity attribute count",
+            "itemtype": "property",
+            "name": "ENTITY_COUNT",
+            "access": "public",
+            "tagname": "",
+            "type": "{Boolean}",
+            "default": "true",
+            "readonly": "",
+            "class": "Store",
+            "module": "Server"
+        },
+        {
+            "file": "src/server/php/Store/Store.php",
+            "line": 78,
+            "description": "Entity attribute id",
+            "itemtype": "property",
+            "name": "ENTITY_IDENTIFIER",
+            "access": "public",
+            "tagname": "",
+            "type": "{Boolean}",
+            "default": "true",
+            "readonly": "",
+            "class": "Store",
+            "module": "Server"
+        },
+        {
+            "file": "src/server/php/Store/Store.php",
+            "line": 88,
+            "description": "l18n datastore.corrupt",
+            "itemtype": "property",
+            "name": "MESSAGE_ERROR_DATASTORE_CORRUPT",
+            "access": "public",
+            "tagname": "",
+            "type": "{Boolean}",
+            "default": "true",
+            "readonly": "",
+            "class": "Store",
+            "module": "Server"
+        },
+        {
+            "file": "src/server/php/Store/Store.php",
+            "line": 98,
+            "description": "l18n datastore.locked",
+            "itemtype": "property",
+            "name": "MESSAGE_ERROR_DATASTORE_LOCKED",
+            "access": "public",
+            "tagname": "",
+            "type": "{Boolean}",
+            "default": "true",
+            "readonly": "",
+            "class": "Store",
+            "module": "Server"
+        },
+        {
+            "file": "src/server/php/Store/Store.php",
+            "line": 108,
+            "description": "Request param action",
+            "itemtype": "property",
+            "name": "REQUEST_ACTION",
+            "access": "public",
+            "tagname": "",
+            "type": "{Boolean}",
+            "default": "true",
+            "readonly": "",
+            "class": "Store",
+            "module": "Server"
+        },
+        {
+            "file": "src/server/php/Store/Store.php",
+            "line": 118,
+            "description": "Request param namespace",
+            "itemtype": "property",
+            "name": "REQUEST_NAMESPACE",
+            "access": "public",
+            "tagname": "",
+            "type": "{Boolean}",
+            "default": "true",
+            "readonly": "",
+            "class": "Store",
+            "module": "Server"
+        },
+        {
+            "file": "src/server/php/Store/Store.php",
+            "line": 128,
+            "description": "Request param instance",
+            "itemtype": "property",
+            "name": "REQUEST_DATA",
+            "access": "public",
+            "tagname": "",
+            "type": "{Boolean}",
+            "default": "true",
+            "readonly": "",
+            "class": "Store",
+            "module": "Server"
+        },
+        {
+            "file": "src/server/php/Store/Store.php",
+            "line": 138,
+            "description": "Request param jsonp",
+            "itemtype": "property",
+            "name": "REQUEST_JSONP",
+            "access": "public",
+            "tagname": "",
+            "type": "{Boolean}",
+            "default": "true",
+            "readonly": "",
+            "class": "Store",
+            "module": "Server"
+        },
+        {
+            "file": "src/server/php/Store/Store.php",
+            "line": 148,
+            "description": "Error *",
+            "itemtype": "property",
+            "name": "RESPONSE_ERROR",
+            "access": "public",
+            "tagname": "",
+            "type": "{Boolean}",
+            "default": "true",
+            "readonly": "",
+            "class": "Store",
+            "module": "Server"
+        },
+        {
+            "file": "src/server/php/Store/Store.php",
+            "line": 158,
+            "description": "Action `get`",
+            "itemtype": "property",
+            "name": "STORE_ACTION_GET",
+            "access": "public",
+            "tagname": "",
+            "type": "{Boolean}",
+            "default": "true",
+            "readonly": "",
+            "class": "Store",
+            "module": "Server"
+        },
+        {
+            "file": "src/server/php/Store/Store.php",
+            "line": 168,
+            "description": "Action `list`",
+            "itemtype": "property",
+            "name": "STORE_ACTION_LIST",
+            "access": "public",
+            "tagname": "",
+            "type": "{Boolean}",
+            "default": "true",
+            "readonly": "",
+            "class": "Store",
+            "module": "Server"
+        },
+        {
+            "file": "src/server/php/Store/Store.php",
+            "line": 178,
+            "description": "Action `remove`",
+            "itemtype": "property",
+            "name": "STORE_ACTION_REMOVE",
+            "access": "public",
+            "tagname": "",
+            "type": "{Boolean}",
+            "default": "true",
+            "readonly": "",
+            "class": "Store",
+            "module": "Server"
+        },
+        {
+            "file": "src/server/php/Store/Store.php",
+            "line": 188,
+            "description": "Action `update`",
+            "itemtype": "property",
+            "name": "STORE_ACTION_UPDATE",
+            "access": "public",
+            "tagname": "",
+            "type": "{Boolean}",
+            "default": "true",
+            "readonly": "",
+            "class": "Store",
+            "module": "Server"
+        },
+        {
+            "file": "src/server/php/Store/Store.php",
+            "line": 198,
+            "description": "Request fileupload param source",
+            "itemtype": "property",
+            "name": "TRANSFER_SOURCE",
+            "access": "public",
+            "tagname": "",
+            "type": "{Boolean}",
+            "default": "true",
+            "readonly": "",
+            "class": "Store",
+            "module": "Server"
+        },
+        {
+            "file": "src/server/php/Store/Store.php",
+            "line": 208,
+            "description": "Request fileupload param name",
+            "itemtype": "property",
+            "name": "TRANSFER_TARGET",
+            "access": "public",
+            "tagname": "",
+            "type": "{Boolean}",
+            "default": "true",
+            "readonly": "",
+            "class": "Store",
+            "module": "Server"
         }
     ],
-    "warnings": []
+    "warnings": [
+        {
+            "message": "unknown tag: void",
+            "line": " src/server/php/Store/Format/Csv.php:16"
+        },
+        {
+            "message": "unknown tag: void",
+            "line": " src/server/php/Store/Format/Csv.php:27"
+        },
+        {
+            "message": "unknown tag: void",
+            "line": " src/server/php/Store/Format/Json.php:16"
+        },
+        {
+            "message": "unknown tag: void",
+            "line": " src/server/php/Store/Format/Json.php:27"
+        },
+        {
+            "message": "unknown tag: void",
+            "line": " src/server/php/Store/Format/Object.php:18"
+        },
+        {
+            "message": "unknown tag: void",
+            "line": " src/server/php/Store/Format/Object.php:29"
+        },
+        {
+            "message": "unknown tag: void",
+            "line": " src/server/php/Store/Repository/FileSystem.php:17"
+        },
+        {
+            "message": "unknown tag: void",
+            "line": " src/server/php/Store/Repository/FileSystem.php:61"
+        },
+        {
+            "message": "unknown tag: void",
+            "line": " src/server/php/Store/Repository/FileSystem.php:75"
+        },
+        {
+            "message": "unknown tag: void",
+            "line": " src/server/php/Store/Repository/Git.php:92"
+        },
+        {
+            "message": "unknown tag: void",
+            "line": " src/server/php/Store/Repository/Git.php:104"
+        },
+        {
+            "message": "unknown tag: void",
+            "line": " src/server/php/Store/Repository/Git.php:115"
+        },
+        {
+            "message": "unknown tag: void",
+            "line": " src/server/php/Store/Repository/Git.php:128"
+        },
+        {
+            "message": "unknown tag: void",
+            "line": " src/server/php/Store/Repository/Git.php:142"
+        },
+        {
+            "message": "unknown tag: void",
+            "line": " src/server/php/Store/Repository/Git.php:154"
+        },
+        {
+            "message": "unknown tag: void",
+            "line": " src/server/php/Store/Repository/Git.php:166"
+        },
+        {
+            "message": "unknown tag: void",
+            "line": " src/server/php/Store/Repository/Git.php:177"
+        },
+        {
+            "message": "unknown tag: void",
+            "line": " src/server/php/Store/Repository/Git.php:188"
+        },
+        {
+            "message": "unknown tag: void",
+            "line": " src/server/php/Store/Repository/Git.php:201"
+        },
+        {
+            "message": "unknown tag: void",
+            "line": " src/server/php/Store/Repository/Memory.php:27"
+        },
+        {
+            "message": "unknown tag: void",
+            "line": " src/server/php/Store/Repository/Memory.php:39"
+        },
+        {
+            "message": "unknown tag: void",
+            "line": " src/server/php/Store/Repository/Memory.php:51"
+        },
+        {
+            "message": "unknown tag: void",
+            "line": " src/server/php/Store/Repository/Memory.php:188"
+        },
+        {
+            "message": "unknown tag: void",
+            "line": " src/server/php/Store/Repository/Memory.php:213"
+        },
+        {
+            "message": "unknown tag: void",
+            "line": " src/server/php/Store/Format.php:15"
+        },
+        {
+            "message": "unknown tag: void",
+            "line": " src/server/php/Store/Format.php:24"
+        },
+        {
+            "message": "unknown tag: void",
+            "line": " src/server/php/Store/Repository.php:40"
+        },
+        {
+            "message": "unknown tag: void",
+            "line": " src/server/php/Store/Repository.php:49"
+        },
+        {
+            "message": "unknown tag: void",
+            "line": " src/server/php/Store/Repository.php:70"
+        },
+        {
+            "message": "unknown tag: void",
+            "line": " src/server/php/Store/Repository.php:80"
+        }
+    ]
 }

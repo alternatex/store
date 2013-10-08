@@ -278,14 +278,13 @@ curl -h ...
 
 Roadmap
 -------------
-- Client Request MockAPI
+- MockAPI
 - Documentation
   - Stores
   - Settings
-  - Todo-App
 - Record/Playback
   - Inspector
-- Test Coverage + 1
+- Test Coverage +1
 
 Wishlist
 -------------

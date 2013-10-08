@@ -11,6 +11,7 @@ use Store\Resource, Store\Format;
 * ...
 *
 * @class File
+* @module Server
 */
 class File extends Resource { 
 

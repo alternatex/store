@@ -12,6 +12,7 @@ use Store\Repository;
 * Basic git integration
 *
 * @class Git
+* @module Server
 */
 class Git extends Repository {
 

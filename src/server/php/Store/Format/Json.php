@@ -7,6 +7,7 @@ use Store\Resource;
 * Json Formatted Contents
 *
 * @class Json
+* @module Server
 */
 class Json implements Format {
 
@@ -15,7 +16,7 @@ class Json implements Format {
   /**
   * Encode to format
   *
-  * @method decode
+  * @method encode
   * @param {String} $datastore context identifier
   * @void
   */ 

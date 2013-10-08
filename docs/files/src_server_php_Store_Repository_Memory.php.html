@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>src&#x2F;server&#x2F;php&#x2F;Store&#x2F;Repository&#x2F;Memory.php - Store</title>
+    <link rel="stylesheet" href="http:&#x2F;&#x2F;yui.yahooapis.com&#x2F;3.7.0&#x2F;build&#x2F;cssgrids&#x2F;cssgrids-min.css">
+    <link rel="stylesheet" href="..&#x2F;assets/vendor/prettify/prettify-min.css">
+    <link rel="stylesheet" href="..&#x2F;assets/css/main.css" id="site_styles">
+    <link rel="shortcut icon" type="image/png" href="..&#x2F;assets/favicon.png">
+    <script src="http:&#x2F;&#x2F;yui.yahooapis.com&#x2F;combo?3.7.0&#x2F;build&#x2F;yui&#x2F;yui-min.js"></script>
+</head>
+<body class="yui3-skin-sam">
+
+<div id="doc">
+    <div id="hd" class="yui3-g header">
+        <div class="yui3-u-3-4">
+            
+                <h1><img src="..&#x2F;assets/css/logo.png" title="Store"></h1>
+            
+        </div>
+        <div class="yui3-u-1-4 version">
+            <em>API Docs for: 1.0.0</em>
+        </div>
+    </div>
+    <div id="bd" class="yui3-g">
+
+        <div class="yui3-u-1-4">
+            <div id="docs-sidebar" class="sidebar apidocs">
+                <div id="api-list">
+    <h2 class="off-left">APIs</h2>
+    <div id="api-tabview" class="tabview">
+        <ul class="tabs">
+            <li><a href="#api-classes">Classes</a></li>
+            <li><a href="#api-modules">Modules</a></li>
+        </ul>
+
+        <div id="api-tabview-filter">
+            <input type="search" id="api-filter" placeholder="Type to filter APIs">
+        </div>
+
+        <div id="api-tabview-panel">
+            <ul id="api-classes" class="apis classes">
+            
+                <li><a href="..&#x2F;classes/BitTorrent.html">BitTorrent</a></li>
+            
+                <li><a href="..&#x2F;classes/ClientStore.html">ClientStore</a></li>
+            
+                <li><a href="..&#x2F;classes/Csv.html">Csv</a></li>
+            
+                <li><a href="..&#x2F;classes/Dropbox.html">Dropbox</a></li>
+            
+                <li><a href="..&#x2F;classes/File.html">File</a></li>
+            
+                <li><a href="..&#x2F;classes/FileSystem.html">FileSystem</a></li>
+            
+                <li><a href="..&#x2F;classes/Format.html">Format</a></li>
+            
+                <li><a href="..&#x2F;classes/Git.html">Git</a></li>
+            
+                <li><a href="..&#x2F;classes/Item.html">Item</a></li>
+            
+                <li><a href="..&#x2F;classes/Json.html">Json</a></li>
+            
+                <li><a href="..&#x2F;classes/Memory.html">Memory</a></li>
+            
+                <li><a href="..&#x2F;classes/Object.html">Object</a></li>
+            
+                <li><a href="..&#x2F;classes/Repository.html">Repository</a></li>
+            
+                <li><a href="..&#x2F;classes/Resource.html">Resource</a></li>
+            
+                <li><a href="..&#x2F;classes/Store.html">Store</a></li>
+            
+            </ul>
+
+            <ul id="api-modules" class="apis modules">
+            
+                <li><a href="..&#x2F;modules/Client.html">Client</a></li>
+            
+                <li><a href="..&#x2F;modules/Server.html">Server</a></li>
+            
+            </ul>
+        </div>
+    </div>
+</div>
+
+            </div>
+        </div>
+        <div class="yui3-u-3-4">
+                <div id="api-options">
+        Show:
+        <label for="api-show-inherited">
+            <input type="checkbox" id="api-show-inherited" checked>
+            Inherited
+        </label>
+
+        <label for="api-show-protected">
+            <input type="checkbox" id="api-show-protected">
+            Protected
+        </label>
+
+        <label for="api-show-private">
+            <input type="checkbox" id="api-show-private">
+            Private
+        </label>
+        <label for="api-show-deprecated">
+            <input type="checkbox" id="api-show-deprecated">
+            Deprecated
+        </label>
+
+    </div>
+
+
+            <div class="apidocs">
+                <div id="docs-main">
+                    <div class="content">
+                        <h1 class="file-heading">File: src&#x2F;server&#x2F;php&#x2F;Store&#x2F;Repository&#x2F;Memory.php</h1>
+
+<div class="file">
+    <pre class="code prettyprint linenums">
+&lt;?php namespace Store\Repository;
+
+&#x2F;&#x2F; TODO: 
+&#x2F;&#x2F; - thread-safety » file locks
+&#x2F;&#x2F; - load($data&#x2F;collection)
+&#x2F;&#x2F; - persist » throw error? -&gt; retrieve data from memory and store by external logic *
+&#x2F;&#x2F; - externalize sendResponse
+
+use Store\Store;
+use Store\Repository;
+use Store\Repository\FileSystem;
+use Store\Resource;
+use Store\Resource\File;
+
+&#x2F;**
+* Memory Store 
+*
+* @class Memory
+* @module Server
+*&#x2F;
+class Memory extends Repository {
+
+  &#x2F;&#x2F; file format(s)
+  private $format = null;
+  private $formats = array();
+
+  &#x2F;**
+  * Encode to format
+  *
+  * @method decode
+  * @param {String} $datastore context identifier
+  * @void
+  *&#x2F; 
+  protected function encode($data){
+    $format = $this-&gt;format;
+    return $format::Encode(new File($data));
+  }
+
+  &#x2F;**
+  * Decode from format 
+  *
+  * @method decode
+  * @param {String} $datastore context identifier
+  * @void
+  *&#x2F; 
+  protected function decode($data){
+    $format = $this-&gt;format;    
+    return $format::Decode(new File($data));  
+  }
+
+  &#x2F;**
+  * Load repository 
+  *
+  * @method load
+  * @param {String} $DSN
+  * @void
+  *&#x2F; 
+
+  &#x2F;&#x2F; TODO: data ...
+  public function load($dsn){
+
+    &#x2F;&#x2F; store *
+    $this-&gt;datastore = $datastore = $dsn;
+
+    &#x2F;&#x2F; TODO: get format by file extension -&gt; load into static property in function
+
+    &#x2F;&#x2F; determine&#x2F;attach formatting helper (TODO: implement 4 real)    
+    $this-&gt;format = &#x27;Store\Format\Json&#x27;; &#x2F;&#x2F; &quot;Store\Format\\&quot;.(strpos($datastore, &#x27;.&#x27;.($jsonFormat::FILE_EXTENSION!==false?&#x27;Json&#x27;:&#x27;Object&#x27;)));
+
+    &#x2F;&#x2F; load from disk if exists
+    if(file_exists($dsn)) { 
+
+      &#x2F;&#x2F; convert object data
+      $this-&gt;items = $this-&gt;decode(file_get_contents($dsn)); 
+
+      &#x2F;&#x2F; handle format err
+      if(!is_array($this-&gt;items)) { 
+        $err = json_encode(array(Store::RESPONSE_ERROR =&gt; array(&quot;500&quot; =&gt; Store::MESSAGE_ERROR_DATASTORE_CORRUPT)));
+        die(&#x27;console.error(&#x27;.$err.&#x27;);&#x27;);        
+      }
+    }     
+  }
+
+  &#x2F;**
+  * Insert or update item data in datastore
+  *
+  * @method update
+  * @param {Object} $item what it&#x27;s about
+  * @return {Boolean} Returns true on success
+  *&#x2F; 
+  public function update(Resource $resource){
+
+    &#x2F;&#x2F; Quick Hack &gt; TODO: solve properly
+    $instance = $resource-&gt;data();
+
+    $this-&gt;pending(true);
+
+    &#x2F;&#x2F; existing vs new
+    if(is_numeric($index=$this-&gt;find($resource))) {
+
+      &#x2F;&#x2F; preserve files if empty *
+      $preservefiles = $this-&gt;files($_FILES, $instance);
+      foreach($preservefiles as $prop){
+        if(trim($instance[$prop])===&quot;&quot;) {
+          $instance[$prop] = $this-&gt;items[$index][$prop];
+        }         
+      }
+      $this-&gt;items[$index] = $instance;
+      return $index;
+    } else {
+      if(!isset($instance[Store::ENTITY_IDENTIFIER]) &amp;&amp; strlen(trim($instance[Store::ENTITY_IDENTIFIER]))==0) {
+        $instance[Store::ENTITY_IDENTIFIER] = sprintf(&#x27;%04x%04x-%04x-%04x-%04x-%04x%04x%04x&#x27;,mt_rand(0, 0xffff), mt_rand(0, 0xffff), mt_rand(0, 0xffff), mt_rand(0, 0x0fff) | 0x4000, mt_rand(0, 0x3fff) | 0x8000, mt_rand(0, 0xffff), mt_rand(0, 0xffff), mt_rand(0, 0xffff));
+      }
+      $this-&gt;files($_FILES, $instance);
+      $this-&gt;items[] = $instance;
+      
+      return array(Store::ENTITY_COUNT =&gt; sizeof($this-&gt;items)-1);      
+    }   
+    return false;
+  }
+
+  &#x2F;**
+  * Removes an item from datastore
+  *
+  * @method remove
+  * @param {Object} $item what it&#x27;s about
+  * @return {Boolean} Returns true on success
+  *&#x2F; 
+  public function remove(Resource $resource){
+    $instance = $resource-&gt;data();
+    if(is_numeric($index=$this-&gt;find($resource))) {
+      array_splice($this-&gt;items, $index, 1);
+      $this-&gt;pending(true);
+      return array(Store::ENTITY_COUNT =&gt; sizeof($this-&gt;items)-1);
+    }
+  }
+
+  &#x2F;**
+  * Get item data
+  *
+  * @method get
+  * @param {Object} $item what it&#x27;s about
+  * @return {Object} item instance
+  *&#x2F; 
+  public function get(Resource $resource=null){
+    
+    $instance = $resource!=null ? $resource-&gt;data() : null;
+
+    if($instance==null) return $this-&gt;items;
+
+    if(is_numeric($index=$this-&gt;find($resource))) {
+      return $this-&gt;items[$index];
+    }
+    return false;
+  }  
+
+  &#x2F;**
+  * Find item (currently just: UUID - TODO: enhance signature w&#x2F;UUID as default &#x2F; Widespread Merge ?!)
+  *
+  * @method find
+  * @return {Array} List of item instances
+  *&#x2F; 
+  public function find(Resource $resource){
+    $instance = $resource-&gt;data();
+
+    if(!isset($instance[Store::ENTITY_IDENTIFIER])) return false;
+    $this-&gt;items = (array) $this-&gt;items;
+    foreach($this-&gt;items as $index =&gt; $item) {
+      $item = (array) $item;
+      if($item[Store::ENTITY_IDENTIFIER]===$instance[Store::ENTITY_IDENTIFIER]) {
+        return $index;
+      }
+    }  
+    return false;
+  } 
+
+  &#x2F;**
+  * Filter items
+  *
+  * @method find
+  * @return {Array} List of matching item instances
+  *&#x2F; 
+  public function filter($filter){
+    &#x2F;&#x2F; TODO: implement
+    return array();
+  }  
+
+  &#x2F;**
+  * Process HTTP file uploads
+  *
+  * @method files
+  * @param {Object} $files actually just $_FILES ...
+  * @void
+  *&#x2F; 
+  public function files(&amp;$files, &amp;$instance) {
+    
+    &#x2F;&#x2F; handle files *
+    $preservefiles = array();
+    if(array_key_exists(Store::REQUEST_DATA, $files) &amp;&amp; is_array($files[Store::REQUEST_DATA][Store::TRANSFER_TARGET])){
+      $filesx = array_keys($files[Store::REQUEST_DATA][Store::TRANSFER_TARGET]);
+      if(is_array($filesx)){
+        foreach($filesx as $file){
+          array_push($preservefiles, $file);
+          if(strlen(trim($files[Store::REQUEST_DATA][Store::TRANSFER_SOURCE][$file]))){
+            $instance[$file]=&#x27;data: &#x27;.mime_content_type($files[Store::REQUEST_DATA][Store::TRANSFER_SOURCE][$file]).&#x27;;base64,&#x27;.base64_encode(file_get_contents($files[Store::REQUEST_DATA][Store::TRANSFER_SOURCE][$file]));
+          }
+        }
+      }
+    }
+    return $preservefiles;
+  }
+
+  &#x2F;**
+  * Persist data
+  * 
+  * @method persist
+  * @param {String} filepath
+  * @param {String} contents
+  * @void
+  *&#x2F; 
+  public function persist($filepath, $content=null){
+
+    $file = new File();
+    $file-&gt;path($filepath);
+    $file-&gt;content($content==null ? $this-&gt;encode($this-&gt;items) : $content);
+
+    &#x2F;&#x2F; ...
+    return FileSystem::persistToDisk($file-&gt;path(), $file-&gt;content());
+  }   
+}
+    </pre>
+</div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="..&#x2F;assets/vendor/prettify/prettify-min.js"></script>
+<script>prettyPrint();</script>
+<script src="..&#x2F;assets/js/yui-prettify.js"></script>
+<script src="..&#x2F;assets/../api.js"></script>
+<script src="..&#x2F;assets/js/api-filter.js"></script>
+<script src="..&#x2F;assets/js/api-list.js"></script>
+<script src="..&#x2F;assets/js/api-search.js"></script>
+<script src="..&#x2F;assets/js/apidocs.js"></script>
+</body>
+</html>

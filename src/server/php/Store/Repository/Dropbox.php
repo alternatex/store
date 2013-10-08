@@ -1,5 +1,12 @@
 <?php namespace Store\Repository;
 
+/**
+* Dropbox Repository
+*
+* @class Dropbox
+* @module Server
+*/
+
 use Store\Repository;
 
 class Dropbox extends Repository {
