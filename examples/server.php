@@ -152,11 +152,9 @@ $item = new Item($instance);
 switch($action){
   case Store::STORE_ACTION_UPDATE:
     $returnValue = $store->update($item);
-    //$store->pending(true);
     break;
   case Store::STORE_ACTION_REMOVE:
     $returnValue = $store->remove($item);
-    //$store->pending(true);
     break;
   case Store::STORE_ACTION_GET:
     $returnValue = $store->get($item);

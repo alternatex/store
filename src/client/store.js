@@ -157,9 +157,7 @@ Remote.prototype.process = function process(action, options, item, oncallback, e
 
   var decallback = _.Deferred();
 
-  // TODO: ajax form upload => post *
-
-  console.log("type is", type);
+  // TODO: ajax form upload +++
 
   // attach custom callback handler
   root[callback]=function(items){
@@ -205,8 +203,6 @@ Remote.prototype.process = function process(action, options, item, oncallback, e
     // promise fulfilled *
     decallback.resolve(items);    
 
-    alert("hi")
-
     // store for synchronous callback pickup
     setTimeout(function(){
       root[callback] = items;    
@@ -214,7 +210,6 @@ Remote.prototype.process = function process(action, options, item, oncallback, e
   };
 
   // setup
-  //script.src = options.url+"?namespace="+options.namespace+"&action="+action+"&jsonp="+callback /*options.jsonp*/+"&bust="+(new Date().getTime())+"&"+serialized;
   script.src = options.url+"/"+options.namespace+"/"+action+"/"+callback+"/?bust="+(new Date().getTime())+"&"+serialized;
   
   // load
@@ -472,18 +467,6 @@ Store.prototype = {
   * @return {Boolean} Returns true on success
   */
   get: function get(item, callback){
-
-    // ensure Store.wrap on retrieval!!!
-    // ensure Store.wrap on retrieval!!!
-    // ensure Store.wrap on retrieval!!!
-    // ensure Store.wrap on retrieval!!!
-    // ensure Store.wrap on retrieval!!!
-    // last param this to keep ref and inject into handler.... based on action -> wrap!!!
-    // last param this to keep ref and inject into handler.... based on action -> wrap!!!
-    // last param this to keep ref and inject into handler.... based on action -> wrap!!!
-    // last param this to keep ref and inject into handler.... based on action -> wrap!!!
-    // last param this to keep ref and inject into handler.... based on action -> wrap!!!
-
     return this.repository.process("get", this.options, Store.wrap(this, item), callback, undefined, this);
   },
 
