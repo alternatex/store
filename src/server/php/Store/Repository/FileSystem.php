@@ -65,7 +65,21 @@ abstract class FileSystem extends Repository {
   * @param {String} contents
   * @void
   */ 
-  public static function persist($filepath, $content=''){
+  public function persist($filepath, $content=''){
+
+    // update datastore * perf *
+    return self::persistToDisk($filepath, $content);
+  }  
+
+  /**
+  * Persist data static
+  * 
+  * @method persistToDisk
+  * @param {String} filepath
+  * @param {String} contents
+  * @void
+  */ 
+  public static function persistToDisk($filepath, $content=''){
 
     // update datastore * perf *
     return file_put_contents($filepath, $content);

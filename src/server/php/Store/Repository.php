@@ -52,7 +52,7 @@ abstract class Repository extends Store {
   * @param {String} dsn
   * @void
   */ 
-  //abstract function persist($dsn);
+  abstract function persist($dsn);
   
   /**
   * Get/Set pending changes flag
