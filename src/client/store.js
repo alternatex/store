@@ -117,7 +117,21 @@ var Remote = function Remote(){};
 Remote.prototype = new Repository();
 
 /**
-* Process action on remote 
+* Synchronous remote action processing
+*
+* @method processSync
+* @param {String} action [list, get, update, remove]
+* @param {Object} options configuration
+* @param {Object} item arbitrary object *
+* @param {Function} callback handle 
+* @param {Boolean} each apply callback fnc for each object? (default: false)
+* @return {Boolean} Returns true on success
+*/
+Remote.prototype.processSync = function processSync(action, options, item, oncallback, each, type){    
+
+}
+/**
+* Asynchronous remote action processing
 *
 * @method process
 * @param {String} action [list, get, update, remove]
@@ -127,7 +141,9 @@ Remote.prototype = new Repository();
 * @param {Boolean} each apply callback fnc for each object? (default: false)
 * @return {Boolean} Returns true on success
 */
-Remote.prototype.process = function process(action, options, item, oncallback, each){    
+Remote.prototype.process = function process(action, options, item, oncallback, each, type){    
+
+  // TODO: option: 'sync': defaults to false -> to easily extend for synchronous calls...
 
   // prepare
   var each = each || false, 
@@ -143,9 +159,23 @@ Remote.prototype.process = function process(action, options, item, oncallback, e
 
   // TODO: ajax form upload => post *
 
+  console.log("type is", type);
+
   // attach custom callback handler
-  root[callback]=function(data){
-    
+  root[callback]=function(items){
+    var item = null; 
+
+    // preprocess item-type mappings
+    if(items instanceof Array) {
+      // process item
+      items.forEach(function(item, index){ 
+        items[index] = type != null ? type.create(item) : item; 
+      });  
+    } else {
+      item = items;
+      items = type != null ? type.create(item) : item; 
+    }
+
     // custom callback?
     if(typeof(oncallback)!="undefined"){
 
@@ -153,11 +183,14 @@ Remote.prototype.process = function process(action, options, item, oncallback, e
       if(each!==false) {
         
         // process item
-        data.forEach(function(item){ oncallback(item); });
+        items.forEach(function(item, index){ 
+          oncallback(item); 
+        });
 
       } else {
+
         // process block
-        oncallback(data);
+        oncallback(item); 
       }     
     }
     
@@ -170,11 +203,19 @@ Remote.prototype.process = function process(action, options, item, oncallback, e
     script.parentNode.removeChild(script);
 
     // promise fulfilled *
-    decallback.resolve(data);
+    decallback.resolve(items);    
+
+    alert("hi")
+
+    // store for synchronous callback pickup
+    setTimeout(function(){
+      root[callback] = items;    
+    }, 1000);    
   };
 
   // setup
-  script.src = options.url+"?namespace="+options.namespace+"&action="+action+"&jsonp="+callback /*options.jsonp*/+"&bust="+(new Date().getTime())+"&"+serialized;
+  //script.src = options.url+"?namespace="+options.namespace+"&action="+action+"&jsonp="+callback /*options.jsonp*/+"&bust="+(new Date().getTime())+"&"+serialized;
+  script.src = options.url+"/"+options.namespace+"/"+action+"/"+callback+"/?bust="+(new Date().getTime())+"&"+serialized;
   
   // load
   setTimeout(function(){
@@ -188,7 +229,7 @@ Remote.prototype.process = function process(action, options, item, oncallback, e
   },options.ttl);      
 
   // return deferred *
-  return decallback.promise();
+  return decallback.promise();  
 };    
 
 /**
@@ -436,8 +477,14 @@ Store.prototype = {
     // ensure Store.wrap on retrieval!!!
     // ensure Store.wrap on retrieval!!!
     // ensure Store.wrap on retrieval!!!
+    // ensure Store.wrap on retrieval!!!
+    // last param this to keep ref and inject into handler.... based on action -> wrap!!!
+    // last param this to keep ref and inject into handler.... based on action -> wrap!!!
+    // last param this to keep ref and inject into handler.... based on action -> wrap!!!
+    // last param this to keep ref and inject into handler.... based on action -> wrap!!!
+    // last param this to keep ref and inject into handler.... based on action -> wrap!!!
 
-    return this.repository.process("get", this.options, Store.wrap(this, item), callback);
+    return this.repository.process("get", this.options, Store.wrap(this, item), callback, undefined, this);
   },
 
   /**
@@ -447,7 +494,7 @@ Store.prototype = {
   * @return {Boolean} Returns true on success
   */
   list: function list(callback, each){
-    return this.repository.process("list", this.options, undefined, callback, each);
+    return this.repository.process("list", this.options, undefined, callback, each, this);
   },
 
   /**
@@ -457,7 +504,7 @@ Store.prototype = {
   * @return {Boolean} Returns true on success
   */
   filter: function filter(callback, each, filters){
-    return this.repository.process("list", this.options, undefined, callback, each);
+    return this.repository.process("list", this.options, undefined, callback, each, this);
   },
 
   /**

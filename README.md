@@ -236,6 +236,17 @@ objectStore.remove(object);
 
 })();
 </script>
+
+<!-- onload handler -->
+<script>
+  resource = resourcesStore.get("b19a31e4-c177-4984-866d-e0171ae93f04"); 
+  resource.then(function(resource){
+  console.info(resource)
+  document.body.innerHTML+="<img src='"+resource.get('file')+"'/>";
+  alert("after");
+  }); 
+  alert("before");
+</script>
 ```
 
 ### Routes

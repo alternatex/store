@@ -1,17 +1,15 @@
 <?php
 
-// TODO: export - configuration: request
-define('HEADER_STORE_TYPE',     'X-Store-Type');
-define('HEADER_STORE_CALLBACK', 'X-Store-Callback');
+// ----------------------------------------------------------------------------
+// - TODOS
+// ----------------------------------------------------------------------------
 
-// class loader
-require_once('vendor/autoload.php');
+// -> Amanda validation *
+// -> ACL Example -> Header > alternatex/authenticate *
 
-// initialize 
-session_start();
-
-// buffer output
-ob_start();
+// ----------------------------------------------------------------------------
+// - SETUP
+// ----------------------------------------------------------------------------
 
 // aliases
 use \Store\Store, 
@@ -19,6 +17,22 @@ use \Store\Store,
     \Store\Resource\Item, 
     \Store\Format,
     \Store\Resource;
+
+// class loader
+require_once('vendor/autoload.php');
+
+// include routing core
+require_once __DIR__.'/vendor/sofadesign/limonade/lib/limonade.php';
+
+// initialize 
+session_start();
+
+// buffer output
+ob_start();
+
+// TODO: export - configuration: request
+define('HEADER_STORE_TYPE',     'X-Store-Type');
+define('HEADER_STORE_CALLBACK', 'X-Store-Callback');
 
 $format = new Format\Object();
 $file = new File();
@@ -36,29 +50,59 @@ if(isset($requestHeaders[HEADER_STORE_TYPE])) die($requestHeaders[HEADER_STORE_T
 // x-store-type: object/json,markdown,... 4 client driven -> limonade
 // json configuration by path, ..... 4 server driven -> limonade
 
-// -> limonade
-// -> limonade
-// -> limonade
-// -> limonade
-// -> limonade
+// TODO:
+// common function validating request against schema
+// v1: generalized
+// v2: subjectified (namespaced)
+// v3: ... 
 
-// -> amanda validation *
-// -> amanda validation *
-// -> amanda validation *
-// -> amanda validation *
-// -> amanda validation *
+// ...
+$namespace='';
+$action='';
+$jsonp='';
 
-// -> acl sample ?
-// -> acl sample ?
-// -> acl sample ?
-// -> acl sample ?
-// -> acl sample ?
+// configuration callback
+function configure(){
+  option('env', ENV_DEVELOPMENT);
+}
+
+// ----------------------------------------------------------------------------
+// - DISPATCH CUSTOM
+// ----------------------------------------------------------------------------
+
+// TODO: load customizations here *
+// TODO: load customizations here *
+// TODO: load customizations here *
+
+// ----------------------------------------------------------------------------
+// - DISPATCH CORE
+// ----------------------------------------------------------------------------
+
+// ...
+dispatch('/:namespace/:action/:jsonp/', 'v1');
+dispatch_post('/:namespace/:action/:jsonp/', 'v1');
+
+// ...
+function v1() {
+  global $namespace, $action, $jsonp;  
+  // ...
+  $namespace = params('namespace');
+  $action = params('action');
+  $jsonp = params('jsonp');
+
+  // ...
+  return $namespace.$action.$jsonp;
+}
+
+// process request
+run();
+
+// ----------------------------------------------------------------------------
+// - SANITIZE
+// ----------------------------------------------------------------------------
 
 // defaults
 $user='anonymous';
-
-// determine datastore filename
-$datastore = $user.".".$namespace.'.json';
 
 // initialize storage
 $Store = '\\Store\\Repository\\Memory';
@@ -67,9 +111,7 @@ $Store = '\\Store\\Repository\\Memory';
 $store = new $Store();
 
 // extract request params
-foreach(array(Store::REQUEST_NAMESPACE, Store::REQUEST_ACTION, Store::REQUEST_DATA, Store::REQUEST_JSONP) as $param) {
-  ${$param} = isset($_GET[$param]) ? $_GET[$param] : $_POST[$param];
-}
+$instance = isset($_POST['instance']) ? $_POST['instance'] : $_GET['instance'];
 
 // check prerequisites
 if(trim($namespace)=="" || trim($action)=="") {
@@ -78,6 +120,10 @@ if(trim($namespace)=="" || trim($action)=="") {
   $err = json_encode(array(Store::RESPONSE_ERROR => "namespace: $namespace or action: $action not set"));
   die(strlen($jsonp)>0 ? $jsonp."("."console.error(".$err."));":$err);
 }
+
+// ----------------------------------------------------------------------------
+// - INITIALIZE II
+// ----------------------------------------------------------------------------
 
 // determine datastore filename
 $datastore = $user.".".$namespace.'.dat';
@@ -98,15 +144,19 @@ $returnValue = null;
 // wrap data (refactor step1; refactor step2 will be scaffolding..)
 $item = new Item($instance);
 
+// ----------------------------------------------------------------------------
+// - PROCESS
+// ----------------------------------------------------------------------------
+
 // handle action *
 switch($action){
   case Store::STORE_ACTION_UPDATE:
     $returnValue = $store->update($item);
-    $store->pending(true);
+    //$store->pending(true);
     break;
   case Store::STORE_ACTION_REMOVE:
     $returnValue = $store->remove($item);
-    $store->pending(true);
+    //$store->pending(true);
     break;
   case Store::STORE_ACTION_GET:
     $returnValue = $store->get($item);
@@ -127,6 +177,10 @@ ob_get_clean();
 if($store->pending()){
   $store->persist($datastore);
 }
+
+// ----------------------------------------------------------------------------
+// - RESPOND
+// ----------------------------------------------------------------------------
 
 // be nice
 header('Content-Type: text/javascript');
