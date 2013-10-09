@@ -1,0 +1,4 @@
+AuthUserFile /home/httpd/vhosts/.../.htpasswd
+AuthType Basic
+AuthName "DMZ"
+Require valid-user
