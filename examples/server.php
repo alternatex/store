@@ -34,6 +34,10 @@ ob_start();
 define('HEADER_STORE_TYPE',     'X-Store-Type');
 define('HEADER_STORE_CALLBACK', 'X-Store-Callback');
 
+function getvar($variable){
+  return isset($_POST[$variable]) ? $_POST[$variable] : (isset($_GET[$variable]) ? $_GET[$variable] : null);
+}
+
 $format = new Format\Object();
 $file = new File();
 
@@ -111,7 +115,7 @@ $Store = '\\Store\\Repository\\Memory';
 $store = new $Store();
 
 // extract request params
-$instance = isset($_POST['instance']) ? $_POST['instance'] : $_GET['instance'];
+$instance = getvar('instance');
 
 // check prerequisites
 if(trim($namespace)=="" || trim($action)=="") {
