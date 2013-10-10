@@ -70,6 +70,16 @@ function configure(){
   option('env', ENV_DEVELOPMENT);
 }
 
+function extractParams(){
+  global $namespace, $action, $jsonp;  
+
+  // ...
+  $namespace = params('namespace');
+  $action = params('action');
+  $jsonp = params('jsonp');
+
+}
+
 // ----------------------------------------------------------------------------
 // - DISPATCH CUSTOM
 // ----------------------------------------------------------------------------
@@ -89,10 +99,9 @@ dispatch_post('/:namespace/:action/:jsonp/', 'v1');
 // ...
 function v1() {
   global $namespace, $action, $jsonp;  
+
   // ...
-  $namespace = params('namespace');
-  $action = params('action');
-  $jsonp = params('jsonp');
+  extractParams();
 
   // ...
   return $namespace.$action.$jsonp;
