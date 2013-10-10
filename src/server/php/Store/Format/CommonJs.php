@@ -26,7 +26,7 @@ class CommonJs implements Format {
         if (typeof define === 'function' && define.amd) {
           define(factory);
         } else {
-          root.".('key')." = factory();
+          root.CommonJs = factory();
         }
       }(this, function () {
         return ".json_encode($resource->data()).";

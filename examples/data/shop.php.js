@@ -12,9 +12,5 @@ use Store\Resource\Item;
 use Store\Format\CommonJs;
 
 // ...
-$key = "data";
-$data = @unserialize(@file_get_contents('../anonymous.documents.json'));
-
-// ...
 header('content-type: application/javascript');
-print CommonJs::Encode(new Item($data));
+print CommonJs::Encode(new Item(@json_decode(@file_get_contents('../anonymous.resources.json'))));

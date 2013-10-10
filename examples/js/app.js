@@ -1,7 +1,3 @@
-// Place third party dependencies in the lib folder
-//
-// Configure loading modules from the lib directory,
-// except 'app' ones, 
 requirejs.config({
     "baseUrl": "js/lib",
     "deps": ["jquery", "underscore", "store"],
@@ -9,7 +5,6 @@ requirejs.config({
       "app": "../app",
       "store": "../../../src/client/store",
       "configuration": "../configuration",
-      //"epiceditor": "../vendor/epiceditor/js/epiceditor",
       "underscore": "../../../vendor/underscore.deferred",
       "jquery": "https://ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min",
       "data": "https://localhost/store/examples/data/data.php",
@@ -22,5 +17,4 @@ requirejs.config({
     }
 });
 
-// Load the main app module to start the app
 requirejs(["app/main"]);

@@ -4,7 +4,7 @@
     <title>RequireJS Store Example</title>
     <script type="text/javascript">
       function nickname(entry){
-        alert(entry.nickname);
+        //alert(entry.nickname);
       }
       function name(entry){
         alert(entry.name);
@@ -68,14 +68,24 @@
     </form>
     <iframe name="target"></iframe>
     <script>
-    setTimeout(function(){
-      Store.when(resourcesStore.list()).then(function(resources){
-        resources.forEach(function(resource){
-          if(typeof(resource.get("file"))!="undefined")
-            $(document.body).append($("<img src=\""+resource.get("file")+"\"/>"));;
-        });      
-      });
-    }, 2000);
+
+      // playground...
+      function setup(){
+        Store
+          .when(resourcesStore.list())
+          .then(function(resources){
+            resources.forEach(function(resource){
+              if(typeof(resource.get("file"))!="undefined")
+                $(document.body).append($("<img src=\""+resource.get("file")+"\"/>"));;
+            });      
+          });
+      }
+
+      // power-on-self-test
+      (function post(){
+        (typeof(Store)!='undefined' && typeof(resourcesStore)!='undefined') ? setup() : setTimeout(post, 100);
+      })();
+    
     </script>
   </body>
 </html>
