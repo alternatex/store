@@ -1,17 +1,15 @@
 language: php
-
 php:
-
-  # aliased to a recent 5.3.x version
-  - 5.3
-  # aliased to a recent 5.4.x version
-  - 5.4
-  # aliased to a recent 5.5.x version
-  - 5.5
-
-#before_script: COMPOSER_ROOT_VERSION=dev-master composer install
-
+- 5.3
+- 5.4
+- 5.5
 script: phpunit --configuration phpunit_common.xml --coverage-text
-
-#notifications:
-#  irc: "irc.freenode.org#travis"
+deploy:
+  provider: openshift
+  user: gianni.furger+public@gmail.com
+  password:
+    secure: G2N8WMOZhsi6dGDW/yOlcocq1NI8CKMGnF9C6+HcyJ+jTfjZFlXnTZcEaHZfR9LmKw2HjqHCgkbMsa7k7aEf47kuQiVhQAAJ7jUASzpfv/jHmnX3+nJjqP9pfAFuEkARGJmIsjJCNkjfiaW0d+GP9A+HUH72NU+ovNy1as3LAm4=
+  app: store
+  domain: axpublic
+  on:
+    repo: alternatex/store
