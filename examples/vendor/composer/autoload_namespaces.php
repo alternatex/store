@@ -6,9 +6,5 @@ $vendorDir = dirname(dirname(__FILE__));
 $baseDir = dirname($vendorDir);
 
 return array(
-    'Store' => array($baseDir . '/../src/server/php'),
-    'Predis' => array($vendorDir . '/predis/predis/lib'),
-    'PHP\\BitTorrent' => array($vendorDir . '/christeredvartsen/php-bittorrent'),
-    'PHPCR' => array($vendorDir . '/phpcr/phpcr/src'),
-    'Buzz' => array($vendorDir . '/kriswallsmith/buzz/lib'),
+    'Store' => array($baseDir . '/../src/server/php')
 );

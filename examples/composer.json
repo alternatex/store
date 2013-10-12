@@ -7,12 +7,14 @@
       "name": "Gianni Furger",
       "email": "gianni.furger@gmail.com"
     }
-  ],    
-  "require": {
-    "php": ">=5.3.0"    
+  ],  
+  "minimum-stability": "dev",
+  "require": {    
+    "php": ">=5.3.0",
+    "alternatex/store": "dev-master"    
   },
   "require-dev": {
-    "alternatex/store": "*"
+    
   },
   "autoload": {
     "psr-0": { "Store": "src" }
