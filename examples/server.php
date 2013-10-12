@@ -1,11 +1,11 @@
 <?php
-
 // ----------------------------------------------------------------------------
 // - TODOS
 // ----------------------------------------------------------------------------
 
 // -> Amanda validation *
 // -> ACL Example -> Header > alternatex/authenticate *
+// -> Accept-Encoding -> Format * (eg. Markdown decoding, ...)
 
 // ----------------------------------------------------------------------------
 // - SETUP
@@ -16,6 +16,7 @@ use \Store\Store,
     \Store\Resource\File, 
     \Store\Resource\Item, 
     \Store\Format,
+    \Store\Format\Markdown,
     \Store\Resource;
 
 // class loader
@@ -43,6 +44,29 @@ $file = new File();
 
 $file->format($format);
 $file->content("lalalala");
+
+$markdown = new Format\Markdown();
+$file = new File();
+
+$file->format($format);
+$file->content("
+
+Test
+=======
+
+Test
+-------
+
+### Test
+
+- Test1
+- Test2
+- Test3
+- Test4
+- Test5
+  ");
+
+//die($markdown::Decode($file));
 
 // retrieve request headers
 $requestHeaders = getallheaders();

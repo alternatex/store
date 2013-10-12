@@ -14,25 +14,25 @@ abstract class Repository extends Store {
   * Insert or update item data in datastore
   *
   * @method update
-  * @param {Object} $item what it's about
+  * @param {Object} $resource what it's about
   * @return {Boolean} Returns true on success
   */ 
   abstract function update(Resource $resource);
 
   /**
-  * Get item data
+  * Get resource data
   *
   * @method get
-  * @param {Object} $item what it's about
+  * @param {Object} $resource what it's about
   * @return {Object} item instance
   */ 
   abstract function get(Resource $resource=null);
 
   /**
-  * Removes an item from datastore
+  * Removes a resource from datastore
   *
   * @method remove
-  * @param {Object} $item what it's about
+  * @param {Object} $resource what it's about
   * @return {Boolean} Returns true on success
   */   
   abstract function remove(Resource $resource);

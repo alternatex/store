@@ -12,4 +12,5 @@ return array(
     'PHP\\BitTorrent' => array($vendorDir . '/christeredvartsen/php-bittorrent'),
     'PHPCR' => array($vendorDir . '/phpcr/phpcr/src'),
     'Buzz' => array($vendorDir . '/kriswallsmith/buzz/lib'),
+    'Mitchelf' => array($vendorDir . '/PHP Markdown Lib 1.2.7')
 );

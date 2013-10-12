@@ -17,7 +17,8 @@
     "alternatex/widespread": "*",
     "predis/predis": "*",
     "phpcr/phpcr": "2.1.*@dev",
-    "christeredvartsen/php-bittorrent": "*"
+    "christeredvartsen/php-bittorrent": "*",
+    "michelf/php-markdown": "*"
   },
   "autoload": {
     "psr-0": { "Store": "src" }
