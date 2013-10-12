@@ -9,11 +9,10 @@
     }
   ],    
   "require": {
-    "php": ">=5.3.0",
-    "kriswallsmith/buzz": "*",
-    "predis/predis": "*",
-    "phpcr/phpcr": "2.1.*@dev",
-    "christeredvartsen/php-bittorrent": "*"
+    "php": ">=5.3.0"    
+  },
+  "require-dev": {
+    "alternatex/store": "*"
   },
   "autoload": {
     "psr-0": { "Store": "src" }
