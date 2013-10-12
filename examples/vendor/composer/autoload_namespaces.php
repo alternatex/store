@@ -6,6 +6,6 @@ $vendorDir = dirname(dirname(__FILE__));
 $baseDir = dirname($vendorDir);
 
 return array(
-    'Store' => array($vendorDir . '/alternatex/store/src'),
+    'Store' => array($vendorDir . '/alternatex/store/src/server/php'),
     'JsonSchema' => array($vendorDir . '/justinrainbow/json-schema/src'),
 );

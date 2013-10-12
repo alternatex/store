@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<phpunit bootstrap="test/server/bootstrap.php" colors="true">
+    <php>
+        <var name="db_dsn" value="mysql:dbname=store;host=localhost"/>
+        <var name="db_username" value="root"/>
+        <var name="db_password" value=""/>
+    </php>
+
+    <testsuites>
+        <testsuite name="Store Server Tests">
+            <directory>./test/server</directory>
+        </testsuite>
+    </testsuites>
+
+    <filter>
+        <whitelist>
+            <directory>./</directory>
+            <exclude>
+                <directory>./test/server</directory>
+            </exclude>
+        </whitelist>
+    </filter>
+</phpunit>

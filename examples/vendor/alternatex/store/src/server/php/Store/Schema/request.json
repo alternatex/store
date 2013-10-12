@@ -1,0 +1,16 @@
+{
+	"title": "Request",
+	"type": "object",
+	"properties": {
+		"namespace": {
+			"type": "string"
+		},
+		"action": {
+			"type": "string"
+		},
+		"instance": {
+			"type": "object"
+		}
+	},
+	"required": ["namespace", "action", "instance"]
+}

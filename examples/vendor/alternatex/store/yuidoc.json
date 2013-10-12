@@ -1,0 +1,9 @@
+{
+    "name": "Store",
+    "description": "A lightweight datastore wrapper",
+    "version": "1.0.1",
+    "url": "http://alternatex.github.io/store/",
+    "options": {
+        "outdir": "docs/api"
+    }
+}

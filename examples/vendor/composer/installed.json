@@ -70,17 +70,17 @@
     },
     {
         "name": "alternatex/store",
-        "version": "1.0.1",
-        "version_normalized": "1.0.1.0",
+        "version": "1.0.2",
+        "version_normalized": "1.0.2.0",
         "source": {
             "type": "git",
             "url": "https://github.com/alternatex/store.git",
-            "reference": "6468cb54912505cd4f94a542e3de9038952e7f47"
+            "reference": "4b024c4be97d5f626b0492e3f4d6626fe02c66db"
         },
         "dist": {
             "type": "zip",
-            "url": "https://api.github.com/repos/alternatex/store/zipball/6468cb54912505cd4f94a542e3de9038952e7f47",
-            "reference": "6468cb54912505cd4f94a542e3de9038952e7f47",
+            "url": "https://api.github.com/repos/alternatex/store/zipball/4b024c4be97d5f626b0492e3f4d6626fe02c66db",
+            "reference": "4b024c4be97d5f626b0492e3f4d6626fe02c66db",
             "shasum": ""
         },
         "require": {
@@ -90,12 +90,12 @@
         "require-dev": {
             "phpunit/phpunit": "3.7.*"
         },
-        "time": "2013-10-12 22:14:04",
+        "time": "2013-10-12 22:24:52",
         "type": "library",
         "installation-source": "dist",
         "autoload": {
             "psr-0": {
-                "Store": "src"
+                "Store": "src/server/php"
             }
         },
         "notification-url": "https://packagist.org/downloads/",

@@ -1,0 +1,13 @@
+{
+  "title": "Route",
+  "type": "object",
+  "properties": {
+    "from": {
+      "type": "string"
+    },
+    "to": {
+      "type": "string"
+    }
+  },
+  "required": ["from", "to"]  
+}
