@@ -251,7 +251,12 @@ Continuous Integration
 -------------
 
 ### OpenShift
-....
+
+#### Setup
+...
+
+#### Test
+...
 
 Repositories
 -------------
