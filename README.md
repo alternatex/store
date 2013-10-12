@@ -20,6 +20,8 @@ Index
       * [Update](#update)
       * [Delete](#delete)
   * [Summary](#summary)
+* [Continuous Integration](#continuous-integration)
+  * [OpenShift](#openshift)
 * [Repositories](#repositories)
       * [File Stores](#file-stores)
           * [CSV](#csv)
@@ -244,6 +246,12 @@ objectStore.remove(object);
 ### Routes
 
 ...
+
+Continuous Integration
+-------------
+
+### OpenShift
+....
 
 Repositories
 -------------
