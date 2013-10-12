@@ -30,10 +30,11 @@ session_start();
 // buffer output
 ob_start();
 
-// TODO: export - configuration: request
+// http headers for store -> move over to base *
 define('HEADER_STORE_TYPE',     'X-Store-Type');
 define('HEADER_STORE_CALLBACK', 'X-Store-Callback');
 
+// helper
 function getvar($variable){
   return isset($_POST[$variable]) ? $_POST[$variable] : (isset($_GET[$variable]) ? $_GET[$variable] : null);
 }
@@ -118,6 +119,9 @@ run();
 $user='anonymous';
 
 // initialize storage
+$Store = '\\Store\\Repository\\Memory';
+
+// TODO: compare performance Sling7 // 
 $Store = '\\Store\\Repository\\Memory';
 
 // hold store opening party

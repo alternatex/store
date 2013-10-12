@@ -251,6 +251,10 @@ Repositories
 
 Collections stored on a per file basis.
 
+**Limitations** 
+
+Built with prototyping in mind. Won't scale.
+
 #### CSV
 
 ...
@@ -262,10 +266,6 @@ Supports embedding binary data base64 encoded.
 #### Serialized
 
 Stores data using PHPs `serialize()` function. Supports embedding binary data base64 encoded.
-
-**Limitations** 
-
-Built with prototyping in mind. Won't scale.
 
 Documentation
 -------------
