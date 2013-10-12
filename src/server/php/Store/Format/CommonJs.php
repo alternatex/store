@@ -11,6 +11,12 @@ use Store\Resource;
 */
 class CommonJs implements Format {
 
+  /**
+  * File extension
+  * @property FILE_EXTENSION
+  * @const
+  * @type {String}
+  */
   const FILE_EXTENSION = 'cjs';
   
   /**

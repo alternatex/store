@@ -144,18 +144,18 @@
         "source": {
             "type": "git",
             "url": "https://github.com/phpcr/phpcr.git",
-            "reference": "f35bdeab4233c03594662e03b2989eca6b087959"
+            "reference": "f9483968fb77584e47c1dbf2dbc7906447f8c5b1"
         },
         "dist": {
             "type": "zip",
-            "url": "https://api.github.com/repos/phpcr/phpcr/zipball/f35bdeab4233c03594662e03b2989eca6b087959",
-            "reference": "f35bdeab4233c03594662e03b2989eca6b087959",
+            "url": "https://api.github.com/repos/phpcr/phpcr/zipball/f9483968fb77584e47c1dbf2dbc7906447f8c5b1",
+            "reference": "f9483968fb77584e47c1dbf2dbc7906447f8c5b1",
             "shasum": ""
         },
         "require": {
             "php": ">=5.3.0"
         },
-        "time": "2013-08-28 21:04:44",
+        "time": "2013-10-07 15:34:44",
         "type": "library",
         "extra": {
             "branch-alias": {
@@ -240,6 +240,316 @@
         "keywords": [
             "bittorrent",
             "torrent"
+        ]
+    },
+    {
+        "name": "symfony/console",
+        "version": "v2.3.6",
+        "version_normalized": "2.3.6.0",
+        "target-dir": "Symfony/Component/Console",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/symfony/Console.git",
+            "reference": "f880062d56edefb25b36f2defa65aafe65959dc7"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/symfony/Console/zipball/f880062d56edefb25b36f2defa65aafe65959dc7",
+            "reference": "f880062d56edefb25b36f2defa65aafe65959dc7",
+            "shasum": ""
+        },
+        "require": {
+            "php": ">=5.3.3"
+        },
+        "require-dev": {
+            "symfony/event-dispatcher": "~2.1"
+        },
+        "suggest": {
+            "symfony/event-dispatcher": ""
+        },
+        "time": "2013-09-25 06:04:15",
+        "type": "library",
+        "extra": {
+            "branch-alias": {
+                "dev-master": "2.3-dev"
+            }
+        },
+        "installation-source": "dist",
+        "autoload": {
+            "psr-0": {
+                "Symfony\\Component\\Console\\": ""
+            }
+        },
+        "notification-url": "https://packagist.org/downloads/",
+        "license": [
+            "MIT"
+        ],
+        "authors": [
+            {
+                "name": "Fabien Potencier",
+                "email": "fabien@symfony.com"
+            },
+            {
+                "name": "Symfony Community",
+                "homepage": "http://symfony.com/contributors"
+            }
+        ],
+        "description": "Symfony Console Component",
+        "homepage": "http://symfony.com"
+    },
+    {
+        "name": "phpcr/phpcr-utils",
+        "version": "1.0.0",
+        "version_normalized": "1.0.0.0",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/phpcr/phpcr-utils.git",
+            "reference": "7920ce3c60cffceb325819bfdf4ebe873df69839"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/phpcr/phpcr-utils/zipball/7920ce3c60cffceb325819bfdf4ebe873df69839",
+            "reference": "7920ce3c60cffceb325819bfdf4ebe873df69839",
+            "shasum": ""
+        },
+        "require": {
+            "php": ">=5.3.0",
+            "phpcr/phpcr": "~2.1.0",
+            "symfony/console": "~2.0"
+        },
+        "time": "2013-10-10 19:46:30",
+        "type": "library",
+        "extra": {
+            "branch-alias": {
+                "dev-master": "1.0-dev"
+            }
+        },
+        "installation-source": "dist",
+        "autoload": {
+            "psr-0": {
+                "PHPCR\\Util": "src"
+            }
+        },
+        "notification-url": "https://packagist.org/downloads/",
+        "license": [
+            "MIT",
+            "Apache-2.0"
+        ],
+        "authors": [
+            {
+                "name": "Lukas Kahwe Smith",
+                "email": "smith@pooteeweet.org"
+            },
+            {
+                "name": "David Buchmann",
+                "email": "david@liip.ch"
+            },
+            {
+                "name": "Daniel Barsotti",
+                "email": "daniel.barsotti@liip.ch",
+                "role": "maintainer"
+            },
+            {
+                "name": "Nacho Martín",
+                "email": "nitram.ohcan@gmail.com"
+            }
+        ],
+        "description": "PHP Content Repository implementation independant utilities",
+        "homepage": "http://phpcr.github.com",
+        "keywords": [
+            "cli",
+            "contentrepository",
+            "phpcr"
+        ]
+    },
+    {
+        "name": "jackalope/jackalope",
+        "version": "1.0.0",
+        "version_normalized": "1.0.0.0",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/jackalope/jackalope.git",
+            "reference": "7bb631536adf3264a4a745499edcb7bda13310e3"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/jackalope/jackalope/zipball/7bb631536adf3264a4a745499edcb7bda13310e3",
+            "reference": "7bb631536adf3264a4a745499edcb7bda13310e3",
+            "shasum": ""
+        },
+        "require": {
+            "ext-libxml": "*",
+            "jackalope/jackalope-transport": "*",
+            "php": ">=5.3.2",
+            "phpcr/phpcr": "~2.1.0",
+            "phpcr/phpcr-utils": "~1.0.0"
+        },
+        "provide": {
+            "phpcr/phpcr-implementation": "2.1.0"
+        },
+        "time": "2013-10-10 19:57:47",
+        "type": "library",
+        "extra": {
+            "branch-alias": {
+                "dev-master": "1.0-dev"
+            }
+        },
+        "installation-source": "dist",
+        "autoload": {
+            "psr-0": {
+                "Jackalope\\": "src/"
+            }
+        },
+        "notification-url": "https://packagist.org/downloads/",
+        "license": [
+            "MIT",
+            "Apache-2.0"
+        ],
+        "authors": [
+            {
+                "name": "Jackalope Community",
+                "homepage": "https://github.com/jackalope/jackalope/contributors"
+            }
+        ],
+        "description": "Jackalope PHPCR library",
+        "homepage": "http://jackalope.github.io",
+        "keywords": [
+            "phpcr"
+        ]
+    },
+    {
+        "name": "jackalope/jackalope-jackrabbit",
+        "version": "dev-master",
+        "version_normalized": "9999999-dev",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/jackalope/jackalope-jackrabbit.git",
+            "reference": "e7199fd141708c7f9e8a9745f1469845b258c7d7"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/jackalope/jackalope-jackrabbit/zipball/e7199fd141708c7f9e8a9745f1469845b258c7d7",
+            "reference": "e7199fd141708c7f9e8a9745f1469845b258c7d7",
+            "shasum": ""
+        },
+        "require": {
+            "ext-curl": "*",
+            "ext-libxml": "*",
+            "jackalope/jackalope": "~1.0.0",
+            "php": ">=5.3.3",
+            "phpcr/phpcr": "~2.1.0",
+            "phpcr/phpcr-utils": "~1.0.0"
+        },
+        "provide": {
+            "jackalope/jackalope-transport": "1.0.0"
+        },
+        "require-dev": {
+            "phpcr/phpcr-api-tests": "~2.1.0",
+            "symfony/console": "~2.0"
+        },
+        "time": "2013-10-10 20:05:55",
+        "bin": [
+            "bin/jackalope",
+            "bin/jackrabbit.sh"
+        ],
+        "type": "library",
+        "extra": {
+            "branch-alias": {
+                "dev-master": "1.0-dev"
+            }
+        },
+        "installation-source": "source",
+        "autoload": {
+            "psr-0": {
+                "Jackalope\\": "src/"
+            }
+        },
+        "notification-url": "https://packagist.org/downloads/",
+        "license": [
+            "MIT",
+            "Apache-2.0"
+        ],
+        "authors": [
+            {
+                "name": "Jackalope Community",
+                "homepage": "https://github.com/jackalope/jackalope-jackrabbit/contributors"
+            }
+        ],
+        "description": "Jackalope Transport library for Jackrabbit",
+        "homepage": "http://jackalope.github.com",
+        "keywords": [
+            "jackrabbit",
+            "phpcr",
+            "transport implementation"
+        ]
+    },
+    {
+        "name": "justinrainbow/json-schema",
+        "version": "1.3.3",
+        "version_normalized": "1.3.3.0",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/justinrainbow/json-schema.git",
+            "reference": "56fe099669ff3ec3be859ec02e3da965a720184d"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/justinrainbow/json-schema/zipball/56fe099669ff3ec3be859ec02e3da965a720184d",
+            "reference": "56fe099669ff3ec3be859ec02e3da965a720184d",
+            "shasum": ""
+        },
+        "require": {
+            "php": ">=5.3.0"
+        },
+        "require-dev": {
+            "json-schema/json-schema-test-suite": "1.1.0",
+            "phpunit/phpunit": "~3.7.0"
+        },
+        "time": "2013-07-22 15:15:25",
+        "bin": [
+            "bin/validate-json"
+        ],
+        "type": "library",
+        "extra": {
+            "branch-alias": {
+                "dev-master": "1.4.x-dev"
+            }
+        },
+        "installation-source": "dist",
+        "autoload": {
+            "psr-0": {
+                "JsonSchema": "src/"
+            }
+        },
+        "notification-url": "https://packagist.org/downloads/",
+        "license": [
+            "BSD-3-Clause"
+        ],
+        "authors": [
+            {
+                "name": "Igor Wiedler",
+                "email": "igor@wiedler.ch",
+                "homepage": "http://wiedler.ch/igor/"
+            },
+            {
+                "name": "Bruno Prieto Reis",
+                "email": "bruno.p.reis@gmail.com"
+            },
+            {
+                "name": "Justin Rainbow",
+                "email": "justin.rainbow@gmail.com"
+            },
+            {
+                "name": "Robert Schönthal",
+                "email": "seroscho@googlemail.com",
+                "homepage": "http://digitalkaoz.net"
+            }
+        ],
+        "description": "A library to validate a json schema.",
+        "homepage": "https://github.com/justinrainbow/json-schema",
+        "keywords": [
+            "json",
+            "schema"
         ]
     }
 ]

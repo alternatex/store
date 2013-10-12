@@ -15,10 +15,15 @@
     "php": ">=5.3.0",
     "kriswallsmith/buzz": "*",
     "alternatex/widespread": "*",
+    "jackalope/jackalope-jackrabbit": "1.0.*@dev",
     "predis/predis": "*",
     "phpcr/phpcr": "2.1.*@dev",
-    "christeredvartsen/php-bittorrent": "*"
+    "christeredvartsen/php-bittorrent": "*",
+    "justinrainbow/json-schema":"~1.3"
   },
+  "require-dev": {
+      "phpunit/phpunit": "3.7.*"
+  },  
   "autoload": {
     "psr-0": { "Store": "src" }
   }

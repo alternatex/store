@@ -11,6 +11,12 @@ use Store\Resource;
 */
 class Json implements Format {
 
+  /**
+  * File extension
+  * @property FILE_EXTENSION
+  * @const
+  * @type {String}
+  */
   const FILE_EXTENSION = 'json';
   
   /**
