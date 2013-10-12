@@ -2,12 +2,12 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>src&#x2F;client&#x2F;store.js - Store</title>
-    <link rel="stylesheet" href="http:&#x2F;&#x2F;yui.yahooapis.com&#x2F;3.7.0&#x2F;build&#x2F;cssgrids&#x2F;cssgrids-min.css">
-    <link rel="stylesheet" href="..&#x2F;assets/vendor/prettify/prettify-min.css">
-    <link rel="stylesheet" href="..&#x2F;assets/css/main.css" id="site_styles">
-    <link rel="shortcut icon" type="image/png" href="..&#x2F;assets/favicon.png">
-    <script src="http:&#x2F;&#x2F;yui.yahooapis.com&#x2F;combo?3.7.0&#x2F;build&#x2F;yui&#x2F;yui-min.js"></script>
+    <title>src/client/store.js - Store</title>
+    <link rel="stylesheet" href="http://yui.yahooapis.com/3.9.1/build/cssgrids/cssgrids-min.css">
+    <link rel="stylesheet" href="../assets/vendor/prettify/prettify-min.css">
+    <link rel="stylesheet" href="../assets/css/main.css" id="site_styles">
+    <link rel="shortcut icon" type="image/png" href="../assets/favicon.png">
+    <script src="http://yui.yahooapis.com/combo?3.9.1/build/yui/yui-min.js"></script>
 </head>
 <body class="yui3-skin-sam">
 
@@ -15,7 +15,7 @@
     <div id="hd" class="yui3-g header">
         <div class="yui3-u-3-4">
             
-                <h1><img src="..&#x2F;assets/css/logo.png" title="Store"></h1>
+                <h1><img src="../assets/css/logo.png" title="Store"></h1>
             
         </div>
         <div class="yui3-u-1-4 version">
@@ -41,43 +41,15 @@
         <div id="api-tabview-panel">
             <ul id="api-classes" class="apis classes">
             
-                <li><a href="..&#x2F;classes/BitTorrent.html">BitTorrent</a></li>
+                <li><a href="../classes/ClientStore.html">ClientStore</a></li>
             
-                <li><a href="..&#x2F;classes/ClientStore.html">ClientStore</a></li>
-            
-                <li><a href="..&#x2F;classes/Csv.html">Csv</a></li>
-            
-                <li><a href="..&#x2F;classes/Dropbox.html">Dropbox</a></li>
-            
-                <li><a href="..&#x2F;classes/File.html">File</a></li>
-            
-                <li><a href="..&#x2F;classes/FileSystem.html">FileSystem</a></li>
-            
-                <li><a href="..&#x2F;classes/Format.html">Format</a></li>
-            
-                <li><a href="..&#x2F;classes/Git.html">Git</a></li>
-            
-                <li><a href="..&#x2F;classes/Item.html">Item</a></li>
-            
-                <li><a href="..&#x2F;classes/Json.html">Json</a></li>
-            
-                <li><a href="..&#x2F;classes/Memory.html">Memory</a></li>
-            
-                <li><a href="..&#x2F;classes/Object.html">Object</a></li>
-            
-                <li><a href="..&#x2F;classes/Repository.html">Repository</a></li>
-            
-                <li><a href="..&#x2F;classes/Resource.html">Resource</a></li>
-            
-                <li><a href="..&#x2F;classes/Store.html">Store</a></li>
+                <li><a href="../classes/Store.html">Store</a></li>
             
             </ul>
 
             <ul id="api-modules" class="apis modules">
             
-                <li><a href="..&#x2F;modules/Client.html">Client</a></li>
-            
-                <li><a href="..&#x2F;modules/Server.html">Server</a></li>
+                <li><a href="../modules/Client.html">Client</a></li>
             
             </ul>
         </div>
@@ -114,130 +86,131 @@
             <div class="apidocs">
                 <div id="docs-main">
                     <div class="content">
-                        <h1 class="file-heading">File: src&#x2F;client&#x2F;store.js</h1>
+                        <h1 class="file-heading">File: src/client/store.js</h1>
 
 <div class="file">
     <pre class="code prettyprint linenums">
-&#x2F;**
+/**
 * A lightweight datastore wrapper
 * @module Client
 * @class ClientStore
-**&#x2F;
+**/
 
-&#x2F;&#x2F; TODO: 
-&#x2F;&#x2F; - add enhanced &quot;class&quot; support w&#x2F; getter&#x2F;setter if avail: Object.defineProperty(fnc.prototype, ...)
-&#x2F;&#x2F; - process custom X-Store-* response headers
+// TODO: 
+// - add enhanced &quot;class&quot; support w/ getter/setter if avail: Object.defineProperty(fnc.prototype, ...)
+// - process custom X-Store-* response headers
+// - HEAD; GET; POST; PATCH; PUT; DELETE 
 
-&#x2F;&#x2F; module definition 
+// module definition 
 (function (root) { var amdExports; define(&#x27;store&#x27;, [&quot;underscore&quot;], function (_) { (function () {
 
-&#x2F;**
+/**
 * configuration object
 * 
 * @method Options
 * @private
 * @type {Object}
 * @default {Object} instance
-*&#x2F;
+*/
 var Options = function Options(){};
 
-&#x2F;**
+/**
 * configuration object.constructor 
 * 
 * @method Options.constructor
 * @private
 * @type {Object}
 * @default {Object} instance
-*&#x2F;
+*/
 Options.prototype = {
 
-  &#x2F;**
+  /**
   * Remote storage location
   * 
   * @property options.url
   * @type {String}
-  * @default &quot;&#x2F;&#x2F;localhost&#x2F;store&#x2F;examples&#x2F;server.php&quot;
-  *&#x2F;      
-  url: &quot;&#x2F;&#x2F;localhost&#x2F;store&#x2F;examples&#x2F;server.php&quot;,
+  * @default &quot;//localhost/store/examples/server.php&quot;
+  */      
+  url: &quot;//localhost/store/examples/server.php&quot;,
 
-  &#x2F;**
+  /**
   * Storage namespace  
   * 
   * @property options.namespace
   * @type {String}
   * @default &quot;default&quot;
-  *&#x2F;      
+  */      
   namespace: &quot;default&quot;,
 
-  &#x2F;**
+  /**
   * JSONP callback fnc name
   * 
   * @property options.jsonp
   * @type {String}
   * @default &quot;callback&quot;
-  *&#x2F;      
+  */      
   jsonp: &quot;callback&quot;,
 
-  &#x2F;**
+  /**
   * Cache enabled
   * 
   * @property options.cache
   * @type {Boolean}
   * @default true
-  *&#x2F;      
+  */      
   cache: true,
 
-  &#x2F;**
+  /**
   * Cache Lifetime
   * 
   * @property options.ttl
   * @type {Number}
   * @default 3600
-  *&#x2F;      
+  */      
   ttl: 3600
 };
 
-&#x2F;**
+/**
 * Repository - Storage Base Class
 * 
 * @method Repository
 * @private
 * @type {Object}
 * @default {Object} instance
-*&#x2F;
+*/
 var Repository = function Repository(){};
 
-&#x2F;**
+/**
 * Repository constructor
 * 
 * @method Repository.constructor
 * @private
 * @type {Object}
 * @default {Object} instance
-*&#x2F;
+*/
 Repository.prototype = {};
 
-&#x2F;**
+/**
 * Repository: Remote
 * 
 * @method Remote
 * @private
 * @type {Object}
 * @default {Object} instance
-*&#x2F;
+*/
 var Remote = function Remote(){};
 
-&#x2F;**
+/**
 * Repository: Remote.constructor
 * 
 * @method Remote.constructor
 * @private
 * @type {Object}
 * @default {Object} instance
-*&#x2F; 
+*/ 
 Remote.prototype = new Repository();
 
-&#x2F;**
+/**
 * Synchronous remote action processing
 *
 * @method processSync
@@ -247,11 +220,11 @@ Remote.prototype = new Repository();
 * @param {Function} callback handle 
 * @param {Boolean} each apply callback fnc for each object? (default: false)
 * @return {Boolean} Returns true on success
-*&#x2F;
+*/
 Remote.prototype.processSync = function processSync(action, options, item, oncallback, each, type){    
 
 }
-&#x2F;**
+/**
 * Asynchronous remote action processing
 *
 * @method process
@@ -261,32 +234,32 @@ Remote.prototype.processSync = function processSync(action, options, item, oncal
 * @param {Function} callback handle 
 * @param {Boolean} each apply callback fnc for each object? (default: false)
 * @return {Boolean} Returns true on success
-*&#x2F;
+*/
 Remote.prototype.process = function process(action, options, item, oncallback, each, type){    
 
-  &#x2F;&#x2F; TODO: option: &#x27;sync&#x27;: defaults to false -&gt; to easily extend for synchronous calls...
+  // TODO: option: &#x27;sync&#x27;: defaults to false -&gt; to easily extend for synchronous calls...
 
-  &#x2F;&#x2F; prepare
+  // prepare
   var each = each || false, 
       serialized = (typeof(item)!=&quot;undefined&quot; &amp;&amp; typeof(item.data)!=&quot;undefined&quot;) ? Store.serialize(item.data) : &quot;instance=false&quot;,
       callback = &quot;callback_&quot;+Store.guid(&#x27;_&#x27;),
       options = options,
       script = document.createElement(&quot;script&quot;);
 
-  &#x2F;&#x2F; mark callback *
+  // mark callback *
   script.id = callback;
 
   var decallback = _.Deferred();
 
-  &#x2F;&#x2F; TODO: ajax form upload +++
+  // TODO: ajax form upload +++
 
-  &#x2F;&#x2F; attach custom callback handler
+  // attach custom callback handler
   root[callback]=function(items){
     var item = null; 
 
-    &#x2F;&#x2F; preprocess item-type mappings
+    // preprocess item-type mappings
     if(items instanceof Array) {
-      &#x2F;&#x2F; process item
+      // process item
       items.forEach(function(item, index){ 
         items[index] = type != null ? type.create(item) : item; 
       });  
@@ -295,111 +268,111 @@ Remote.prototype.process = function process(action, options, item, oncallback, e
       items = type != null ? type.create(item) : item; 
     }
 
-    &#x2F;&#x2F; custom callback?
+    // custom callback?
     if(typeof(oncallback)!=&quot;undefined&quot;){
 
-      &#x2F;&#x2F; callback per item or block?
+      // callback per item or block?
       if(each!==false) {
         
-        &#x2F;&#x2F; process item
+        // process item
         items.forEach(function(item, index){ 
           oncallback(item); 
         });
 
       } else {
 
-        &#x2F;&#x2F; process block
+        // process block
         oncallback(item); 
       }     
     }
     
-    &#x2F;&#x2F; cleanup function
+    // cleanup function
     root[callback]=undefined;
     delete root[callback];
 
-    &#x2F;&#x2F; cleanup script
+    // cleanup script
     script = document.querySelector(&#x27;#&#x27;+callback);
     script.parentNode.removeChild(script);
 
-    &#x2F;&#x2F; promise fulfilled *
+    // promise fulfilled *
     decallback.resolve(items);    
 
-    &#x2F;&#x2F; store for synchronous callback pickup
+    // store for synchronous callback pickup
     setTimeout(function(){
       root[callback] = items;    
     }, 1000);    
   };
 
-  &#x2F;&#x2F; setup
-  script.src = options.url+&quot;&#x2F;&quot;+options.namespace+&quot;&#x2F;&quot;+action+&quot;&#x2F;&quot;+callback+&quot;&#x2F;?bust=&quot;+(new Date().getTime())+&quot;&amp;&quot;+serialized;
+  // setup
+  script.src = options.url+&quot;/&quot;+options.namespace+&quot;/&quot;+action+&quot;/&quot;+callback+&quot;/?bust=&quot;+(new Date().getTime())+&quot;&amp;&quot;+serialized;
   
-  &#x2F;&#x2F; load
+  // load
   setTimeout(function(){
     document.body.appendChild(script);  
   }, 1);
   
-  &#x2F;&#x2F; ttl exceeded - fail *
-  &#x2F;&#x2F; TODO: server late reply handle? » just because we&#x27;re ignorants doesn&#x27;t mean nothing happens.
+  // ttl exceeded - fail *
+  // TODO: server late reply handle? » just because we&#x27;re ignorants doesn&#x27;t mean nothing happens.
   setTimeout(function(){
     decallback.reject(&#x27;request timed out (&#x27; + options.ttl + &#x27;)&#x27;);
   },options.ttl);      
 
-  &#x2F;&#x2F; return deferred *
+  // return deferred *
   return decallback.promise();  
 };    
 
-&#x2F;**
+/**
 * Store consumer
 * @class Store
 * @constructor
-*&#x2F;
+*/
 function Store(options){
   
-  &#x2F;**
+  /**
   * Self-Reference 
   * 
   * @property self
   * @private
   * @type {Object}
-  *&#x2F;      
+  */      
   var self = this; 
 
-  &#x2F;**
+  /**
   * Store configuration
   * 
   * @property options
   * @type {Object}
   * @default {}
-  *&#x2F;
+  */
   this.options = new Options();     
 
-  &#x2F;**
+  /**
   * configuration options
   * 
   * @property options
   * @public
   * @type {Object}
   * @default {}
-  *&#x2F;
+  */
   this.configure(options);
   
-  &#x2F;**
+  /**
   * Repository
   * 
   * @property repository
   * @private
   * @type {Repository}
   * @default new Remote()
-  *&#x2F;      
+  */      
   this.repository = new Remote();     
   
-  &#x2F;**
+  /**
   * Repository Item
   * 
   * @property Item
   * @private
   * @type {Function}
-  *&#x2F;
+  */
   this.Item = function Item(data){
     this.data = { instance: {} };
     for(var property in data){
@@ -407,41 +380,41 @@ function Store(options){
     }    
   };
 
-  &#x2F;**
+  /**
   * Item.constructor
   * 
   * @property Item.constructor
   * @private
   * @type {Object}
-  *&#x2F;    
+  */    
   this.Item.prototype = {
     
-    &#x2F;**
+    /**
     * Store-Reference
     * 
     * @property datastore
     * @private
     * @type {Object}
-    *&#x2F;    
+    */    
     datastore: this,
 
-    &#x2F;**
+    /**
     * Object&#x27;s Datastore
     * 
     * @property data
     * @private
     * @type {Object}
-    *&#x2F; 
+    */ 
     contents: { instance: {} },
 
-    &#x2F;**
+    /**
     * Set item property
     *
     * @method set
     * @param {String} property key
     * @param {String} property value
     * @return {Boolean} Returns true on success
-    *&#x2F;   
+    */   
     set: function set(property, value){         
       if(value===false) {
         delete this.data.instance[property];
@@ -450,47 +423,47 @@ function Store(options){
       }
     },
 
-    &#x2F;**
+    /**
     * Get item property
     *
     * @method get
     * @param {String} property key      
     * @return {Boolean} Returns true on success
-    *&#x2F;   
+    */   
     get: function get(property){ 
       return this.data.instance[property]; 
     },
 
-    &#x2F;**
+    /**
     * Persist item 
     *
     * @method update
     * @param {Function} callback *      
     * @return {Boolean} Returns true on success
-    *&#x2F;         
+    */         
     update: function update(callback){
       return this.datastore.update(this, callback);
     },
 
-    &#x2F;**
+    /**
     * Remove item
     *
     * @method remove
     * @param {Function} callback *            
     * @return {Boolean} Returns true on success
-    *&#x2F;         
+    */         
     remove: function remove(callback){
       return this.datastore.remove(this, callback);
     },  
 
-    &#x2F;&#x2F; TODO: general getter&#x2F;setter for data =&gt; adjust attribute naming ***!!!
+    // TODO: general getter/setter for data =&gt; adjust attribute naming ***!!!
 
-    &#x2F;**
+    /**
     * Retrieves all items
     *
     * @method all
     * @return {Boolean} Returns true on success
-    *&#x2F;             
+    */             
     all: function all(data){
       if(typeof(data)!=&quot;undefined&quot;){
         this.data.instance = data;  
@@ -499,124 +472,124 @@ function Store(options){
     }
   };
 
-  &#x2F;**
+  /**
   * Interface *
   * 
   * @property api
   * @private
   * @type {Object}
-  *&#x2F;
+  */
   var api = {};
 
-  &#x2F;&#x2F; map api 
+  // map api 
   [&#x27;get&#x27;, &#x27;list&#x27;, &#x27;update&#x27;, &#x27;remove&#x27;, &#x27;configure&#x27;, &#x27;create&#x27;, &#x27;filter&#x27;].
 
-    &#x2F;&#x2F; expose *
+    // expose *
     forEach(function(fnc){             
 
-      &#x2F;&#x2F; for now: direct delegation from api to instance *
+      // for now: direct delegation from api to instance *
       api[fnc] = function(){ return self[fnc].apply(self, Array.prototype.slice.apply(arguments, [])); };
     }
   );
 
-  &#x2F;&#x2F; expose *
+  // expose *
   return api;
 }
 
-&#x2F;**
+/**
 * Store prototype definition
 *
 * @property prototype
 * @type {Object}
-*&#x2F;
+*/
 Store.prototype = {
   
-  &#x2F;**
+  /**
   * LRU cache * - TODO: implement
   * 
   * @property cache
   * @type {Object}
   * @default {}
-  *&#x2F;
+  */
   cache: {}, 
 
-  &#x2F;**
+  /**
   * Items collection
   * 
   * @property items
   * @type {Array}
   * @default []
-  *&#x2F;
+  */
   items: [],
 
-  &#x2F;**
+  /**
   * JSON Schema *
   * 
   * @property schema
   * @type {Object}
   * @default null
-  *&#x2F;
+  */
   schema: null,
 
-  &#x2F;**
-  * Insert&#x2F;update item
+  /**
+  * Insert/update item
   *
   * @method update
   * @return {Boolean} Returns true on success
-  *&#x2F;      
+  */      
   update: function update(item, callback){
     
-    &#x2F;&#x2F; TODO: check against schema if set *
+    // TODO: check against schema if set *
     return this.repository.process(&quot;update&quot;, this.options, Store.wrap(this, item), callback);
   },
 
-  &#x2F;**
+  /**
   * Remove item
   *
   * @method remove
   * @return {Boolean} Returns true on success
-  *&#x2F;
+  */
   remove: function remove(item, callback){
     return this.repository.process(&quot;remove&quot;, this.options, Store.wrap(this, item), callback);
   },
   
-  &#x2F;**
+  /**
   * Retrieve item
   *
   * @method get
   * @param {Object} | {String} item object reference or string uuid 
   * @return {Boolean} Returns true on success
-  *&#x2F;
+  */
   get: function get(item, callback){
     return this.repository.process(&quot;get&quot;, this.options, Store.wrap(this, item), callback, undefined, this);
   },
 
-  &#x2F;**
+  /**
   * Retrieves all items
   *
   * @method list
   * @return {Boolean} Returns true on success
-  *&#x2F;
+  */
   list: function list(callback, each){
     return this.repository.process(&quot;list&quot;, this.options, undefined, callback, each, this);
   },
 
-  &#x2F;**
+  /**
   * Filter list - TODO: implement
   *
   * @method filter
   * @return {Boolean} Returns true on success
-  *&#x2F;
+  */
   filter: function filter(callback, each, filters){
     return this.repository.process(&quot;list&quot;, this.options, undefined, callback, each, this);
   },
 
-  &#x2F;**
+  /**
   * Instance configuration
   *
   * @method configure
   * @return {Boolean} Returns true on success
-  *&#x2F;
+  */
   configure: function configure(options){
     if(typeof(options)!=&quot;undefined&quot;){
       this.options = Store.extend(options, this.options);    
@@ -624,25 +597,25 @@ Store.prototype = {
     return this.options;
   },
 
-  &#x2F;**
+  /**
   * Item accessor *
   *
   * @method item
   * @return {Boolean} Returns true on success
-  *&#x2F;
+  */
   item: function item(index){      
     return this.items[index];
   },
 
-  &#x2F;**
-  * create instance &#x2F; new item (bound to datastore)
+  /**
+  * create instance / new item (bound to datastore)
   *
   * @method create
   * @return {Boolean} Returns true on success
-  *&#x2F;
+  */
   create: function create(data){
 
-    &#x2F;&#x2F; bc?
+    // bc?
     if(typeof(data)==&#x27;undefined&#x27;){
       console.warn(&#x27;Store.create: data is undefined, empty object assigned&#x27;);
       data = {};
@@ -657,12 +630,12 @@ Store.prototype = {
     return instance;
   },
 
-  &#x2F;**
-  * JSON schema getter&#x2F;setter
+  /**
+  * JSON schema getter/setter
   *
   * @method schema  
   * @return {Object} object
-  *&#x2F;
+  */
   schema: function schema(schema){
     if(typeof(schema)!=&quot;undefined&quot;){
       this.options.schema = schema;
@@ -672,24 +645,24 @@ Store.prototype = {
 
 };
 
-&#x2F;**
-* Apply general options - default &#x2F; fallback
+/**
+* Apply general options - default / fallback
 *
 * @method __configure
 * @param {Object} options A configure object
 * @return {Boolean} Returns true on success
-*&#x2F; 
+*/ 
 Store.configure = function configure(options){
   Options.prototype = Store.extend(options, Options.prototype);
   return Options.prototype;
 };
 
-&#x2F;**
+/**
 * one-dimensional object merge *
 *
 * @method extend
 * @return {Boolean} Returns true on success
-*&#x2F;
+*/
 Store.extend = function extend(source, target){
   for(var property in source) {
     target[property] = source[property];
@@ -697,13 +670,13 @@ Store.extend = function extend(source, target){
   return target;
 };
 
-&#x2F;**
+/**
 * Passthrough if item is object. If type is string » wrapped into Item instance with id set to &#x60;item&#x60;
 *
 * @method wrap
 * @param {Object} {String} item Instance or UUID
 * @return {Object} Returns item object 
-*&#x2F;   
+*/   
 Store.wrap = function wrap(datastore, item){    
   if(typeof(item)==&quot;string&quot;){
     return new datastore.Item({&#x27;id&#x27;: item});          
@@ -713,13 +686,13 @@ Store.wrap = function wrap(datastore, item){
   return item;
 }
 
-&#x2F;**
+/**
 * Generate GUID
 *
 * @method guid
 * @param separator (defaults to dash)
 * @return {String} GUID
-*&#x2F;
+*/
 Store.guid = function guid(separator){
   function s4() {
     return Math.floor((1 + Math.random()) * 0x10000)
@@ -731,49 +704,49 @@ Store.guid = function guid(separator){
          s4() + sep + s4() + s4() + s4();
 }; 
 
-&#x2F;**
+/**
 * Convenience iteration helper
 *
 * @method times
 * @param {Integer} times 
 * @return {String} GUID
-*&#x2F;
+*/
 Store.times = function times(count, callback){
   for(var index=0; index&lt;count; index++) {
     callback(index);
   }
 }; 
 
-&#x2F;**
+/**
 * Convenience deferred wrapper
 *
 * @method times
 * @param {Function} callback
 * @return {Promise} 
-*&#x2F;
+*/
 Store.when = function when(callback){
   return _.when(callback);
 }; 
 
-&#x2F;**!
+/**!
 * Stringify object structure (deep!) into url 
 *
-* @example (borrowed from: http:&#x2F;&#x2F;stackoverflow.com&#x2F;a&#x2F;9472534)
+* @example (borrowed from: http://stackoverflow.com/a/9472534)
 *
-* &#x2F;&#x2F; helpers
+* // helpers
 * var serialized,
 *     data = {a: 1, b: 2, c: {d: 4, e: [6, 7, 8], f: {asdf: 10}}};  
 *
-* &#x2F;&#x2F; transform
+* // transform
 * serialized = Store.serialize(data);
 *
-* &#x2F;&#x2F; verify
+* // verify
 * console.log(serialized, serialized === &quot;a=1&amp;b=2&amp;c[d]=4&amp;c[e][0]=6&amp;c[e][1]=7&amp;c[e][2]=8&amp;c[f][asdf]=10&quot;);
 *
 * @method serialize
 * @param {Object} params
 * @return {String} 
-*&#x2F;
+*/
 Store.serialize = function serialize(params){
   var pairs, proc;
   pairs = [];
@@ -811,13 +784,13 @@ Store.serialize = function serialize(params){
   return pairs.join(&#x27;&amp;&#x27;);    
 };  
 
-&#x2F;&#x2F; expose
+// expose
 amdExports = root.Store = Store;  
 
-&#x2F;&#x2F; call w&#x2F;scope
+// call w/scope
 }.call(root));
   
-&#x2F;&#x2F; export *
+// export *
 return amdExports;
 
 }); }(this));
@@ -830,13 +803,13 @@ return amdExports;
         </div>
     </div>
 </div>
-<script src="..&#x2F;assets/vendor/prettify/prettify-min.js"></script>
+<script src="../assets/vendor/prettify/prettify-min.js"></script>
 <script>prettyPrint();</script>
-<script src="..&#x2F;assets/js/yui-prettify.js"></script>
-<script src="..&#x2F;assets/../api.js"></script>
-<script src="..&#x2F;assets/js/api-filter.js"></script>
-<script src="..&#x2F;assets/js/api-list.js"></script>
-<script src="..&#x2F;assets/js/api-search.js"></script>
-<script src="..&#x2F;assets/js/apidocs.js"></script>
+<script src="../assets/js/yui-prettify.js"></script>
+<script src="../assets/../api.js"></script>
+<script src="../assets/js/api-filter.js"></script>
+<script src="../assets/js/api-list.js"></script>
+<script src="../assets/js/api-search.js"></script>
+<script src="../assets/js/apidocs.js"></script>
 </body>
 </html>
