@@ -6,14 +6,8 @@ $vendorDir = dirname(dirname(__FILE__));
 $baseDir = dirname($vendorDir);
 
 return array(
-    'Widespread' => array($vendorDir . '/alternatex/widespread/src'),
-    'Symfony\\Component\\Console\\' => array($vendorDir . '/symfony/console'),
-    'Store' => array($baseDir . '/src/server/php'),
-    'Predis' => array($vendorDir . '/predis/predis/lib'),
-    'PHP\\BitTorrent' => array($vendorDir . '/christeredvartsen/php-bittorrent'),
-    'PHPCR\\Util' => array($vendorDir . '/phpcr/phpcr-utils/src'),
-    'PHPCR' => array($vendorDir . '/phpcr/phpcr/src'),
-    'JsonSchema' => array($vendorDir . '/justinrainbow/json-schema/src'),
-    'Jackalope\\' => array($vendorDir . '/jackalope/jackalope/src', $vendorDir . '/jackalope/jackalope-jackrabbit/src'),
-    'Buzz' => array($vendorDir . '/kriswallsmith/buzz/lib'),
+  'Widespread' => array($vendorDir . '/alternatex/widespread/src'),
+  'Store' => array($baseDir . '/src/server/php'),
+  'JsonSchema' => array($vendorDir . '/justinrainbow/json-schema/src'),
+  'Dropbox' => array($vendorDir . '/dropbox-sdk')    
 );

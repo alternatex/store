@@ -9,7 +9,7 @@ php:
   # aliased to a recent 5.5.x version
   - 5.5
 
-before_script: COMPOSER_ROOT_VERSION=dev-master composer install
+#before_script: COMPOSER_ROOT_VERSION=dev-master composer install
 
 script: phpunit --configuration phpunit_common.xml --coverage-text
 
