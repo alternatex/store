@@ -12,104 +12,104 @@ use Store\Repository\Memory;
 */
 class MemoryTest extends PHPUnit_Framework_TestCase {
 
-	private $store;
+  private $store;
 
-	public function setUp(){
-		$this->store = new Memory();
-	}
+  public function setUp(){
+    $this->store = new Memory();
+  }
 
-	public function tearDown(){
-		$this->store = null;
-	}
+  public function tearDown(){
+    $this->store = null;
+  }
 
-	public function create(){
+  public function create(){
 
-		// create new item
-		$item = new Item(array(
-			'id' 				=> 'Id',
-			'firstname' => 'FirstName',
-			'lastname' 	=> 'LastName'
-		));		
-		
-		// store item in memory collection 
-		$this->store->update($item);
+    // create new item
+    $item = new Item(array(
+      'id'        => 'Id',
+      'firstname' => 'FirstName',
+      'lastname'  => 'LastName'
+    ));   
+    
+    // store item in memory collection 
+    $this->store->update($item);
 
-		// ... silly.
-		$data = $item->data();
-	}
+    // ... silly.
+    $data = $item->data();
+  }
 
-	public function testCreate($test=true){
+  public function testCreate($test=true){
 
-		// ...
-		$this->create();
-	}
+    // ...
+    $this->create();
+  }
 
-	public function testUpdate(){
-		
-		// create item first *
-		$this->create();
+  public function testUpdate(){
+    
+    // create item first *
+    $this->create();
 
-		// create new item
-		$item = new Item(array('id' => 'Id'));		
+    // create new item
+    $item = new Item(array('id' => 'Id'));    
 
-		// read item from memory collection 
-		$item = $this->store->get($item);
+    // read item from memory collection 
+    $item = $this->store->get($item);
 
-		// ... silly.
-		$data = $item;
+    // ... silly.
+    $data = $item;
 
-		// test create
-		$this->assertEquals('FirstName', $data['firstname']);
-		
-		// update
-		$data['firstname']='FirstName2';
+    // test create
+    $this->assertEquals('FirstName', $data['firstname']);
+    
+    // update
+    $data['firstname']='FirstName2';
 
-		// re-create item
-		$item = new Item($data);	
+    // re-create item
+    $item = new Item($data);  
 
-		// update item
-		$this->store->update($item);
+    // update item
+    $this->store->update($item);
 
-		// read item from memory collection 
-		$item = $this->store->get($item);
+    // read item from memory collection 
+    $item = $this->store->get($item);
 
-		// ... silly.
-		$data = $item;
+    // ... silly.
+    $data = $item;
 
-		// test
-		$this->assertEquals('FirstName2', $data['firstname']);
-	}
+    // test
+    $this->assertEquals('FirstName2', $data['firstname']);
+  }
 
-	public function testRead(){
+  public function testRead(){
 
-		// create item first *
-		$this->create();
+    // create item first *
+    $this->create();
 
-		// create new item
-		$item = new Item(array('id' => 'Id'));		
+    // create new item
+    $item = new Item(array('id' => 'Id'));    
 
-		// read item from memory collection 
-		$data = $this->store->get($item);
+    // read item from memory collection 
+    $data = $this->store->get($item);
 
-		// test
-		$this->assertEquals('FirstName', $data['firstname']);
-	}
+    // test
+    $this->assertEquals('FirstName', $data['firstname']);
+  }
 
-	public function testDelete(){
+  public function testDelete(){
 
-		// create item first *
-		$this->create();
+    // create item first *
+    $this->create();
 
-		// create new item
-		$item = new Item(array('id' => 'Id'));		
+    // create new item
+    $item = new Item(array('id' => 'Id'));    
 
-		// remove item from collection
-		$this->store->remove($item);
+    // remove item from collection
+    $this->store->remove($item);
 
-		// try reading item from memory collection 	
-		$item = $this->store->get($item);
+    // try reading item from memory collection  
+    $item = $this->store->get($item);
 
-		// test
-		$this->assertFalse($item);
-	}
+    // test
+    $this->assertFalse($item);
+  }
 }

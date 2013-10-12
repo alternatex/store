@@ -1,7 +1,7 @@
 /**
 * A lightweight datastore wrapper
 * @module Client
-* @class ClientStore
+* @class Store
 **/
 
 // TODO: 
