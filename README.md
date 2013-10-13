@@ -253,13 +253,8 @@ Continuous Integration
 ### OpenShift
 
 #### Setup
-1. Create SSH-Key for use w/OpenShift
-2. Create OpenShift application
-3. Assign SSH Key
-3.1 OpenShift
-3.2 Github (Deploy Key)
-4. Add OpenShift git repository `git remote add ssh://010101010101010101@store-namespace.rhcloud.com/~/git/store.git/`
-5. Then continue [here](https://github.com/travis-ci/sinatra-openshift-example)
+
+See [here](https://github.com/travis-ci/openshift-travis-quickstart)
 
 #### Test
 ...
@@ -289,8 +284,7 @@ Stores data using PHPs `serialize()` function. Supports embedding binary data ba
 
 Documentation
 -------------
-- [API Docs](https://github.com/alternatex/store/blob/stable/docs/api/index.html)
-- [Usage](https://github.com/alternatex/store/blob/stable/docs/index.md)
+- [API](http://alternatex.github.io/store/docs/)
 
 ### CURL
 ```shell
