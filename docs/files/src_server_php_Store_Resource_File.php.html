@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>Client - Store</title>
+    <title>src/server/php/Store/Resource/File.php - Store</title>
     <link rel="stylesheet" href="http://yui.yahooapis.com/3.9.1/build/cssgrids/cssgrids-min.css">
     <link rel="stylesheet" href="../assets/vendor/prettify/prettify-min.css">
     <link rel="stylesheet" href="../assets/css/main.css" id="site_styles">
@@ -118,56 +118,75 @@
             <div class="apidocs">
                 <div id="docs-main">
                     <div class="content">
-                        <h1>Client Module</h1>
-<div class="box clearfix meta">
-    
+                        <h1 class="file-heading">File: src/server/php/Store/Resource/File.php</h1>
 
-    
+<div class="file">
+    <pre class="code prettyprint linenums">
+&lt;?php namespace Store\Resource;
 
-    
-        <div class="foundat">
-            Defined in: <a href="../files/src_client_store.js.html#l233"><code>src&#x2F;client&#x2F;store.js:233</code></a>
-        </div>
-    
+// TODO: 
+// - Implement format detection based on filename / mapping table (1st hardcoded, but within modular collection)
 
-    
-</div>
+use Store\Resource, Store\Format;
 
+/**
+* File
+*
+* ...
+*
+* @class File
+* @module Server
+*/
+class File extends Resource { 
 
+  /**
+  * Path to file
+  * @property path
+  * @private
+  * @type {String}
+  * @default &#x27;&#x27;
+  */
+  protected $path = &#x27;&#x27;;
 
-<div class="box intro">
-    <p>A lightweight datastore wrapper</p>
+  /**
+  * File content
+  * @property content
+  * @private
+  * @type {String}
+  * @default &#x27;&#x27;
+  */
+  protected $content = &#x27;&#x27;;
 
-</div>
+  /**
+  * File format
+  * @property format
+  * @private
+  * @type {Format}
+  * @default null
+  */
+  private $format = null;
 
+  public function __construct($content=null, Format $format=null){    
+    $this-&gt;content($content);
+    $this-&gt;format($format);
+  }
 
+  public function format(Format $format=null){
+    if($format!==null) $this-&gt;format = $format;
+    return $this-&gt;format;
+  }
 
-<div class="yui3-g">
-    <div class="yui3-u-1-2">
-        
-            <p>This module provides the following classes:</p>
+  public function content($content=null, $free=false){
+    if($content!=null || $free) $this-&gt;content = $content;
+    return $this-&gt;content;
+  }
 
-            <ul class="module-classes">
-            
-                <li class="module-class">
-                    <a href="../classes/Store.html">
-                        Store
-                    </a>
-                </li>
-            
-                <li class="module-class">
-                    <a href="../classes/Store (Client).html">
-                        Store (Client)
-                    </a>
-                </li>
-            
-            </ul>
-        
-    </div>
-
-    <div class="yui3-u-1-2">
-        
-    </div>
+  public function path($path=null, $free=false){
+    if($path!=null || $free) $this-&gt;path = $path;
+    return $this-&gt;path;
+  }
+}
+    </pre>
 </div>
 
                     </div>

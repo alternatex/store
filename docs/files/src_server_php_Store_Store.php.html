@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>Client - Store</title>
+    <title>src/server/php/Store/Store.php - Store</title>
     <link rel="stylesheet" href="http://yui.yahooapis.com/3.9.1/build/cssgrids/cssgrids-min.css">
     <link rel="stylesheet" href="../assets/vendor/prettify/prettify-min.css">
     <link rel="stylesheet" href="../assets/css/main.css" id="site_styles">
@@ -118,56 +118,228 @@
             <div class="apidocs">
                 <div id="docs-main">
                     <div class="content">
-                        <h1>Client Module</h1>
-<div class="box clearfix meta">
-    
+                        <h1 class="file-heading">File: src/server/php/Store/Store.php</h1>
 
-    
+<div class="file">
+    <pre class="code prettyprint linenums">
+&lt;?php namespace Store;
 
-    
-        <div class="foundat">
-            Defined in: <a href="../files/src_client_store.js.html#l233"><code>src&#x2F;client&#x2F;store.js:233</code></a>
-        </div>
-    
+/**
+* Store fundamentals
+*
+* @class Store (Server)
+* @module Server
+*/
+abstract class Store { 
 
-    
-</div>
+  /**
+  * Flag to indicated pending changes
+  * @property data
+  * @protected
+  * @type {Boolean}
+  * @default false
+  */
+  protected $pending = false;
 
+  /**
+  * Items collection
+  * @property data
+  * @protected
+  * @type {Array}
+  * @default array()
+  */
+  protected $items = array();
 
+  /**
+  * Datastore filename
+  * @property datastore
+  * @protected
+  * @type {String}
+  * @default null
+  */
+  protected $datastore = null;
 
-<div class="box intro">
-    <p>A lightweight datastore wrapper</p>
+  /**
+  * HTTP Header storage type indicator
+  * @property REQUEST_STORE_TYPE_HEADER_FIELD
+  * @public
+  * @type {String}
+  * @default x-storage-type
+  * @readOnly
+  */
+  const REQUEST_STORE_TYPE_HEADER_FIELD = &#x27;X-Storage-Type&#x27;;
 
-</div>
+  /**
+  * Toggle JSONP
+  * @property RESPONSE_JSONP_ENABLED
+  * @public
+  * @type {Boolean}
+  * @default true
+  * @readOnly
+  */
+  const RESPONSE_JSONP_ENABLED = true;
 
+  /**
+  * JSON callback identifier
+  * @property RESPONSE_JSONP_CALLBACK
+  * @public
+  * @type {Boolean}
+  * @default true
+  * @readOnly
+  */  
+  const RESPONSE_JSONP_CALLBACK = &#x27;callback&#x27;;
 
+  /**
+  * Entity attribute count
+  * @property ENTITY_COUNT
+  * @public
+  * @type {Boolean}
+  * @default true
+  * @readOnly
+  */
+  const ENTITY_COUNT = &#x27;count&#x27;;
 
-<div class="yui3-g">
-    <div class="yui3-u-1-2">
-        
-            <p>This module provides the following classes:</p>
+  /**
+  * Entity attribute id
+  * @property ENTITY_IDENTIFIER
+  * @public
+  * @type {Boolean}
+  * @default true
+  * @readOnly
+  */  
+  const ENTITY_IDENTIFIER = &#x27;id&#x27;;
 
-            <ul class="module-classes">
-            
-                <li class="module-class">
-                    <a href="../classes/Store.html">
-                        Store
-                    </a>
-                </li>
-            
-                <li class="module-class">
-                    <a href="../classes/Store (Client).html">
-                        Store (Client)
-                    </a>
-                </li>
-            
-            </ul>
-        
-    </div>
+  /**
+  * l18n datastore.corrupt
+  * @property MESSAGE_ERROR_DATASTORE_CORRUPT
+  * @public
+  * @type {Boolean}
+  * @default true
+  * @readOnly
+  */
+  const MESSAGE_ERROR_DATASTORE_CORRUPT = &#x27;DATASTORE SEEMS CORRUPT&#x27;;
 
-    <div class="yui3-u-1-2">
-        
-    </div>
+  /**
+  * l18n datastore.locked
+  * @property MESSAGE_ERROR_DATASTORE_LOCKED
+  * @public
+  * @type {Boolean}
+  * @default true
+  * @readOnly
+  */
+  const MESSAGE_ERROR_DATASTORE_LOCKED = &#x27;DATASTORE IS LOCKED&#x27;;
+
+  /**
+  * Request param action
+  * @property REQUEST_ACTION
+  * @public
+  * @type {Boolean}
+  * @default true
+  * @readOnly
+  */
+  const REQUEST_ACTION = &#x27;action&#x27;;
+
+  /**
+  * Request param namespace
+  * @property REQUEST_NAMESPACE
+  * @public
+  * @type {Boolean}
+  * @default true
+  * @readOnly
+  */  
+  const REQUEST_NAMESPACE = &#x27;namespace&#x27;;
+
+  /**
+  * Request param instance
+  * @property REQUEST_DATA
+  * @public
+  * @type {Boolean}
+  * @default true
+  * @readOnly
+  */  
+  const REQUEST_DATA = &#x27;instance&#x27;;
+
+  /**
+  * Request param jsonp
+  * @property REQUEST_JSONP
+  * @public
+  * @type {Boolean}
+  * @default true
+  * @readOnly
+  */  
+  const REQUEST_JSONP = &#x27;jsonp&#x27;;
+
+  /**
+  * Error *
+  * @property RESPONSE_ERROR
+  * @public
+  * @type {Boolean}
+  * @default true
+  * @readOnly
+  */
+  const RESPONSE_ERROR = &#x27;error&#x27;;
+
+  /**
+  * Action &#x60;get&#x60;
+  * @property STORE_ACTION_GET
+  * @public
+  * @type {Boolean}
+  * @default true
+  * @readOnly
+  */
+  const STORE_ACTION_GET = &#x27;get&#x27;;
+
+  /**
+  * Action &#x60;list&#x60;
+  * @property STORE_ACTION_LIST
+  * @public
+  * @type {Boolean}
+  * @default true
+  * @readOnly
+  */  
+  const STORE_ACTION_LIST = &#x27;list&#x27;;
+
+  /**
+  * Action &#x60;remove&#x60;
+  * @property STORE_ACTION_REMOVE
+  * @public
+  * @type {Boolean}
+  * @default true
+  * @readOnly
+  */  
+  const STORE_ACTION_REMOVE = &#x27;remove&#x27;;
+
+  /**
+  * Action &#x60;update&#x60;
+  * @property STORE_ACTION_UPDATE
+  * @public
+  * @type {Boolean}
+  * @default true
+  * @readOnly
+  */  
+  const STORE_ACTION_UPDATE = &#x27;update&#x27;;
+
+  /**
+  * Request fileupload param source
+  * @property TRANSFER_SOURCE
+  * @public
+  * @type {Boolean}
+  * @default true
+  * @readOnly
+  */
+  const TRANSFER_SOURCE = &#x27;tmp_name&#x27;;
+
+  /**
+  * Request fileupload param name
+  * @property TRANSFER_TARGET
+  * @public
+  * @type {Boolean}
+  * @default true
+  * @readOnly
+  */  
+  const TRANSFER_TARGET = &#x27;name&#x27;;  
+}
+    </pre>
 </div>
 
                     </div>

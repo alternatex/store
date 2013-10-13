@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>Client - Store</title>
+    <title>src/server/php/Store/Repository/FileSystem.php - Store</title>
     <link rel="stylesheet" href="http://yui.yahooapis.com/3.9.1/build/cssgrids/cssgrids-min.css">
     <link rel="stylesheet" href="../assets/vendor/prettify/prettify-min.css">
     <link rel="stylesheet" href="../assets/css/main.css" id="site_styles">
@@ -118,56 +118,99 @@
             <div class="apidocs">
                 <div id="docs-main">
                     <div class="content">
-                        <h1>Client Module</h1>
-<div class="box clearfix meta">
-    
+                        <h1 class="file-heading">File: src/server/php/Store/Repository/FileSystem.php</h1>
 
-    
+<div class="file">
+    <pre class="code prettyprint linenums">
+&lt;?php namespace Store\Repository;
 
-    
-        <div class="foundat">
-            Defined in: <a href="../files/src_client_store.js.html#l233"><code>src&#x2F;client&#x2F;store.js:233</code></a>
-        </div>
-    
+// TODO: thread-safety
 
-    
-</div>
+use Store\Repository;
+use Store\Resource;
+use Store\Resource\File;
 
+/**
+* FileSystem Plaintext Store 
+*
+* @class FileSystem
+* @module Server
+*/
+abstract class FileSystem extends Repository {
 
+  /**
+  * Load repository 
+  *
+  * @method load
+  * @param {String} $filepath context identifier
+  * @void
+  */ 
+  public function load($filepath){
+    $this-&gt;content = @file_get_contents($filepath);
+  }
 
-<div class="box intro">
-    <p>A lightweight datastore wrapper</p>
+  /**
+  * Insert or update resource data in filepath
+  *
+  * @method update
+  * @param {Object} $resource what it&#x27;s about
+  * @return {Boolean} Returns true on success
+  */ 
+  public function update(Resource $file){
+    return file_put_contents($file-&gt;path(), $file-&gt;content());
+  }
 
-</div>
+  /**
+  * Removes a resource from filepath
+  *
+  * @method remove
+  * @param {Object} $resource what it&#x27;s about
+  * @return {Boolean} Returns true on success
+  */ 
+  public function remove(Resource $file){
+    @unlink($file-&gt;path());
+  }
 
+  /**
+  * Get resource data
+  *
+  * @method get
+  * @param {Object} $resource what it&#x27;s about
+  * @return {Object} resource instance
+  */ 
+  public function get(Resource $file=null){    
+    return @file_get_contents($file-&gt;path());
+  }  
 
+  /**
+  * Persist data
+  * 
+  * @method persist
+  * @param {String} filepath
+  * @param {String} contents
+  * @void
+  */ 
+  public function persist($filepath, $content=&#x27;&#x27;){
 
-<div class="yui3-g">
-    <div class="yui3-u-1-2">
-        
-            <p>This module provides the following classes:</p>
+    // update datastore * perf *
+    return self::persistToDisk($filepath, $content);
+  }  
 
-            <ul class="module-classes">
-            
-                <li class="module-class">
-                    <a href="../classes/Store.html">
-                        Store
-                    </a>
-                </li>
-            
-                <li class="module-class">
-                    <a href="../classes/Store (Client).html">
-                        Store (Client)
-                    </a>
-                </li>
-            
-            </ul>
-        
-    </div>
+  /**
+  * Persist data static
+  * 
+  * @method persistToDisk
+  * @param {String} filepath
+  * @param {String} contents
+  * @void
+  */ 
+  public static function persistToDisk($filepath, $content=&#x27;&#x27;){
 
-    <div class="yui3-u-1-2">
-        
-    </div>
+    // update datastore * perf *
+    return file_put_contents($filepath, $content);
+  }  
+}
+    </pre>
 </div>
 
                     </div>
