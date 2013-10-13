@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>Client - Store</title>
+    <title>src&#x2F;server&#x2F;php&#x2F;Store&#x2F;Resource&#x2F;File.php - Store</title>
     <link rel="stylesheet" href="http:&#x2F;&#x2F;yui.yahooapis.com&#x2F;3.7.0&#x2F;build&#x2F;cssgrids&#x2F;cssgrids-min.css">
     <link rel="stylesheet" href="..&#x2F;assets/vendor/prettify/prettify-min.css">
     <link rel="stylesheet" href="..&#x2F;assets/css/main.css" id="site_styles">
@@ -118,55 +118,75 @@
             <div class="apidocs">
                 <div id="docs-main">
                     <div class="content">
-                        <h1>Client Module</h1>
-<div class="box clearfix meta">
-    
+                        <h1 class="file-heading">File: src&#x2F;server&#x2F;php&#x2F;Store&#x2F;Resource&#x2F;File.php</h1>
 
-    
+<div class="file">
+    <pre class="code prettyprint linenums">
+&lt;?php namespace Store\Resource;
 
-    
-        <div class="foundat">
-            Defined in: <a href="..&#x2F;files&#x2F;src_client_store.js.html#l233"><code>src&#x2F;client&#x2F;store.js:233</code></a>
-        </div>
-    
+&#x2F;&#x2F; TODO: 
+&#x2F;&#x2F; - Implement format detection based on filename &#x2F; mapping table (1st hardcoded, but within modular collection)
 
-    
-</div>
+use Store\Resource, Store\Format;
 
+&#x2F;**
+* File
+*
+* ...
+*
+* @class File
+* @module Server
+*&#x2F;
+class File extends Resource { 
 
+  &#x2F;**
+  * Path to file
+  * @property path
+  * @private
+  * @type {String}
+  * @default &#x27;&#x27;
+  *&#x2F;
+  protected $path = &#x27;&#x27;;
 
-<div class="box intro">
-    <p>A lightweight datastore wrapper</p>
-</div>
+  &#x2F;**
+  * File content
+  * @property content
+  * @private
+  * @type {String}
+  * @default &#x27;&#x27;
+  *&#x2F;
+  protected $content = &#x27;&#x27;;
 
+  &#x2F;**
+  * File format
+  * @property format
+  * @private
+  * @type {Format}
+  * @default null
+  *&#x2F;
+  private $format = null;
 
+  public function __construct($content=null, Format $format=null){    
+    $this-&gt;content($content);
+    $this-&gt;format($format);
+  }
 
-<div class="yui3-g">
-    <div class="yui3-u-1-2">
-        
-            <p>This module provides the following classes:</p>
+  public function format(Format $format=null){
+    if($format!==null) $this-&gt;format = $format;
+    return $this-&gt;format;
+  }
 
-            <ul class="module-classes">
-            
-                <li class="module-class">
-                    <a href="..&#x2F;classes/Store.html">
-                        Store
-                    </a>
-                </li>
-            
-                <li class="module-class">
-                    <a href="..&#x2F;classes/Store (Client).html">
-                        Store (Client)
-                    </a>
-                </li>
-            
-            </ul>
-        
-    </div>
+  public function content($content=null, $free=false){
+    if($content!=null || $free) $this-&gt;content = $content;
+    return $this-&gt;content;
+  }
 
-    <div class="yui3-u-1-2">
-        
-    </div>
+  public function path($path=null, $free=false){
+    if($path!=null || $free) $this-&gt;path = $path;
+    return $this-&gt;path;
+  }
+}
+    </pre>
 </div>
 
                     </div>
