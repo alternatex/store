@@ -9,6 +9,7 @@ YUI.add("yuidoc-meta", function(Y) {
         "Format",
         "Item",
         "Json",
+        "Markdown",
         "Memory",
         "Object",
         "Repository",

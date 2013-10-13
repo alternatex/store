@@ -47,6 +47,15 @@
             "fors": {},
             "namespaces": {}
         },
+        "src/server/php/Store/Format/Markdown.php": {
+            "name": "src/server/php/Store/Format/Markdown.php",
+            "modules": {},
+            "classes": {
+                "Markdown": 1
+            },
+            "fors": {},
+            "namespaces": {}
+        },
         "src/server/php/Store/Format/Object.php": {
             "name": "src/server/php/Store/Format/Object.php",
             "modules": {},
@@ -169,6 +178,7 @@
                 "CommonJs": 1,
                 "Csv": 1,
                 "Json": 1,
+                "Markdown": 1,
                 "Object": 1,
                 "Dropbox": 1,
                 "FileSystem": 1,
@@ -260,6 +270,20 @@
             "file": "src/server/php/Store/Format/Json.php",
             "line": 6,
             "description": "Json Formatted Contents"
+        },
+        "Markdown": {
+            "name": "Markdown",
+            "shortname": "Markdown",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "module": "Server",
+            "namespace": "",
+            "file": "src/server/php/Store/Format/Markdown.php",
+            "line": 11,
+            "description": "Markdown Formatted Contents"
         },
         "Object": {
             "name": "Object",
@@ -1275,6 +1299,40 @@
             "module": "Server"
         },
         {
+            "file": "src/server/php/Store/Format/Markdown.php",
+            "line": 21,
+            "description": "Encode to format",
+            "itemtype": "method",
+            "name": "encode",
+            "params": [
+                {
+                    "name": "$datastore",
+                    "description": "context identifier",
+                    "type": "String"
+                }
+            ],
+            "void": "",
+            "class": "Markdown",
+            "module": "Server"
+        },
+        {
+            "file": "src/server/php/Store/Format/Markdown.php",
+            "line": 32,
+            "description": "Decode from format",
+            "itemtype": "method",
+            "name": "decode",
+            "params": [
+                {
+                    "name": "$datastore",
+                    "description": "context identifier",
+                    "type": "String"
+                }
+            ],
+            "void": "",
+            "class": "Markdown",
+            "module": "Server"
+        },
+        {
             "file": "src/server/php/Store/Format/Object.php",
             "line": 14,
             "description": "File extension",
@@ -1339,12 +1397,12 @@
         {
             "file": "src/server/php/Store/Repository/FileSystem.php",
             "line": 28,
-            "description": "Insert or update item data in filepath",
+            "description": "Insert or update resource data in filepath",
             "itemtype": "method",
             "name": "update",
             "params": [
                 {
-                    "name": "$item",
+                    "name": "$resource",
                     "description": "what it's about",
                     "type": "Object"
                 }
@@ -1359,12 +1417,12 @@
         {
             "file": "src/server/php/Store/Repository/FileSystem.php",
             "line": 39,
-            "description": "Removes an item from filepath",
+            "description": "Removes a resource from filepath",
             "itemtype": "method",
             "name": "remove",
             "params": [
                 {
-                    "name": "$item",
+                    "name": "$resource",
                     "description": "what it's about",
                     "type": "Object"
                 }
@@ -1379,18 +1437,18 @@
         {
             "file": "src/server/php/Store/Repository/FileSystem.php",
             "line": 50,
-            "description": "Get item data",
+            "description": "Get resource data",
             "itemtype": "method",
             "name": "get",
             "params": [
                 {
-                    "name": "$item",
+                    "name": "$resource",
                     "description": "what it's about",
                     "type": "Object"
                 }
             ],
             "return": {
-                "description": "item instance",
+                "description": "resource instance",
                 "type": "Object"
             },
             "class": "FileSystem",
@@ -1494,12 +1552,12 @@
         {
             "file": "src/server/php/Store/Repository/Memory.php",
             "line": 84,
-            "description": "Insert or update item data in datastore",
+            "description": "Insert or update resource data in datastore",
             "itemtype": "method",
             "name": "update",
             "params": [
                 {
-                    "name": "$item",
+                    "name": "$resource",
                     "description": "what it's about",
                     "type": "Object"
                 }
@@ -1514,12 +1572,12 @@
         {
             "file": "src/server/php/Store/Repository/Memory.php",
             "line": 122,
-            "description": "Removes an item from datastore",
+            "description": "Removes a resource from datastore",
             "itemtype": "method",
             "name": "remove",
             "params": [
                 {
-                    "name": "$item",
+                    "name": "$resource",
                     "description": "what it's about",
                     "type": "Object"
                 }
@@ -1534,18 +1592,18 @@
         {
             "file": "src/server/php/Store/Repository/Memory.php",
             "line": 138,
-            "description": "Get item data",
+            "description": "Get resource data",
             "itemtype": "method",
             "name": "get",
             "params": [
                 {
-                    "name": "$item",
+                    "name": "$resource",
                     "description": "what it's about",
                     "type": "Object"
                 }
             ],
             "return": {
-                "description": "item instance",
+                "description": "resource instance",
                 "type": "Object"
             },
             "class": "Memory",
@@ -1554,7 +1612,7 @@
         {
             "file": "src/server/php/Store/Repository/Memory.php",
             "line": 157,
-            "description": "Find item (currently just: UUID - TODO: enhance signature w/UUID as default / Widespread Merge ?!)",
+            "description": "Find resource (currently just: UUID - TODO: enhance signature w/UUID as default / Widespread Merge ?!)",
             "itemtype": "method",
             "name": "find",
             "return": {
@@ -1567,11 +1625,11 @@
         {
             "file": "src/server/php/Store/Repository/Memory.php",
             "line": 177,
-            "description": "Filter items",
+            "description": "Filter resources",
             "itemtype": "method",
             "name": "find",
             "return": {
-                "description": "List of matching item instances",
+                "description": "List of matching resource instances",
                 "type": "Array"
             },
             "class": "Memory",
@@ -1697,7 +1755,7 @@
             "name": "update",
             "params": [
                 {
-                    "name": "$item",
+                    "name": "$resource",
                     "description": "what it's about",
                     "type": "Object"
                 }
@@ -1712,12 +1770,12 @@
         {
             "file": "src/server/php/Store/Repository.php",
             "line": 22,
-            "description": "Get item data",
+            "description": "Get resource data",
             "itemtype": "method",
             "name": "get",
             "params": [
                 {
-                    "name": "$item",
+                    "name": "$resource",
                     "description": "what it's about",
                     "type": "Object"
                 }
@@ -1732,12 +1790,12 @@
         {
             "file": "src/server/php/Store/Repository.php",
             "line": 31,
-            "description": "Removes an item from datastore",
+            "description": "Removes a resource from datastore",
             "itemtype": "method",
             "name": "remove",
             "params": [
                 {
-                    "name": "$item",
+                    "name": "$resource",
                     "description": "what it's about",
                     "type": "Object"
                 }
@@ -2176,6 +2234,14 @@
         {
             "message": "unknown tag: void",
             "line": " src/server/php/Store/Format/Json.php:33"
+        },
+        {
+            "message": "unknown tag: void",
+            "line": " src/server/php/Store/Format/Markdown.php:21"
+        },
+        {
+            "message": "unknown tag: void",
+            "line": " src/server/php/Store/Format/Markdown.php:32"
         },
         {
             "message": "unknown tag: void",

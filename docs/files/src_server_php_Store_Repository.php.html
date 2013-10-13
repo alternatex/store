@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>Client - Store</title>
+    <title>src&#x2F;server&#x2F;php&#x2F;Store&#x2F;Repository.php - Store</title>
     <link rel="stylesheet" href="http:&#x2F;&#x2F;yui.yahooapis.com&#x2F;3.7.0&#x2F;build&#x2F;cssgrids&#x2F;cssgrids-min.css">
     <link rel="stylesheet" href="..&#x2F;assets/vendor/prettify/prettify-min.css">
     <link rel="stylesheet" href="..&#x2F;assets/css/main.css" id="site_styles">
@@ -118,55 +118,90 @@
             <div class="apidocs">
                 <div id="docs-main">
                     <div class="content">
-                        <h1>Client Module</h1>
-<div class="box clearfix meta">
-    
+                        <h1 class="file-heading">File: src&#x2F;server&#x2F;php&#x2F;Store&#x2F;Repository.php</h1>
 
-    
+<div class="file">
+    <pre class="code prettyprint linenums">
+&lt;?php namespace Store;
 
-    
-        <div class="foundat">
-            Defined in: <a href="..&#x2F;files&#x2F;src_client_store.js.html#l233"><code>src&#x2F;client&#x2F;store.js:233</code></a>
-        </div>
-    
+use Store\Store;
 
-    
-</div>
+&#x2F;**
+* Repository
+*
+* @class Repository
+* @module Server
+*&#x2F;
+abstract class Repository extends Store { 
 
+  &#x2F;**
+  * Insert or update item data in datastore
+  *
+  * @method update
+  * @param {Object} $resource what it&#x27;s about
+  * @return {Boolean} Returns true on success
+  *&#x2F; 
+  abstract function update(Resource $resource);
 
+  &#x2F;**
+  * Get resource data
+  *
+  * @method get
+  * @param {Object} $resource what it&#x27;s about
+  * @return {Object} item instance
+  *&#x2F; 
+  abstract function get(Resource $resource=null);
 
-<div class="box intro">
-    <p>A lightweight datastore wrapper</p>
-</div>
+  &#x2F;**
+  * Removes a resource from datastore
+  *
+  * @method remove
+  * @param {Object} $resource what it&#x27;s about
+  * @return {Boolean} Returns true on success
+  *&#x2F;   
+  abstract function remove(Resource $resource);
 
+  &#x2F;**
+  * Load data
+  * 
+  * @method load
+  * @param {String} dsn
+  * @void
+  *&#x2F; 
+  abstract function load($dsn);  
 
+  &#x2F;**
+  * Persist data
+  * 
+  * @method persist
+  * @param {String} dsn
+  * @void
+  *&#x2F; 
+  abstract function persist($dsn);
+  
+  &#x2F;**
+  * Get&#x2F;Set pending changes flag
+  * 
+  * @method isPending
+  * @param {boolean} $pending
+  * @return {boolean} 
+  *&#x2F; 
+  public function pending($pending=null){
+    if($pending!=null) $this-&gt;pending = $pending;
+    return $this-&gt;pending;
+  }   
 
-<div class="yui3-g">
-    <div class="yui3-u-1-2">
-        
-            <p>This module provides the following classes:</p>
-
-            <ul class="module-classes">
-            
-                <li class="module-class">
-                    <a href="..&#x2F;classes/Store.html">
-                        Store
-                    </a>
-                </li>
-            
-                <li class="module-class">
-                    <a href="..&#x2F;classes/Store (Client).html">
-                        Store (Client)
-                    </a>
-                </li>
-            
-            </ul>
-        
-    </div>
-
-    <div class="yui3-u-1-2">
-        
-    </div>
+  &#x2F;**
+  * Mirror store actions *
+  * 
+  * @method mirror
+  * @void
+  *&#x2F;
+  public function mirror(){
+    &#x2F;&#x2F; TODO: implement
+  }  
+}
+    </pre>
 </div>
 
                     </div>
