@@ -259,7 +259,7 @@ Continuous Integration
 3.1 OpenShift
 3.2 Github (Deploy Key)
 4. Add OpenShift git repository `git remote add ssh://010101010101010101@store-namespace.rhcloud.com/~/git/store.git/`
-5. ...
+5. Then continue [here](https://github.com/travis-ci/sinatra-openshift-example)
 
 #### Test
 ...
