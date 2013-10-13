@@ -1,19 +1,20 @@
 /**
 * A lightweight datastore wrapper
 * @module Client
-* @class ClientStore
+* @class Store (Client)
 **/
 
 // TODO: 
-// - add enhanced "class" support w/ getter/setter if avail: Object.defineProperty(fnc.prototype, ...)
-// - process custom X-Store-* response headers
+// - Add enhanced "class" support w/ getter/setter if avail: Object.defineProperty(fnc.prototype, ...)
+// - Process custom X-Store-* response headers
+// - Inject json schema validators
 // - HEAD; GET; POST; PATCH; PUT; DELETE 
 
 // module definition 
 (function (root) { var amdExports; define('store', ["underscore"], function (_) { (function () {
 
 /**
-* configuration object
+* Options (Configuration)
 * 
 * @method Options
 * @private
@@ -23,7 +24,7 @@
 var Options = function Options(){};
 
 /**
-* configuration object.constructor 
+* Options.constructor 
 * 
 * @method Options.constructor
 * @private
@@ -79,7 +80,7 @@ Options.prototype = {
 };
 
 /**
-* Repository - Storage Base Class
+* Repository
 * 
 * @method Repository
 * @private
@@ -99,7 +100,7 @@ var Repository = function Repository(){};
 Repository.prototype = {};
 
 /**
-* Repository: Remote
+* Repository.Remote
 * 
 * @method Remote
 * @private
@@ -109,7 +110,7 @@ Repository.prototype = {};
 var Remote = function Remote(){};
 
 /**
-* Repository: Remote.constructor
+* Repository.Remote.constructor
 * 
 * @method Remote.constructor
 * @private
@@ -255,7 +256,7 @@ function Store(options){
   this.options = new Options();     
 
   /**
-  * configuration options
+  * Configuration options
   * 
   * @property options
   * @public
@@ -516,7 +517,7 @@ Store.prototype = {
   },
 
   /**
-  * create instance / new item (bound to datastore)
+  * Create instance / new item (bound to datastore)
   *
   * @method create
   * @return {Boolean} Returns true on success

@@ -1,6 +1,9 @@
 Store
 =============
 
+[![Build Status](https://secure.travis-ci.org/alternatex/store.png?branch=master)](http://travis-ci.org/alternatex/store)
+[![Latest Stable Version](https://poser.pugx.org/alternatex/store/v/stable.png)](https://packagist.org/packages/alternatex/store)
+
 A lightweight datastore wrapper providing CRUD operations for arbitrary objects. 
 
 Index
@@ -17,6 +20,9 @@ Index
       * [Update](#update)
       * [Delete](#delete)
   * [Summary](#summary)
+* [Continuous Integration](#continuous-integration)
+  * [Travis](#travis)
+  * [Jenkins](#jenkins-openshift)
 * [Repositories](#repositories)
       * [File Stores](#file-stores)
           * [CSV](#csv)
@@ -242,12 +248,32 @@ objectStore.remove(object);
 
 ...
 
+Continuous Integration
+-------------
+
+### Travis
+...
+
+### Jenkins (OpenShift)
+...
+
+#### Setup
+
+See [here](https://github.com/travis-ci/openshift-travis-quickstart)
+
+#### Test
+...
+
 Repositories
 -------------
 
 ### File Stores
 
 Collections stored on a per file basis.
+
+**Limitations** 
+
+Built with prototyping in mind. Won't scale.
 
 #### CSV
 
@@ -261,14 +287,9 @@ Supports embedding binary data base64 encoded.
 
 Stores data using PHPs `serialize()` function. Supports embedding binary data base64 encoded.
 
-**Limitations** 
-
-Built with prototyping in mind. Won't scale.
-
 Documentation
 -------------
-- [API Docs](https://github.com/alternatex/store/blob/stable/docs/api/index.html)
-- [Usage](https://github.com/alternatex/store/blob/stable/docs/index.md)
+- [API](http://alternatex.github.io/store/docs/)
 
 ### CURL
 ```shell

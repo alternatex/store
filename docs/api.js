@@ -1,21 +1,22 @@
 YUI.add("yuidoc-meta", function(Y) {
    Y.YUIDoc = { meta: {
     "classes": [
-        "BitTorrent",
-        "ClientStore",
+        "CommonJs",
         "Csv",
         "Dropbox",
         "File",
         "FileSystem",
         "Format",
-        "Git",
         "Item",
         "Json",
         "Memory",
         "Object",
         "Repository",
         "Resource",
-        "Store"
+        "Schema",
+        "Store",
+        "Store (Client)",
+        "Store (Server)"
     ],
     "modules": [
         "Client",
@@ -30,7 +31,7 @@ YUI.add("yuidoc-meta", function(Y) {
         {
             "displayName": "Server",
             "name": "Server",
-            "description": "Csv Formatted Contents"
+            "description": "Json Formatted Contents"
         }
     ]
 } };

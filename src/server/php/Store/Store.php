@@ -3,7 +3,7 @@
 /**
 * Store fundamentals
 *
-* @class Store
+* @class Store (Server)
 * @module Server
 */
 abstract class Store { 

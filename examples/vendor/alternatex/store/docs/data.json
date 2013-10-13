@@ -1,0 +1,778 @@
+{
+    "project": {
+        "name": "Store",
+        "description": "A lightweight datastore wrapper",
+        "version": "1.0.0",
+        "url": "http://example.com/"
+    },
+    "files": {
+        "src/client/store.js": {
+            "name": "src/client/store.js",
+            "modules": {
+                "Client": 1
+            },
+            "classes": {
+                "Store": 1
+            },
+            "fors": {},
+            "namespaces": {}
+        }
+    },
+    "modules": {
+        "Client": {
+            "name": "Client",
+            "submodules": {},
+            "classes": {
+                "Store": 1
+            },
+            "fors": {},
+            "namespaces": {},
+            "tag": "module",
+            "file": "src/client/store.js",
+            "line": 232,
+            "description": "A lightweight datastore wrapper"
+        }
+    },
+    "classes": {
+        "Store": {
+            "name": "Store",
+            "shortname": "Store",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "module": "Client",
+            "namespace": "",
+            "file": "src/client/store.js",
+            "line": 232,
+            "description": "Store consumer",
+            "is_constructor": 1
+        }
+    },
+    "classitems": [
+        {
+            "file": "src/client/store.js",
+            "line": 15,
+            "description": "configuration object",
+            "itemtype": "method",
+            "name": "Options",
+            "access": "private",
+            "tagname": "",
+            "type": "{Object}",
+            "default": "{Object} instance",
+            "class": "Store",
+            "module": "Client"
+        },
+        {
+            "file": "src/client/store.js",
+            "line": 25,
+            "description": "configuration object.constructor",
+            "itemtype": "method",
+            "name": "Options.constructor",
+            "access": "private",
+            "tagname": "",
+            "type": "{Object}",
+            "default": "{Object} instance",
+            "class": "Store",
+            "module": "Client"
+        },
+        {
+            "file": "src/client/store.js",
+            "line": 35,
+            "description": "Remote storage location",
+            "itemtype": "property",
+            "name": "options.url",
+            "type": "{String}",
+            "default": "\"//localhost/store/examples/server.php\"",
+            "class": "Store",
+            "module": "Client"
+        },
+        {
+            "file": "src/client/store.js",
+            "line": 44,
+            "description": "Storage namespace",
+            "itemtype": "property",
+            "name": "options.namespace",
+            "type": "{String}",
+            "default": "\"default\"",
+            "class": "Store",
+            "module": "Client"
+        },
+        {
+            "file": "src/client/store.js",
+            "line": 53,
+            "description": "JSONP callback fnc name",
+            "itemtype": "property",
+            "name": "options.jsonp",
+            "type": "{String}",
+            "default": "\"callback\"",
+            "class": "Store",
+            "module": "Client"
+        },
+        {
+            "file": "src/client/store.js",
+            "line": 62,
+            "description": "Cache enabled",
+            "itemtype": "property",
+            "name": "options.cache",
+            "type": "{Boolean}",
+            "default": "true",
+            "class": "Store",
+            "module": "Client"
+        },
+        {
+            "file": "src/client/store.js",
+            "line": 71,
+            "description": "Cache Lifetime",
+            "itemtype": "property",
+            "name": "options.ttl",
+            "type": "{Number}",
+            "default": "3600",
+            "class": "Store",
+            "module": "Client"
+        },
+        {
+            "file": "src/client/store.js",
+            "line": 81,
+            "description": "Repository - Storage Base Class",
+            "itemtype": "method",
+            "name": "Repository",
+            "access": "private",
+            "tagname": "",
+            "type": "{Object}",
+            "default": "{Object} instance",
+            "class": "Store",
+            "module": "Client"
+        },
+        {
+            "file": "src/client/store.js",
+            "line": 91,
+            "description": "Repository constructor",
+            "itemtype": "method",
+            "name": "Repository.constructor",
+            "access": "private",
+            "tagname": "",
+            "type": "{Object}",
+            "default": "{Object} instance",
+            "class": "Store",
+            "module": "Client"
+        },
+        {
+            "file": "src/client/store.js",
+            "line": 101,
+            "description": "Repository: Remote",
+            "itemtype": "method",
+            "name": "Remote",
+            "access": "private",
+            "tagname": "",
+            "type": "{Object}",
+            "default": "{Object} instance",
+            "class": "Store",
+            "module": "Client"
+        },
+        {
+            "file": "src/client/store.js",
+            "line": 111,
+            "description": "Repository: Remote.constructor",
+            "itemtype": "method",
+            "name": "Remote.constructor",
+            "access": "private",
+            "tagname": "",
+            "type": "{Object}",
+            "default": "{Object} instance",
+            "class": "Store",
+            "module": "Client"
+        },
+        {
+            "file": "src/client/store.js",
+            "line": 121,
+            "description": "Synchronous remote action processing",
+            "itemtype": "method",
+            "name": "processSync",
+            "params": [
+                {
+                    "name": "action",
+                    "description": "[list, get, update, remove]",
+                    "type": "String"
+                },
+                {
+                    "name": "options",
+                    "description": "configuration",
+                    "type": "Object"
+                },
+                {
+                    "name": "item",
+                    "description": "arbitrary object *",
+                    "type": "Object"
+                },
+                {
+                    "name": "callback",
+                    "description": "handle",
+                    "type": "Function"
+                },
+                {
+                    "name": "each",
+                    "description": "apply callback fnc for each object? (default: false)",
+                    "type": "Boolean"
+                }
+            ],
+            "return": {
+                "description": "Returns true on success",
+                "type": "Boolean"
+            },
+            "class": "Store",
+            "module": "Client"
+        },
+        {
+            "file": "src/client/store.js",
+            "line": 135,
+            "description": "Asynchronous remote action processing",
+            "itemtype": "method",
+            "name": "process",
+            "params": [
+                {
+                    "name": "action",
+                    "description": "[list, get, update, remove]",
+                    "type": "String"
+                },
+                {
+                    "name": "options",
+                    "description": "configuration",
+                    "type": "Object"
+                },
+                {
+                    "name": "item",
+                    "description": "arbitrary object *",
+                    "type": "Object"
+                },
+                {
+                    "name": "callback",
+                    "description": "handle",
+                    "type": "Function"
+                },
+                {
+                    "name": "each",
+                    "description": "apply callback fnc for each object? (default: false)",
+                    "type": "Boolean"
+                }
+            ],
+            "return": {
+                "description": "Returns true on success",
+                "type": "Boolean"
+            },
+            "class": "Store",
+            "module": "Client"
+        },
+        {
+            "file": "src/client/store.js",
+            "line": 239,
+            "description": "Self-Reference",
+            "itemtype": "property",
+            "name": "self",
+            "access": "private",
+            "tagname": "",
+            "type": "{Object}",
+            "class": "Store",
+            "module": "Client"
+        },
+        {
+            "file": "src/client/store.js",
+            "line": 248,
+            "description": "Store configuration",
+            "itemtype": "property",
+            "name": "options",
+            "type": "{Object}",
+            "default": "{}",
+            "class": "Store",
+            "module": "Client"
+        },
+        {
+            "file": "src/client/store.js",
+            "line": 257,
+            "description": "configuration options",
+            "itemtype": "property",
+            "name": "options",
+            "access": "public",
+            "tagname": "",
+            "type": "{Object}",
+            "default": "{}",
+            "class": "Store",
+            "module": "Client"
+        },
+        {
+            "file": "src/client/store.js",
+            "line": 267,
+            "description": "Repository",
+            "itemtype": "property",
+            "name": "repository",
+            "access": "private",
+            "tagname": "",
+            "type": "{Repository}",
+            "default": "new Remote()",
+            "class": "Store",
+            "module": "Client"
+        },
+        {
+            "file": "src/client/store.js",
+            "line": 277,
+            "description": "Repository Item",
+            "itemtype": "property",
+            "name": "Item",
+            "access": "private",
+            "tagname": "",
+            "type": "{Function}",
+            "class": "Store",
+            "module": "Client"
+        },
+        {
+            "file": "src/client/store.js",
+            "line": 291,
+            "description": "Item.constructor",
+            "itemtype": "property",
+            "name": "Item.constructor",
+            "access": "private",
+            "tagname": "",
+            "type": "{Object}",
+            "class": "Store",
+            "module": "Client"
+        },
+        {
+            "file": "src/client/store.js",
+            "line": 300,
+            "description": "Store-Reference",
+            "itemtype": "property",
+            "name": "datastore",
+            "access": "private",
+            "tagname": "",
+            "type": "{Object}",
+            "class": "Store",
+            "module": "Client"
+        },
+        {
+            "file": "src/client/store.js",
+            "line": 309,
+            "description": "Object's Datastore",
+            "itemtype": "property",
+            "name": "data",
+            "access": "private",
+            "tagname": "",
+            "type": "{Object}",
+            "class": "Store",
+            "module": "Client"
+        },
+        {
+            "file": "src/client/store.js",
+            "line": 318,
+            "description": "Set item property",
+            "itemtype": "method",
+            "name": "set",
+            "params": [
+                {
+                    "name": "property",
+                    "description": "key",
+                    "type": "String"
+                },
+                {
+                    "name": "property",
+                    "description": "value",
+                    "type": "String"
+                }
+            ],
+            "return": {
+                "description": "Returns true on success",
+                "type": "Boolean"
+            },
+            "class": "Store",
+            "module": "Client"
+        },
+        {
+            "file": "src/client/store.js",
+            "line": 334,
+            "description": "Get item property",
+            "itemtype": "method",
+            "name": "get",
+            "params": [
+                {
+                    "name": "property",
+                    "description": "key",
+                    "type": "String"
+                }
+            ],
+            "return": {
+                "description": "Returns true on success",
+                "type": "Boolean"
+            },
+            "class": "Store",
+            "module": "Client"
+        },
+        {
+            "file": "src/client/store.js",
+            "line": 345,
+            "description": "Persist item",
+            "itemtype": "method",
+            "name": "update",
+            "params": [
+                {
+                    "name": "callback",
+                    "description": "*",
+                    "type": "Function"
+                }
+            ],
+            "return": {
+                "description": "Returns true on success",
+                "type": "Boolean"
+            },
+            "class": "Store",
+            "module": "Client"
+        },
+        {
+            "file": "src/client/store.js",
+            "line": 356,
+            "description": "Remove item",
+            "itemtype": "method",
+            "name": "remove",
+            "params": [
+                {
+                    "name": "callback",
+                    "description": "*",
+                    "type": "Function"
+                }
+            ],
+            "return": {
+                "description": "Returns true on success",
+                "type": "Boolean"
+            },
+            "class": "Store",
+            "module": "Client"
+        },
+        {
+            "file": "src/client/store.js",
+            "line": 369,
+            "description": "Retrieves all items",
+            "itemtype": "method",
+            "name": "all",
+            "return": {
+                "description": "Returns true on success",
+                "type": "Boolean"
+            },
+            "class": "Store",
+            "module": "Client"
+        },
+        {
+            "file": "src/client/store.js",
+            "line": 383,
+            "description": "Interface *",
+            "itemtype": "property",
+            "name": "api",
+            "access": "private",
+            "tagname": "",
+            "type": "{Object}",
+            "class": "Store",
+            "module": "Client"
+        },
+        {
+            "file": "src/client/store.js",
+            "line": 407,
+            "description": "Store prototype definition",
+            "itemtype": "property",
+            "name": "prototype",
+            "type": "{Object}",
+            "class": "Store",
+            "module": "Client"
+        },
+        {
+            "file": "src/client/store.js",
+            "line": 415,
+            "description": "LRU cache * - TODO: implement",
+            "itemtype": "property",
+            "name": "cache",
+            "type": "{Object}",
+            "default": "{}",
+            "class": "Store",
+            "module": "Client"
+        },
+        {
+            "file": "src/client/store.js",
+            "line": 424,
+            "description": "Items collection",
+            "itemtype": "property",
+            "name": "items",
+            "type": "{Array}",
+            "default": "[]",
+            "class": "Store",
+            "module": "Client"
+        },
+        {
+            "file": "src/client/store.js",
+            "line": 433,
+            "description": "JSON Schema *",
+            "itemtype": "property",
+            "name": "schema",
+            "type": "{Object}",
+            "default": "null",
+            "class": "Store",
+            "module": "Client"
+        },
+        {
+            "file": "src/client/store.js",
+            "line": 442,
+            "description": "Insert/update item",
+            "itemtype": "method",
+            "name": "update",
+            "return": {
+                "description": "Returns true on success",
+                "type": "Boolean"
+            },
+            "class": "Store",
+            "module": "Client"
+        },
+        {
+            "file": "src/client/store.js",
+            "line": 454,
+            "description": "Remove item",
+            "itemtype": "method",
+            "name": "remove",
+            "return": {
+                "description": "Returns true on success",
+                "type": "Boolean"
+            },
+            "class": "Store",
+            "module": "Client"
+        },
+        {
+            "file": "src/client/store.js",
+            "line": 464,
+            "description": "Retrieve item",
+            "itemtype": "method",
+            "name": "get",
+            "params": [
+                {
+                    "name": "|",
+                    "description": "{String} item object reference or string uuid",
+                    "type": "Object"
+                }
+            ],
+            "return": {
+                "description": "Returns true on success",
+                "type": "Boolean"
+            },
+            "class": "Store",
+            "module": "Client"
+        },
+        {
+            "file": "src/client/store.js",
+            "line": 475,
+            "description": "Retrieves all items",
+            "itemtype": "method",
+            "name": "list",
+            "return": {
+                "description": "Returns true on success",
+                "type": "Boolean"
+            },
+            "class": "Store",
+            "module": "Client"
+        },
+        {
+            "file": "src/client/store.js",
+            "line": 485,
+            "description": "Filter list - TODO: implement",
+            "itemtype": "method",
+            "name": "filter",
+            "return": {
+                "description": "Returns true on success",
+                "type": "Boolean"
+            },
+            "class": "Store",
+            "module": "Client"
+        },
+        {
+            "file": "src/client/store.js",
+            "line": 495,
+            "description": "Instance configuration",
+            "itemtype": "method",
+            "name": "configure",
+            "return": {
+                "description": "Returns true on success",
+                "type": "Boolean"
+            },
+            "class": "Store",
+            "module": "Client"
+        },
+        {
+            "file": "src/client/store.js",
+            "line": 508,
+            "description": "Item accessor *",
+            "itemtype": "method",
+            "name": "item",
+            "return": {
+                "description": "Returns true on success",
+                "type": "Boolean"
+            },
+            "class": "Store",
+            "module": "Client"
+        },
+        {
+            "file": "src/client/store.js",
+            "line": 518,
+            "description": "create instance / new item (bound to datastore)",
+            "itemtype": "method",
+            "name": "create",
+            "return": {
+                "description": "Returns true on success",
+                "type": "Boolean"
+            },
+            "class": "Store",
+            "module": "Client"
+        },
+        {
+            "file": "src/client/store.js",
+            "line": 541,
+            "description": "JSON schema getter/setter",
+            "itemtype": "method",
+            "name": "schema",
+            "return": {
+                "description": "object",
+                "type": "Object"
+            },
+            "class": "Store",
+            "module": "Client"
+        },
+        {
+            "file": "src/client/store.js",
+            "line": 556,
+            "description": "Apply general options - default / fallback",
+            "itemtype": "method",
+            "name": "__configure",
+            "params": [
+                {
+                    "name": "options",
+                    "description": "A configure object",
+                    "type": "Object"
+                }
+            ],
+            "return": {
+                "description": "Returns true on success",
+                "type": "Boolean"
+            },
+            "class": "Store",
+            "module": "Client"
+        },
+        {
+            "file": "src/client/store.js",
+            "line": 568,
+            "description": "one-dimensional object merge *",
+            "itemtype": "method",
+            "name": "extend",
+            "return": {
+                "description": "Returns true on success",
+                "type": "Boolean"
+            },
+            "class": "Store",
+            "module": "Client"
+        },
+        {
+            "file": "src/client/store.js",
+            "line": 581,
+            "description": "Passthrough if item is object. If type is string » wrapped into Item instance with id set to `item`",
+            "itemtype": "method",
+            "name": "wrap",
+            "params": [
+                {
+                    "name": "{String}",
+                    "description": "item Instance or UUID",
+                    "type": "Object"
+                }
+            ],
+            "return": {
+                "description": "Returns item object",
+                "type": "Object"
+            },
+            "class": "Store",
+            "module": "Client"
+        },
+        {
+            "file": "src/client/store.js",
+            "line": 597,
+            "description": "Generate GUID",
+            "itemtype": "method",
+            "name": "guid",
+            "params": [
+                {
+                    "name": "separator",
+                    "description": "(defaults to dash)"
+                }
+            ],
+            "return": {
+                "description": "GUID",
+                "type": "String"
+            },
+            "class": "Store",
+            "module": "Client"
+        },
+        {
+            "file": "src/client/store.js",
+            "line": 615,
+            "description": "Convenience iteration helper",
+            "itemtype": "method",
+            "name": "times",
+            "params": [
+                {
+                    "name": "times",
+                    "description": "",
+                    "type": "Integer"
+                }
+            ],
+            "return": {
+                "description": "GUID",
+                "type": "String"
+            },
+            "class": "Store",
+            "module": "Client"
+        },
+        {
+            "file": "src/client/store.js",
+            "line": 628,
+            "description": "Convenience deferred wrapper",
+            "itemtype": "method",
+            "name": "times",
+            "params": [
+                {
+                    "name": "callback",
+                    "description": "",
+                    "type": "Function"
+                }
+            ],
+            "return": {
+                "description": "",
+                "type": "Promise"
+            },
+            "class": "Store",
+            "module": "Client"
+        },
+        {
+            "file": "src/client/store.js",
+            "line": 639,
+            "description": "Stringify object structure (deep!) into url",
+            "example": [
+                " (borrowed from: http://stackoverflow.com/a/9472534)\n\n// helpers\nvar serialized,\n    data = {a: 1, b: 2, c: {d: 4, e: [6, 7, 8], f: {asdf: 10}}};  \n\n// transform\nserialized = Store.serialize(data);\n\n// verify\nconsole.log(serialized, serialized === \"a=1&b=2&c[d]=4&c[e][0]=6&c[e][1]=7&c[e][2]=8&c[f][asdf]=10\");"
+            ],
+            "itemtype": "method",
+            "name": "serialize",
+            "params": [
+                {
+                    "name": "params",
+                    "description": "",
+                    "type": "Object"
+                }
+            ],
+            "return": {
+                "description": "",
+                "type": "String"
+            },
+            "class": "Store",
+            "module": "Client"
+        }
+    ],
+    "warnings": []
+}

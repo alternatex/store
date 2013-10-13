@@ -1,0 +1,16 @@
+{
+	"title": "Remote",
+	"type": "object",
+	"properties": {
+		"hostname": {
+			"type": "string"
+		},
+		"port": {
+			"type": "integer"
+		},
+		"uri": {
+			"type": "string"
+		}
+	},
+	"required": ["hostname", "port", "uri"]
+}

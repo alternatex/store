@@ -16,7 +16,6 @@ use \Store\Store,
     \Store\Resource\File, 
     \Store\Resource\Item, 
     \Store\Format,
-    \Store\Format\Markdown,
     \Store\Resource;
 
 // class loader
@@ -31,10 +30,11 @@ session_start();
 // buffer output
 ob_start();
 
-// TODO: export - configuration: request
+// http headers for store -> move over to base *
 define('HEADER_STORE_TYPE',     'X-Store-Type');
 define('HEADER_STORE_CALLBACK', 'X-Store-Callback');
 
+// helper
 function getvar($variable){
   return isset($_POST[$variable]) ? $_POST[$variable] : (isset($_GET[$variable]) ? $_GET[$variable] : null);
 }
@@ -45,7 +45,8 @@ $file = new File();
 $file->format($format);
 $file->content("lalalala");
 
-$markdown = new Format\Markdown();
+/*
+$markdown = new Markdown();
 $file = new File();
 
 $file->format($format);
@@ -65,6 +66,7 @@ Test
 - Test4
 - Test5
   ");
+*/ 
 
 //die($markdown::Decode($file));
 
@@ -142,6 +144,9 @@ run();
 $user='anonymous';
 
 // initialize storage
+$Store = '\\Store\\Repository\\Memory';
+
+// TODO: compare performance Sling7 // 
 $Store = '\\Store\\Repository\\Memory';
 
 // hold store opening party
