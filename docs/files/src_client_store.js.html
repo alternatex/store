@@ -19,7 +19,7 @@
             
         </div>
         <div class="yui3-u-1-4 version">
-            <em>API Docs for: 1.0.0</em>
+            <em>API Docs for: 1.0.1</em>
         </div>
     </div>
     <div id="bd" class="yui3-g">
@@ -41,13 +41,45 @@
         <div id="api-tabview-panel">
             <ul id="api-classes" class="apis classes">
             
+                <li><a href="../classes/CommonJs.html">CommonJs</a></li>
+            
+                <li><a href="../classes/Csv.html">Csv</a></li>
+            
+                <li><a href="../classes/Dropbox.html">Dropbox</a></li>
+            
+                <li><a href="../classes/File.html">File</a></li>
+            
+                <li><a href="../classes/FileSystem.html">FileSystem</a></li>
+            
+                <li><a href="../classes/Format.html">Format</a></li>
+            
+                <li><a href="../classes/Item.html">Item</a></li>
+            
+                <li><a href="../classes/Json.html">Json</a></li>
+            
+                <li><a href="../classes/Memory.html">Memory</a></li>
+            
+                <li><a href="../classes/Object.html">Object</a></li>
+            
+                <li><a href="../classes/Repository.html">Repository</a></li>
+            
+                <li><a href="../classes/Resource.html">Resource</a></li>
+            
+                <li><a href="../classes/Schema.html">Schema</a></li>
+            
                 <li><a href="../classes/Store.html">Store</a></li>
+            
+                <li><a href="../classes/Store (Client).html">Store (Client)</a></li>
+            
+                <li><a href="../classes/Store (Server).html">Store (Server)</a></li>
             
             </ul>
 
             <ul id="api-modules" class="apis modules">
             
                 <li><a href="../modules/Client.html">Client</a></li>
+            
+                <li><a href="../modules/Server.html">Server</a></li>
             
             </ul>
         </div>
@@ -91,19 +123,20 @@
 /**
 * A lightweight datastore wrapper
 * @module Client
-* @class Store
+* @class Store (Client)
 **/
 
 // TODO: 
-// - add enhanced &quot;class&quot; support w/ getter/setter if avail: Object.defineProperty(fnc.prototype, ...)
-// - process custom X-Store-* response headers
+// - Add enhanced &quot;class&quot; support w/ getter/setter if avail: Object.defineProperty(fnc.prototype, ...)
+// - Process custom X-Store-* response headers
+// - Inject json schema validators
 // - HEAD; GET; POST; PATCH; PUT; DELETE 
 
 // module definition 
 (function (root) { var amdExports; define(&#x27;store&#x27;, [&quot;underscore&quot;], function (_) { (function () {
 
 /**
-* configuration object
+* Options (Configuration)
 * 
 * @method Options
 * @private
@@ -113,7 +146,7 @@
 var Options = function Options(){};
 
 /**
-* configuration object.constructor 
+* Options.constructor 
 * 
 * @method Options.constructor
 * @private
@@ -169,7 +202,7 @@ Options.prototype = {
 };
 
 /**
-* Repository - Storage Base Class
+* Repository
 * 
 * @method Repository
 * @private
@@ -189,7 +222,7 @@ var Repository = function Repository(){};
 Repository.prototype = {};
 
 /**
-* Repository: Remote
+* Repository.Remote
 * 
 * @method Remote
 * @private
@@ -199,7 +232,7 @@ Repository.prototype = {};
 var Remote = function Remote(){};
 
 /**
-* Repository: Remote.constructor
+* Repository.Remote.constructor
 * 
 * @method Remote.constructor
 * @private
@@ -345,7 +378,7 @@ function Store(options){
   this.options = new Options();     
 
   /**
-  * configuration options
+  * Configuration options
   * 
   * @property options
   * @public
@@ -606,7 +639,7 @@ Store.prototype = {
   },
 
   /**
-  * create instance / new item (bound to datastore)
+  * Create instance / new item (bound to datastore)
   *
   * @method create
   * @return {Boolean} Returns true on success
