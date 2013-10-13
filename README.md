@@ -21,7 +21,8 @@ Index
       * [Delete](#delete)
   * [Summary](#summary)
 * [Continuous Integration](#continuous-integration)
-  * [OpenShift](#openshift)
+  * [Travis](#travis)
+  * [Jenkins](#jenkins-openshift)
 * [Repositories](#repositories)
       * [File Stores](#file-stores)
           * [CSV](#csv)
@@ -250,7 +251,11 @@ objectStore.remove(object);
 Continuous Integration
 -------------
 
-### OpenShift
+### Travis
+...
+
+### Jenkins (OpenShift)
+...
 
 #### Setup
 
