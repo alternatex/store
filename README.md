@@ -20,8 +20,8 @@ Index
       * [Delete](#delete)
   * [Summary](#summary)
 * [Server API](#server-api)  
-* [Testing](#testing)
 * [Continuous Integration](#continuous-integration)
+  * [Karma](#karma)
   * [Travis](#travis)
 * [Repositories](#repositories)
       * [File Stores](#file-stores)
@@ -253,14 +253,11 @@ Server API
 [![Latest Stable Version](https://poser.pugx.org/alternatex/store/v/stable.png)](https://packagist.org/packages/alternatex/store)
 [![Dependency Status](https://david-dm.org/alternatex/store.png)](https://david-dm.org/alternatex/store)
 
-Testing
+Continuous Integration
 -------------
 
 ### Karma
 ...
-
-Continuous Integration
--------------
 
 ### Travis
 ...
@@ -298,12 +295,7 @@ Stores data using PHPs `serialize()` function. Supports embedding binary data ba
 Documentation
 -------------
 - [API](http://alternatex.github.io/store/docs/)
-
-### CURL
-```shell
-
-curl -h ...
-```
+- [Examples](http://alternatex.github.io/store/examples/)
 
 Roadmap
 -------------
