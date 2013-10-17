@@ -180,13 +180,6 @@
                             </li>
                         
                             <li class="index-item property protected">
-                                <a href="#property_data">data</a>
-
-                                
-                                
-                            </li>
-                        
-                            <li class="index-item property protected">
                                 <a href="#property_datastore">datastore</a>
 
                                 
@@ -216,6 +209,13 @@
                         
                             <li class="index-item property public">
                                 <a href="#property_MESSAGE_ERROR_DATASTORE_LOCKED">MESSAGE_ERROR_DATASTORE_LOCKED</a>
+
+                                
+                                
+                            </li>
+                        
+                            <li class="index-item property protected">
+                                <a href="#property_pending">pending</a>
 
                                 
                                 
@@ -337,55 +337,6 @@
                 
                     <div id="property_data" class="property item protected">
     <h3 class="name"><code>data</code></h3>
-    <span class="type">Boolean</span>
-
-    
-
-    
-        <span class="flag protected">protected</span>
-    
-
-    
-
-    
-
-    <div class="meta">
-        
-            
-                
-                <p>
-                
-                Defined in
-                
-            
-        
-        
-        <a href="../files/src_server_php_Store_Store.php.html#l11"><code>src&#x2F;server&#x2F;php&#x2F;Store&#x2F;Store.php:11</code></a>
-        
-        </p>
-
-        
-
-        
-    </div>
-
-    <div class="description">
-        <p>Flag to indicated pending changes</p>
-
-    </div>
-
-    
-        <p><strong>Default:</strong> false</p>
-    
-
-    
-
-    
-</div>
-
-                
-                    <div id="property_data" class="property item protected">
-    <h3 class="name"><code>data</code></h3>
     <span class="type">Array</span>
 
     
@@ -484,7 +435,7 @@
                 
                     <div id="property_ENTITY_COUNT" class="property item public">
     <h3 class="name"><code>ENTITY_COUNT</code></h3>
-    <span class="type">Boolean</span>
+    <span class="type">String</span>
 
     
 
@@ -522,7 +473,7 @@
     </div>
 
     
-        <p><strong>Default:</strong> true</p>
+        <p><strong>Default:</strong> &quot;count&quot;</p>
     
 
     
@@ -533,7 +484,7 @@
                 
                     <div id="property_ENTITY_IDENTIFIER" class="property item public">
     <h3 class="name"><code>ENTITY_IDENTIFIER</code></h3>
-    <span class="type">Boolean</span>
+    <span class="type">String</span>
 
     
 
@@ -571,7 +522,7 @@
     </div>
 
     
-        <p><strong>Default:</strong> true</p>
+        <p><strong>Default:</strong> &quot;id&quot;</p>
     
 
     
@@ -582,7 +533,7 @@
                 
                     <div id="property_MESSAGE_ERROR_DATASTORE_CORRUPT" class="property item public">
     <h3 class="name"><code>MESSAGE_ERROR_DATASTORE_CORRUPT</code></h3>
-    <span class="type">Boolean</span>
+    <span class="type">String</span>
 
     
 
@@ -620,7 +571,7 @@
     </div>
 
     
-        <p><strong>Default:</strong> true</p>
+        <p><strong>Default:</strong> &quot;DATASTORE IS CORRUPT&quot;</p>
     
 
     
@@ -631,7 +582,7 @@
                 
                     <div id="property_MESSAGE_ERROR_DATASTORE_LOCKED" class="property item public">
     <h3 class="name"><code>MESSAGE_ERROR_DATASTORE_LOCKED</code></h3>
-    <span class="type">Boolean</span>
+    <span class="type">String</span>
 
     
 
@@ -669,7 +620,56 @@
     </div>
 
     
-        <p><strong>Default:</strong> true</p>
+        <p><strong>Default:</strong> &quot;DATASTORE IS LOCKED&quot;</p>
+    
+
+    
+
+    
+</div>
+
+                
+                    <div id="property_pending" class="property item protected">
+    <h3 class="name"><code>pending</code></h3>
+    <span class="type">Boolean</span>
+
+    
+
+    
+        <span class="flag protected">protected</span>
+    
+
+    
+
+    
+
+    <div class="meta">
+        
+            
+                
+                <p>
+                
+                Defined in
+                
+            
+        
+        
+        <a href="../files/src_server_php_Store_Store.php.html#l11"><code>src&#x2F;server&#x2F;php&#x2F;Store&#x2F;Store.php:11</code></a>
+        
+        </p>
+
+        
+
+        
+    </div>
+
+    <div class="description">
+        <p>Flag to indicated pending changes</p>
+
+    </div>
+
+    
+        <p><strong>Default:</strong> false</p>
     
 
     
@@ -680,7 +680,7 @@
                 
                     <div id="property_REQUEST_ACTION" class="property item public">
     <h3 class="name"><code>REQUEST_ACTION</code></h3>
-    <span class="type">Boolean</span>
+    <span class="type">String</span>
 
     
 
@@ -718,7 +718,7 @@
     </div>
 
     
-        <p><strong>Default:</strong> true</p>
+        <p><strong>Default:</strong> &quot;action&quot;</p>
     
 
     
@@ -729,7 +729,7 @@
                 
                     <div id="property_REQUEST_DATA" class="property item public">
     <h3 class="name"><code>REQUEST_DATA</code></h3>
-    <span class="type">Boolean</span>
+    <span class="type">String</span>
 
     
 
@@ -767,7 +767,7 @@
     </div>
 
     
-        <p><strong>Default:</strong> true</p>
+        <p><strong>Default:</strong> &quot;instance&quot;</p>
     
 
     
@@ -827,7 +827,7 @@
                 
                     <div id="property_REQUEST_JSONP" class="property item public">
     <h3 class="name"><code>REQUEST_JSONP</code></h3>
-    <span class="type">Boolean</span>
+    <span class="type">String</span>
 
     
 
@@ -865,7 +865,7 @@
     </div>
 
     
-        <p><strong>Default:</strong> true</p>
+        <p><strong>Default:</strong> &quot;jsonp&quot;</p>
     
 
     
@@ -876,7 +876,7 @@
                 
                     <div id="property_REQUEST_NAMESPACE" class="property item public">
     <h3 class="name"><code>REQUEST_NAMESPACE</code></h3>
-    <span class="type">Boolean</span>
+    <span class="type">String</span>
 
     
 
@@ -914,7 +914,7 @@
     </div>
 
     
-        <p><strong>Default:</strong> true</p>
+        <p><strong>Default:</strong> &quot;namespace&quot;</p>
     
 
     
@@ -925,7 +925,7 @@
                 
                     <div id="property_RESPONSE_ERROR" class="property item public">
     <h3 class="name"><code>RESPONSE_ERROR</code></h3>
-    <span class="type">Boolean</span>
+    <span class="type">String</span>
 
     
 
@@ -963,7 +963,7 @@
     </div>
 
     
-        <p><strong>Default:</strong> true</p>
+        <p><strong>Default:</strong> &quot;error&quot;</p>
     
 
     
@@ -974,7 +974,7 @@
                 
                     <div id="property_RESPONSE_JSONP_CALLBACK" class="property item public">
     <h3 class="name"><code>RESPONSE_JSONP_CALLBACK</code></h3>
-    <span class="type">Boolean</span>
+    <span class="type">String</span>
 
     
 
@@ -1012,7 +1012,7 @@
     </div>
 
     
-        <p><strong>Default:</strong> true</p>
+        <p><strong>Default:</strong> &quot;callback&quot;</p>
     
 
     
@@ -1072,7 +1072,7 @@
                 
                     <div id="property_STORE_ACTION_GET" class="property item public">
     <h3 class="name"><code>STORE_ACTION_GET</code></h3>
-    <span class="type">Boolean</span>
+    <span class="type">String</span>
 
     
 
@@ -1110,7 +1110,7 @@
     </div>
 
     
-        <p><strong>Default:</strong> true</p>
+        <p><strong>Default:</strong> &quot;get&quot;</p>
     
 
     
@@ -1121,7 +1121,7 @@
                 
                     <div id="property_STORE_ACTION_LIST" class="property item public">
     <h3 class="name"><code>STORE_ACTION_LIST</code></h3>
-    <span class="type">Boolean</span>
+    <span class="type">String</span>
 
     
 
@@ -1159,7 +1159,7 @@
     </div>
 
     
-        <p><strong>Default:</strong> true</p>
+        <p><strong>Default:</strong> &quot;list&quot;</p>
     
 
     
@@ -1170,7 +1170,7 @@
                 
                     <div id="property_STORE_ACTION_REMOVE" class="property item public">
     <h3 class="name"><code>STORE_ACTION_REMOVE</code></h3>
-    <span class="type">Boolean</span>
+    <span class="type">String</span>
 
     
 
@@ -1208,7 +1208,7 @@
     </div>
 
     
-        <p><strong>Default:</strong> true</p>
+        <p><strong>Default:</strong> &quot;remove&quot;</p>
     
 
     
@@ -1219,7 +1219,7 @@
                 
                     <div id="property_STORE_ACTION_UPDATE" class="property item public">
     <h3 class="name"><code>STORE_ACTION_UPDATE</code></h3>
-    <span class="type">Boolean</span>
+    <span class="type">String</span>
 
     
 
@@ -1257,7 +1257,7 @@
     </div>
 
     
-        <p><strong>Default:</strong> true</p>
+        <p><strong>Default:</strong> &quot;update&quot;</p>
     
 
     
@@ -1268,7 +1268,7 @@
                 
                     <div id="property_TRANSFER_SOURCE" class="property item public">
     <h3 class="name"><code>TRANSFER_SOURCE</code></h3>
-    <span class="type">Boolean</span>
+    <span class="type">String</span>
 
     
 
@@ -1306,7 +1306,7 @@
     </div>
 
     
-        <p><strong>Default:</strong> true</p>
+        <p><strong>Default:</strong> &quot;tmp_name&quot;</p>
     
 
     
@@ -1317,7 +1317,7 @@
                 
                     <div id="property_TRANSFER_TARGET" class="property item public">
     <h3 class="name"><code>TRANSFER_TARGET</code></h3>
-    <span class="type">Boolean</span>
+    <span class="type">String</span>
 
     
 
@@ -1355,7 +1355,7 @@
     </div>
 
     
-        <p><strong>Default:</strong> true</p>
+        <p><strong>Default:</strong> &quot;name&quot;</p>
     
 
     

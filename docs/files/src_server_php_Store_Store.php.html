@@ -134,7 +134,7 @@ abstract class Store {
 
   /**
   * Flag to indicated pending changes
-  * @property data
+  * @property pending
   * @protected
   * @type {Boolean}
   * @default false
@@ -183,8 +183,8 @@ abstract class Store {
   * JSON callback identifier
   * @property RESPONSE_JSONP_CALLBACK
   * @public
-  * @type {Boolean}
-  * @default true
+  * @type {String}
+  * @default &quot;callback&quot;
   * @readOnly
   */  
   const RESPONSE_JSONP_CALLBACK = &#x27;callback&#x27;;
@@ -193,8 +193,8 @@ abstract class Store {
   * Entity attribute count
   * @property ENTITY_COUNT
   * @public
-  * @type {Boolean}
-  * @default true
+  * @type {String}
+  * @default &quot;count&quot;
   * @readOnly
   */
   const ENTITY_COUNT = &#x27;count&#x27;;
@@ -203,8 +203,8 @@ abstract class Store {
   * Entity attribute id
   * @property ENTITY_IDENTIFIER
   * @public
-  * @type {Boolean}
-  * @default true
+  * @type {String}
+  * @default &quot;id&quot;
   * @readOnly
   */  
   const ENTITY_IDENTIFIER = &#x27;id&#x27;;
@@ -213,18 +213,18 @@ abstract class Store {
   * l18n datastore.corrupt
   * @property MESSAGE_ERROR_DATASTORE_CORRUPT
   * @public
-  * @type {Boolean}
-  * @default true
+  * @type {String}
+  * @default &quot;DATASTORE IS CORRUPT&quot;
   * @readOnly
   */
-  const MESSAGE_ERROR_DATASTORE_CORRUPT = &#x27;DATASTORE SEEMS CORRUPT&#x27;;
+  const MESSAGE_ERROR_DATASTORE_CORRUPT = &#x27;DATASTORE IS CORRUPT&#x27;;
 
   /**
   * l18n datastore.locked
   * @property MESSAGE_ERROR_DATASTORE_LOCKED
   * @public
-  * @type {Boolean}
-  * @default true
+  * @type {String}
+  * @default &quot;DATASTORE IS LOCKED&quot;
   * @readOnly
   */
   const MESSAGE_ERROR_DATASTORE_LOCKED = &#x27;DATASTORE IS LOCKED&#x27;;
@@ -233,8 +233,8 @@ abstract class Store {
   * Request param action
   * @property REQUEST_ACTION
   * @public
-  * @type {Boolean}
-  * @default true
+  * @type {String}
+  * @default &quot;action&quot;
   * @readOnly
   */
   const REQUEST_ACTION = &#x27;action&#x27;;
@@ -243,8 +243,8 @@ abstract class Store {
   * Request param namespace
   * @property REQUEST_NAMESPACE
   * @public
-  * @type {Boolean}
-  * @default true
+  * @type {String}
+  * @default &quot;namespace&quot;
   * @readOnly
   */  
   const REQUEST_NAMESPACE = &#x27;namespace&#x27;;
@@ -253,8 +253,8 @@ abstract class Store {
   * Request param instance
   * @property REQUEST_DATA
   * @public
-  * @type {Boolean}
-  * @default true
+  * @type {String}
+  * @default &quot;instance&quot;
   * @readOnly
   */  
   const REQUEST_DATA = &#x27;instance&#x27;;
@@ -263,8 +263,8 @@ abstract class Store {
   * Request param jsonp
   * @property REQUEST_JSONP
   * @public
-  * @type {Boolean}
-  * @default true
+  * @type {String}
+  * @default &quot;jsonp&quot;
   * @readOnly
   */  
   const REQUEST_JSONP = &#x27;jsonp&#x27;;
@@ -273,8 +273,8 @@ abstract class Store {
   * Error *
   * @property RESPONSE_ERROR
   * @public
-  * @type {Boolean}
-  * @default true
+  * @type {String}
+  * @default &quot;error&quot;
   * @readOnly
   */
   const RESPONSE_ERROR = &#x27;error&#x27;;
@@ -283,8 +283,8 @@ abstract class Store {
   * Action &#x60;get&#x60;
   * @property STORE_ACTION_GET
   * @public
-  * @type {Boolean}
-  * @default true
+  * @type {String}
+  * @default &quot;get&quot;
   * @readOnly
   */
   const STORE_ACTION_GET = &#x27;get&#x27;;
@@ -293,8 +293,8 @@ abstract class Store {
   * Action &#x60;list&#x60;
   * @property STORE_ACTION_LIST
   * @public
-  * @type {Boolean}
-  * @default true
+  * @type {String}
+  * @default &quot;list&quot;
   * @readOnly
   */  
   const STORE_ACTION_LIST = &#x27;list&#x27;;
@@ -303,8 +303,8 @@ abstract class Store {
   * Action &#x60;remove&#x60;
   * @property STORE_ACTION_REMOVE
   * @public
-  * @type {Boolean}
-  * @default true
+  * @type {String}
+  * @default &quot;remove&quot;
   * @readOnly
   */  
   const STORE_ACTION_REMOVE = &#x27;remove&#x27;;
@@ -313,8 +313,8 @@ abstract class Store {
   * Action &#x60;update&#x60;
   * @property STORE_ACTION_UPDATE
   * @public
-  * @type {Boolean}
-  * @default true
+  * @type {String}
+  * @default &quot;update&quot;
   * @readOnly
   */  
   const STORE_ACTION_UPDATE = &#x27;update&#x27;;
@@ -323,8 +323,8 @@ abstract class Store {
   * Request fileupload param source
   * @property TRANSFER_SOURCE
   * @public
-  * @type {Boolean}
-  * @default true
+  * @type {String}
+  * @default &quot;tmp_name&quot;
   * @readOnly
   */
   const TRANSFER_SOURCE = &#x27;tmp_name&#x27;;
@@ -333,8 +333,8 @@ abstract class Store {
   * Request fileupload param name
   * @property TRANSFER_TARGET
   * @public
-  * @type {Boolean}
-  * @default true
+  * @type {String}
+  * @default &quot;name&quot;
   * @readOnly
   */  
   const TRANSFER_TARGET = &#x27;name&#x27;;  
