@@ -62,7 +62,7 @@ abstract class Repository extends Store {
   * @param {boolean} $pending
   * @return {boolean} 
   */ 
-  private function pending($pending=null){
+  protected function pending($pending=null){
     if($pending!=null) $this->pending = $pending;
     return $this->pending;
   }   
