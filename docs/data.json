@@ -1503,7 +1503,7 @@
             "line": 27,
             "description": "Encode to format",
             "itemtype": "method",
-            "name": "decode",
+            "name": "encode",
             "params": [
                 {
                     "name": "$datastore",
@@ -1887,26 +1887,9 @@
         {
             "file": "src/server/php/Store/Schema.php",
             "line": 15,
-            "description": "Encode to format",
+            "description": "Validate resource against schema",
             "itemtype": "method",
-            "name": "encode",
-            "params": [
-                {
-                    "name": "$datastore",
-                    "description": "context identifier",
-                    "type": "String"
-                }
-            ],
-            "void": "",
-            "class": "Schema",
-            "module": "Server"
-        },
-        {
-            "file": "src/server/php/Store/Schema.php",
-            "line": 24,
-            "description": "Decode from format",
-            "itemtype": "method",
-            "name": "decode",
+            "name": "Validate",
             "params": [
                 {
                     "name": "$datastore",
@@ -1962,7 +1945,7 @@
             "line": 38,
             "description": "HTTP Header storage type indicator",
             "itemtype": "property",
-            "name": "REQUEST_STORE_TYPE_HEADER_FIELD",
+            "name": "REQUEST_HEADER_TYPE",
             "access": "public",
             "tagname": "",
             "type": "{String}",
@@ -2306,10 +2289,6 @@
         {
             "message": "unknown tag: void",
             "line": " src/server/php/Store/Schema.php:15"
-        },
-        {
-            "message": "unknown tag: void",
-            "line": " src/server/php/Store/Schema.php:24"
         }
     ]
 }
