@@ -225,6 +225,6 @@ class Memory extends Repository {
     $file->content($content==null ? $this->encode($this->items) : $content);
 
     // ...
-    return FileSystem::persistToDisk($file->path(), $file->content());
+    return FileSystem::persistToDisk($file);
   }   
 }
