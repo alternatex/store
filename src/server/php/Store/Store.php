@@ -59,8 +59,8 @@ abstract class Store {
   * JSON callback identifier
   * @property RESPONSE_JSONP_CALLBACK
   * @public
-  * @type {Boolean}
-  * @default true
+  * @type {String}
+  * @default "callback"
   * @readOnly
   */  
   const RESPONSE_JSONP_CALLBACK = 'callback';
@@ -69,8 +69,8 @@ abstract class Store {
   * Entity attribute count
   * @property ENTITY_COUNT
   * @public
-  * @type {Boolean}
-  * @default true
+  * @type {String}
+  * @default "count"
   * @readOnly
   */
   const ENTITY_COUNT = 'count';
@@ -79,8 +79,8 @@ abstract class Store {
   * Entity attribute id
   * @property ENTITY_IDENTIFIER
   * @public
-  * @type {Boolean}
-  * @default true
+  * @type {String}
+  * @default "id"
   * @readOnly
   */  
   const ENTITY_IDENTIFIER = 'id';
@@ -89,18 +89,18 @@ abstract class Store {
   * l18n datastore.corrupt
   * @property MESSAGE_ERROR_DATASTORE_CORRUPT
   * @public
-  * @type {Boolean}
-  * @default true
+  * @type {String}
+  * @default "DATASTORE IS CORRUPT"
   * @readOnly
   */
-  const MESSAGE_ERROR_DATASTORE_CORRUPT = 'DATASTORE SEEMS CORRUPT';
+  const MESSAGE_ERROR_DATASTORE_CORRUPT = 'DATASTORE IS CORRUPT';
 
   /**
   * l18n datastore.locked
   * @property MESSAGE_ERROR_DATASTORE_LOCKED
   * @public
-  * @type {Boolean}
-  * @default true
+  * @type {String}
+  * @default "DATASTORE IS LOCKED"
   * @readOnly
   */
   const MESSAGE_ERROR_DATASTORE_LOCKED = 'DATASTORE IS LOCKED';
@@ -109,8 +109,8 @@ abstract class Store {
   * Request param action
   * @property REQUEST_ACTION
   * @public
-  * @type {Boolean}
-  * @default true
+  * @type {String}
+  * @default "action"
   * @readOnly
   */
   const REQUEST_ACTION = 'action';
@@ -119,8 +119,8 @@ abstract class Store {
   * Request param namespace
   * @property REQUEST_NAMESPACE
   * @public
-  * @type {Boolean}
-  * @default true
+  * @type {String}
+  * @default "namespace"
   * @readOnly
   */  
   const REQUEST_NAMESPACE = 'namespace';
@@ -129,8 +129,8 @@ abstract class Store {
   * Request param instance
   * @property REQUEST_DATA
   * @public
-  * @type {Boolean}
-  * @default true
+  * @type {String}
+  * @default "instance"
   * @readOnly
   */  
   const REQUEST_DATA = 'instance';
@@ -139,8 +139,8 @@ abstract class Store {
   * Request param jsonp
   * @property REQUEST_JSONP
   * @public
-  * @type {Boolean}
-  * @default true
+  * @type {String}
+  * @default "jsonp"
   * @readOnly
   */  
   const REQUEST_JSONP = 'jsonp';
@@ -149,8 +149,8 @@ abstract class Store {
   * Error *
   * @property RESPONSE_ERROR
   * @public
-  * @type {Boolean}
-  * @default true
+  * @type {String}
+  * @default "error"
   * @readOnly
   */
   const RESPONSE_ERROR = 'error';
@@ -159,8 +159,8 @@ abstract class Store {
   * Action `get`
   * @property STORE_ACTION_GET
   * @public
-  * @type {Boolean}
-  * @default true
+  * @type {String}
+  * @default "get"
   * @readOnly
   */
   const STORE_ACTION_GET = 'get';
@@ -169,8 +169,8 @@ abstract class Store {
   * Action `list`
   * @property STORE_ACTION_LIST
   * @public
-  * @type {Boolean}
-  * @default true
+  * @type {String}
+  * @default "list"
   * @readOnly
   */  
   const STORE_ACTION_LIST = 'list';
@@ -179,8 +179,8 @@ abstract class Store {
   * Action `remove`
   * @property STORE_ACTION_REMOVE
   * @public
-  * @type {Boolean}
-  * @default true
+  * @type {String}
+  * @default "remove"
   * @readOnly
   */  
   const STORE_ACTION_REMOVE = 'remove';
@@ -189,8 +189,8 @@ abstract class Store {
   * Action `update`
   * @property STORE_ACTION_UPDATE
   * @public
-  * @type {Boolean}
-  * @default true
+  * @type {String}
+  * @default "update"
   * @readOnly
   */  
   const STORE_ACTION_UPDATE = 'update';
@@ -199,8 +199,8 @@ abstract class Store {
   * Request fileupload param source
   * @property TRANSFER_SOURCE
   * @public
-  * @type {Boolean}
-  * @default true
+  * @type {String}
+  * @default "tmp_name"
   * @readOnly
   */
   const TRANSFER_SOURCE = 'tmp_name';
@@ -209,8 +209,8 @@ abstract class Store {
   * Request fileupload param name
   * @property TRANSFER_TARGET
   * @public
-  * @type {Boolean}
-  * @default true
+  * @type {String}
+  * @default "name"
   * @readOnly
   */  
   const TRANSFER_TARGET = 'name';  
