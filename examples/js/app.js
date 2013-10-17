@@ -6,9 +6,9 @@ requirejs.config({
       "store": "../../../src/client/store",
       "configuration": "../configuration",
       "underscore": "../../../vendor/underscore.deferred",
-      "jquery": "https://ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min",
-      "data": "https://localhost/store/examples/data/data.php",
-      "shop": "https://localhost/store/examples/data/shop.php"
+      "jquery": "//ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min",
+      "data": "//localhost/store/examples/data/data.php",
+      "shop": "//localhost/store/examples/data/shop.php"
     },
     "shim": {
       "underscore": {

@@ -3,7 +3,7 @@
 use Store\Format;
 use Store\Resource;
 
-// TODO: Make autoloading work -> re-run composer dependency fetch/autload generator
+// TODO: Fix autoloading -> re-run composer dependency fetch/autload generator
 require_once(__DIR__.'/../../../../../vendor/PHP Markdown Lib 1.2.7/Michelf/Markdown.php');
 
 use \Michelf\Markdown as MarkdownDecoder;

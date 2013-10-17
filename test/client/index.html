@@ -1,0 +1,46 @@
+<!doctype html>
+<html>
+  <head>
+    <script src="jquery-mockjax-master/jquery-1.10.2.min.js"></script>
+    <script src="jquery-mockjax-master/jquery.mockjax.js"></script>
+    <title>MockJax Tests - ???</title>
+    </head>
+  <body>
+    <script type="text/javascript">
+
+      $(document).ready(function($){
+
+//localhost/store/examples/resources/update/console.log/?instance[type]=resources&amp;instance[name]=johnny_walker&amp;instance[nickname]=sally
+
+        $.mockjax({
+          url: '//localhost/store/examples/resources/update/console.log',
+          response: function(settings){
+            console.log("data", this, settings);
+            this.responseText="Say: 'Hello Word', "+settings.data.instance.nickname;  
+          }          
+        });
+
+        var xhr = $.ajax({
+          url: '//localhost/store/examples/resources/update/console.log',
+          data: {
+            'instance': {
+              'type': 'resources',
+              'name': 'johnny_walker',
+              'nickname': 'sally'
+            }
+          },
+          complete: function(response) { 
+            console.info("yey", response.responseText);
+          }
+        });
+/*
+        xhr && xhr.abort && xhr.abort();
+      
+        if (jQuery.Deferred) {
+          console.log(xhr.done && xhr.fail, "Got Promise methods");          
+        }
+*/           
+      });
+    </script>
+  </body>
+</html>
