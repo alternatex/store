@@ -27,7 +27,7 @@ class Memory extends Repository {
   /**
   * Encode to format
   *
-  * @method decode
+  * @method encode
   * @param {String} $datastore context identifier
   * @void
   */ 

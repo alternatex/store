@@ -151,7 +151,7 @@ class Memory extends Repository {
   /**
   * Encode to format
   *
-  * @method decode
+  * @method encode
   * @param {String} $datastore context identifier
   * @void
   */ 
@@ -349,7 +349,7 @@ class Memory extends Repository {
     $file-&gt;content($content==null ? $this-&gt;encode($this-&gt;items) : $content);
 
     // ...
-    return FileSystem::persistToDisk($file-&gt;path(), $file-&gt;content());
+    return FileSystem::persistToDisk($file);
   }   
 }
     </pre>
