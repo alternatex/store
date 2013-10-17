@@ -31,7 +31,6 @@ Index
 * [Documentation](#documentation)
       * [CURL](#curl)
 * [Roadmap](#roadmap)
-* [Wishlist](#wishlist)
 * [License](#license)
 
 Quickstart
@@ -308,22 +307,13 @@ curl -h ...
 
 Roadmap
 -------------
-- MockAPI
 - Documentation
   - Stores
   - Settings
-- Record/Playback
-  - Inspector
-- Test Coverage +1
-
-Wishlist
--------------
 - JSON Schema
-- Scaffold Support/Generators
+- Generators
 - Synchronization
-- HTML5 FileSystem API
-- Filters Client/Server
-- ACL
+- Access Control
 
 License
 -------------
