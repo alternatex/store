@@ -9,9 +9,9 @@ Index
 -------------
 * [Quickstart](#quickstart)
   * [Embedding](#embedding)
-  * [Defaults](#defaults)
 * [Client API](#client-api)
   * [Store](#store-1)
+      * [Defaults](#defaults)
       * [Create](#create)
   * [Object](#object)
       * [Create](#create-1)
