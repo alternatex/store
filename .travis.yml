@@ -1,15 +1,18 @@
 language: php
+
 php:
 - 5.3
 - 5.4
 - 5.5
+
 script: phpunit --configuration phpunit_common.xml --coverage-text
-deploy:
-  provider: openshift
-  user: gianni.furger+public@gmail.com
-  password:
-    secure: kF2lFsJFH0R/KIGgSW8QOLq+hETQSC2Z8Wu79HTVsfAjsrRE5txAqRv/+fRCH5TaAd6z+xwRbz/xNz7l10bIDStXMiKeElVunatSFoF23S5vPQslFZRuUdk1gSO1PBJyHzK0/RbBX5THxVxz8PHccEN9WXyDRkiJf/zShuKY1ac=
-  app: store
-  domain: axpublic
-  on:
-    repo: alternatex/store
+
+#deploy:
+#  provider: openshift
+#  user: gianni.furger+public@gmail.com
+#  password:
+#    secure: kF2lFsJFH0R/KIGgSW8QOLq+hETQSC2Z8Wu79HTVsfAjsrRE5txAqRv/+fRCH5TaAd6z+xwRbz/xNz7l10bIDStXMiKeElVunatSFoF23S5vPQslFZRuUdk1gSO1PBJyHzK0/RbBX5THxVxz8PHccEN9WXyDRkiJf/zShuKY1ac=
+#  app: store
+#  domain: axpublic
+#  on:
+#    repo: alternatex/store
