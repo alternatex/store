@@ -10,7 +10,7 @@ abstract class Store {
 
   /**
   * Flag to indicated pending changes
-  * @property data
+  * @property pending
   * @protected
   * @type {Boolean}
   * @default false
