@@ -1,10 +1,14 @@
 {
   "name": "store",
   "description": "A lightweight datastore wrapper",
-  "version": "1.0.0",
+  "version": "1.0.5",
+  "homepage": "http://alternatex.github.io/store",
   "repository": {
     "type": "git",
     "url": "git://github.com/alternatex/store.git"
   },
-  "main": "./src/store.js"
+  "main": "./src/store.js",
+  "dependencies": {
+  	"karma": "*"
+  }
 }

@@ -2,7 +2,6 @@ Store
 =============
 
 [![Build Status](https://secure.travis-ci.org/alternatex/store.png?branch=master)](http://travis-ci.org/alternatex/store)
-[![Latest Stable Version](https://poser.pugx.org/alternatex/store/v/stable.png)](https://packagist.org/packages/alternatex/store)
 
 A lightweight datastore wrapper providing CRUD operations for arbitrary objects. 
 
@@ -20,9 +19,10 @@ Index
       * [Update](#update)
       * [Delete](#delete)
   * [Summary](#summary)
+* [Server API](#server-api)  
+* [Testing](#testing)
 * [Continuous Integration](#continuous-integration)
   * [Travis](#travis)
-  * [Jenkins](#jenkins-openshift)
 * [Repositories](#repositories)
       * [File Stores](#file-stores)
           * [CSV](#csv)
@@ -248,18 +248,27 @@ objectStore.remove(object);
 
 ...
 
+Server API
+-------------
+
+[![Latest Stable Version](https://poser.pugx.org/alternatex/store/v/stable.png)](https://packagist.org/packages/alternatex/store)
+[![Dependency Status](https://david-dm.org/alternatex/store.png)](https://david-dm.org/alternatex/store)
+
+Testing
+-------------
+
+### Karma
+...
+
 Continuous Integration
 -------------
 
 ### Travis
 ...
 
-### Jenkins (OpenShift)
-...
-
 #### Setup
 
-See [here](https://github.com/travis-ci/openshift-travis-quickstart)
+[See](https://github.com/travis-ci/openshift-travis-quickstart)
 
 #### Test
 ...
@@ -321,4 +330,4 @@ License
 Released under two licenses: new BSD, and MIT. You may pick the
 license that best suits your development needs.
 
-https://raw.github.com/alternatex/store/stable/LICENSE
+https://raw.github.com/alternatex/store/master/LICENSE

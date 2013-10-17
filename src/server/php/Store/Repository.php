@@ -62,7 +62,7 @@ abstract class Repository extends Store {
   * @param {boolean} $pending
   * @return {boolean} 
   */ 
-  public function pending($pending=null){
+  protected function pending($pending=null){
     if($pending!=null) $this->pending = $pending;
     return $this->pending;
   }   
@@ -73,7 +73,7 @@ abstract class Repository extends Store {
   * @method mirror
   * @void
   */
-  public function mirror(){
+  protected function mirror(){
     // TODO: implement
   }  
 }

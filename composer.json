@@ -1,7 +1,11 @@
 {
   "name": "alternatex/store",
   "description": "Lightweight storage wrapper",
-  "homepage": "https://github.com/alternatex/store",
+  "homepage": "http://alternatex.github.io/store",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/alternatex/store.git"
+  },  
   "type": "library",
   "license": "MIT",    
   "authors": [

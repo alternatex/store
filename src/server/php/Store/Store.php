@@ -37,13 +37,13 @@ abstract class Store {
 
   /**
   * HTTP Header storage type indicator
-  * @property REQUEST_STORE_TYPE_HEADER_FIELD
+  * @property REQUEST_HEADER_TYPE
   * @public
   * @type {String}
   * @default x-storage-type
   * @readOnly
   */
-  const REQUEST_STORE_TYPE_HEADER_FIELD = 'X-Storage-Type';
+  const REQUEST_HEADER_TYPE = 'X-Store-Type';
 
   /**
   * Toggle JSONP
