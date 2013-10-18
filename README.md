@@ -9,9 +9,9 @@ Index
 -------------
 * [Quickstart](#quickstart)
   * [Embedding](#embedding)
-  * [Defaults](#defaults)
 * [Client API](#client-api)
   * [Store](#store-1)
+      * [Defaults](#defaults)
       * [Create](#create)
   * [Object](#object)
       * [Create](#create-1)
@@ -20,8 +20,8 @@ Index
       * [Delete](#delete)
   * [Summary](#summary)
 * [Server API](#server-api)  
-* [Testing](#testing)
 * [Continuous Integration](#continuous-integration)
+  * [Karma](#karma)
   * [Travis](#travis)
 * [Repositories](#repositories)
       * [File Stores](#file-stores)
@@ -31,7 +31,6 @@ Index
 * [Documentation](#documentation)
       * [CURL](#curl)
 * [Roadmap](#roadmap)
-* [Wishlist](#wishlist)
 * [License](#license)
 
 Quickstart
@@ -254,14 +253,11 @@ Server API
 [![Latest Stable Version](https://poser.pugx.org/alternatex/store/v/stable.png)](https://packagist.org/packages/alternatex/store)
 [![Dependency Status](https://david-dm.org/alternatex/store.png)](https://david-dm.org/alternatex/store)
 
-Testing
+Continuous Integration
 -------------
 
 ### Karma
 ...
-
-Continuous Integration
--------------
 
 ### Travis
 ...
@@ -299,31 +295,17 @@ Stores data using PHPs `serialize()` function. Supports embedding binary data ba
 Documentation
 -------------
 - [API](http://alternatex.github.io/store/docs/)
-
-### CURL
-```shell
-
-curl -h ...
-```
+- [Examples](http://alternatex.github.io/store/examples/)
 
 Roadmap
 -------------
-- MockAPI
 - Documentation
   - Stores
   - Settings
-- Record/Playback
-  - Inspector
-- Test Coverage +1
-
-Wishlist
--------------
 - JSON Schema
-- Scaffold Support/Generators
+- Generators
 - Synchronization
-- HTML5 FileSystem API
-- Filters Client/Server
-- ACL
+- Access Control
 
 License
 -------------

@@ -39,52 +39,11 @@ function getvar($variable){
   return isset($_POST[$variable]) ? $_POST[$variable] : (isset($_GET[$variable]) ? $_GET[$variable] : null);
 }
 
-$format = new Format\Object();
-$file = new File();
-
-$file->format($format);
-$file->content("lalalala");
-
-/*
-$markdown = new Markdown();
-$file = new File();
-
-$file->format($format);
-$file->content("
-
-Test
-=======
-
-Test
--------
-
-### Test
-
-- Test1
-- Test2
-- Test3
-- Test4
-- Test5
-  ");
-*/ 
-
-//die($markdown::Decode($file));
-
 // retrieve request headers
 $requestHeaders = getallheaders();
 
 // extract storage type
-if(isset($requestHeaders[HEADER_STORE_TYPE])) die($requestHeaders[HEADER_STORE_TYPE]);
-
-// determine store based on special header field
-// x-store-type: object/json,markdown,... 4 client driven -> limonade
-// json configuration by path, ..... 4 server driven -> limonade
-
-// TODO:
-// common function validating request against schema
-// v1: generalized
-// v2: subjectified (namespaced)
-// v3: ... 
+if(isset($requestHeaders[Store::REQUEST_HEADER_TYPE])) die($requestHeaders[Store::REQUEST_HEADER_TYPE]);
 
 // ...
 $namespace='';
@@ -110,8 +69,6 @@ function extractParams(){
 // - DISPATCH CUSTOM
 // ----------------------------------------------------------------------------
 
-// TODO: load customizations here *
-// TODO: load customizations here *
 // TODO: load customizations here *
 
 // ----------------------------------------------------------------------------
@@ -146,9 +103,6 @@ $user='anonymous';
 // initialize storage
 $Store = '\\Store\\Repository\\Memory';
 
-// TODO: compare performance Sling7 // 
-$Store = '\\Store\\Repository\\Memory';
-
 // hold store opening party
 $store = new $Store();
 
@@ -167,18 +121,8 @@ if(trim($namespace)=="" || trim($action)=="") {
 // - INITIALIZE II
 // ----------------------------------------------------------------------------
 
-// determine datastore filename
-$datastore = $user.".".$namespace.'.dat';
-$datastore = $user.".".$namespace.'.json';
-
-$file = new File();
-$file->path($datastore);
-
 // load contents
-$store->load($file->path());
-
-// helper - store to disk *
-$dostore = false;
+$store->load($user.".".$namespace.'.json');
 
 // return value helper 
 $returnValue = null;
