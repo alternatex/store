@@ -2,6 +2,7 @@ Store
 =============
 
 [![Build Status](https://secure.travis-ci.org/alternatex/store.png?branch=master)](http://travis-ci.org/alternatex/store)
+[![Coverage Status](https://coveralls.io/repos/alternatex/store/badge.png)](https://coveralls.io/r/alternatex/store)
 
 A lightweight datastore wrapper providing CRUD operations for arbitrary objects. 
 
