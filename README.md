@@ -11,7 +11,7 @@ Index
   * [Embedding](#embedding)
 * [Client API](#client-api)
   * [Store](#store-1)
-      * [Defaults](#defaults)
+      * [Configure](#configure)
       * [Create](#create)
   * [Object](#object)
       * [Create](#create-1)
@@ -19,7 +19,7 @@ Index
       * [Update](#update)
       * [Delete](#delete)
   * [Summary](#summary)
-* [Server API](#server-api)  
+* [Server API](#server-api)
 * [Continuous Integration](#continuous-integration)
   * [Karma](#karma)
   * [Travis](#travis)
@@ -55,9 +55,9 @@ Client API
 
 ### Store
 
-#### Defaults
+#### Configure
 
-Defaults are modified as follows:
+Defaults are configured as follows:
 
 ```javascript
 Store.configure({ 
@@ -274,7 +274,7 @@ Repositories
 
 ### File Stores
 
-Collections stored on a per file basis.
+Collections stored on a file basis.
 
 **Limitations** 
 
