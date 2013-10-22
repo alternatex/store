@@ -26,10 +26,10 @@ abstract class FileSystem extends Repository {
   }
 
   /**
-  * Insert or update item data in filepath
+  * Insert or update resource data in filepath
   *
   * @method update
-  * @param {Object} $item what it's about
+  * @param {Object} $resource what it's about
   * @return {Boolean} Returns true on success
   */ 
   public function update(Resource $file){
@@ -37,10 +37,10 @@ abstract class FileSystem extends Repository {
   }
 
   /**
-  * Removes an item from filepath
+  * Removes a resource from filepath
   *
   * @method remove
-  * @param {Object} $item what it's about
+  * @param {Object} $resource what it's about
   * @return {Boolean} Returns true on success
   */ 
   public function remove(Resource $file){
@@ -48,11 +48,11 @@ abstract class FileSystem extends Repository {
   }
 
   /**
-  * Get item data
+  * Get resource data
   *
   * @method get
-  * @param {Object} $item what it's about
-  * @return {Object} item instance
+  * @param {Object} $resource what it's about
+  * @return {Object} resource instance
   */ 
   public function get(Resource $file=null){    
     return @file_get_contents($file->path());
@@ -80,9 +80,8 @@ abstract class FileSystem extends Repository {
   * @param {String} contents
   * @void
   */ 
-  public static function persistToDisk($filepath, $content=''){
-
+  public static function persistToDisk(Resource $file){
     // update datastore * perf *
-    return file_put_contents($filepath, $content);
+    return file_put_contents($file->path(), $file->content());
   }  
 }
