@@ -14,25 +14,25 @@ abstract class Repository extends Store {
   * Insert or update item data in datastore
   *
   * @method update
-  * @param {Object} $resource what it's about
+  * @param {Object} $item what it's about
   * @return {Boolean} Returns true on success
   */ 
   abstract function update(Resource $resource);
 
   /**
-  * Get resource data
+  * Get item data
   *
   * @method get
-  * @param {Object} $resource what it's about
+  * @param {Object} $item what it's about
   * @return {Object} item instance
   */ 
   abstract function get(Resource $resource=null);
 
   /**
-  * Removes a resource from datastore
+  * Removes an item from datastore
   *
   * @method remove
-  * @param {Object} $resource what it's about
+  * @param {Object} $item what it's about
   * @return {Boolean} Returns true on success
   */   
   abstract function remove(Resource $resource);
@@ -73,7 +73,7 @@ abstract class Repository extends Store {
   * @method mirror
   * @void
   */
-  protected function mirror(){
+  public function mirror(){
     // TODO: implement
   }  
 }

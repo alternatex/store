@@ -4,7 +4,7 @@ use Store\Format;
 use Store\Resource;
 
 /**
-* CommonJS Module Passthrough For JSON Contents
+* Json Formatted Contents
 *
 * @class CommonJs
 * @module Server
