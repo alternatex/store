@@ -122,7 +122,8 @@ if(trim($namespace)=="" || trim($action)=="") {
 // ----------------------------------------------------------------------------
 
 // load contents
-$store->load($user.".".$namespace.'.json');
+$datastore = $user.".".$namespace.'.json';
+$store->load($datastore);
 
 // return value helper 
 $returnValue = null;

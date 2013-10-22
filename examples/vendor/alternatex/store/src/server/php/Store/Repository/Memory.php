@@ -27,7 +27,7 @@ class Memory extends Repository {
   /**
   * Encode to format
   *
-  * @method decode
+  * @method encode
   * @param {String} $datastore context identifier
   * @void
   */ 
@@ -82,10 +82,10 @@ class Memory extends Repository {
   }
 
   /**
-  * Insert or update item data in datastore
+  * Insert or update resource data in datastore
   *
   * @method update
-  * @param {Object} $item what it's about
+  * @param {Object} $resource what it's about
   * @return {Boolean} Returns true on success
   */ 
   public function update(Resource $resource){
@@ -120,10 +120,10 @@ class Memory extends Repository {
   }
 
   /**
-  * Removes an item from datastore
+  * Removes a resource from datastore
   *
   * @method remove
-  * @param {Object} $item what it's about
+  * @param {Object} $resource what it's about
   * @return {Boolean} Returns true on success
   */ 
   public function remove(Resource $resource){
@@ -136,11 +136,11 @@ class Memory extends Repository {
   }
 
   /**
-  * Get item data
+  * Get resource data
   *
   * @method get
-  * @param {Object} $item what it's about
-  * @return {Object} item instance
+  * @param {Object} $resource what it's about
+  * @return {Object} resource instance
   */ 
   public function get(Resource $resource=null){
     
@@ -155,7 +155,7 @@ class Memory extends Repository {
   }  
 
   /**
-  * Find item (currently just: UUID - TODO: enhance signature w/UUID as default / Widespread Merge ?!)
+  * Find resource (currently just: UUID - TODO: enhance signature w/UUID as default / Widespread Merge ?!)
   *
   * @method find
   * @return {Array} List of item instances
@@ -165,9 +165,9 @@ class Memory extends Repository {
 
     if(!isset($instance[Store::ENTITY_IDENTIFIER])) return false;
     $this->items = (array) $this->items;
-    foreach($this->items as $index => $item) {
-      $item = (array) $item;
-      if($item[Store::ENTITY_IDENTIFIER]===$instance[Store::ENTITY_IDENTIFIER]) {
+    foreach($this->items as $index => $resource) {
+      $resource = (array) $resource;
+      if($resource[Store::ENTITY_IDENTIFIER]===$instance[Store::ENTITY_IDENTIFIER]) {
         return $index;
       }
     }  
@@ -175,10 +175,10 @@ class Memory extends Repository {
   } 
 
   /**
-  * Filter items
+  * Filter resources
   *
   * @method find
-  * @return {Array} List of matching item instances
+  * @return {Array} List of matching resource instances
   */ 
   public function filter($filter){
     // TODO: implement
@@ -225,6 +225,6 @@ class Memory extends Repository {
     $file->content($content==null ? $this->encode($this->items) : $content);
 
     // ...
-    return FileSystem::persistToDisk($file->path(), $file->content());
+    return FileSystem::persistToDisk($file);
   }   
 }
