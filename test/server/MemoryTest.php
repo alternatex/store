@@ -1,8 +1,8 @@
 <?php
 
-use Store\Resource;
-use Store\Resource\Item;
-use Store\Repository\Memory;
+use Store\Plugins\Resource\Resource;
+use Store\Plugins\Resource\Item\Item;
+use Store\Plugins\Repository\Memory\Memory;
 
 /**
 * MemoryTest

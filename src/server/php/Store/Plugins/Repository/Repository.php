@@ -1,6 +1,7 @@
-<?php namespace Store;
+<?php namespace Store\Plugins\Repository;
 
 use Store\Store;
+use Store\Plugins\Resource\Resource;
 
 /**
 * Repository

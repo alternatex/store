@@ -1,9 +1,9 @@
-<?php namespace Store\Resource;
+<?php namespace Store\Plugins\Resource\File;
 
+use Store\Plugins\Resource\Resource;
+use Store\Plugins\Format\Format;
 // TODO: 
 // - Implement format detection based on filename / mapping table (1st hardcoded, but within modular collection)
-
-use Store\Resource, Store\Format;
 
 /**
 * File

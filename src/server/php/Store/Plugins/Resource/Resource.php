@@ -1,4 +1,4 @@
-<?php namespace Store;
+<?php namespace Store\Plugins\Resource;
 
 /**
 * Resource

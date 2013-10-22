@@ -1,4 +1,4 @@
-<?php namespace Store\Repository;
+<?php namespace Store\Plugins\Repository\Memory;
 
 // TODO: 
 // - thread-safety » file locks
@@ -7,10 +7,10 @@
 // - externalize sendResponse
 
 use Store\Store;
-use Store\Repository;
-use Store\Repository\FileSystem;
-use Store\Resource;
-use Store\Resource\File;
+use Store\Plugins\Repository\Repository;
+use Store\Plugins\Repository\FileSystem\FileSystem;
+use Store\Plugins\Resource\Resource;
+use Store\Plugins\Resource\File\File;
 
 /**
 * Memory Store 
