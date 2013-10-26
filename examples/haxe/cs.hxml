@@ -1,0 +1,8 @@
+-main Client
+-js client.js
+#-swf client.swf
+
+--next
+
+-main Server
+-neko remoting.n
