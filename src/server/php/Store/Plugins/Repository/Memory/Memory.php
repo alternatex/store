@@ -1,4 +1,4 @@
-<?php namespace Store\Repository;
+<?php namespace Store\Plugins\Repository\Memory;
 
 // TODO: 
 // - thread-safety » file locks
@@ -7,10 +7,10 @@
 // - externalize sendResponse
 
 use Store\Store;
-use Store\Repository;
-use Store\Repository\FileSystem;
-use Store\Resource;
-use Store\Resource\File;
+use Store\Plugins\Repository\Repository;
+use Store\Plugins\Repository\FileSystem\FileSystem;
+use Store\Plugins\Resource\Resource;
+use Store\Plugins\Resource\File\File;
 
 /**
 * Memory Store 
@@ -27,7 +27,7 @@ class Memory extends Repository {
   /**
   * Encode to format
   *
-  * @method encode
+  * @method decode
   * @param {String} $datastore context identifier
   * @void
   */ 
@@ -82,10 +82,10 @@ class Memory extends Repository {
   }
 
   /**
-  * Insert or update resource data in datastore
+  * Insert or update item data in datastore
   *
   * @method update
-  * @param {Object} $resource what it's about
+  * @param {Object} $item what it's about
   * @return {Boolean} Returns true on success
   */ 
   public function update(Resource $resource){
@@ -120,10 +120,10 @@ class Memory extends Repository {
   }
 
   /**
-  * Removes a resource from datastore
+  * Removes an item from datastore
   *
   * @method remove
-  * @param {Object} $resource what it's about
+  * @param {Object} $item what it's about
   * @return {Boolean} Returns true on success
   */ 
   public function remove(Resource $resource){
@@ -136,11 +136,11 @@ class Memory extends Repository {
   }
 
   /**
-  * Get resource data
+  * Get item data
   *
   * @method get
-  * @param {Object} $resource what it's about
-  * @return {Object} resource instance
+  * @param {Object} $item what it's about
+  * @return {Object} item instance
   */ 
   public function get(Resource $resource=null){
     
@@ -155,7 +155,7 @@ class Memory extends Repository {
   }  
 
   /**
-  * Find resource (currently just: UUID - TODO: enhance signature w/UUID as default / Widespread Merge ?!)
+  * Find item (currently just: UUID - TODO: enhance signature w/UUID as default / Widespread Merge ?!)
   *
   * @method find
   * @return {Array} List of item instances
@@ -165,9 +165,9 @@ class Memory extends Repository {
 
     if(!isset($instance[Store::ENTITY_IDENTIFIER])) return false;
     $this->items = (array) $this->items;
-    foreach($this->items as $index => $resource) {
-      $resource = (array) $resource;
-      if($resource[Store::ENTITY_IDENTIFIER]===$instance[Store::ENTITY_IDENTIFIER]) {
+    foreach($this->items as $index => $item) {
+      $item = (array) $item;
+      if($item[Store::ENTITY_IDENTIFIER]===$instance[Store::ENTITY_IDENTIFIER]) {
         return $index;
       }
     }  
@@ -175,10 +175,10 @@ class Memory extends Repository {
   } 
 
   /**
-  * Filter resources
+  * Filter items
   *
   * @method find
-  * @return {Array} List of matching resource instances
+  * @return {Array} List of matching item instances
   */ 
   public function filter($filter){
     // TODO: implement
@@ -225,6 +225,6 @@ class Memory extends Repository {
     $file->content($content==null ? $this->encode($this->items) : $content);
 
     // ...
-    return FileSystem::persistToDisk($file);
+    return FileSystem::persistToDisk($file->path(), $file->content());
   }   
 }

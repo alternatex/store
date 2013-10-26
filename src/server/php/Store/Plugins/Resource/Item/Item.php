@@ -1,6 +1,6 @@
-<?php namespace Store\Resource;
+<?php namespace Store\Plugins\Resource\Item;
 
-use Store\Resource;
+use Store\Plugins\Resource\Resource;
 
 /**
 * Item aka Collection » TBD

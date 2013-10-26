@@ -5,7 +5,7 @@ use Store\Resource;
 /**
 * Schema
 *
-* Abstract format aka content type (encoding/decoding)
+* Resource validation
 *
 * @class Schema
 * @module Server
@@ -15,8 +15,8 @@ interface Schema {
   /**
   * Validate resource against schema
   *
-  * @method Validate
-  * @param {String} $datastore context identifier
+  * @method validate
+  * @param {Resource} $resource 
   * @void
   */ 
   public static function Validate(Resource $resource);

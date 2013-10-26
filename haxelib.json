@@ -1,0 +1,11 @@
+{
+  "name": "store",
+  "url": "http://alternatex.github.io/store",
+  "license": "MIT",
+  "tags": [],
+  "description": "",
+  "version": "0.0.1",
+  "releasenote": "",
+  "contributors": [ "alternatex" ],
+  "dependencies": {}
+}
