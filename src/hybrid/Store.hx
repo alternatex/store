@@ -6,64 +6,36 @@ import php.Lib;
 #end
 
 /**
-* @class Index
+* <js>                           
 */
-abstract Store {
-
-  /**
-  * Name/Identifier
-  * @property name
-  * @static
-  * @type {String}
-  * @default ""
-  */  
-  static var name : String = "XXXlalalalaXXX";
-
-  /**
-  * Main module
-  *
-  * @method main
-  * @static
-  */ 
-  static function main() {
-    trace(Index.name);
-    Index.test("123");
-    trace("Hello World !"+Index.name);
-    Index.name="moin";
-    trace("Hello World !"+Index.name);
-    var a : Test3 = new Test3();
-    a.me="john";
-    var b : Test1 = cast(a,Test1);
-    trace(b.me);
-
-    // JavaScript::$(document).ready(...)
-    #if js
-    new JQuery(function():Void { 
-      new JQuery("body").css('background-color', 'black');
-    });
-    #end
-  }
-
-  /**
-  * Test something
-  *
-  * @method main  
-  * @static
-  * @param test {String}  
-  */ 
-  static function test(test: String): Void{
-    trace(test);
-  }
-}        
-
+#if js
+// magic
+#end
 
 /**
-* Store fundamentals
-*
-* @class Store (Server)
-* @module Server
+* @class Item
 */
-abstract class Store { 
+class Item {
+
+}
+
+/**
+* @class ItemTypeSafetyTest
+*/
+class ItemTypeSafetyTest {
+
+}
+
+/*
+override private function dada():Void {
+
+}
+*/
+
+/**
+* @class Store
+*/
+class Store {
 
   /**
   * Flag to indicated pending changes
@@ -72,7 +44,16 @@ abstract class Store {
   * @type {Boolean}
   * @default false
   */
-  protected $pending = false;
+  private pending : Boolean = true;
+
+  /**
+  * Items collection
+  * @property items
+  * @static
+  * @type {String}
+  * @default ""
+  */  
+  var items : Array<Item> = new Array();
 
   /**
   * Items collection
@@ -270,5 +251,54 @@ abstract class Store {
   * @default "name"
   * @readOnly
   */  
-  const TRANSFER_TARGET = 'name';  
-}
+  const TRANSFER_TARGET = 'name'; 
+
+  /**
+  * Main module
+  *
+  * @method main
+  * @static
+  */ 
+  static function main() {
+
+    Store.items[0] = new ItemTypeSafetyTest();
+
+    trace(Index.name);
+    Index.test("123");
+    trace("Hello World !"+Index.name);
+    Index.name="moin";
+    trace("Hello World !"+Index.name);
+    var a : Test3 = new Test3();
+    a.me="john";
+    var b : Test1 = cast(a,Test1);
+    trace(b.me);
+
+    // JavaScript::$(document).ready(...)
+    #if js
+    new JQuery(function():Void { 
+      new JQuery("body").css('background-color', 'black');
+    });
+    #end
+  }
+
+  /**
+  * Test something
+  *
+  * @method main  
+  * @static
+  * @param test {String}  
+  */ 
+  static function test(test: String): Void{
+    trace(test);
+  }
+
+  /**
+  * Static class initialization routine
+  * @function __init__
+  * @private
+  * @return {Void}
+  */
+  static function __init__() {
+         
+  }  
+}        
