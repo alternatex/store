@@ -1,4 +1,4 @@
-<?php namespace Store\Plugins\Format;
+<?php namespace Store\Format;
 
 use Store\Format;
 use Store\Resource;

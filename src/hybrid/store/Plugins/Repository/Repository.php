@@ -12,28 +12,28 @@ use Store\Plugins\Resource\Resource;
 abstract class Repository extends Store { 
 
   /**
-  * Insert or update resource data in datastore
+  * Insert or update item data in datastore
   *
   * @method update
-  * @param {Object} $resource it's about
+  * @param {Object} $item what it's about
   * @return {Boolean} Returns true on success
   */ 
   abstract function update(Resource $resource);
 
   /**
-  * Get resource data
+  * Get item data
   *
   * @method get
-  * @param {Object} $resource it's about
-  * @return {Object} resource instance
+  * @param {Object} $item what it's about
+  * @return {Object} item instance
   */ 
   abstract function get(Resource $resource=null);
 
   /**
-  * Removes an resource from datastore
+  * Removes an item from datastore
   *
   * @method remove
-  * @param {Object} $resource it's about
+  * @param {Object} $item what it's about
   * @return {Boolean} Returns true on success
   */   
   abstract function remove(Resource $resource);

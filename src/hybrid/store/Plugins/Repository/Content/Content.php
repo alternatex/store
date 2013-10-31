@@ -1,39 +1,39 @@
-<?php namespace Store\Plugins\Repository;
-
-use Store\Store;
-use Store\Plugins\Resource\Resource;
+<?php namespace Store\Repository;
 
 /**
-* Repository
+* PHPCR
 *
-* @class Repository
+* @class PhpCr
 * @module Server
 */
-abstract class Repository extends Store { 
+
+use Store\Repository;
+
+class PhpCr extends Repository {
 
   /**
-  * Insert or update resource data in datastore
+  * Insert or update item data in datastore
   *
   * @method update
-  * @param {Object} $resource it's about
+  * @param {Object} $item what it's about
   * @return {Boolean} Returns true on success
   */ 
   abstract function update(Resource $resource);
 
   /**
-  * Get resource data
+  * Get item data
   *
   * @method get
-  * @param {Object} $resource it's about
-  * @return {Object} resource instance
+  * @param {Object} $item what it's about
+  * @return {Object} item instance
   */ 
   abstract function get(Resource $resource=null);
 
   /**
-  * Removes an resource from datastore
+  * Removes an item from datastore
   *
   * @method remove
-  * @param {Object} $resource it's about
+  * @param {Object} $item what it's about
   * @return {Boolean} Returns true on success
   */   
   abstract function remove(Resource $resource);
@@ -76,5 +76,5 @@ abstract class Repository extends Store {
   */
   public function mirror(){
     // TODO: implement
-  }  
+  }
 }

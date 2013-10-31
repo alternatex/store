@@ -1,4 +1,4 @@
-<?php namespace Store\Plugins\Format;
+<?php namespace Store\Format;
 
 use Store\Format;
 use Store\Resource;
@@ -6,10 +6,10 @@ use Store\Resource;
 /**
 * Json Formatted Contents
 *
-* @class CommonJs
+* @class Json
 * @module Server
 */
-class CommonJs implements Format {
+class Json implements Format {
 
   /**
   * File extension
@@ -17,7 +17,7 @@ class CommonJs implements Format {
   * @const
   * @type {String}
   */
-  const FILE_EXTENSION = 'cjs';
+  const FILE_EXTENSION = 'json';
   
   /**
   * Encode to format
@@ -27,17 +27,7 @@ class CommonJs implements Format {
   * @void
   */ 
   public static function Encode(Resource $resource){
-    return str_replace(array("\n", "\t", "   ", "   ", "  "), "","
-      (function (root, factory) {
-        if (typeof define === 'function' && define.amd) {
-          define(factory);
-        } else {
-          root.CommonJs = factory();
-        }
-      }(this, function () {
-        return ".json_encode($resource->data()).";
-      }));
-    ");  
+    return json_encode($resource->content());
   }
 
   /**
@@ -48,6 +38,6 @@ class CommonJs implements Format {
   * @void
   */ 
   public static function Decode(Resource $resource){
-    throw new Error('Decoding not supported.');
+    return json_decode($resource->content());
   }
 }

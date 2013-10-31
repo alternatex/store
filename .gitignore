@@ -1,4 +1,6 @@
 .DS_Store
+examples/haxe/api/API/*
+examples/hax/api/www/*
 examples/anonymous.*
 composer.phar
 composer.lock

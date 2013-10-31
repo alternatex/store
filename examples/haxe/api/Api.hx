@@ -8,7 +8,15 @@ class Api     {
        // create an incoming connection and give access to the "instance" object 
          var context = new haxe.remoting.Context(); 
          context.addObject("api",instance); 
-         haxe.remoting.HttpConnection.handleRequest(context); 
+         #if php
+            haxe.remoting.HttpConnection.handleRequest(context); 
+         #end
+
+         #if java
+            haxe.remoting.HttpConnection.processRequest("test", context); 
+         #end
+
+         
      } 
 
     //         // The rest of the members are available to remoting         // 

@@ -1,4 +1,14 @@
+package store;
+
 /* neko server jcr fs -> folders: mkdir -p ... .content.json */
+/* neko server jcr fs -> folders: mkdir -p ... .content.json */
+/* neko server jcr fs -> folders: mkdir -p ... .content.json */
+
+/**
+* <common>                           
+*/
+import store.plugins.resource.Resource;
+import store.plugins.schema.Schema;
 
 /**
 * <php>                           
@@ -28,50 +38,56 @@ class ItemTypeSafetyTest {
 
 }
 
+enum Color {
+  Red;
+  Green;
+  Blue;
+}
+
+class Colors {
+  static function toInt( c : Color ) : Int {
+    return switch( c ) {
+      case Red: 0xFF0000;
+      case Green: 0x00FF00;
+      case Blue: 0x0000FF;
+
+    }
+  }
+}
+
 /**
 * @enum Store's actions
 */
-enum ACTION = {
-  CREATE;
-  READ;
-  UPDATE;  
-  DELETE;
-};
-
-/**
-* @enum Store's request vars
-*/
-enum REQUEST = {
-  CREATE;
-  READ;
-  UPDATE;  
-  DELETE;
-};
-
-/**
-* @enum Store's response vars
-*/
-enum RESPONSE = {
-  CREATE;
-  READ;
-  UPDATE;  
-  DELETE;
-};
+enum Actions {
+  create;
+  read;
+  update;  
+  delete;
+}
 
 /**
 * @enum Store's action/mapping configuration
 */
-typedef MAPPING = {
-  CREATE:Int,
-  READ:Int,
-  UPDATE:Int,
-  DELETE:Int
-};
+typedef Mapping = {
+  create:Dynamic,
+  read:Dynamic,
+  update:Dynamic,
+  delete:Dynamic
+}
+/**
+* @class Base
+*/
+class Base {
+  public var namexxx:String = "test";
+  public function new(){
+    //this.namexxx = "sali";
+  }
+}
 
 /**
 * @class Store
 */
-class Store {
+class Store extends Base{
 
   /**
   * HTTP Header storage type indicator
@@ -81,7 +97,7 @@ class Store {
   * @default x-storage-type
   * @readOnly
   */
-  inline static var REQUEST_HEADER_TYPE = 'X-Store-Type';
+  inline public static var REQUEST_HEADER_TYPE = 'X-Store-Type';
 
   /**
   * Toggle JSONP
@@ -91,7 +107,7 @@ class Store {
   * @default true
   * @readOnly
   */
-  inline static var RESPONSE_JSONP_ENABLED = true;
+  inline public static var RESPONSE_JSONP_ENABLED = true;
 
   /**
   * JSON callback identifier
@@ -101,7 +117,7 @@ class Store {
   * @default "callback"
   * @readOnly
   */  
-  inline static var RESPONSE_JSONP_CALLBACK = 'callback';
+  inline public static var RESPONSE_JSONP_CALLBACK = 'callback';
 
   /**
   * Entity attribute count
@@ -111,7 +127,7 @@ class Store {
   * @default "count"
   * @readOnly
   */
-  inline static var ENTITY_COUNT = 'count';
+  inline public static var ENTITY_COUNT = 'count';
 
   /**
   * Entity attribute id
@@ -121,7 +137,7 @@ class Store {
   * @default "id"
   * @readOnly
   */  
-  inline static var ENTITY_IDENTIFIER = 'id';
+  inline public static var ENTITY_IDENTIFIER = 'id';
 
   /**
   * l18n datastore.corrupt
@@ -131,7 +147,7 @@ class Store {
   * @default "DATASTORE IS CORRUPT"
   * @readOnly
   */
-  inline static var MESSAGE_ERROR_DATASTORE_CORRUPT = 'DATASTORE IS CORRUPT';
+  inline public static var MESSAGE_ERROR_DATASTORE_CORRUPT = 'DATASTORE IS CORRUPT';
 
   /**
   * l18n datastore.locked
@@ -141,7 +157,7 @@ class Store {
   * @default "DATASTORE IS LOCKED"
   * @readOnly
   */
-  inline static var  MESSAGE_ERROR_DATASTORE_LOCKED = 'DATASTORE IS LOCKED';
+  inline public static var  MESSAGE_ERROR_DATASTORE_LOCKED = 'DATASTORE IS LOCKED';
 
   /**
   * Request param action
@@ -151,7 +167,7 @@ class Store {
   * @default "action"
   * @readOnly
   */
-  inline static var  REQUEST_ACTION = 'action';
+  inline public static var  REQUEST_ACTION = 'action';
 
   /**
   * Request param namespace
@@ -161,7 +177,7 @@ class Store {
   * @default "namespace"
   * @readOnly
   */  
-  inline static var  REQUEST_NAMESPACE = 'namespace';
+  inline public static var  REQUEST_NAMESPACE = 'namespace';
 
   /**
   * Request param instance
@@ -171,7 +187,7 @@ class Store {
   * @default "instance"
   * @readOnly
   */  
-  inline static var  REQUEST_DATA = 'instance';
+  inline public static var  REQUEST_DATA = 'instance';
 
   /**
   * Request param jsonp
@@ -181,7 +197,7 @@ class Store {
   * @default "jsonp"
   * @readOnly
   */  
-  inline static var  REQUEST_JSONP = 'jsonp';
+  inline public static var  REQUEST_JSONP = 'jsonp';
 
   /**
   * Error *
@@ -191,7 +207,7 @@ class Store {
   * @default "error"
   * @readOnly
   */
-  inline static var  RESPONSE_ERROR = 'error';
+  inline public static var  RESPONSE_ERROR = 'error';
 
   /**
   * Action `get`
@@ -201,7 +217,7 @@ class Store {
   * @default "get"
   * @readOnly
   */
-  inline static var  STORE_ACTION_GET = 'get';
+  inline public static var  STORE_ACTION_GET = 'get';
 
   /**
   * Action `list`
@@ -211,7 +227,7 @@ class Store {
   * @default "list"
   * @readOnly
   */  
-  inline static var  STORE_ACTION_LIST = 'list';
+  inline public static var  STORE_ACTION_LIST = 'list';
 
   /**
   * Action `remove`
@@ -221,7 +237,7 @@ class Store {
   * @default "remove"
   * @readOnly
   */  
-  inline static var  STORE_ACTION_REMOVE = 'remove';
+  inline public static var  STORE_ACTION_REMOVE = 'remove';
 
   /**
   * Action `update`
@@ -231,7 +247,7 @@ class Store {
   * @default "update"
   * @readOnly
   */  
-  inline static var  STORE_ACTION_UPDATE = 'update';
+  inline public static var  STORE_ACTION_UPDATE = 'update';
 
   /**
   * Request fileupload param source
@@ -241,7 +257,7 @@ class Store {
   * @default "tmp_name"
   * @readOnly
   */
-  inline static var  TRANSFER_SOURCE = 'tmp_name';
+  inline public static var  TRANSFER_SOURCE = 'tmp_name';
 
   /**
   * Request fileupload param name
@@ -251,7 +267,7 @@ class Store {
   * @default "name"
   * @readOnly
   */  
-  inline static var  TRANSFER_TARGET = 'name'; 
+  inline public static var  TRANSFER_TARGET = 'name'; 
 
   /**
   * Flag to indicated pending changes
@@ -269,7 +285,7 @@ class Store {
   * @type {String}
   * @default ""
   */  
-  private var items:Array<Item> = new Array();
+  private var items:Array<Item>;
 
   /**
   * Datastore filename
@@ -289,17 +305,21 @@ class Store {
   */ 
   private static function test(test:String):Void {
 
-    trace(test);
+  trace(test);
   }
 
   /**
-  * Insert or update item data in datastore
+  * Insert or update resource data in datastore
   *
   * @method update
   * @param {Object} $resource what it's about
   * @return {Boolean} Returns true on success
   */ 
-  override function update(resource:Resource):Void {
+  public function update(resource:Resource):Void {
+  
+  #if client
+    // remoting delegate/send and forget?
+  #end
 
   }
 
@@ -308,10 +328,10 @@ class Store {
   *
   * @method get
   * @param {Object} $resource what it's about
-  * @return {Object} item instance
+  * @return {Object} resource instance
   */ 
-  override function get(resource:Resource):Void {
-    
+  public function get(resource:Resource):Void {
+  
   }
 
   /**
@@ -321,8 +341,8 @@ class Store {
   * @param {Object} $resource what it's about
   * @return {Boolean} Returns true on success
   */   
-  override function remove(resource:Resource):Void {
-    
+  public function remove(resource:Resource):Void {
+  
   }
 
   /**
@@ -332,8 +352,8 @@ class Store {
   * @param {String} dsn
   * @void
   */ 
-  override function load($dsn):Void {
-    
+  public function load(dsn:String):Void {
+  
   }
 
   /**
@@ -343,7 +363,9 @@ class Store {
   * @param {String} dsn
   * @void
   */ 
-  override function persist($dsn);
+  public function persist(dsn:String):Bool {
+  return true;
+  }
   
   /**
   * Get/Set pending changes flag
@@ -352,9 +374,9 @@ class Store {
   * @param {boolean} $pending
   * @return {boolean} 
   */ 
-  public function pending(pending:Dynamic):Bool{
-    if(pending!=null) this.pending = pending;
-    return this.pending;
+  public function isPending(pending:Dynamic):Bool {
+  if(pending!=null) this.pending = pending;
+  return this.pending;
   }   
 
   /**
@@ -363,8 +385,9 @@ class Store {
   * @method mirror
   * @void
   */
-  override function mirror():Void {
-    // TODO: implement
+  public function mirror():Void {
+  // TODO: implement
+  trace("mirror");
   }   
 
   /**
@@ -373,25 +396,40 @@ class Store {
   * @method main
   * @static
   */ 
+  function new() {
+    super();
+  }
+
   static function main() {
+  var resource:Resource = new Resource(123);
 
-    Store.items[0] = new ItemTypeSafetyTest();
+  /*
+  this.items[0] = new ItemTypeSafetyTest();
 
-    trace(Index.name);
-    Index.test("123");
-    trace("Hello World !"+Index.name);
-    Index.name="moin";
-    trace("Hello World !"+Index.name);
-    var a : Test3 = new Test3();
-    a.me="john";
-    var b : Test1 = cast(a,Test1);
-    trace(b.me);
-
-    // JavaScript::$(document).ready(...)
-    #if js
-    new JQuery(function():Void { 
-      new JQuery("body").css('background-color', 'black');
-    });
-    #end
+  trace(this.name);
+  this.test("123");
+  trace("Hello World !"+this.name);
+  this.name="moin";
+  trace("Hello World !"+this.name);
+  var a : Test3 = new Test3();
+  a.me="john";
+  var b : Test1 = cast(a,Test1);
+  trace(b.me);
+  */
+  // JavaScript::$(document).ready(...)
+  #if js
+/*    new JQuery(function():Void { 
+    new JQuery("body").css('background-color', 'black');
+  });*/
+  #end
+  
+  var mapping:Mapping = {
+    create: Actions.create,
+    read: Actions.read,
+    update: Actions.update,
+    delete: Actions.delete,
+  };
+  trace(mapping);
+  trace("hey there! wazzup???");
   }
 }        

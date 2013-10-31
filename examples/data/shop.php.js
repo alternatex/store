@@ -1,15 +1,15 @@
 <?php
 require_once(__DIR__.'/../../src/server/php/Store/Store.php');
-require_once(__DIR__.'/../../src/server/php/Store/Repository.php');
-require_once(__DIR__.'/../../src/server/php/Store/Resource.php');
-require_once(__DIR__.'/../../src/server/php/Store/Resource/Item.php');
-require_once(__DIR__.'/../../src/server/php/Store/Format.php');
-require_once(__DIR__.'/../../src/server/php/Store/Format/CommonJs.php');
+require_once(__DIR__.'/../../src/server/php/Store/Plugins/Repository/Repository.php');
+require_once(__DIR__.'/../../src/server/php/Store/Plugins/Resource/Resource.php');
+require_once(__DIR__.'/../../src/server/php/Store/Plugins/Resource/Item/Item.php');
+require_once(__DIR__.'/../../src/server/php/Store/Plugins/Format/Format.php');
+require_once(__DIR__.'/../../src/server/php/Store/Plugins/Format/CommonJs/CommonJs.php');
 
 use Store\Store;
-use Store\Repository;
-use Store\Resource\Item;
-use Store\Format\CommonJs;
+use Store\Plugins\Repository;
+use Store\Plugins\Resource\Item\Item;
+use Store\Plugins\Format\CommonJs;
 
 // ...
 header('content-type: application/javascript');
