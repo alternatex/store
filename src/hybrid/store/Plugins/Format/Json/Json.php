@@ -3,6 +3,14 @@
 use Store\Format;
 use Store\Resource;
 
+/*
+TODOS 
+-----
+ - lazy/eager loading (by route)
+    - marshall object references to path
+    - unmarshall object references from path
+*/
+
 /**
 * Json Formatted Contents
 *
