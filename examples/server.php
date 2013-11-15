@@ -121,8 +121,39 @@ if(trim($namespace)=="" || trim($action)=="") {
 // - INITIALIZE II
 // ----------------------------------------------------------------------------
 
+function recursive_mkdir($path, $mode = 0777) {
+    $dirs = explode(DIRECTORY_SEPARATOR , $path);
+    $count = count($dirs);
+    $path = '.';
+    for ($i = 0; $i < $count; ++$i) {
+        $path .= DIRECTORY_SEPARATOR . $dirs[$i];
+        if (!is_dir($path) && !mkdir($path, $mode)) {
+            return false;
+        }
+    }
+    return true;
+}
+
+$rootdir = '';
+if(strpos($namespace, '@')!==false){
+  $segments = explode('@', $namespace);
+  $segmentPath = implode('/', array_slice($segments, 0, -2));
+  $rootdir.=$segmentPath;
+  //mkdir($rootdir, 0700, true);
+  @recursive_mkdir($rootdir.'/');
+  //die($rootdir); 
+  $namespace = $segments[sizeof($segments)-2];
+} else {
+  $rootdir='./';
+}
+
+// TODO: 
+// - full rewrite to disk using...
+// - post only to write, which makes sense
+// - get rid of all other parameters
+
 // load contents
-$datastore = $user.".".$namespace.'.json';
+$datastore = $rootdir.'/'.$user.".".$namespace.'.json';
 $store->load($datastore);
 
 // return value helper 
