@@ -24,8 +24,8 @@
       - Auto-Attachment of application auth request headers
 
     </pre>
-		<div id="epiceditor"></div>
-		<script data-main="js/app" src="js/lib/require.js"></script>
+    <div id="epiceditor"></div>
+    <script data-main="js/app" src="js/lib/require.js"></script>
     <script>
       
       // dummy data   
@@ -73,17 +73,29 @@
     <script>
 
       // TODO: make use of template project
-      // TODO: make use of template project
-      // TODO: make use of template project
-      // TODO: make use of template project
-      // TODO: make use of template project
 
       // playground...
       function setup(){
         
         // store nested        
-        var fsStore = new Store({namespace: 'content/sweet/sour/store/with/in/depth/structure/within/else/can/we/afford/it'});
-        fsStore.create({'name': 'the-name'}).update();
+        var fsStore = new Store({basedir: '/content/somewhere/nested/here/we/are'});
+        
+        var folder = fsStore.create({
+            'path':'/object/nested/structures/for/all', 
+            'name': 'the-name'
+          });
+
+        var folder = fsStore.create({'name': 'the-name'});
+
+        folder.update();
+        folder.set('name', 'other');
+
+        fsStore.update(folder);
+
+        Store.when(fsStore.list()).then(function(resources){
+            console.log("got nested", resources);
+          });
+
         fsStore.list().then(function(resources){
             console.log("got nested", resources);
           });

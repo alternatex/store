@@ -60,6 +60,7 @@ function extractParams(){
 
   // ...
   $namespace = params('namespace');
+  $basedir = params('basedir');
   $action = params('action');
   $jsonp = params('jsonp');
 
@@ -81,13 +82,13 @@ dispatch_post('/:namespace/:action/:jsonp/', 'v1');
 
 // ...
 function v1() {
-  global $namespace, $action, $jsonp;  
+  global $basedir, $namespace, $action, $jsonp;  
 
   // ...
   extractParams();
 
   // ...
-  return $namespace.$action.$jsonp;
+  return $basedir.$namespace.$action.$jsonp;
 }
 
 // process request
@@ -108,6 +109,9 @@ $store = new $Store();
 
 // extract request params
 $instance = getvar('instance');
+
+// naming - TODO: solve
+if($basedir!="") $namespace = $basedir;
 
 // check prerequisites
 if(trim($namespace)=="" || trim($action)=="") {
@@ -137,12 +141,18 @@ function recursive_mkdir($path, $mode = 0777) {
 $rootdir = '';
 if(strpos($namespace, '|')!==false){
   $segments = explode('|', $namespace);
-  $segmentPath = implode('/', array_slice($segments, 0, -2));
+  $segments_tmp = array();
+  foreach ($segments as $segment) {
+    if(trim($segment)!='') array_push($segments_tmp, $segment);
+  }
+  $segments = $segments_tmp;
+  unset($segments_tmp);
+  $segmentPath = implode('/', array_slice($segments, 0, -1));
   $rootdir.=$segmentPath;
   //mkdir($rootdir, 0700, true);
   @recursive_mkdir($rootdir.'/');
   //die($rootdir); 
-  $namespace = $segments[sizeof($segments)-2];
+  $namespace = $segments[sizeof($segments)-1];
 } else {
   $rootdir='./';
 }
