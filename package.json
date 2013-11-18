@@ -1,7 +1,7 @@
 {
   "name": "store",
   "description": "A lightweight datastore wrapper",
-  "version": "1.0.10",
+  "version": "1.0.11",
   "homepage": "http://alternatex.github.io/store",
   "repository": {
     "type": "git",

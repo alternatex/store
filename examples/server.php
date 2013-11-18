@@ -135,8 +135,8 @@ function recursive_mkdir($path, $mode = 0777) {
 }
 
 $rootdir = '';
-if(strpos($namespace, '@')!==false){
-  $segments = explode('@', $namespace);
+if(strpos($namespace, '|')!==false){
+  $segments = explode('|', $namespace);
   $segmentPath = implode('/', array_slice($segments, 0, -2));
   $rootdir.=$segmentPath;
   //mkdir($rootdir, 0700, true);
