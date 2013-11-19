@@ -242,6 +242,20 @@ objectStore.remove(object);
 
 })();
 </script>
+
+<!-- example html input -->
+<form method="POST" action="//localhost/store/examples/server.php/resources/update" enctype="multipart/form-data">      
+  <input type="hidden" name="namespace" value="resources"/>
+  <input type="hidden" name="action" value="update"/>
+  <input type="hidden" name="instance[type]" value="type"/>
+  <input type="hidden" name="instance[name]" value="name"/>
+  <input type="hidden" name="instance[option][key]" value="key"/>
+  <input type="hidden" name="instance[option][value]" value="value"/>
+  <input type="hidden" name="instance[option][lists][whitelist][]" value="good.host.com"/>
+  <input type="hidden" name="instance[option][lists][blacklist][]" value="evil.host.com"/>
+  <input type="file" name="instance[file]"/>
+  <button>Update</button>
+</form>
 ```
 
 ### Routes

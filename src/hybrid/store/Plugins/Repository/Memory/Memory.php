@@ -223,7 +223,9 @@ class Memory extends Repository {
     $file = new File();
     $file->path($filepath);
     $file->content($content==null ? $this->encode($this->items) : $content);
-
+    if(trim($file->content())=='""'){
+      $file->content('[]');
+    }
     // ...
     return FileSystem::persistToDisk($file->path(), $file->content());
   }   

@@ -213,7 +213,7 @@ Remote.prototype.process = function process(action, options, item, oncallback, e
   };
 
   // setup
-  script.src = options.url+"/"+options.namespace+"/"+action+"/"+callback+"/?bust="+(new Date().getTime())+"&"+serialized;
+  script.src = options.url+"/"+options.namespace.replace(/\//gi, '|')+"/"+action+"/"+callback+"/?bust="+(new Date().getTime())+"&"+serialized;
   
   // load
   setTimeout(function(){

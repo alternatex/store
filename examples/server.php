@@ -60,6 +60,7 @@ function extractParams(){
 
   // ...
   $namespace = params('namespace');
+  $basedir = params('basedir');
   $action = params('action');
   $jsonp = params('jsonp');
 
@@ -81,13 +82,13 @@ dispatch_post('/:namespace/:action/:jsonp/', 'v1');
 
 // ...
 function v1() {
-  global $namespace, $action, $jsonp;  
+  global $basedir, $namespace, $action, $jsonp;  
 
   // ...
   extractParams();
 
   // ...
-  return $namespace.$action.$jsonp;
+  return $basedir.$namespace.$action.$jsonp;
 }
 
 // process request
@@ -109,6 +110,9 @@ $store = new $Store();
 // extract request params
 $instance = getvar('instance');
 
+// naming - TODO: solve
+if($basedir!="") $namespace = $basedir;
+
 // check prerequisites
 if(trim($namespace)=="" || trim($action)=="") {
 
@@ -121,8 +125,45 @@ if(trim($namespace)=="" || trim($action)=="") {
 // - INITIALIZE II
 // ----------------------------------------------------------------------------
 
+function recursive_mkdir($path, $mode = 0777) {
+    $dirs = explode(DIRECTORY_SEPARATOR , $path);
+    $count = count($dirs);
+    $path = '.';
+    for ($i = 0; $i < $count; ++$i) {
+        $path .= DIRECTORY_SEPARATOR . $dirs[$i];
+        if (!is_dir($path) && !mkdir($path, $mode)) {
+            return false;
+        }
+    }
+    return true;
+}
+
+$rootdir = '';
+if(strpos($namespace, '|')!==false){
+  $segments = explode('|', $namespace);
+  $segments_tmp = array();
+  foreach ($segments as $segment) {
+    if(trim($segment)!='') array_push($segments_tmp, $segment);
+  }
+  $segments = $segments_tmp;
+  unset($segments_tmp);
+  $segmentPath = implode('/', array_slice($segments, 0, -1));
+  $rootdir.=$segmentPath;
+  //mkdir($rootdir, 0700, true);
+  @recursive_mkdir($rootdir.'/');
+  //die($rootdir); 
+  $namespace = $segments[sizeof($segments)-1];
+} else {
+  $rootdir='./';
+}
+
+// TODO: 
+// - full rewrite to disk using...
+// - post only to write, which makes sense
+// - get rid of all other parameters
+
 // load contents
-$datastore = $user.".".$namespace.'.json';
+$datastore = $rootdir.'/'.$user.".".$namespace.'.json';
 $store->load($datastore);
 
 // return value helper 
