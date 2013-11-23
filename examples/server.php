@@ -11,6 +11,13 @@
 // - SETUP
 // ----------------------------------------------------------------------------
 
+require_once(__DIR__.'/../src/hybrid/www/index.php');
+require_once(__DIR__.'/../src/hybrid/www/lib/store/plugins/resource/item/Item.class.php');
+
+//store_plugins_resource_item_Item::test(123);
+
+//store_Store::test(123);
+
 // aliases
 use \Store\Store, 
     \Store\Resource\File, 

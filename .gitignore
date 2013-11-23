@@ -7,3 +7,5 @@ composer.lock
 node_modules
 vendor/
 examples/vendor
+src/hybrid/java
+src/hybrid/www

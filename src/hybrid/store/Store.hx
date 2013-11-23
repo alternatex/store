@@ -7,6 +7,7 @@ package store;
 /**
 * <common>                           
 */
+import store.plugins.resource.item.Item;
 import store.plugins.resource.Resource;
 import store.plugins.schema.Schema;
 
@@ -23,13 +24,6 @@ import php.Lib;
 #if js
 // magic
 #end
-
-/**
-* @class Item
-*/
-class Item {
-
-}
 
 /**
 * @class ItemTypeSafetyTest
@@ -87,7 +81,7 @@ class Base {
 /**
 * @class Store
 */
-class Store extends Base{
+class Store extends Base {
 
   /**
   * HTTP Header storage type indicator
@@ -305,7 +299,7 @@ class Store extends Base{
   */ 
   private static function test(test:String):Void {
 
-  trace(test);
+    trace(test);
   }
 
   /**
@@ -317,9 +311,9 @@ class Store extends Base{
   */ 
   public function update(resource:Resource):Void {
   
-  #if client
-    // remoting delegate/send and forget?
-  #end
+    #if client
+      // remoting delegate/send and forget?
+    #end
 
   }
 
@@ -364,7 +358,7 @@ class Store extends Base{
   * @void
   */ 
   public function persist(dsn:String):Bool {
-  return true;
+    return true;
   }
   
   /**
@@ -375,8 +369,8 @@ class Store extends Base{
   * @return {boolean} 
   */ 
   public function isPending(pending:Dynamic):Bool {
-  if(pending!=null) this.pending = pending;
-  return this.pending;
+    if(pending!=null) this.pending = pending;
+    return this.pending;
   }   
 
   /**
@@ -386,8 +380,8 @@ class Store extends Base{
   * @void
   */
   public function mirror():Void {
-  // TODO: implement
-  trace("mirror");
+    // TODO: implement
+    //trace("mirror");
   }   
 
   /**
@@ -400,36 +394,41 @@ class Store extends Base{
     super();
   }
 
+  /*static function test() {
+    trace("testtesttest");
+  }*/
+
   static function main() {
-  var resource:Resource = new Resource(123);
+    var resource:Resource = new Resource("123");
 
-  /*
-  this.items[0] = new ItemTypeSafetyTest();
+    /*
+    this.items[0] = new ItemTypeSafetyTest();
 
-  trace(this.name);
-  this.test("123");
-  trace("Hello World !"+this.name);
-  this.name="moin";
-  trace("Hello World !"+this.name);
-  var a : Test3 = new Test3();
-  a.me="john";
-  var b : Test1 = cast(a,Test1);
-  trace(b.me);
-  */
-  // JavaScript::$(document).ready(...)
-  #if js
-/*    new JQuery(function():Void { 
-    new JQuery("body").css('background-color', 'black');
-  });*/
-  #end
-  
-  var mapping:Mapping = {
-    create: Actions.create,
-    read: Actions.read,
-    update: Actions.update,
-    delete: Actions.delete,
-  };
-  trace(mapping);
-  trace("hey there! wazzup???");
+    trace(this.name);
+    this.test("123");
+    trace("Hello World !"+this.name);
+    this.name="moin";
+    trace("Hello World !"+this.name);
+    var a : Test3 = new Test3();
+    a.me="john";
+    var b : Test1 = cast(a,Test1);
+    trace(b.me);
+    */
+    // JavaScript::$(document).ready(...)
+    #if js
+  /*    new JQuery(function():Void { 
+      new JQuery("body").css('background-color', 'black');
+    });*/
+    #end
+    
+    var mapping:Mapping = {
+      create: Actions.create,
+      read: Actions.read,
+      update: Actions.update,
+      delete: Actions.delete,
+    };
+    var item:Item = new Item("asdasd");    
+    //trace(mapping);
+    //trace("hey there! wazzup???");
   }
 }        
