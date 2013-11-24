@@ -7,8 +7,10 @@ package store;
 /**
 * <common>                           
 */
-import store.plugins.resource.item.Item;
+import store.plugins.resource.collection.Collection;
+import store.plugins.resource.element.Element;
 import store.plugins.resource.Resource;
+import store.plugins.resource.file.File;
 import store.plugins.schema.Schema;
 
 /**
@@ -36,6 +38,10 @@ enum Color {
   Red;
   Green;
   Blue;
+}
+
+class Item {
+
 }
 
 class Colors {
@@ -427,7 +433,8 @@ class Store extends Base {
       update: Actions.update,
       delete: Actions.delete,
     };
-    var item:Item = new Item("asdasd");    
+    var item:Element = new Element("asdasd");    
+    var file:File = new File("app.yml");    
     //trace(mapping);
     //trace("hey there! wazzup???");
   }

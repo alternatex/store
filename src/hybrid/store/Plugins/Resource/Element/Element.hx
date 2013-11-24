@@ -1,17 +1,17 @@
-package store.plugins.resource.item;
+package store.plugins.resource.element;
 
 import store.plugins.resource.Resource;
 
 /**
-* Item
+* Element
 *
-* @class Item
+* @class Element
 * @module Server
 */
-class Item extends Resource{ 
+class Element extends Resource{ 
   public function new(data){
     super(data);
-		trace("hey there! wazzup???"+data);
+		//trace("hey there! wazzup???"+data);
   } 
    
   static function test() {
