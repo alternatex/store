@@ -1,0 +1,15 @@
+language: node_js
+
+node_js:
+- "0.8"
+
+deploy:
+  provider: openshift
+  user: gianni.furger+public@gmail.com
+  password:
+    secure: ON/fz/pVJV/ZwIlCeqy0Ui9xfUsUSylInyBjeWbO/I3K2K3rWcRuM/jZAbzAO+EKDPvuDiPi8yekLdURCyhBtXYjmoF8Ko46NnfkF8K9UZfi6ylQpa5RzCm5YntwcTsDq76lieud/NFt/7W9fZQfJWx9b81DzwhnNtshREmMxoA=
+  app: store
+  domain: axpublic
+  on:
+    repo: alternatex/store
+    branch: develop
