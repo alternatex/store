@@ -384,10 +384,24 @@ class Store extends Base {
     #end
     // get request vars - end
 
-    var namespace:String = "person";
-    var action:String = "update";
-    var jsonp:String = "";
-    var user:String = "anonymous";
+    var global = {      
+      action:    "update",
+      namespace: "Person",      
+      data:      "",
+      user:      "anonymous"
+    };
+
+    #if php
+      var value:String = "test";
+      untyped __php__("eval('$_GET[\\'instance\\']=123;'); echo '<pre>'; print_r($value); echo '</pre>'; ");
+      try{
+        //untyped __php__('$_GET["instance"]=123');
+        var value : String = untyped __var__('_GET', 'instance2');  
+        trace("value is: "+value);
+      } catch(ex:Dynamic){
+        trace("exception <small>" + ex + "</small>");
+      }
+    #end
 
     var file:File = new File("afile.txt");
 

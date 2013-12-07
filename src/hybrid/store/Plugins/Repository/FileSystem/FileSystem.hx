@@ -86,16 +86,5 @@ class FileSystem extends Repository {
     #end   
     return false; 
   }
-  
-  /**
-  * Get/Set pending changes flag
-  * 
-  * @method isPending
-  * @param {boolean} $pending
-  * @return {boolean} 
-  */ 
-  public override function isPending(pending:Dynamic):Bool{
-    if(pending!=null) this.pending = pending;
-    return this.pending;
-  }   
+     
 }
