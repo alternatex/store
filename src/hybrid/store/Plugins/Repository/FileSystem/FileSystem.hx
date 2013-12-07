@@ -4,11 +4,11 @@ import store.Store;
 import store.plugins.repository.Repository;
 import store.plugins.resource.Resource;
 
-/**
-* <php>                           
-*/
 #if php
 import php.Lib;
+#end
+
+#if (php || java)
 import sys.FileSystem in SysFileSystem;
 import sys.io.File in SysFile;
 #end
@@ -29,10 +29,7 @@ class FileSystem extends Repository {
   * @return {Boolean} Returns true on success
   */ 
   public override function update(resource:Resource){
-    /**
-    * <php>                           
-    */
-    #if php
+    #if (php || java)
     SysFile.saveContent("", "" /*resource.path(), resource.content()*/);
     #end  
   }
@@ -45,10 +42,7 @@ class FileSystem extends Repository {
   * @return {Object} item instance
   */ 
   public override function get(resource:Resource){
-    /**
-    * <php>                           
-    */
-    #if php
+    #if (php || java)
     SysFile.getContent("");
     #end        
   }
@@ -61,10 +55,7 @@ class FileSystem extends Repository {
   * @return {Boolean} Returns true on success
   */   
   public override function remove(resource:Resource){
-    /**
-    * <php>                           
-    */
-    #if php
+    #if (php || java)
     SysFileSystem.deleteFile("");
     #end
   }
@@ -77,10 +68,7 @@ class FileSystem extends Repository {
   * @void
   */ 
   public override function load(filepath:String){
-    /**
-    * <php>                           
-    */
-    #if php
+    #if (php || java)
     SysFile.getContent(filepath);
     #end    
   }
@@ -93,10 +81,7 @@ class FileSystem extends Repository {
   * @void
   */ 
   public override function persist(filepath:String):Bool{
-    /**
-    * <php>                           
-    */    
-    #if php
+    #if (php || java)
     SysFile.saveContent('/Library/WebServer/Documents/store/src/hybrid/datastore/output.txt', "bladibla");
     #end   
     return false; 

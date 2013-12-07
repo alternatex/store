@@ -11,6 +11,14 @@ import store.plugins.resource.Resource;
 class Format { 
   
   /**
+  * File extension
+  * @property FILE_EXTENSION
+  * @static
+  * @type {String}
+  */  
+  private static var extension:String=null;
+
+  /**
   * Encode to format
   *
   * @method encode
