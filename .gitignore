@@ -9,3 +9,5 @@ vendor/
 examples/vendor
 src/hybrid/java
 src/hybrid/www
+src/hybrid/store.js
+
