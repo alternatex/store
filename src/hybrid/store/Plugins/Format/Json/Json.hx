@@ -14,6 +14,12 @@ import store.plugins.resource.element.Element;
 
 class Json extends Format { 
   
+  /**
+  * File extension
+  * @property FILE_EXTENSION
+  * @static
+  * @type {String}
+  */  
   private static var extension:String="json";
 
   /**

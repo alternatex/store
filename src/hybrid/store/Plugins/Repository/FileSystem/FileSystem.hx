@@ -5,9 +5,18 @@ import store.plugins.repository.Repository;
 import store.plugins.resource.Resource;
 
 /**
-* Repository
+* <php>                           
+*/
+#if php
+import php.Lib;
+import sys.FileSystem in SysFileSystem;
+import sys.io.File in SysFile;
+#end
+
+/**
+* FileSystem Repository Driver
 *
-* @class Repository
+* @class FileSystem
 * @module Server
 */
 class FileSystem extends Repository {
@@ -46,7 +55,14 @@ class FileSystem extends Repository {
   * @param {String} dsn
   * @void
   */ 
-  public override function load(dsn:String){}
+  public override function load(dsn:String){
+    /**
+    * <php>                           
+    */
+    #if php
+    SysFile.getContent(dsn);
+    #end    
+  }
 
 
   /**
@@ -57,7 +73,13 @@ class FileSystem extends Repository {
   * @void
   */ 
   public override function persist(dsn:String):Bool{
-    return false;
+    /**
+    * <php>                           
+    */    
+    #if php
+    SysFile.saveContent('/Library/WebServer/Documents/store/src/hybrid/datastore/output.txt', "bladibla");
+    #end   
+    return false; 
   }
   
   /**

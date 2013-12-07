@@ -7,6 +7,7 @@ package store;
 /**
 * <common>                           
 */
+
 import store.plugins.format.Format;
 import store.plugins.format.json.Json;
 import store.plugins.resource.collection.Collection;
@@ -22,6 +23,8 @@ import store.plugins.schema.Schema;
 */
 #if php
 import php.Lib;
+import sys.FileSystem in SysFileSystem;
+import sys.io.File in SysFile;
 #end
 
 /**
@@ -558,6 +561,7 @@ if(strlen($jsonp)>0) {
     a.me="john";
     var b : Test1 = cast(a,Test1);
     trace(b.me);
+
     */
     // JavaScript::$(document).ready(...)
     #if js
@@ -574,6 +578,11 @@ if(strlen($jsonp)>0) {
     };
     var item:Element = new Element("asdasd");    
     var file:File = new File("app.yml");
+    
+    #if php
+      SysFile.saveContent('/Library/WebServer/Documents/store/src/hybrid/datastore/output.txt', "bladibla");
+      trace(SysFile.getContent('/Library/WebServer/Documents/store/src/hybrid/datastore/output.txt'));
+    #end    
 
     //trace(mapping);
     //trace("hey there! wazzup???");
