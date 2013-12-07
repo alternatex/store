@@ -314,6 +314,7 @@ Documentation
 
 Roadmap
 -------------
+- Client Mode `Promise` (Yeah; [Familiar Feeling](http://www.youtube.com/watch?v=7Sxa8kca05A))
 - Documentation
   - Stores
   - Settings

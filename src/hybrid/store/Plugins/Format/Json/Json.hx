@@ -25,8 +25,8 @@ class Json extends Format {
   * Encode to format
   *
   * @method encode
-  * @param {Resource} $resource to encode
-  * @return {Dynamic} encoded resource
+  * @param {Dynamic} resource to encode
+  * @return {String} encoded resource
   */ 
   public static override function Encode(resource:Dynamic):String{    
     return haxe.Json.stringify(resource);
@@ -36,8 +36,8 @@ class Json extends Format {
   * Decode from format 
   *
   * @method decode
-  * @param {Resource} $resource to decode
-  * @return {Resource} decoded resource
+  * @param {String} resource to decode
+  * @return {Dynamic} decoded resource
   */ 
   public static override function Decode(resource:String):Dynamic {
     return haxe.Json.parse(resource);

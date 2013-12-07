@@ -16,14 +16,14 @@ class Format {
   * @static
   * @type {String}
   */  
-  private static var extension:String=null;
+  private static var extension:String='';
 
   /**
   * Encode to format
   *
   * @method encode
-  * @param {Resource} $resource to encode
-  * @return {Dynamic} encoded resource
+  * @param {Dynamic} resource to encode
+  * @return {String} encoded resource
   */ 
   public static function Encode(resource:Dynamic):String {
     return null;
@@ -33,8 +33,8 @@ class Format {
   * Decode from format 
   *
   * @method decode
-  * @param {Resource} $resource to decode
-  * @return {Resource} decoded resource
+  * @param {String} resource to decode
+  * @return {Dynamic} decoded resource
   */ 
   public static function Decode(resource:String):Dynamic {
     return null;
