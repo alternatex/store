@@ -1,51 +1,40 @@
-<?php namespace Store\Format;
+package store.plugins.format.json;
 
-use Store\Format;
-use Store\Resource;
-
-/*
-TODOS 
------
- - lazy/eager loading (by route)
-    - marshall object references to path
-    - unmarshall object references from path
-*/
+import store.plugins.format.Format;
+import store.plugins.resource.Resource;
+import store.plugins.resource.file.File;
+import store.plugins.resource.element.Element;
 
 /**
-* Json Formatted Contents
+* Json Formatting Helper
 *
-* @class Json
+* @class Json 
 * @module Server
 */
-class Json implements Format {
 
-  /**
-  * File extension
-  * @property FILE_EXTENSION
-  * @const
-  * @type {String}
-  */
-  const FILE_EXTENSION = 'json';
+class Json extends Format { 
   
+  private static var extension:String="json";
+
   /**
   * Encode to format
   *
   * @method encode
-  * @param {String} $datastore context identifier
-  * @void
+  * @param {Resource} $resource to encode
+  * @return {Dynamic} encoded resource
   */ 
-  public static function Encode(Resource $resource){
-    return json_encode($resource->content());
+  public static function Encode(resource:Dynamic):String{    
+    return haxe.Json.stringify(resource);
   }
 
   /**
   * Decode from format 
   *
   * @method decode
-  * @param {String} $datastore context identifier
-  * @void
+  * @param {Resource} $resource to decode
+  * @return {Resource} decoded resource
   */ 
-  public static function Decode(Resource $resource){
-    return json_decode($resource->content());
+  public static function Decode(resource:String):Dynamic {
+    return haxe.Json.parse(resource);
   }
 }

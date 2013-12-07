@@ -7,11 +7,20 @@ package store;
 /**
 * <common>                           
 */
+
+import store.plugins.format.Format;
+import store.plugins.format.json.Json;
 import store.plugins.resource.collection.Collection;
-import store.plugins.resource.element.Element;
 import store.plugins.resource.Resource;
 import store.plugins.resource.file.File;
+import store.plugins.resource.element.Element;
+/*
+import store.plugins.repository.Repository;
+import store.plugins.repository.filesystem.FileSystem;
 import store.plugins.schema.Schema;
+*/
+
+//import haxe.Json;
 
 /**
 * <php>                           
@@ -406,6 +415,141 @@ class Store extends Base {
 
   static function main() {
     var resource:Resource = new Resource("123");
+    var namespace:String = "person";
+    var action:String = "update";
+    var jsonp:String = "";
+    var user:String = "anonymous";
+    var file:File = new File("afile.txt");
+    var p = Json.Encode({ x : -1, y : 65, name: "James" });
+    var test = Json.Decode(p);
+    trace(test.name);
+    test.name = "Jefferey";
+    var test2 = Json.Encode(test);
+    var test3 = Json.Decode(test2);
+    //var json:Dynamic = haxe.Json.parse('{"name": "james"}');
+
+    
+    trace(test2);
+    trace(test3.name);    
+/*
+
+// initialize storage
+$Store = '\\Store\\Repository\\Memory';
+
+// hold store opening party
+$store = new $Store();
+
+// extract request params
+$instance = getvar('instance');
+
+// naming - TODO: solve
+if($basedir!="") $namespace = $basedir;
+
+// check prerequisites
+if(trim($namespace)=="" || trim($action)=="") {
+
+  // return error 
+  $err = json_encode(array(Store::RESPONSE_ERROR => "namespace: $namespace or action: $action not set"));
+  die(strlen($jsonp)>0 ? $jsonp."("."console.error(".$err."));":$err);
+}
+
+// ----------------------------------------------------------------------------
+// - INITIALIZE II
+// ----------------------------------------------------------------------------
+
+function recursive_mkdir($path, $mode = 0777) {
+    $dirs = explode(DIRECTORY_SEPARATOR , $path);
+    $count = count($dirs);
+    $path = '.';
+    for ($i = 0; $i < $count; ++$i) {
+        $path .= DIRECTORY_SEPARATOR . $dirs[$i];
+        if (!is_dir($path) && !mkdir($path, $mode)) {
+            return false;
+        }
+    }
+    return true;
+}
+
+$rootdir = '';
+if(strpos($namespace, '|')!==false){
+  $segments = explode('|', $namespace);
+  $segments_tmp = array();
+  foreach ($segments as $segment) {
+    if(trim($segment)!='') array_push($segments_tmp, $segment);
+  }
+  $segments = $segments_tmp;
+  unset($segments_tmp);
+  $segmentPath = implode('/', array_slice($segments, 0, -1));
+  $rootdir.=$segmentPath;
+  //mkdir($rootdir, 0700, true);
+  @recursive_mkdir($rootdir.'/');
+  //die($rootdir); 
+  $namespace = $segments[sizeof($segments)-1];
+} else {
+  $rootdir='./';
+}
+
+// TODO: 
+// - full rewrite to disk using...
+// - post only to write, which makes sense
+// - get rid of all other parameters
+
+// load contents
+$datastore = $rootdir.'/'.$user.".".$namespace.'.json';
+$store->load($datastore);
+
+// return value helper 
+$returnValue = null;
+
+// wrap data (refactor step1; refactor step2 will be scaffolding..)
+$item = new Item($instance);
+
+// ----------------------------------------------------------------------------
+// - PROCESS
+// ----------------------------------------------------------------------------
+
+// handle action *
+switch($action){
+  case Store::STORE_ACTION_UPDATE:
+    $returnValue = $store->update($item);
+    break;
+  case Store::STORE_ACTION_REMOVE:
+    $returnValue = $store->remove($item);
+    break;
+  case Store::STORE_ACTION_GET:
+    $returnValue = $store->get($item);
+    break;
+  case Store::STORE_ACTION_LIST:     
+    $returnValue = $store->get();
+    break;
+  default:
+    $err = json_encode(array(Store::RESPONSE_ERROR => "unknown action: $action"));
+    die(strlen($jsonp)>0 ? $jsonp."("."console.error(".$err."));":$err);  
+    break;
+}
+
+// empty buffer
+ob_get_clean();
+
+// write changes to disk *
+if($store->pending()){
+  $store->persist($datastore);
+}
+
+// ----------------------------------------------------------------------------
+// - RESPOND
+// ----------------------------------------------------------------------------
+
+// be nice
+header('Content-Type: text/javascript');
+
+// send response
+if(strlen($jsonp)>0) {
+  print $jsonp."(".json_encode($returnValue).");";
+} else {
+  print json_encode($returnValue);
+} 
+*/
 
     /*
     this.items[0] = new ItemTypeSafetyTest();
@@ -434,7 +578,8 @@ class Store extends Base {
       delete: Actions.delete,
     };
     var item:Element = new Element("asdasd");    
-    var file:File = new File("app.yml");    
+    var file:File = new File("app.yml");
+
     //trace(mapping);
     //trace("hey there! wazzup???");
   }

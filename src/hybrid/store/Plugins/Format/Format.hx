@@ -1,32 +1,37 @@
-<?php namespace Store;
+package store.plugins.format;
 
-use Store\Resource;
+import store.plugins.resource.Resource;
 
 /**
 * Format
 *
-* Abstract format aka content type (encoding/decoding)
-*
-* @class Format
+* @interface Format
 * @module Server
 */
-interface Format { 
 
+//TODO: interface
+class Format { 
+  
   /**
   * Encode to format
   *
   * @method encode
-  * @param {String} $datastore context identifier
-  * @void
+  * @param {Resource} $resource to encode
+  * @return {Dynamic} encoded resource
   */ 
-  public static function Encode(Resource $resource);
+  public static function Encode(resource:Resource):Dynamic {
+    return null;
+  }
 
   /**
   * Decode from format 
   *
   * @method decode
-  * @param {String} $datastore context identifier
-  * @void
+  * @param {Resource} $resource to decode
+  * @return {Resource} decoded resource
   */ 
-  public static function Decode(Resource $resource);
+  public static function Decode(resource:Dynamic):Resource {
+    return null;
+  }
+
 }
