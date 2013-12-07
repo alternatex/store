@@ -8,7 +8,7 @@ import store.plugins.resource.Resource;
 * @class Collection
 * @module Server
 */
-class Collection extends Resource{ 
+class Collection extends Resource { 
   public function new(data){
     super(data);
 		trace("hey there! wazzup???"+data);

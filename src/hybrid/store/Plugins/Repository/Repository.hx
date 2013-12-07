@@ -1,7 +1,7 @@
-<?php namespace Store\Plugins\Repository;
+package store.plugins.repository;
 
-use Store\Store;
-use Store\Plugins\Resource\Resource;
+import store.Store;
+import store.plugins.resource.Resource;
 
 /**
 * Repository
@@ -9,7 +9,7 @@ use Store\Plugins\Resource\Resource;
 * @class Repository
 * @module Server
 */
-abstract class Repository extends Store { 
+class Repository extends Store {
 
   /**
   * Insert or update item data in datastore
@@ -18,7 +18,7 @@ abstract class Repository extends Store {
   * @param {Object} $item what it's about
   * @return {Boolean} Returns true on success
   */ 
-  abstract function update(Resource $resource);
+  public override function update(resource:Resource){}
 
   /**
   * Get item data
@@ -27,7 +27,7 @@ abstract class Repository extends Store {
   * @param {Object} $item what it's about
   * @return {Object} item instance
   */ 
-  abstract function get(Resource $resource=null);
+  public override function get(resource:Resource){}
 
   /**
   * Removes an item from datastore
@@ -36,7 +36,7 @@ abstract class Repository extends Store {
   * @param {Object} $item what it's about
   * @return {Boolean} Returns true on success
   */   
-  abstract function remove(Resource $resource);
+  public override function remove(resource:Resource){}
 
   /**
   * Load data
@@ -45,7 +45,8 @@ abstract class Repository extends Store {
   * @param {String} dsn
   * @void
   */ 
-  abstract function load($dsn);  
+  public override function load(dsn:String){}
+
 
   /**
   * Persist data
@@ -54,7 +55,9 @@ abstract class Repository extends Store {
   * @param {String} dsn
   * @void
   */ 
-  abstract function persist($dsn);
+  public override function persist(dsn:String):Bool{
+    return false;
+  }
   
   /**
   * Get/Set pending changes flag
@@ -63,9 +66,9 @@ abstract class Repository extends Store {
   * @param {boolean} $pending
   * @return {boolean} 
   */ 
-  public function pending($pending=null){
-    if($pending!=null) $this->pending = $pending;
-    return $this->pending;
+  public override function isPending(pending:Dynamic):Bool{
+    if(pending!=null) this.pending = (pending!=null) ? (pending==true?true:false) : (pending==false?false:true);
+    return this.pending;
   }   
 
   /**
@@ -74,7 +77,7 @@ abstract class Repository extends Store {
   * @method mirror
   * @void
   */
-  public function mirror(){
+  public override function mirror(){
     // TODO: implement
-  }  
+  }
 }
