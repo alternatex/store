@@ -19,7 +19,7 @@ class Format {
   * @param {Resource} $resource to encode
   * @return {Dynamic} encoded resource
   */ 
-  public static function Encode(resource:Resource):Dynamic {
+  public static function Encode(resource:Dynamic):String {
     return null;
   }
 
@@ -30,7 +30,7 @@ class Format {
   * @param {Resource} $resource to decode
   * @return {Resource} decoded resource
   */ 
-  public static function Decode(resource:Dynamic):Resource {
+  public static function Decode(resource:String):Dynamic {
     return null;
   }
 

@@ -10,12 +10,15 @@ package store;
 
 import store.plugins.format.Format;
 import store.plugins.format.json.Json;
-import store.plugins.resource.collection.Collection;
+
 import store.plugins.resource.Resource;
-import store.plugins.resource.file.File;
+import store.plugins.resource.collection.Collection;
 import store.plugins.resource.element.Element;
+import store.plugins.resource.file.File;
+
 import store.plugins.repository.Repository;
 import store.plugins.repository.filesystem.FileSystem;
+
 import store.plugins.schema.Schema;
 
 /**

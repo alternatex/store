@@ -1,11 +1,12 @@
 package store.plugins.resource.file;
 
+import store.plugins.format.Format;
 import store.plugins.resource.Resource;
 
 /**
-* Element
+* File
 *
-* @class Element
+* @class File
 * @module Server
 */
 class File extends Resource{ 
