@@ -26,6 +26,9 @@ import store.plugins.schema.Schema;
 */
 #if php
 import php.Lib;
+#end
+
+#if (php || java)
 import sys.FileSystem in SysFileSystem;
 import sys.io.File in SysFile;
 #end
@@ -579,10 +582,11 @@ if(strlen($jsonp)>0) {
       update: Actions.update,
       delete: Actions.delete,
     };
+    
     var item:Element = new Element("asdasd");    
     var file:File = new File("app.yml");
     
-    #if php
+    #if (php || java)
       SysFile.saveContent('/Library/WebServer/Documents/store/src/hybrid/datastore/output.txt', "bladibla");
       trace(SysFile.getContent('/Library/WebServer/Documents/store/src/hybrid/datastore/output.txt'));
     #end    
