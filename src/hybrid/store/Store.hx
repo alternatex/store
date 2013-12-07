@@ -10,6 +10,7 @@ import store.plugins.resource.file.File;
 
 import store.plugins.repository.Repository;
 import store.plugins.repository.filesystem.FileSystem;
+//import store.plugins.repository.arangodb.ArangoDB;
 
 import store.plugins.schema.Schema;
 
@@ -27,34 +28,6 @@ import sys.io.File in SysFile;
 #end
 
 /**
-* @class ItemTypeSafetyTest
-*/
-class ItemTypeSafetyTest {
-
-}
-
-enum Color {
-  Red;
-  Green;
-  Blue;
-}
-
-class Item {
-
-}
-
-class Colors {
-  static function toInt( c : Color ) : Int {
-    return switch( c ) {
-      case Red: 0xFF0000;
-      case Green: 0x00FF00;
-      case Blue: 0x0000FF;
-
-    }
-  }
-}
-
-/**
 * @enum Store's actions
 */
 enum Actions {
@@ -65,22 +38,17 @@ enum Actions {
 }
 
 /**
-* @enum Store's action/mapping configuration
+* @class Item
 */
-typedef Mapping = {
-  create:Dynamic,
-  read:Dynamic,
-  update:Dynamic,
-  delete:Dynamic
+class Item {
+  public function new(){}
 }
+
 /**
 * @class Base
 */
 class Base {
-  public var namexxx:String = "test";
-  public function new(){
-    //this.namexxx = "sali";
-  }
+  public function new(){}
 }
 
 /**
@@ -404,175 +372,184 @@ class Store extends Base {
   }*/
 
   static function main() {
+
     var resource:Resource = new Resource("123");
+
+    // get request vars - start
+    #if php
+      // php direct eval magic * duh.
+    #end    
+    #if java
+      // java command line vs «servlet» deployment? fuuu.
+    #end
+    // get request vars - end
+
     var namespace:String = "person";
     var action:String = "update";
     var jsonp:String = "";
     var user:String = "anonymous";
+
     var file:File = new File("afile.txt");
-    var p = Json.Encode({ x : -1, y : 65, name: "James" });
-    var test = Json.Decode(p);
-    trace(test.name);
-    test.name = "Jefferey";
-    var test2 = Json.Encode(test);
-    var test3 = Json.Decode(test2);
-    //var json:Dynamic = haxe.Json.parse('{"name": "james"}');    
-    trace(test2);
-    trace(test3.name);    
 
     // initialize storage
     var store:Store = new Store(); // TODO: new Memory();
 
-/*
-// extract request params
-$instance = getvar('instance');
-
-// naming - TODO: solve
-if($basedir!="") $namespace = $basedir;
-
-// check prerequisites
-if(trim($namespace)=="" || trim($action)=="") {
-
-  // return error 
-  $err = json_encode(array(Store::RESPONSE_ERROR => "namespace: $namespace or action: $action not set"));
-  die(strlen($jsonp)>0 ? $jsonp."("."console.error(".$err."));":$err);
-}
-
-// ----------------------------------------------------------------------------
-// - INITIALIZE II
-// ----------------------------------------------------------------------------
-
-function recursive_mkdir($path, $mode = 0777) {
-    $dirs = explode(DIRECTORY_SEPARATOR , $path);
-    $count = count($dirs);
-    $path = '.';
-    for ($i = 0; $i < $count; ++$i) {
-        $path .= DIRECTORY_SEPARATOR . $dirs[$i];
-        if (!is_dir($path) && !mkdir($path, $mode)) {
-            return false;
-        }
-    }
-    return true;
-}
-
-$rootdir = '';
-if(strpos($namespace, '|')!==false){
-  $segments = explode('|', $namespace);
-  $segments_tmp = array();
-  foreach ($segments as $segment) {
-    if(trim($segment)!='') array_push($segments_tmp, $segment);
-  }
-  $segments = $segments_tmp;
-  unset($segments_tmp);
-  $segmentPath = implode('/', array_slice($segments, 0, -1));
-  $rootdir.=$segmentPath;
-  //mkdir($rootdir, 0700, true);
-  @recursive_mkdir($rootdir.'/');
-  //die($rootdir); 
-  $namespace = $segments[sizeof($segments)-1];
-} else {
-  $rootdir='./';
-}
-
-// TODO: 
-// - full rewrite to disk using...
-// - post only to write, which makes sense
-// - get rid of all other parameters
-
-// load contents
-$datastore = $rootdir.'/'.$user.".".$namespace.'.json';
-$store->load($datastore);
-
-// return value helper 
-$returnValue = null;
-
-// wrap data (refactor step1; refactor step2 will be scaffolding..)
-$item = new Item($instance);
-
-// ----------------------------------------------------------------------------
-// - PROCESS
-// ----------------------------------------------------------------------------
-
-// handle action *
-switch($action){
-  case Store::STORE_ACTION_UPDATE:
-    $returnValue = $store->update($item);
-    break;
-  case Store::STORE_ACTION_REMOVE:
-    $returnValue = $store->remove($item);
-    break;
-  case Store::STORE_ACTION_GET:
-    $returnValue = $store->get($item);
-    break;
-  case Store::STORE_ACTION_LIST:     
-    $returnValue = $store->get();
-    break;
-  default:
-    $err = json_encode(array(Store::RESPONSE_ERROR => "unknown action: $action"));
-    die(strlen($jsonp)>0 ? $jsonp."("."console.error(".$err."));":$err);  
-    break;
-}
-
-// empty buffer
-ob_get_clean();
-
-// write changes to disk *
-if($store->pending()){
-  $store->persist($datastore);
-}
-
-// ----------------------------------------------------------------------------
-// - RESPOND
-// ----------------------------------------------------------------------------
-
-// be nice
-header('Content-Type: text/javascript');
-
-// send response
-if(strlen($jsonp)>0) {
-  print $jsonp."(".json_encode($returnValue).");";
-} else {
-  print json_encode($returnValue);
-} 
-*/
-
     /*
-    this.items[0] = new ItemTypeSafetyTest();
+    // extract request params
+    $instance = getvar('instance');
 
-    trace(this.name);
-    this.test("123");
-    trace("Hello World !"+this.name);
-    this.name="moin";
-    trace("Hello World !"+this.name);
-    var a : Test3 = new Test3();
-    a.me="john";
-    var b : Test1 = cast(a,Test1);
-    trace(b.me);
+    // naming - TODO: solve
+    if($basedir!="") $namespace = $basedir;
 
+    // check prerequisites
+    if(trim($namespace)=="" || trim($action)=="") {
+
+      // return error 
+      $err = json_encode(array(Store::RESPONSE_ERROR => "namespace: $namespace or action: $action not set"));
+      die(strlen($jsonp)>0 ? $jsonp."("."console.error(".$err."));":$err);
+    }
+
+    // ----------------------------------------------------------------------------
+    // - INITIALIZE II
+    // ----------------------------------------------------------------------------
+
+    function recursive_mkdir($path, $mode = 0777) {
+        $dirs = explode(DIRECTORY_SEPARATOR , $path);
+        $count = count($dirs);
+        $path = '.';
+        for ($i = 0; $i < $count; ++$i) {
+            $path .= DIRECTORY_SEPARATOR . $dirs[$i];
+            if (!is_dir($path) && !mkdir($path, $mode)) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    $rootdir = '';
+    if(strpos($namespace, '|')!==false){
+      $segments = explode('|', $namespace);
+      $segments_tmp = array();
+      foreach ($segments as $segment) {
+        if(trim($segment)!='') array_push($segments_tmp, $segment);
+      }
+      $segments = $segments_tmp;
+      unset($segments_tmp);
+      $segmentPath = implode('/', array_slice($segments, 0, -1));
+      $rootdir.=$segmentPath;
+      //mkdir($rootdir, 0700, true);
+      @recursive_mkdir($rootdir.'/');
+      //die($rootdir); 
+      $namespace = $segments[sizeof($segments)-1];
+    } else {
+      $rootdir='./';
+    }
+
+    // TODO: 
+    // - full rewrite to disk using...
+    // - post only to write, which makes sense
+    // - get rid of all other parameters
+
+    // load contents
+    $datastore = $rootdir.'/'.$user.".".$namespace.'.json';
+    $store->load($datastore);
+
+    // return value helper 
+    $returnValue = null;
+
+    // wrap data (refactor step1; refactor step2 will be scaffolding..)
+    $item = new Item($instance);
+
+    // ----------------------------------------------------------------------------
+    // - PROCESS
+    // ----------------------------------------------------------------------------
+
+    // handle action *
+    switch($action){
+      case Store::STORE_ACTION_UPDATE:
+        $returnValue = $store->update($item);
+        break;
+      case Store::STORE_ACTION_REMOVE:
+        $returnValue = $store->remove($item);
+        break;
+      case Store::STORE_ACTION_GET:
+        $returnValue = $store->get($item);
+        break;
+      case Store::STORE_ACTION_LIST:     
+        $returnValue = $store->get();
+        break;
+      default:
+        $err = json_encode(array(Store::RESPONSE_ERROR => "unknown action: $action"));
+        die(strlen($jsonp)>0 ? $jsonp."("."console.error(".$err."));":$err);  
+        break;
+    }
+
+    // empty buffer
+    ob_get_clean();
+
+    // write changes to disk *
+    if($store->pending()){
+      $store->persist($datastore);
+    }
+
+    // ----------------------------------------------------------------------------
+    // - RESPOND
+    // ----------------------------------------------------------------------------
+
+    // be nice
+    header('Content-Type: text/javascript');
+
+    // send response
+    if(strlen($jsonp)>0) {
+      print $jsonp."(".json_encode($returnValue).");";
+    } else {
+      print json_encode($returnValue);
+    } 
     */
+
     // JavaScript::$(document).ready(...)
     #if js
-  /*    new JQuery(function():Void { 
+    /*    
+    new JQuery(function():Void { 
       new JQuery("body").css('background-color', 'black');
-    });*/
+    });
+    */
     #end
     
-    var mapping:Mapping = {
-      create: Actions.create,
-      read: Actions.read,
-      update: Actions.update,
-      delete: Actions.delete,
-    };
-
     var item:Element = new Element("asdasd");    
     var file:File = new File("app.yml");
     
     #if (php || java)
       SysFile.saveContent('/Library/WebServer/Documents/store/src/hybrid/datastore/output.txt', "bladibla");
       trace(SysFile.getContent('/Library/WebServer/Documents/store/src/hybrid/datastore/output.txt'));
-    #end    
+      #if php
+      SysFile.saveContent('./output.txt', "bladibla PHP!");
+      #end
+      #if java
+      SysFile.saveContent('./output.txt', "bladibla JAVA!");
+      #end      
+    #end 
 
-    //trace(mapping);
-    //trace("hey there! wazzup???");
+    /*
+    enum Color {
+      Red;
+      Green;
+      Blue;
+    }
+
+    class Colors {
+      public static function toInt( c : Color ) : Int {
+        return switch( c ) {
+          case Red: 0xFF0000;
+          case Green: 0x00FF00;
+          case Blue: 0x0000FF;
+        }
+      }
+    }   
+    trace(Colors.toInt(Color.Blue));
+    trace(Colors.toInt(Color.Red));
+    trace(Colors.toInt(Color.Green));
+    */
+
   }
 }        

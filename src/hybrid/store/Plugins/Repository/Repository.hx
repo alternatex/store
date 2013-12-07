@@ -67,7 +67,7 @@ class Repository extends Store {
   * @return {boolean} 
   */ 
   public override function isPending(pending:Dynamic):Bool{
-    if(pending!=null) this.pending = (pending!=null) ? (pending==true?true:false) : (pending==false?false:true);
+    if(pending!=null) this.pending = pending;
     return this.pending;
   }   
 

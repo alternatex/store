@@ -1,0 +1,7 @@
+<project name="store" url="https://github.com/alternatex/store" license="MIT">
+  <user name="alternatex"/>
+  <description><![CDATA[A lightweight, crossplatform datastore wrapper]]></description>
+  <version name="2.0.0"><![CDATA[Initial release targeting Haxe 3.x]]></version>
+  <tag v="cross"/>
+  <tag v="utility"/>
+</project>

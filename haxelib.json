@@ -2,13 +2,9 @@
   "name": "store",
   "url": "http://alternatex.github.io/store",
   "license": "MIT",
-  "tags": [],
-  "description": "",
-  "version": "0.0.1",
-  "releasenote": "",
-  "contributors": [ "alternatex" ],
-  "misc": "https://github.com/mikestead/hx-yaml.git",
-  "dependencies": {
-     "hx-yaml": "*"
-  }
+  "tags": ["haxe", "data", "store", "php", "java", "javascript", "js", "node"],
+  "description": "A lightweight, crossplatform datastore wrapper",
+  "version": "2.0.0",
+  "releasenote": "Initial release targeting Haxe 3.x",
+  "contributors": [ "alternatex" ]
 }
