@@ -11,7 +11,6 @@ import store.plugins.resource.element.Element;
 * @class Json 
 * @module Server
 */
-
 class Json extends Format { 
   
   /**
@@ -29,7 +28,7 @@ class Json extends Format {
   * @param {Resource} $resource to encode
   * @return {Dynamic} encoded resource
   */ 
-  public static function Encode(resource:Dynamic):String{    
+  public static override function Encode(resource:Dynamic):String{    
     return haxe.Json.stringify(resource);
   }
 
@@ -40,7 +39,7 @@ class Json extends Format {
   * @param {Resource} $resource to decode
   * @return {Resource} decoded resource
   */ 
-  public static function Decode(resource:String):Dynamic {
+  public static override function Decode(resource:String):Dynamic {
     return haxe.Json.parse(resource);
   }
 }

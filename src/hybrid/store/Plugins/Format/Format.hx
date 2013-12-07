@@ -8,8 +8,6 @@ import store.plugins.resource.Resource;
 * @interface Format
 * @module Server
 */
-
-//TODO: interface
 class Format { 
   
   /**

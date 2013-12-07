@@ -1,13 +1,5 @@
 package store;
 
-/* neko server jcr fs -> folders: mkdir -p ... .content.json */
-/* neko server jcr fs -> folders: mkdir -p ... .content.json */
-/* neko server jcr fs -> folders: mkdir -p ... .content.json */
-
-/**
-* <common>                           
-*/
-
 import store.plugins.format.Format;
 import store.plugins.format.json.Json;
 
@@ -21,9 +13,6 @@ import store.plugins.repository.filesystem.FileSystem;
 
 import store.plugins.schema.Schema;
 
-/**
-* <php>                           
-*/
 #if php
 import php.Lib;
 #end
@@ -33,9 +22,6 @@ import sys.FileSystem in SysFileSystem;
 import sys.io.File in SysFile;
 #end
 
-/**
-* <js>                           
-*/
 #if js
 // magic
 #end
@@ -430,19 +416,14 @@ class Store extends Base {
     test.name = "Jefferey";
     var test2 = Json.Encode(test);
     var test3 = Json.Decode(test2);
-    //var json:Dynamic = haxe.Json.parse('{"name": "james"}');
-
-    
+    //var json:Dynamic = haxe.Json.parse('{"name": "james"}');    
     trace(test2);
     trace(test3.name);    
+
+    // initialize storage
+    var store:Store = new Store(); // TODO: new Memory();
+
 /*
-
-// initialize storage
-$Store = '\\Store\\Repository\\Memory';
-
-// hold store opening party
-$store = new $Store();
-
 // extract request params
 $instance = getvar('instance');
 
@@ -582,7 +563,7 @@ if(strlen($jsonp)>0) {
       update: Actions.update,
       delete: Actions.delete,
     };
-    
+
     var item:Element = new Element("asdasd");    
     var file:File = new File("app.yml");
     
