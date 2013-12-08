@@ -63,7 +63,7 @@ Defaults are configured as follows:
 ```javascript
 Store.configure({ 
   url: "http://localhost/datastore.php", 
-  ttl: 36000
+  ttl: 3600
 });
 ```
 **Note**
@@ -146,7 +146,7 @@ objectStore.remove(object);
   // configure store defaults 
   Store.configure({ 
     url: "http://localhost/store/examples/server.php", 
-    ttl: 36000
+    ttl: 3600
   });
 
   // create new store

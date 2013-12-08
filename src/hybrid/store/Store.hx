@@ -27,6 +27,24 @@ import sys.io.File in SysFile;
 // magic
 #end
 
+class MyAPI{
+  public function new(){
+
+  }
+  public function create():Dynamic{
+    return null;
+  }
+  public function read():Dynamic{
+    return false;
+  }
+  public function update():Dynamic{
+    return false;
+  }
+  public function delete():Dynamic{
+    return false;
+  }
+}
+
 /**
 * @enum Store's actions
 */
@@ -51,9 +69,18 @@ class Base {
   public function new(){}
 }
 
+@:expose
+typedef API = {
+  function create():Dynamic;
+  function read():Dynamic;
+  function update():Dynamic;
+  function delete():Dynamic;
+}
+
 /**
 * @class Store
 */
+
 class Store extends Base {
 
   /**
@@ -270,9 +297,25 @@ class Store extends Base {
   * @static
   * @param test {String}  
   */ 
+  @:expose
   private static function test(test:String):Void {
 
     trace(test);
+  }
+
+  /**
+  * Insert or update resource data in datastore
+  *
+  * @method update
+  * @param {Object} $resource what it's about
+  * @return {Boolean} Returns true on success
+  */ 
+  public function route(route:String):Void {
+  
+    #if client
+      // remoting delegate/send and forget?
+    #end
+
   }
 
   /**
@@ -370,6 +413,11 @@ class Store extends Base {
   /*static function test() {
     trace("testtesttest");
   }*/
+  
+  @:expose
+  public static function SampleAPI():API{
+    return new MyAPI();  
+  }
 
   static function main() {
 
