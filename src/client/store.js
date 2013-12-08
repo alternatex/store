@@ -363,21 +363,6 @@ function Store(options){
     */         
     remove: function remove(callback){
       return this.datastore.remove(this, callback);
-    },  
-
-    // TODO: general getter/setter for data => adjust attribute naming ***!!!
-
-    /**
-    * Retrieves all items
-    *
-    * @method all
-    * @return {Boolean} Returns true on success
-    */             
-    all: function all(data){
-      if(typeof(data)!="undefined"){
-        this.data.instance = data;  
-      }
-      return this.data.instance;
     }
   };
 
