@@ -213,6 +213,7 @@ Remote.prototype.process = function process(action, options, item, oncallback, e
   };
 
   // setup
+  serialized = serialized.replace(/instance\[/gi, "i[");
   script.src = options.url+"/"+(options.basedir ? options.basedir.replace(/\//gi, '|') : options.namespace)+"/"+action+"/"+callback+"/?bust="+(new Date().getTime())+"&"+serialized;
   
   // load
