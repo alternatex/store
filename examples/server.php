@@ -108,7 +108,7 @@ $Store = '\\Store\\Repository\\Memory';
 $store = new $Store();
 
 // extract request params
-$instance = getvar('instance');
+$instance = getvar('i');
 
 // naming - TODO: solve
 if($basedir!="") $namespace = $basedir;

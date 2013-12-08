@@ -10,9 +10,9 @@
         alert(entry.name);
       }
     </script>
-    <script src="//localhost/store/examples/resources/update/console.log/?instance[type]=resources&amp;instance[name]=johnny_walker&amp;instance[nickname]=sally"></script>    
-    <script src="//localhost/store/examples/resources/list/console.log/?instance[type]=default&amp;instance[name]=johnny_walker&amp;instance[nickname]=sally&amp;jsonp=console.log&amp;jsonp=console.log"></script>    
-    <script src="//localhost/store/examples/resources/get/nickname/?instance[type]=default&amp;instance[id]=08eb8346-aa50-42ac-998f-e9e7f3586659"></script>    
+    <script src="//localhost/store/examples/server.php/resources/update/console.log/?i[type]=resources&amp;i[name]=johnny_walker&amp;i[nickname]=sally"></script>    
+    <script src="//localhost/store/examples/server.php/resources/list/console.log/?i[type]=default&amp;i[name]=johnny_walker&amp;i[nickname]=sally&amp;jsonp=console.log&amp;jsonp=console.log"></script>    
+    <script src="//localhost/store/examples/server.php/resources/get/nickname/?i[type]=default&amp;i[id]=08eb8346-aa50-42ac-998f-e9e7f3586659"></script>    
   </head>
   <body>    
     <pre>
@@ -60,13 +60,13 @@
     <form method="POST" target="target" action="//localhost/store/examples/server.php/resources/update" enctype="multipart/form-data">      
       <input type="hidden" name="namespace" value="resources"/>
       <input type="hidden" name="action" value="update"/>
-      <input type="hidden" name="instance[type]" value="type"/>
-      <input type="hidden" name="instance[name]" value="name"/>
-      <input type="hidden" name="instance[option][key]" value="key"/>
-      <input type="hidden" name="instance[option][value]" value="value"/>
-      <input type="hidden" name="instance[option][lists][whitelist][]" value="good.host.com"/>
-      <input type="hidden" name="instance[option][lists][blacklist][]" value="evil.host.com"/>
-      <input type="file" name="instance[file]"/>
+      <input type="hidden" name="i[type]" value="type"/>
+      <input type="hidden" name="i[name]" value="name"/>
+      <input type="hidden" name="i[option][key]" value="key"/>
+      <input type="hidden" name="i[option][value]" value="value"/>
+      <input type="hidden" name="i[option][lists][whitelist][]" value="good.host.com"/>
+      <input type="hidden" name="i[option][lists][blacklist][]" value="evil.host.com"/>
+      <input type="file" name="i[file]"/>
       <button>Update</button>
     </form>    
     <iframe name="target"></iframe>
@@ -110,6 +110,40 @@
                 $(document.body).append($("<img src=\""+resource.get("file")+"\"/>"));;
             });      
           });
+
+        // TODO: prevent new on get?!          
+        var requests = [];
+        requests.push(resourcesStore.get("3349210b-0b8a-4d19-9cec-17efeca929c6").done(function(resource1obj){
+          console.log("got resource2221", resource1obj);
+        }));
+        
+        requests.push(resourcesStore.get("33349210b-0b8a-4d19-9cec-17efeca929c6").done(function(resource1obj){
+          console.log("got resource2221", resource1obj);
+        }));
+        
+        requests.push(resourcesStore.get("43349210b-0b8a-4d19-9cec-17efeca929c6").done(function(resource1obj){
+          console.log("got resource2221", resource1obj);
+        }));
+        
+        requests.push(resourcesStore.get("53349210b-0b8a-4d19-9cec-17efeca929c6").done(function(resource1obj){
+          console.log("got resource2221", resource1obj);
+        }));
+        
+        requests.push(resourcesStore.get("3349210b-0b8a-4d19-9cec-17efeca929c6").done(function(resource1obj){
+          console.log("got resource2221", resource1obj);
+        }));
+        
+        requests.push(resourcesStore.get("3c771b7b-c154-8d1f-aa25-7a64470939b3").done(function(resource1obj){
+          console.log("got resource2221223333", resource1obj);
+          resource1obj.set('name1', "meeeee1")
+          resource1obj.set('name2', "meeeee234444444555")
+          resource1obj.set('name3', "meeeee3")
+          resource1obj.update();          
+        }));
+
+        Store.when(requests).then(function(requestsDone){
+          console.log("requests", requests, requestsDone);
+        });
       }
 
       // power-on-self-test
