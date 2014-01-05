@@ -213,6 +213,7 @@ Remote.prototype.process = function process(action, options, item, oncallback, e
   };
 
   // setup
+  serialized = serialized.replace(/instance\[/gi, "i[");
   script.src = options.url+"/"+(options.basedir ? options.basedir.replace(/\//gi, '|') : options.namespace)+"/"+action+"/"+callback+"/?bust="+(new Date().getTime())+"&"+serialized;
   
   // load
@@ -363,21 +364,6 @@ function Store(options){
     */         
     remove: function remove(callback){
       return this.datastore.remove(this, callback);
-    },  
-
-    // TODO: general getter/setter for data => adjust attribute naming ***!!!
-
-    /**
-    * Retrieves all items
-    *
-    * @method all
-    * @return {Boolean} Returns true on success
-    */             
-    all: function all(data){
-      if(typeof(data)!="undefined"){
-        this.data.instance = data;  
-      }
-      return this.data.instance;
     }
   };
 

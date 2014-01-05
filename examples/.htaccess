@@ -1,3 +1,5 @@
+# TODO: add full http.conf example here -> as some issue's were expirienced
+
 Options +FollowSymlinks
 Options +Indexes
 
