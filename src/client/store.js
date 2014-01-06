@@ -76,7 +76,72 @@ Options.prototype = {
   * @type {Number}
   * @default 3600
   */      
-  ttl: 3600
+  ttl: 3600,
+
+  /**
+  * Authorization
+  * 
+  * @property options.auth
+  * @type {Object}
+  * @default false
+  */      
+  auth: false  
+};
+
+/**
+* Authorization
+* 
+* @method Auth
+* @private
+* @type {Object}
+* @default {Object} instance
+*/
+var Auth = function Auth(applicationId, javaScriptKey, masterKey){
+  this.applicationId = applicationId;
+  this.javaScriptKey = javaScriptKey;
+  this.masterKey = masterKey;
+};
+
+/**
+* Authorization constructor
+* 
+* @method Auth.constructor
+* @private
+* @type {Object}
+* @default {Object} instance
+*/
+Auth.prototype = {
+
+  /**
+  * Application Identifier
+  * 
+  * @property Auth.prototype.applicationId
+  * @type {String}
+  * @default null
+  * @required
+  */  
+  applicationId: null,
+
+  /**
+  * JavaScript Key
+  * 
+  * @property Auth.prototype.javaScriptKey
+  * @type {String}
+  * @default null
+  * @required
+  */  
+  javaScriptKey: null,
+
+  /**
+  * Master Key
+  * 
+  * @property Auth.prototype.masterKey
+  * @type {String}
+  * @default null
+  * @required
+  */  
+  masterKey: null
+
 };
 
 /**
@@ -87,7 +152,14 @@ Options.prototype = {
 * @type {Object}
 * @default {Object} instance
 */
-var Repository = function Repository(){};
+var Repository = function Repository(authorization){
+
+  // ...
+  this.authorization = authorization;
+
+  // ...
+
+};
 
 /**
 * Repository constructor
@@ -161,6 +233,9 @@ Remote.prototype.process = function process(action, options, item, oncallback, e
   var decallback = _.Deferred();
 
   // TODO: ajax form upload +++
+  // -----
+  // > this.authorization in headers *
+  // > this.authorization in headers *
 
   // attach custom callback handler
   root[callback]=function(items){
@@ -214,8 +289,13 @@ Remote.prototype.process = function process(action, options, item, oncallback, e
 
   // setup
   serialized = serialized.replace(/instance\[/gi, "i[");
+
+  // TODO: this.authorization to string *
+  // x + y + z > encode --> on server based on namespace, etc. do the same - validate access *
+  // x + y + z > encode --> on server based on namespace, etc. do the same - validate access *
+  // x + y + z > encode --> on server based on namespace, etc. do the same - validate access *
   script.src = options.url+"/"+(options.basedir ? options.basedir.replace(/\//gi, '|') : options.namespace)+"/"+action+"/"+callback+"/?bust="+(new Date().getTime())+"&"+serialized;
-  
+
   // load
   setTimeout(function(){
     document.body.appendChild(script);  
