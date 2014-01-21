@@ -22,15 +22,12 @@ Index
   * [Summary](#summary)
 * [Server API](#server-api)
 * [Continuous Integration](#continuous-integration)
-  * [Karma](#karma)
-  * [Travis](#travis)
 * [Repositories](#repositories)
       * [File Stores](#file-stores)
           * [CSV](#csv)
           * [JSON](#json)
           * [Serialized](#serialized)
 * [Documentation](#documentation)
-      * [CURL](#curl)
 * [Roadmap](#roadmap)
 * [License](#license)
 
@@ -160,7 +157,7 @@ objectStore.remove(object);
   });
   
   // update on insert 
-  object.update().done(function(object){
+  objectStore.update(object).done(function(object){
     
     // wrap json object
     object = objectStore.create(object);
@@ -173,7 +170,7 @@ objectStore.remove(object);
     objectId = object.get('id');
 
     // update object
-    object.update().done(function(object){        
+    objectStore.update(object).done(function(object){        
 
         // fetch object w/previously retrieved objectId
         objectStore.get(objectId).done(function(object){
@@ -226,12 +223,12 @@ objectStore.remove(object);
   Store.when(object).done(function(object){  
 
     // execute on success  
-    console.log("done", object);  
+    console.info("done", object);  
 
   }).fail(function(objects){    
 
     // execute on fail
-    console.log("fail", objects);    
+    console.error("fail", objects);    
 
   }).always(function(objects){    
 
@@ -271,18 +268,9 @@ Server API
 Continuous Integration
 -------------
 
-### Karma
-...
-
-### Travis
-...
-
 #### Setup
 
 [See](https://github.com/travis-ci/openshift-travis-quickstart)
-
-#### Test
-...
 
 Repositories
 -------------
@@ -314,13 +302,10 @@ Documentation
 
 Roadmap
 -------------
-- Documentation
-  - Stores
-  - Settings
-- JSON Schema
-- Generators
-- Synchronization
 - Access Control
+- Synchronization
+- JSON Schema
+  - Generators
 
 License
 -------------
