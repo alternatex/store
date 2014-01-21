@@ -9,7 +9,7 @@
 
 namespace JsonSchema;
 
-use JsonSchema\Uri\Retrievers\UriRetrieverInterface;
+use JsonSchema\Uri\UriRetriever;
 
 /**
  * Take in an object that's a JSON schema and take care of all $ref references
@@ -19,6 +19,15 @@ use JsonSchema\Uri\Retrievers\UriRetrieverInterface;
  */
 class RefResolver
 {
+    /**
+     * HACK to prevent too many recursive expansions.
+     * Happens e.g. when you want to validate a schema against the schema
+     * definition.
+     *
+     * @var integer
+     */
+    protected static $depth = 0;
+
     /**
      * @var UriRetrieverInterface
      */
@@ -41,7 +50,7 @@ class RefResolver
      */
     public function fetchRef($ref, $sourceUri)
     {
-        $retriever = $this->getUriRetriever();
+        $retriever  = $this->getUriRetriever();
         $jsonSchema = $retriever->retrieve($ref, $sourceUri);
         $this->resolve($jsonSchema);
 
@@ -79,7 +88,13 @@ class RefResolver
      */
     public function resolve($schema, $sourceUri = null)
     {
+        if (self::$depth > 7) {
+            return;
+        }
+        ++self::$depth;
+
         if (! is_object($schema)) {
+            --self::$depth;
             return;
         }
 
@@ -99,7 +114,7 @@ class RefResolver
         // These are all potentially arrays that contain schema objects
         // eg.  type can be a value or an array of values/schemas
         // eg.  items can be a schema or an array of schemas
-        foreach (array('disallow', 'extends', 'items', 'type') as $propertyName) {
+        foreach (array('disallow', 'extends', 'items', 'type', 'allOf', 'anyOf', 'oneOf') as $propertyName) {
             $this->resolveArrayOfSchemas($schema, $propertyName, $sourceUri);
         }
 
@@ -107,6 +122,8 @@ class RefResolver
         foreach (array('dependencies', 'patternProperties', 'properties') as $propertyName) {
             $this->resolveObjectOfSchemas($schema, $propertyName, $sourceUri);
         }
+
+        --self::$depth;
     }
 
     /**

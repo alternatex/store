@@ -3,6 +3,13 @@
 use Store\Format;
 use Store\Resource;
 
+use Goodby\CSV\Import\Standard\Lexer;
+use Goodby\CSV\Import\Standard\Interpreter;
+use Goodby\CSV\Import\Standard\LexerConfig;
+
+use Goodby\CSV\Export\Standard\Exporter;
+use Goodby\CSV\Export\Standard\ExporterConfig;
+
 /**
 * Csv Formatted Contents
 *
@@ -27,7 +34,13 @@ class Csv implements Format {
   * @void
   */ 
   public static function Encode(Resource $resource){
-    return die("Implement: ".__CLASS__."::".__FUNCTION__);
+    // TODO: a lot. hnd err, etc.
+    ob_start(function($data){ return $data; });
+    $exporter = new Exporter(new ExporterConfig());
+    $exporter->export('php://output', $resource->content());
+    $content = ob_get_contents();
+    ob_end_clean();
+    return $content;
   }
 
   /**
@@ -38,6 +51,28 @@ class Csv implements Format {
   * @void
   */ 
   public static function Decode(Resource $resource){
-    return die("Implement: ".__CLASS__."::".__FUNCTION__);
+
+    // TODO: «non-silly-impl»
+
+    // lazy lib work around
+    $data = array();
+    $tmpfilename = time().".tmp.csv";
+    file_put_contents($tmpfilename, $resource->content());
+
+    // setup lexer
+    $lexer = new Lexer(new LexerConfig());
+    $interpreter = new Interpreter();
+
+    // do nothing
+    $interpreter->addObserver(function(array $row) use (&$data) {
+        $data[] = $row;
+    });
+
+    // process file
+    $lexer->parse($tmpfilename, $interpreter);
+
+    // cleanup
+    unlink($tmpfilename);
+    return $data;
   }
 }

@@ -9,6 +9,7 @@
 
 namespace JsonSchema\Uri\Retrievers;
 
+use JsonSchema\Exception\ResourceNotFoundException;
 use JsonSchema\Validator;
 
 /**
@@ -16,11 +17,14 @@ use JsonSchema\Validator;
  * 
  * @author Sander Coolen <sander@jibber.nl> 
  */
-class FileGetContents implements UriRetrieverInterface
+class FileGetContents extends AbstractRetriever
 {
-    protected $contentType;
     protected $messageBody;
     
+    /**
+     * {@inheritDoc}
+     * @see \JsonSchema\Uri\Retrievers\UriRetrieverInterface::retrieve()
+     */
     public function retrieve($uri)
     {
         $context = stream_context_create(array(
@@ -31,16 +35,21 @@ class FileGetContents implements UriRetrieverInterface
         
         $response = file_get_contents($uri);
         if (false === $response) {
-            throw new ResourceNotFoundException('JSON schema not found');
+            throw new ResourceNotFoundException('JSON schema not found at ' . $uri);
         }
-        
+        if ($response == ''
+            && substr($uri, 0, 7) == 'file://' && substr($uri, -1) == '/'
+        ) {
+            throw new ResourceNotFoundException('JSON schema not found at ' . $uri);
+        }
+
         $this->messageBody = $response;
-		if (! empty($http_response_header)) {
-			$this->fetchContentType($http_response_header);
-		} else {
-			// Could be a "file://" url or something else - fake up the response
-			$this->contentType = null;
-		}
+        if (! empty($http_response_header)) {
+            $this->fetchContentType($http_response_header);
+        } else {
+            // Could be a "file://" url or something else - fake up the response
+            $this->contentType = null;
+        }
         
         return $this->messageBody;
     }
@@ -69,10 +78,5 @@ class FileGetContents implements UriRetrieverInterface
         if (0 < preg_match("/Content-Type:(\V*)/ims", $header, $match)) {
             return trim($match[1]);
         }
-    }
-
-    public function getContentType()
-    {
-        return $this->contentType;
     }
 }

@@ -9,6 +9,7 @@
 
 namespace JsonSchema\Constraints;
 
+use JsonSchema\Exception\InvalidArgumentException;
 use JsonSchema\Uri\UriResolver;
 
 /**
@@ -24,8 +25,15 @@ class Undefined extends Constraint
      */
     public function check($value, $schema = null, $path = null, $i = null)
     {
-        if (!is_object($schema)) {
+        if (is_null($schema)) {
             return;
+        }
+
+        if (!is_object($schema)) {
+            throw new InvalidArgumentException(
+                'Given schema must be an object in ' . $path
+                . ' but is a ' . gettype($schema)
+            );
         }
 
         $i = is_null($i) ? "" : $i;
@@ -187,6 +195,11 @@ class Undefined extends Constraint
      */
     protected function validateOfProperties($value, $schema, $path, $i = "")
     {
+        // Verify type
+        if ($value instanceof Undefined) {
+            return;
+        }
+
         if (isset($schema->allOf)) {
             $isValid = true;
             foreach ($schema->allOf as $allOf) {
