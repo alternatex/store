@@ -585,7 +585,15 @@ class Store extends Base {
       SysFile.saveContent('/Library/WebServer/Documents/store/src/hybrid/datastore/output.txt', "bladibla");
       trace(SysFile.getContent('/Library/WebServer/Documents/store/src/hybrid/datastore/output.txt'));
       #if php
-      SysFile.saveContent('./output.txt', "bladibla PHP!");
+      var value:String = "test";
+      try{
+        //untyped __php__('$_GET["instance"]=123');
+        value = untyped __var__('_GET', 'instance2');  
+      } catch(ex:Dynamic){
+        trace("exception <small>" + ex + "</small>");
+      }
+
+      SysFile.saveContent('./output.txt', "bladibla PHP!"+value);
       #end
       #if java
       SysFile.saveContent('./output.txt', "bladibla JAVA!");
