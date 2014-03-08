@@ -20,7 +20,6 @@ Index
       * [Delete](#delete)
   * [Summary](#summary)
 * [Server API](#server-api)
-* [Continuous Integration](#continuous-integration)
 * [Repositories](#repositories)
       * [File Stores](#file-stores)
           * [CSV](#csv)
@@ -263,13 +262,6 @@ Server API
 
 [![Latest Stable Version](https://poser.pugx.org/alternatex/store/v/stable.png)](https://packagist.org/packages/alternatex/store)
 [![Dependency Status](https://david-dm.org/alternatex/store.png)](https://david-dm.org/alternatex/store)
-
-Continuous Integration
--------------
-
-#### Setup
-
-[See](https://github.com/travis-ci/openshift-travis-quickstart)
 
 Repositories
 -------------
